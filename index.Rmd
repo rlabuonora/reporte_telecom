@@ -13,6 +13,7 @@ knitr::opts_chunk$set(echo = FALSE,
 
 library(officedown)
 library(officer)
+library(tidyverse)
 
 options(scipen = 10000)
 
@@ -23,7 +24,7 @@ options(scipen = 10000)
 <!-- ```{r child = '1-pib-telecom.Rmd'} -->
 <!-- ``` -->
 
-<!---BLOCK_TOC--->
+<!---BLOCK_TOC{level: 1}--->
 
 
 ```{r child = '1-fija.Rmd'}

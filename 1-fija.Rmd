@@ -13,19 +13,35 @@ knitr::opts_chunk$set(echo = FALSE,
 
 options(scipen = 10000)
 
+library(galeriaR)
+library(galeriaVis)
+library(tidyverse)
+library(lubridate)
+
+fija <- import_fija()
+
 
 ```
 
 
 # 1. Telefonía Fija
 
-<!-- ## 1. Líneas de telefonía fija -->
+## 1. Líneas de telefonía fija
 
-<!-- ```{r} -->
-<!-- g_9 -->
-<!-- ``` -->
+```{r}
 
-<!-- <br /> -->
+fija %>% 
+  filter(cabezal_1 == "Líneas") %>% 
+  filter(cabezal_2 %in% c("Res.R", "Res.U", "Com.R", "Com.U")) %>% 
+  filter(month(fecha) == 12, year(fecha) >= 2011) %>% 
+  group_by(fecha) %>% 
+  summarize(lineas = sum(numeric, na.rm = TRUE)) %>% 
+  serie_historica(lineas, fecha, nudge_text = 5e4)
+
+
+```
+
+<br />
 
 
 <!-- ## 2. Líneas de telefonía fija por departamento (diciembre 2019) -->
