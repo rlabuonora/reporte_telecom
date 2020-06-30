@@ -14,25 +14,13 @@ knitr::opts_chunk$set(echo = FALSE,
 
 options(scipen = 10000)
 
-library(galeriaR)
-library(galeriaVis)
-library(tidyverse)
-library(lubridate)
 
-FECHA_TORTAS <- as.Date("2019-12-01")
+
 
 # Theme
 
-theme_set(theme_minimal() + 
-            theme(plot.background = element_rect(fill = "#EEEEEE",
-                                                 color = "white"),
-                  axis.title = element_text(size = rel(1.5)),
-                  axis.text = element_text(size = rel(1.5)),
-                  axis.line.x = element_blank(),
-                  axis.ticks = element_blank()))
-
+source('./common.R')
 fija <- import_fija()
-
 
 ```
 
@@ -117,9 +105,6 @@ print(s)
 
 ```
 
-
-
-
 ## 6. Lineas de telefonia fija comerciales
 ```{r}
 fija %>% 
@@ -176,11 +161,11 @@ fija %>%
 ```
 
 
-<!-- <br /> -->
+<br />
 
-<!-- <br /> -->
+<br />
 
-<!-- <br /> -->
+<br />
 
 ## 10. Kilómetros de fibra óptica instalada
 ```{r}

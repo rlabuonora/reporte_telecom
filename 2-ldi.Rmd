@@ -9,242 +9,470 @@ graphics: yes
 ```{r, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, 
                       warning = FALSE,
+                      messages=FALSE,
                       fig.width = 10, 
                       fig.height = 5.5)
 
 options(scipen = 10000)
 
+source('./common.R')
 
+ldi <- import_ldi()
 ```
 
 # 2. Telefonía de larga distancia internacional
 
-<!-- ## 18. Minutos de tráfico de LDI salientes -->
+## 18. Minutos de tráfico de LDI salientes
 
-<!-- ```{r} -->
-<!-- g_26  -->
-<!-- ``` -->
+```{r}
+serie_26 <- ldi %>% 
+  group_by(year=year(fecha), servicio, sentido) %>% 
+  summarize(val = sum(numeric, na.rm=TRUE))  %>% 
+  filter(sentido == "desde", servicio == "Mn") %>% 
+  filter(year > 2010) %>% 
+  serie_historica_anual(val, nudge_text=c(10e6, 16e6, rep(10e6, 7)))
 
-<!-- <br /> -->
+serie_26
+```
 
+<br />
 
-<!-- ## 19. Minutos de tráfico de LDI saliente por operador (año 2019) -->
 
-<!-- ```{r} -->
-<!-- g_27 -->
-<!-- ``` -->
+## 19. Minutos de tráfico de LDI saliente por operador (año 2019)
 
-<!-- ## 20. Minutos de tráfico de LDI saliente según red origen (año 2019) -->
-<!-- ```{r} -->
-<!-- g_28 -->
-<!-- ``` -->
+```{r}
+serie_27 <- ldi %>% 
+  filter(year(fecha) == year(FECHA_INFORME)) %>% 
+  filter(sentido == "desde", servicio == "Mn") %>% 
+  group_by(empresa) %>% 
+  summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
+  filter(minutos > 0) %>% 
+  barras_horizontales(minutos, empresa, nudge_text = 6e6)
 
+serie_27
+```
 
-<!-- <br /> -->
+## 20. Minutos de tráfico de LDI saliente según red origen (año 2019)
+```{r}
+serie_28 <- ldi %>%
+  mutate(red = fct_collapse(red, "Redes Móviles" = c("Claro", "ANTEL", "Movistar"))) %>% 
+  filter(sentido == "desde", servicio == "Mn") %>% 
+  filter(year(fecha) == year(FECHA_INFORME)) %>% 
+  group_by(red) %>% 
+  summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
+  pie_chart(minutos, red)
 
-<!-- <br /> -->
 
-<!-- <br /> -->
+print(serie_28)
+```
 
-<!-- ## 21. Minutos de tráfico de LDI salientes de red fija - AMM por operador (año 2019) -->
 
-<!-- ```{r} -->
-<!-- g_29 -->
-<!-- ``` -->
+<br />
 
-<!-- ## 22. Minutos de tráfico de LDI saliente de Red Fija - AMM -->
+<br />
 
-<!-- ```{r} -->
-<!-- g_30 -->
-<!-- ``` -->
+<br />
 
+## 21. Minutos de tráfico de LDI salientes de red fija - AMM por operador (año 2019)
 
+```{r}
+serie_29 <- ldi %>% 
+  filter(sentido == "desde", servicio == "Mn") %>% 
+  filter(red %in% c("AMM")) %>% 
+  filter(year(fecha) == year(FECHA_INFORME)) %>% 
+  group_by(empresa) %>% 
+  summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
+  filter(minutos > 0) %>% 
+  barras_horizontales(minutos, empresa, nudge_text = 2.5e6)
 
-<!-- <br /> -->
 
-<!-- <br /> -->
+serie_29
+```
 
-<!-- <br /> -->
+## 22. Minutos de tráfico de LDI saliente de Red Fija - AMM
 
-<!-- ## 23. Minutos de tráfico de LDI salientes de red fija - Resto País por operador (año 2019) -->
+```{r}
+serie_30 <- ldi %>% 
+  filter(sentido == "desde", servicio == "Mn") %>% 
+  filter(red %in% c("AMM")) %>% 
+  group_by(year=year(fecha)) %>% 
+  summarize(val = sum(numeric, na.rm=TRUE)) %>% 
+  filter(!is.na(year), year > 2010) %>% 
+  serie_historica_anual(val, nudge_text = 2e6)
 
-<!-- ```{r} -->
-<!-- g_31 -->
-<!-- ``` -->
 
-<!-- ## 24. Minutos de tráfico de LDI salientes de Red Fija - Resto País -->
+serie_30
+```
 
-<!-- ```{r} -->
-<!-- g_32 -->
-<!-- ``` -->
 
 
-<!-- <br /> -->
+<br />
 
-<!-- <br /> -->
+<br />
 
-<!-- <br /> -->
+<br />
 
-<!-- ## 25. Minutos de tráfico de LDI salientes de redes móviles -->
+## 23. Minutos de tráfico de LDI salientes de red fija - Resto País por operador (año 2019)
 
+```{r}
+serie_31 <- ldi %>% 
+  filter(sentido == "desde", servicio == "Mn") %>% 
+  filter(red %in% c("Resto país")) %>% 
+  filter(year(fecha) == year(FECHA_INFORME)) %>% 
+  group_by(empresa) %>% 
+  summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
+  filter(minutos > 0) %>% 
+  pie_chart(minutos, empresa, nudge_x=c(0, 0, 8) )
 
-<!-- ```{r} -->
-<!-- g_33 -->
-<!-- ``` -->
 
-<!-- ## 26. Minutos de tráfico de LDI saliente por operador (año 2019) -->
+serie_31
+```
 
-<!-- ```{r} -->
-<!-- g_34 -->
-<!-- ``` -->
+## 24. Minutos de tráfico de LDI salientes de Red Fija - Resto País
 
+```{r}
+serie_32 <- ldi %>% 
+  filter(sentido == "desde", servicio == "Mn") %>% 
+  filter(red %in% c("Resto país")) %>% 
+  group_by(year=year(fecha)) %>% 
+  summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
+  filter(!is.na(year), year > 2010) %>% 
+  serie_historica_anual(minutos, nudge_text=2e6)
 
-<!-- <br /> -->
+serie_32
+```
 
-<!-- <br /> -->
 
-<!-- <br /> -->
+<br />
 
-<!-- ## 27. Minutos de tráfico de LDI saliente de red móvil de ANTEL por operador (año 2019) -->
+<br />
 
-<!-- ```{r} -->
-<!-- g_35 -->
-<!-- ``` -->
+<br />
 
-<!-- ## 28. Minutos de tráfico de LDI saliente de red móvil de ANTEL -->
-<!-- ```{r} -->
-<!-- g_36 -->
-<!-- ``` -->
+## 25. Minutos de tráfico de LDI salientes de redes móviles
 
 
-<!-- <br /> -->
+```{r}
+serie_33 <- ldi %>% 
+  filter(red %in% c("Claro", "ANTEL", "Movistar"), sentido == "desde", servicio == "Mn") %>% 
+  group_by(year=year(fecha)) %>% 
+  summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
+  filter(!is.na(year), year > 2010) %>% 
+  serie_historica_anual(minutos, 
+                        nudge_text=c(rep(3e6, 2), 8e6, rep(3e6, 6)))
 
-<!-- <br /> -->
+serie_33
 
-<!-- <br /> -->
+```
 
-<!-- ## 29. Minutos de tráfico de LDI saliente de red móvil de MOVISTAR por operador (año 2019) -->
-<!-- ```{r} -->
-<!-- g_37 -->
-<!-- ``` -->
+## 26. Minutos de tráfico de LDI saliente por operador (año 2019)
 
+```{r}
+serie_34 <- ldi %>% 
+  filter(red %in% c("Claro", "ANTEL", "Movistar"), sentido == "desde", servicio == "Mn") %>% 
+  filter(year(FECHA_INFORME)==year(fecha)) %>% 
+  mutate(empresa = if_else(empresa == "Antel" | empresa == "Convergia",
+                           "Antel", empresa)) %>% 
+  mutate(empresa = if_else(empresa == "A.M. Wireless Uruguay", 
+                           "Claro", empresa)) %>% 
+  group_by(empresa) %>% 
+  summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
+  filter(minutos > 0) %>% 
+  pie_chart(minutos, empresa)
 
+serie_34
+```
 
-<!-- ## 30. Minutos de tráfico de LDI saliente de red móvil de MOVISTAR -->
 
-<!-- ```{r} -->
-<!-- g_38 -->
-<!-- ``` -->
+<br />
 
+<br />
 
-<!-- <br /> -->
+<br />
 
-<!-- <br /> -->
+## 27. Minutos de tráfico de LDI saliente de red móvil de ANTEL por operador (año 2019)
 
-<!-- <br /> -->
+```{r}
+serie_35 <- ldi %>% 
+  filter(red %in% c("ANTEL"), 
+         sentido == "desde", 
+         servicio == "Mn") %>% 
+  filter(year(fecha) == year(FECHA_INFORME)) %>% 
+  group_by(empresa) %>% 
+  summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
+  filter(minutos > 0) %>% 
+  pie_chart(minutos, empresa)
 
-<!-- ## 31. Minutos de tráfico de LDI saliente de red móvil de CLARO por operador (año 2019) -->
+serie_35
+```
 
-<!-- ```{r} -->
-<!-- g_39 -->
-<!-- ``` -->
+## 28. Minutos de tráfico de LDI saliente de red móvil de ANTEL
+```{r}
+serie_36 <- ldi %>% 
+  filter(red %in% c("ANTEL"), 
+         sentido == "desde", 
+         servicio == "Mn") %>% 
+  group_by(year=year(fecha)) %>% 
+  summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
+  filter(!is.na(year), year > 2011) %>% 
+  serie_historica_anual(minutos, nudge_text=2e6)
 
-<!-- ## 32. Minutos de tráfico de LDI saliente de red móvil de CLARO -->
 
-<!-- ```{r} -->
-<!-- g_40 -->
-<!-- ``` -->
+serie_36
+```
 
 
+<br />
 
-<!-- <br /> -->
+<br />
 
-<!-- <br /> -->
+<br />
 
-<!-- <br /> -->
+## 29. Minutos de tráfico de LDI saliente de red móvil de MOVISTAR por operador (año 2019)
+```{r}
+serie_37 <- ldi %>% 
+  filter(red %in% c("Movistar"), 
+         sentido == "desde", 
+         servicio == "Mn") %>% 
+  filter(year(fecha) == year(FECHA_INFORME)) %>% 
+  group_by(empresa) %>% 
+  summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
+  filter(minutos > 0) %>% 
+  pie_chart(minutos, empresa)
 
 
-<!-- ## 33. Minutos de tráfico de LDI saliente de Telefonía Fija según cliente (año 2019) -->
-<!-- ```{r} -->
-<!-- g_41 -->
-<!-- ``` -->
+serie_37
+```
 
-<!-- ## 34. Minutos de tráfico de LDI saliente de Telefonía Fija de clientes Prepago -->
 
-<!-- ```{r} -->
-<!-- g_42 -->
-<!-- ``` -->
 
+## 30. Minutos de tráfico de LDI saliente de red móvil de MOVISTAR
 
+```{r}
+serie_38 <- ldi %>% 
+  filter(red %in% c("Movistar"), 
+         sentido == "desde", 
+         servicio == "Mn") %>% 
+  group_by(year=year(fecha)) %>% 
+  summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
+  filter(!is.na(year), year > 2010) %>% 
+  serie_historica_anual(minutos, nudge_text=2e6)
 
-<!-- <br /> -->
+serie_38
+```
 
-<!-- <br /> -->
 
-<!-- <br /> -->
+<br />
 
+<br />
 
-<!-- ## 35. Minutos de tráfico de LDI saliente de Telefonía Fija de clientes Pospago -->
-<!-- ```{r} -->
-<!-- g_43 -->
-<!-- ``` -->
+<br />
 
-<!-- ## 36. Minutos de tráfico de LDI saliente por destino (año 2019) -->
+## 31. Minutos de tráfico de LDI saliente de red móvil de CLARO por operador (año 2019)
 
-<!-- ```{r} -->
-<!-- g_44 -->
-<!-- ``` -->
+```{r}
+serie_39 <- ldi %>% 
+  filter(red %in% c("Claro"), 
+         sentido == "desde", 
+         servicio == "Mn") %>% 
+  filter(year(fecha) == year(FECHA_INFORME)) %>% 
+  group_by(empresa) %>% 
+  summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
+  filter(minutos > 0) %>% 
+  mutate(empresa = fct_recode(empresa,
+                              "Claro" = "A.M. Wireless Uruguay")) %>% 
+  pie_chart(minutos, empresa)
 
+serie_39
+```
 
-<!-- <br /> -->
+## 32. Minutos de tráfico de LDI saliente de red móvil de CLARO
 
-<!-- <br /> -->
+```{r}
+serie_40 <- ldi %>% 
+  filter(red %in% c("Claro"), 
+         sentido == "desde", 
+         servicio == "Mn") %>% 
+  group_by(year=year(fecha)) %>% 
+  summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
+  filter(!is.na(year), year > 2011) %>% 
+  serie_historica_anual(minutos, nudge_text=1e6)
 
-<!-- <br /> -->
+serie_40
+```
 
-<!-- ## 37. Minutos de tráfico de LDI saliente a Argentina -->
-<!-- ```{r} -->
-<!-- g_45 -->
-<!-- ``` -->
 
-<!-- ## 38. Minutos de tráfico de LDI saliente a Brasil -->
 
-<!-- ```{r} -->
-<!-- g_46 -->
-<!-- ``` -->
+<br />
 
+<br />
 
+<br />
 
-<!-- <br /> -->
 
-<!-- <br /> -->
+## 33. Minutos de tráfico de LDI saliente de Telefonía Fija según cliente (año 2019)
+```{r}
+serie_41 <- ldi %>% 
+  filter(sentido == "desde", 
+         servicio == "Mn") %>% 
+  filter(red %in% c("AMM", "Resto país")) %>% # Solo Fija
+  filter(year(fecha) == year(FECHA_INFORME)) %>% 
+  group_by(tipo) %>% 
+  summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
+  pie_chart(minutos, tipo)
 
-<!-- <br /> -->
 
-<!-- ## 39. Minutos de tráfico de LDI saliente a EUA -->
-<!-- ```{r} -->
-<!-- g_47 -->
-<!-- ``` -->
+serie_41
+```
 
-<!-- ## 40. Minutos de tráfico de LDI saliente a España -->
+## 34. Minutos de tráfico de LDI saliente de Telefonía Fija de clientes Prepago
 
-<!-- ```{r} -->
-<!-- g_48 -->
-<!-- ``` -->
+```{r}
+serie_42 <- ldi %>% 
+  filter(tipo %in% c("Prepago"), 
+         sentido == "desde", 
+         servicio == "Mn") %>% 
+  filter(red %in% c("AMM", "Resto país")) %>% # Solo Fija
+  group_by(year=year(fecha)) %>% 
+  summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
+  filter(!is.na(year), year > 2010) %>% 
+  serie_historica_anual(minutos, nudge_text=2e5)
 
+serie_42
+```
 
 
-<!-- <br /> -->
 
-<!-- <br /> -->
+<br />
 
-<!-- <br /> -->
+<br />
 
-<!-- ## 41. Minutos de tráfico de LDI saliente a Resto del Mundo -->
+<br />
 
-<!-- ```{r} -->
-<!-- g_49 -->
-<!-- ``` -->
+
+## 35. Minutos de tráfico de LDI saliente de Telefonía Fija de clientes Pospago
+```{r}
+serie_43 <- ldi %>% 
+  filter(tipo %in% c("Pospago"), 
+         sentido == "desde", 
+         servicio == "Mn") %>% 
+  filter(red %in% c("AMM", "Resto país")) %>% # Solo Fija
+  group_by(year=year(fecha)) %>% 
+  summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
+  filter(!is.na(year), year > 2011) %>% 
+  serie_historica_anual(minutos, nudge_text=6e6)
+
+serie_43
+```
+
+## 36. Minutos de tráfico de LDI saliente por destino (año 2019)
+
+```{r}
+serie_44 <- ldi %>% 
+  filter(sentido == "desde", servicio == "Mn") %>% 
+  filter(year(fecha) == year(FECHA_INFORME)) %>% 
+  group_by(pais) %>% 
+  summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
+  mutate(pais=fct_recode(pais,
+                         "Argentina" = "Arg",
+                         "Brasil"    = "Bra",
+                         "España"    = "Esp")) %>% 
+  barras_horizontales(minutos, pais, nudge_text=4e6)
+
+serie_44
+```
+
+
+<br />
+
+<br />
+
+<br />
+
+## 37. Minutos de tráfico de LDI saliente a Argentina
+```{r}
+serie_45 <- ldi %>% 
+  filter(sentido == "desde", servicio == "Mn") %>%
+  filter(pais == "Arg") %>% 
+  group_by(year=year(fecha)) %>% 
+  summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
+  filter(!is.na(year), year > 2010) %>% 
+  serie_historica_anual(minutos, nudge_text=3e6)
+
+serie_45
+```
+
+## 38. Minutos de tráfico de LDI saliente a Brasil
+
+```{r}
+serie_46 <- ldi %>% 
+  filter(sentido == "desde", servicio == "Mn") %>%
+  filter(pais == "Bra") %>% 
+  group_by(year=year(fecha)) %>% 
+  summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
+  filter(!is.na(year), year > 2010) %>% 
+  serie_historica_anual(minutos, nudge_text=1e6)
+
+serie_46
+```
+
+
+
+<br />
+
+<br />
+
+<br />
+
+## 39. Minutos de tráfico de LDI saliente a EUA
+```{r}
+serie_47 <- ldi %>% 
+  filter(sentido == "desde", servicio == "Mn") %>%
+  filter(pais == "EUA") %>% 
+  group_by(year=year(fecha)) %>% 
+  summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
+  filter(!is.na(year), year > 2010) %>% 
+  serie_historica_anual(minutos, nudge_text=1e6)
+
+serie_47
+```
+
+## 40. Minutos de tráfico de LDI saliente a España
+
+```{r}
+# 24.	Minutos de tráfico de LDI saliente a España
+serie_48 <- ldi %>% 
+  filter(sentido == "desde", servicio == "Mn") %>%
+  filter(pais == "Esp") %>% 
+  group_by(year=year(fecha)) %>% 
+  summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
+  filter(!is.na(year), year > 2010) %>% 
+  serie_historica_anual(minutos, nudge_text=1e6)
+
+serie_48
+```
+
+
+
+<br />
+
+<br />
+
+<br />
+
+## 41. Minutos de tráfico de LDI saliente a Resto del Mundo
+
+```{r}
+serie_49 <- ldi %>% 
+  filter(sentido == "desde", servicio == "Mn") %>%
+  filter(pais == "Resto del mundo") %>% 
+  group_by(year=year(fecha)) %>% 
+  summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
+  filter(!is.na(year), year > 2010) %>% 
+  serie_historica_anual(minutos, nudge_text=1e6)
+
+serie_49
+```
 
 <!-- ## 50. Minutos de tráfico de LDI entrante -->
 <!-- ```{r} -->
