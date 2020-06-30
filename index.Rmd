@@ -18,13 +18,7 @@ library(tidyverse)
 
 options(scipen = 10000)
 
-theme_set(theme_minimal() + 
-            theme(plot.background = element_rect(fill = "#EEEEEE",
-                                                 color = "white"),
-                  axis.title = element_text(size = rel(1.5)),
-                  axis.text = element_text(size = rel(1.5)),
-                  axis.line.x = element_blank(),
-                  axis.ticks = element_blank()))
+
 
 
 ```
@@ -33,7 +27,7 @@ theme_set(theme_minimal() +
 <!-- ```{r child = '1-pib-telecom.Rmd'} -->
 <!-- ``` -->
 
-<!---BLOCK_TOC{level: 1}--->
+<!---BLOCK_TOC{level: 2}--->
 
 
 ```{r child = '1-fija.Rmd'}

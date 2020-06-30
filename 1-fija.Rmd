@@ -8,6 +8,7 @@ graphics: yes
 ```{r, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, 
                       warning = FALSE,
+                      message = FALSE,
                       fig.width = 10, 
                       fig.height = 5.5)
 
@@ -17,6 +18,18 @@ library(galeriaR)
 library(galeriaVis)
 library(tidyverse)
 library(lubridate)
+
+FECHA_TORTAS <- as.Date("2019-12-01")
+
+# Theme
+
+theme_set(theme_minimal() + 
+            theme(plot.background = element_rect(fill = "#EEEEEE",
+                                                 color = "white"),
+                  axis.title = element_text(size = rel(1.5)),
+                  axis.text = element_text(size = rel(1.5)),
+                  axis.line.x = element_blank(),
+                  axis.ticks = element_blank()))
 
 fija <- import_fija()
 
@@ -44,134 +57,123 @@ fija %>%
 <br />
 
 
-<!-- ## 2. Líneas de telefonía fija por departamento (diciembre 2019) -->
+## 2. Líneas de telefonía fija por departamento (diciembre 2019)
 
-<!-- ```{r} -->
-<!-- g_10 -->
-<!-- ``` -->
+```{r}
 
+fija %>% 
+  filter(fecha == FECHA_TORTAS) %>% 
+  filter(cabezal_1 == "Líneas") %>% 
+  filter(cabezal_2 %in% c("Res.R", "Res.U", "Com.R", "Com.U")) %>% 
+  group_by(depto) %>% 
+  summarize(lineas = sum(numeric, na.rm = TRUE)) %>% 
+  barras_horizontales(lineas, depto, nudge_text = 5e4)
 
-<!-- ## 3. Teléfonos Públicos  -->
-<!-- ```{r} -->
-<!-- g_11 -->
-<!-- ``` -->
-
-<!-- <br /> -->
-
-<!-- <br /> -->
-
-<!-- <br /> -->
+```
 
 
-<!-- ## 4. Teléfonos públicos por departamento (diciembre 2019) -->
-<!-- ```{r} -->
-<!-- g_12 -->
-<!-- ``` -->
+## 3. Teléfonos Públicos
+```{r}
+fija %>% 
+  filter(cabezal_1 == "Líneas") %>% 
+  filter(month(fecha) == 12, year(fecha) >= 2011) %>% 
+  filter(cabezal_2 %in% c("Púb.R", "Púb.U")) %>% 
+  group_by(fecha) %>% 
+  summarize(lineas = sum(numeric, na.rm = TRUE)) %>% 
+  serie_historica(lineas, fecha, nudge_text = 5e2)
+
+```
+
+<br />
+
+<br />
+
+<br />
 
 
-<!-- ## 5. Líneas de telefonía fija por tipo de cliente (diciembre 2019) -->
-
-<!-- ```{r} -->
-<!-- g_13 -->
-<!-- ``` -->
-
-
-<!-- <br /> -->
-
-<!-- <br /> -->
-
-<!-- <br /> -->
-
-<!-- ## 6. Lineas de telefonia fija comerciales -->
-<!-- ```{r} -->
-<!-- g_14 -->
-<!-- ``` -->
+## 4. Teléfonos públicos por departamento (diciembre 2019)
+```{r}
+fija %>% 
+  filter(cabezal_1 == "Líneas") %>% 
+  filter(cabezal_2 %in% c("Púb.R", "Púb.U")) %>% 
+  filter(fecha == FECHA_TORTAS) %>% 
+  group_by(depto) %>% 
+  summarize(lineas = sum(numeric, na.rm = TRUE)) %>% 
+  barras_horizontales(lineas, depto, nudge_text = 25)
+```
 
 
-<!-- ## 7. Líneas de telefonía fija Comerciales por departamento (diciembre 2019) -->
+## 5. Líneas de telefonía fija por tipo de cliente (diciembre 2019)
 
-<!-- ```{r} -->
-<!-- g_15 -->
-<!-- ``` -->
+```{r}
+s <- fija %>% 
+  filter(fecha == FECHA_TORTAS) %>% 
+  filter(cliente %in% c("Residencial", "Comercial")) %>% 
+  group_by(cliente) %>% 
+  summarize(telefonos = sum(numeric, na.rm = TRUE)) %>% 
+  pie_chart(telefonos, cliente)
 
+print(s)
 
-<!-- <br /> -->
-
-<!-- <br /> -->
-
-<!-- <br /> -->
-
-<!-- ## 8. Líneas de telefonía fija residenciales  -->
-<!-- ```{r} -->
-<!-- g_16 -->
-<!-- ``` -->
-
-
-<!-- ## 9. Líneas de telefonía fija Residenciales por departamento (diciembre 2019) -->
-
-<!-- ```{r} -->
-<!-- g_17 -->
-<!-- ``` -->
-
-
-<!-- <br /> -->
-
-<!-- <br /> -->
-
-<!-- <br /> -->
-
-<!-- ## 10. Kilómetros de fibra óptica instalada -->
-<!-- ```{r} -->
-<!-- g_18 -->
-<!-- ``` -->
-
-
-<!-- ## 11. Kilómetros de fibra óptica instalada por departamento (diciembre 2019) -->
-
-<!-- ```{r} -->
-<!-- g_19 -->
-<!-- ``` -->
+```
 
 
 
-<!-- <br /> -->
 
-<!-- <br /> -->
+## 6. Lineas de telefonia fija comerciales
+```{r}
+fija %>% 
+  filter(cliente == "Comercial") %>% 
+  filter(month(fecha) == 12, year(fecha) >= 2011) %>% 
+  group_by(fecha) %>% 
+  summarize(lineas = sum(numeric, na.rm = TRUE)-1) %>% 
+  serie_historica(lineas, fecha, nudge_text=8e3)
 
-<!-- <br /> -->
-
-
-<!-- ## 12. Cómputos de telefonía fija -->
-<!-- ```{r} -->
-<!-- g_20 -->
-<!-- ``` -->
-
-
-<!-- ## 13. Minutos de telefonía fija a teléfonos móviles -->
-<!-- ```{r} -->
-<!-- g_21 -->
-<!-- ``` -->
+  
+```
 
 
-<!-- <br /> -->
+## 7. Líneas de telefonía fija Comerciales por departamento (diciembre 2019)
 
-<!-- <br /> -->
+```{r}
 
-<!-- <br /> -->
+fija %>% 
+  filter(cliente == "Comercial") %>% 
+  filter(fecha == FECHA_TORTAS) %>% 
+  group_by(depto) %>% 
+  summarize(lineas = sum(numeric, na.rm = TRUE)) %>% 
+  filter(!is.na(depto)) %>% 
+  barras_horizontales(lineas, depto, nudge_text=.8e4)
+```
 
-<!-- ## 14. Minutos de tráfico de telefonía fija a teléfonos móviles por operador (año 2019) -->
+
+<br />
+
+<br />
+
+<br />
+
+## 8. Líneas de telefonía fija residenciales
+```{r}
+fija %>% 
+  filter(cliente == "Residencial") %>% 
+  filter(month(fecha) == 12, year(fecha) >= 2011) %>% 
+  group_by(fecha) %>% 
+  summarize(lineas = sum(numeric, na.rm = TRUE)) %>% 
+  serie_historica(lineas, fecha, nudge_text = 4e4)
+```
 
 
-<!-- ```{r} -->
-<!-- g_22 -->
-<!-- ``` -->
+## 9. Líneas de telefonía fija Residenciales por departamento (diciembre 2019)
 
-
-<!-- ## 15. Minutos de tráfico de telefonía fija a red móvil de ANTEL -->
-
-<!-- ```{r} -->
-<!-- g_23 -->
-<!-- ``` -->
+```{r}
+fija %>% 
+  filter(cliente == "Residencial") %>% 
+  filter(fecha == FECHA_TORTAS) %>% 
+  group_by(depto) %>% 
+  summarize(lineas = sum(numeric, na.rm = TRUE)) %>% 
+  barras_horizontales(lineas, depto, nudge_text = 3e4)
+```
 
 
 <!-- <br /> -->
@@ -180,17 +182,138 @@ fija %>%
 
 <!-- <br /> -->
 
+## 10. Kilómetros de fibra óptica instalada
+```{r}
+fija %>% 
+  filter(cabezal_1 == "Centrales") %>% 
+  filter(cabezal_2 == "Fib") %>% 
+  filter(month(fecha) == 12) %>% 
+  group_by(fecha) %>%
+  summarize(kms = sum(numeric, na.rm = TRUE)) %>% 
+  serie_historica(kms, fecha, nudge_text = 6e2)
+```
 
-<!-- ## 16. Minutos de tráfico de telefonía fija a red móvil de Movistar -->
 
-<!-- ```{r} -->
-<!-- g_24 -->
-<!-- ``` -->
+## 11. Kilómetros de fibra óptica instalada por departamento (diciembre 2019)
+
+```{r}
+fija %>% 
+  filter(cabezal_1 == "Centrales") %>% 
+  filter(cabezal_2 == "Fib") %>% 
+  filter(fecha == FECHA_TORTAS) %>% 
+  group_by(depto) %>% 
+  summarize(kms = sum(numeric, na.rm = TRUE)) %>% 
+  barras_horizontales(kms, depto, nudge_text=1e2)
+```
 
 
-<!-- ## 17. Minutos de tráfico de telefonía fija a red móvil de Claro -->
 
-<!-- ```{r} -->
-<!-- g_25 -->
-<!-- ``` -->
+<br />
+
+<br />
+
+<br />
+
+
+## 12. Cómputos de telefonía fija
+```{r}
+fija %>% 
+  filter(cabezal_1 == "Tráfico por orig (País)") %>% 
+  filter(cabezal_2 %in% c("Loc com/res min", "Loc pub min")) %>% 
+  filter(year(fecha) > 2010) %>% 
+  group_by(anio = year(fecha)) %>% 
+  summarize(minutos = sum(numeric, na.rm = TRUE)) %>% 
+  mutate(fecha = as.Date(paste(anio, "01", "01", sep = "-"))) %>% 
+  serie_historica(minutos/1e6, fecha, nudge_text = 1e2) +
+  labs(y="Millones")
+```
+
+
+## 13. Minutos de telefonía fija a teléfonos móviles
+```{r}
+ fija %>% 
+  filter(cabezal_1 == "Tráfico por orig (País)") %>% 
+  filter(cabezal_2 %in% c("Ancel min", "TMU min", "AMWU min")) %>% 
+  filter(year(fecha) > 2010) %>% 
+  group_by(anio = year(fecha)) %>% 
+  summarize(minutos = sum(numeric, na.rm = TRUE)) %>% 
+  mutate(fecha = as.Date(paste(anio, "01", "01", sep = "-"))) %>% 
+  serie_historica(minutos/1e6, fecha, nudge_text = 2e1) +
+  labs(y="Millones")
+```
+
+
+<br />
+
+<br />
+
+<br />
+
+## 14. Minutos de tráfico de telefonía fija a teléfonos móviles por operador (año 2019)
+
+
+```{r}
+
+p_14 <- fija %>% 
+  filter(cabezal_1 == "Tráfico por orig (País)") %>% 
+  filter(cabezal_2 %in% c("Ancel min", "TMU min", "AMWU min")) %>% 
+  filter(year(fecha) == year(FECHA_TORTAS)) %>% 
+  group_by(empresa=str_remove(cabezal_2, " min")) %>% 
+  summarize(minutos = sum(numeric, na.rm = TRUE)) %>% 
+  pie_chart(minutos, empresa)
+  
+print(p_14)
+```
+
+
+## 15. Minutos de tráfico de telefonía fija a red móvil de ANTEL
+
+```{r}
+fija %>% 
+  filter(cabezal_1 == "Tráfico por orig (País)") %>% 
+  filter(cabezal_2 %in% c("Ancel min")) %>% 
+  filter(year(fecha) > 2010) %>% 
+  group_by(anio = year(fecha)) %>% 
+  summarize(minutos = sum(numeric, na.rm = TRUE)) %>% 
+  mutate(fecha = as.Date(paste(anio, "01", "01", sep = "-"))) %>% 
+  serie_historica(minutos/1e6, fecha, nudge_text = 12) +
+  labs(y="Millones")
+```
+
+
+<br />
+
+<br />
+
+<br />
+
+
+## 16. Minutos de tráfico de telefonía fija a red móvil de Movistar
+
+```{r}
+fija %>% 
+  filter(cabezal_1 == "Tráfico por orig (País)") %>% 
+  filter(cabezal_2 %in% c("TMU min")) %>% 
+  filter(year(fecha) > 2010) %>% 
+  group_by(anio = year(fecha)) %>% 
+  summarize(minutos = sum(numeric, na.rm = TRUE)) %>% 
+  mutate(fecha = as.Date(paste(anio, "01", "01", sep = "-"))) %>% 
+  serie_historica(minutos/1e6, fecha, nudge_text = 8) +
+  labs(y="Millones")
+```
+
+
+## 17. Minutos de tráfico de telefonía fija a red móvil de Claro
+
+```{r}
+fija %>% 
+  filter(cabezal_1 == "Tráfico por orig (País)") %>% 
+  filter(cabezal_2 %in% c("AMWU min")) %>% 
+  filter(year(fecha) > 2010) %>% 
+  group_by(anio = year(fecha)) %>% 
+  summarize(minutos = sum(numeric, na.rm = TRUE)) %>% 
+  mutate(fecha = as.Date(paste(anio, "01", "01", sep = "-"))) %>% 
+  serie_historica(minutos/1e6, fecha, nudge_text = 3) +
+  labs(y="Millones")
+```
 
