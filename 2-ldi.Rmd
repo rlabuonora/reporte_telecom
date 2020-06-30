@@ -1,0 +1,328 @@
+---
+title: "LDI - Anual"
+output:
+  word_document:
+    reference_docx: word_report.docx
+    
+graphics: yes
+---
+```{r, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, 
+                      warning = FALSE,
+                      fig.width = 10, 
+                      fig.height = 5.5)
+
+options(scipen = 10000)
+
+
+```
+
+# 2. Telefonía de larga distancia internacional
+
+<!-- ## 18. Minutos de tráfico de LDI salientes -->
+
+<!-- ```{r} -->
+<!-- g_26  -->
+<!-- ``` -->
+
+<!-- <br /> -->
+
+
+<!-- ## 19. Minutos de tráfico de LDI saliente por operador (año 2019) -->
+
+<!-- ```{r} -->
+<!-- g_27 -->
+<!-- ``` -->
+
+<!-- ## 20. Minutos de tráfico de LDI saliente según red origen (año 2019) -->
+<!-- ```{r} -->
+<!-- g_28 -->
+<!-- ``` -->
+
+
+<!-- <br /> -->
+
+<!-- <br /> -->
+
+<!-- <br /> -->
+
+<!-- ## 21. Minutos de tráfico de LDI salientes de red fija - AMM por operador (año 2019) -->
+
+<!-- ```{r} -->
+<!-- g_29 -->
+<!-- ``` -->
+
+<!-- ## 22. Minutos de tráfico de LDI saliente de Red Fija - AMM -->
+
+<!-- ```{r} -->
+<!-- g_30 -->
+<!-- ``` -->
+
+
+
+<!-- <br /> -->
+
+<!-- <br /> -->
+
+<!-- <br /> -->
+
+<!-- ## 23. Minutos de tráfico de LDI salientes de red fija - Resto País por operador (año 2019) -->
+
+<!-- ```{r} -->
+<!-- g_31 -->
+<!-- ``` -->
+
+<!-- ## 24. Minutos de tráfico de LDI salientes de Red Fija - Resto País -->
+
+<!-- ```{r} -->
+<!-- g_32 -->
+<!-- ``` -->
+
+
+<!-- <br /> -->
+
+<!-- <br /> -->
+
+<!-- <br /> -->
+
+<!-- ## 25. Minutos de tráfico de LDI salientes de redes móviles -->
+
+
+<!-- ```{r} -->
+<!-- g_33 -->
+<!-- ``` -->
+
+<!-- ## 26. Minutos de tráfico de LDI saliente por operador (año 2019) -->
+
+<!-- ```{r} -->
+<!-- g_34 -->
+<!-- ``` -->
+
+
+<!-- <br /> -->
+
+<!-- <br /> -->
+
+<!-- <br /> -->
+
+<!-- ## 27. Minutos de tráfico de LDI saliente de red móvil de ANTEL por operador (año 2019) -->
+
+<!-- ```{r} -->
+<!-- g_35 -->
+<!-- ``` -->
+
+<!-- ## 28. Minutos de tráfico de LDI saliente de red móvil de ANTEL -->
+<!-- ```{r} -->
+<!-- g_36 -->
+<!-- ``` -->
+
+
+<!-- <br /> -->
+
+<!-- <br /> -->
+
+<!-- <br /> -->
+
+<!-- ## 29. Minutos de tráfico de LDI saliente de red móvil de MOVISTAR por operador (año 2019) -->
+<!-- ```{r} -->
+<!-- g_37 -->
+<!-- ``` -->
+
+
+
+<!-- ## 30. Minutos de tráfico de LDI saliente de red móvil de MOVISTAR -->
+
+<!-- ```{r} -->
+<!-- g_38 -->
+<!-- ``` -->
+
+
+<!-- <br /> -->
+
+<!-- <br /> -->
+
+<!-- <br /> -->
+
+<!-- ## 31. Minutos de tráfico de LDI saliente de red móvil de CLARO por operador (año 2019) -->
+
+<!-- ```{r} -->
+<!-- g_39 -->
+<!-- ``` -->
+
+<!-- ## 32. Minutos de tráfico de LDI saliente de red móvil de CLARO -->
+
+<!-- ```{r} -->
+<!-- g_40 -->
+<!-- ``` -->
+
+
+
+<!-- <br /> -->
+
+<!-- <br /> -->
+
+<!-- <br /> -->
+
+
+<!-- ## 33. Minutos de tráfico de LDI saliente de Telefonía Fija según cliente (año 2019) -->
+<!-- ```{r} -->
+<!-- g_41 -->
+<!-- ``` -->
+
+<!-- ## 34. Minutos de tráfico de LDI saliente de Telefonía Fija de clientes Prepago -->
+
+<!-- ```{r} -->
+<!-- g_42 -->
+<!-- ``` -->
+
+
+
+<!-- <br /> -->
+
+<!-- <br /> -->
+
+<!-- <br /> -->
+
+
+<!-- ## 35. Minutos de tráfico de LDI saliente de Telefonía Fija de clientes Pospago -->
+<!-- ```{r} -->
+<!-- g_43 -->
+<!-- ``` -->
+
+<!-- ## 36. Minutos de tráfico de LDI saliente por destino (año 2019) -->
+
+<!-- ```{r} -->
+<!-- g_44 -->
+<!-- ``` -->
+
+
+<!-- <br /> -->
+
+<!-- <br /> -->
+
+<!-- <br /> -->
+
+<!-- ## 37. Minutos de tráfico de LDI saliente a Argentina -->
+<!-- ```{r} -->
+<!-- g_45 -->
+<!-- ``` -->
+
+<!-- ## 38. Minutos de tráfico de LDI saliente a Brasil -->
+
+<!-- ```{r} -->
+<!-- g_46 -->
+<!-- ``` -->
+
+
+
+<!-- <br /> -->
+
+<!-- <br /> -->
+
+<!-- <br /> -->
+
+<!-- ## 39. Minutos de tráfico de LDI saliente a EUA -->
+<!-- ```{r} -->
+<!-- g_47 -->
+<!-- ``` -->
+
+<!-- ## 40. Minutos de tráfico de LDI saliente a España -->
+
+<!-- ```{r} -->
+<!-- g_48 -->
+<!-- ``` -->
+
+
+
+<!-- <br /> -->
+
+<!-- <br /> -->
+
+<!-- <br /> -->
+
+<!-- ## 41. Minutos de tráfico de LDI saliente a Resto del Mundo -->
+
+<!-- ```{r} -->
+<!-- g_49 -->
+<!-- ``` -->
+
+<!-- ## 50. Minutos de tráfico de LDI entrante -->
+<!-- ```{r} -->
+<!-- g_50 -->
+<!-- ``` -->
+
+
+<!-- ## 51. Minutos de tráfico de LDI entrante por operador (año 2019) -->
+
+
+<!-- ```{r} -->
+<!-- g_51 -->
+<!-- ``` -->
+
+<!-- ## 52. Minutos de tráfico de LDI entrante por red destino (año 2019) -->
+
+<!-- ```{r} -->
+<!-- g_52 -->
+<!-- ``` -->
+
+
+<!-- ## 53. Minutos de tráfico de LDI entrante a Red Fija -->
+
+<!-- ```{r} -->
+<!-- g_53 -->
+<!-- ``` -->
+
+
+<!-- ## 54. Minutos de tráfico de LDI entrante en red fija por operador (año 2019) -->
+<!-- ```{r} -->
+<!-- g_54 -->
+<!-- ``` -->
+
+<!-- ## 55. Minutos de tráfico de LDI entrantes a Redes Móviles -->
+
+<!-- ```{r} -->
+<!-- g_55 -->
+<!-- ``` -->
+
+<!-- ## 56. Minutos de tráfico de LDI entrantes por red móvil destino (año 2019) -->
+
+<!-- ```{r} -->
+<!-- g_56 -->
+<!-- ``` -->
+
+<!-- ## 57. Minutos de tráfico de LDI entrante a red móvil de Antel -->
+
+<!-- ```{r} -->
+<!-- g_57 -->
+<!-- ``` -->
+
+<!-- ## 58. Minutos de tráfico entrante de LDI en red móvil de Antel por operador (año 2019) -->
+
+<!-- ```{r} -->
+<!-- g_58 -->
+<!-- ``` -->
+
+
+<!-- ## 59. Minutos de tráfico de LDI entrantes a red móvil de Movistar -->
+
+<!-- ```{r} -->
+<!-- g_59 -->
+<!-- ``` -->
+
+<!-- ## 60. Minutos de tráfico entrante de LDI en red móvil de Telefónica por operador (año 2019) -->
+<!-- ```{r} -->
+<!-- g_60 -->
+<!-- ``` -->
+
+
+<!-- ## 61. Minutos de tráfico de LDI entrantes a red móvil de Claro -->
+<!-- ```{r} -->
+<!-- g_61 -->
+<!-- ``` -->
+
+<!-- ## 62. Minutos de tráfico de LDI entrante a red móvil de CLARO por operador (año 2019) -->
+
+<!-- ```{r} -->
+<!-- g_62 -->
+<!-- ``` -->
+
