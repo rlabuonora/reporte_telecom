@@ -40,8 +40,8 @@ options(scipen = 10000)
 
 
 
-<!-- ```{r child = '5-datos-internet.Rmd'} -->
-<!-- ``` -->
+```{r child = '3-banda_ancha.Rmd'}
+```
 
 
 <!-- ```{r child = '6-01-radiobases.Rmd'} -->
