@@ -1,0 +1,245 @@
+---
+output:
+  word_document:
+    reference_docx: word_report.docx
+graphics: yes
+---
+
+```{r include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, 
+                      warning = FALSE,
+                      message = FALSE,
+                      fig.width = 10, 
+                      fig.height = 5.5)
+
+options(scipen = 10000)
+
+
+
+# Theme
+source('./common.R')
+
+cobertura <- import_cobertura()
+FECHA_INFORME <- as.Date("2019-12-01")
+
+month_label <- function(x) {
+  y <- as_date(x)
+  glue::glue("{month(x)}/{format(y, '%y')}")
+}
+
+
+```
+
+
+
+## 82. Cobertura territorial nacional (%) por tecnología (diciembre 2019)
+
+```{r}
+tabla_102 <- cobertura %>% 
+  filter(fecha == FECHA_INFORME) %>% 
+  filter(depto == "País") %>% 
+  group_by(tipo) %>% 
+  summarize(cobertura = max(val, na.rm = TRUE))
+
+tabla_102 %>%
+  ggplot(aes(factor(tipo), cobertura)) +
+  geom_col(fill = pal[5], width = 0.5) + 
+  geom_text(aes(label=percent_format(
+    big.mark=".",
+    decimal.mark = ".",
+    accuracy=0.5,
+    scale = 1)(cobertura)), 
+            nudge_y = 7, size = 5) +
+  scale_x_discrete(expand = expand_scale(add = c(0.5, 0.5),
+                                         mult = c(0, 0))) +
+  scale_y_continuous(breaks = NULL) +
+  geom_hline(yintercept = 0) +
+  labs(x="", y="")
+```
+
+<br />
+
+## 83. Cobertura territorial nacional GSM (%)
+
+```{r}
+serie_103 <- cobertura %>% 
+  filter(tipo == "GSM") %>% 
+  filter(depto == "País") %>% 
+  filter(year(fecha) == year(FECHA_INFORME)) %>%
+  group_by(fecha) %>% 
+  summarize(cobertura = max(val, na.rm = TRUE)) %>% 
+  filter(month(fecha) >= 9)
+
+serie_103 %>% 
+  filter(month(fecha) >= 9) %>% 
+  ggplot(aes(factor(fecha), cobertura)) +
+  geom_col(fill = pal[5], width = 0.5) + 
+  geom_text(aes(label=percent_format(
+    big.mark=".",
+    decimal.mark = ".",
+    accuracy=0.5,
+    scale = 1)(cobertura)), 
+            nudge_y = 5, size = 5) +
+  scale_x_discrete(label = month_label,
+                   expand = expand_scale(add = c(0.5, 0.5),
+                                         mult = c(0, 0))) +
+  scale_y_continuous(breaks = NULL) +
+  geom_hline(yintercept = 0) +
+  labs(x="", y="")
+```
+
+<br />
+
+
+<br />
+
+## 84. Cobertura territorial GSM (%) por departamento (diciembre 2019)
+
+```{r}
+tabla_104 <- cobertura %>% 
+  filter(fecha == FECHA_INFORME) %>% 
+  filter(tipo == "GSM") %>% 
+  filter(depto != "País") %>% 
+  group_by(depto) %>% 
+  summarize(cobertura = max(val, na.rm = TRUE))
+
+tabla_104 %>% 
+  ggplot(aes(fct_reorder(depto, cobertura), cobertura)) +
+  geom_col(fill = pal[5], width = 0.5) + 
+  geom_text(aes(label=percent_format(big.mark=".", 
+                                     decimal.mark = ",",
+                                     accuracy = .1,
+                                     scale = 1)(cobertura)), 
+            nudge_y = 7, size = 5) +
+  scale_x_discrete(expand = expand_scale(add = c(0.5, 0.5),
+                                         mult = c(0, 0))) +
+  scale_y_continuous(breaks = NULL) +
+  geom_hline(yintercept = 0) +
+  labs(x="", y="") +
+  coord_flip()
+```
+
+<br />
+
+<br />
+
+<br />
+
+## 85. Cobertura territorial nacional 3G (%)
+
+```{r}
+serie_105 <- cobertura %>% 
+  filter(tipo == "3G") %>% 
+  filter(depto == "País") %>% 
+  filter(year(fecha) == year(FECHA_INFORME)) %>%
+  group_by(fecha) %>% 
+  summarize(cobertura = max(val, na.rm = TRUE)) %>% 
+  filter(month(fecha) >= 9)
+
+serie_105 %>% 
+  ggplot(aes(factor(fecha), cobertura)) +
+  geom_col(fill = pal[5], width = 0.5) + 
+  geom_text(aes(label=percent_format(
+    big.mark=".",
+    decimal.mark = ".",
+    accuracy=0.5,
+    scale = 1)(cobertura)), 
+    nudge_y = 5, size = 5) +
+  scale_x_discrete(label = month_label,
+                   expand = expand_scale(add = c(0.5, 0.5),
+                                         mult = c(0, 0))) +
+  scale_y_continuous(breaks = NULL) +
+  geom_hline(yintercept = 0) +
+  labs(x="", y="")
+```
+
+## 86. Cobertura territorial 3G (%) por departamento (diciembre 2019)
+
+```{r}
+tabla_106 <- cobertura %>% 
+  filter(fecha == FECHA_INFORME) %>% 
+  filter(tipo == "3G") %>% 
+  filter(depto != "País") %>% 
+  group_by(depto) %>% 
+  summarize(cobertura = max(val, na.rm = TRUE))
+
+tabla_106 %>% 
+  ggplot(aes(fct_reorder(depto, cobertura), cobertura)) +
+  geom_col(fill = pal[5], width = 0.5) + 
+  geom_text(aes(label=percent_format(big.mark=".",
+                                     accuracy=.1,
+                                     scale = 1)(cobertura)), 
+            nudge_y = 7, size = 5) +
+  scale_x_discrete(expand = expand_scale(add = c(0.5, 0.5),
+                                         mult = c(0, 0))) +
+  scale_y_continuous(breaks = NULL) +
+  geom_hline(yintercept = 0) +
+  labs(x="", y="") +
+  coord_flip()
+```
+
+<br />
+
+<br />
+
+<br />
+
+## 87. Cobertura territorial nacional LTE (%)
+
+```{r}
+serie_107 <- cobertura %>% 
+  filter(tipo == "LTE") %>% 
+  filter(depto == "País") %>% 
+  filter(year(fecha) == year(FECHA_INFORME)) %>%
+  group_by(fecha) %>% 
+  summarize(cobertura = max(val, na.rm = TRUE)) %>% 
+  filter(month(fecha) >= 9)
+
+serie_107 %>% 
+  ggplot(aes(factor(fecha), cobertura)) +
+  geom_col(fill = pal[5], width = 0.5) + 
+  geom_text(aes(label=percent_format(
+    big.mark=".",
+    decimal.mark = ".",
+    accuracy=0.5,
+    scale = 1)(cobertura)), 
+    nudge_y = 5, size = 5) +
+  scale_x_discrete(label = month_label,
+                   expand = expand_scale(add = c(0.5, 0.5),
+                                         mult = c(0, 0))) +
+  scale_y_continuous(breaks = NULL) +
+  geom_hline(yintercept = 0) +
+  labs(x="", y="")
+```
+
+## 88. Cobertura territorial LTE (%) por departamento (diciembre 2019)
+
+```{r}
+tabla_108 <- cobertura %>% 
+  filter(fecha == FECHA_INFORME) %>% 
+  filter(tipo == "LTE") %>% 
+  filter(depto != "País") %>% 
+  group_by(depto) %>% 
+  summarize(cobertura = max(val, na.rm = TRUE))
+
+tabla_108 %>% 
+  ggplot(aes(fct_reorder(depto, cobertura), cobertura)) +
+  geom_col(fill = pal[5], width = 0.5) + 
+  geom_text(aes(label=percent_format(big.mark=".", 
+                                     accuracy=.1,
+                                     scale = 1)(cobertura)), 
+            nudge_y = 8, size = 5) +
+  scale_x_discrete(expand = expand_scale(add = c(0.5, 0.5),
+                                         mult = c(0, 0))) +
+  scale_y_continuous(breaks = NULL) +
+  geom_hline(yintercept = 0) +
+  labs(x="", y="") +
+  coord_flip()
+
+```
+
+<br />
+
+<br />
+
+<br />
