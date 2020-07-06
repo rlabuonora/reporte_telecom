@@ -5,11 +5,15 @@ library(galeriaVis)
 library(tidyverse)
 library(lubridate)
 library(ggplot2)
+library(RColorBrewer)
+library(scales)
 
 
 FECHA_TORTAS <- as.Date("2019-12-01")
 FECHA_INFORME <- as.Date("2019-12-01")
 
+
+pal <- brewer.pal(n = 8, name = "Blues")
 
 theme_set(theme_minimal() + 
             theme(plot.background = element_rect(fill = "#EEEEEE",
