@@ -1,0 +1,165 @@
+---
+output:
+  word_document:
+    reference_docx: word_report.docx
+graphics: yes
+---
+
+```{r include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, 
+                      warning = FALSE,
+                      message = FALSE,
+                      fig.width = 10, 
+                      fig.height = 5.5)
+
+options(scipen = 10000)
+
+
+
+# Theme
+source('./common.R')
+
+
+FECHA_INFORME <- as.Date("2019-12-01")
+
+mensajes <- import_mensajes()
+
+
+
+```
+
+
+
+
+## 123. Mensajes de texto enviados
+```{r}
+serie_141 <- mensajes %>% 
+  filter( a %in% c("Antel", "Claro", "Movistar", "Exterior")) %>% 
+  group_by(year = year(fecha)) %>% 
+  summarize(mensajes = sum(numeric))
+
+serie_141 %>% 
+  serie_historica_anual(mensajes/1e6, nudge_text = 3e2) +
+  labs(y="Millones")
+```
+
+<br />
+
+<br />
+
+## 124. Mensajes de texto enviados por operador (año 2019)
+```{r}
+serie_142 <- mensajes %>%
+  filter(year(fecha) == year(FECHA_INFORME)) %>% 
+  filter( a %in% c("Antel", "Claro", "Movistar", "Exterior")) %>% 
+  group_by(empresa) %>% 
+  summarize(mensajes = sum(numeric, na.rm = TRUE))
+
+serie_142 %>% 
+  pie_chart(mensajes, empresa) %>% 
+  print
+
+```
+
+## 125. Mensajes de texto enviados según destino (año 2019)
+```{r}
+serie_143 <- mensajes %>%
+  filter(year(fecha) == 2019) %>% 
+  mutate(red_destino = case_when(
+    a == "Exterior" ~ "A Exterior",
+    a != empresa  ~ "Otras Redes",
+    a == empresa   ~ "Red Propia",
+  )) %>% 
+  group_by(red_destino) %>% 
+  summarize(mensajes = sum(numeric, na.rm = TRUE))
+
+serie_143 %>% 
+  pie_chart(mensajes, red_destino, nudge_radio = c(.9, .8, .6)) %>% 
+  print
+```
+
+<br />
+
+<br />
+
+<br />
+
+## 126. Mensajes de texto enviados al exterior 
+```{r}
+serie_144 <- mensajes %>% 
+  filter(a == "Exterior") %>% 
+  group_by(year = year(fecha)) %>% 
+  summarize(mensajes = sum(numeric)) 
+
+serie_144 %>% 
+  serie_historica_anual(mensajes/1e3, nudge_text = 1e4) +
+  labs(y="Miles")
+```
+
+## 127. Mensajes de texto enviados al exterior por operador (año 2019)
+```{r}
+serie_145 <- mensajes %>% 
+  filter(a == "Exterior") %>% 
+  filter(year(fecha) == year(FECHA_INFORME)) %>% 
+  group_by(empresa) %>% 
+  summarize(mensajes = sum(numeric, na.rm = TRUE))
+
+serie_145 %>% 
+  pie_chart(mensajes, empresa, 
+              nudge_x = c(0, 4, 0),
+              nudge_radio = c(.9, .9, .6)) %>% 
+  print
+```
+
+<br />
+
+<br />
+
+<br />
+
+## 128. Mensajes de texto enviados a otras redes móviles
+```{r}
+serie_146 <- mensajes %>% 
+  filter(a != empresa & a != "Exterior") %>% 
+  group_by(year = year(fecha)) %>% 
+  summarize(mensajes = sum(numeric))
+
+serie_146 %>% 
+  serie_historica_anual(mensajes/1e3, nudge_text = 2e5) +
+  labs(y="Miles")
+
+```
+
+## 129. Mensajes de texto enviados a otras redes móviles por operador (año 2019)
+
+```{r}
+serie_147 <- mensajes %>% 
+  filter(a != empresa & a != "Exterior") %>% 
+  filter(year(fecha)== year(FECHA_INFORME)) %>% 
+  group_by(empresa) %>% 
+  summarize(mensajes = sum(numeric, na.rm = TRUE))
+
+serie_147 %>% 
+  pie_chart(mensajes, empresa) %>% 
+  print
+```
+
+<br />
+
+<br />
+
+<br />
+
+<!-- # 148. Mensajes de texto enviados a red propia -->
+
+<!-- ```{r} -->
+<!-- g_148 -->
+<!-- ``` -->
+
+<!-- # 149. Mensajes de texto enviados a red propia por operador (año 2019) -->
+<!-- ```{r} -->
+<!-- g_149 -->
+<!-- ``` -->
+
+
+
