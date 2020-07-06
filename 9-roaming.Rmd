@@ -1,0 +1,233 @@
+---
+output:
+  word_document:
+    reference_docx: word_report.docx
+graphics: yes
+---
+
+```{r include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, 
+                      warning = FALSE,
+                      message = FALSE,
+                      fig.width = 10, 
+                      fig.height = 5.5)
+
+options(scipen = 10000)
+
+
+
+# Theme
+source('./common.R')
+
+
+FECHA_INFORME <- as.Date("2019-12-01")
+
+
+roaming <- import_roaming()
+
+```
+
+## 163. Tráfico de voz de Roaming (minutos)
+```{r}
+serie_166 <- roaming %>% 
+  filter(voz == "Tráfico de voz") %>%
+  filter(destino %in% c("RL", "RLDI", "RS")) %>% 
+  group_by(year = as.character(year(fecha)), semester=as.character(semester(fecha))) %>% 
+  summarize(numeric = sum(numeric, na.rm = TRUE)) %>% 
+  ungroup()
+
+serie_166 %>% 
+  serie_historica_semestral(numeric, nudge_text = 4e5)
+```
+<br />
+
+
+## 164. Tráfico de voz de Roaming (minutos) por operador (año 2019)
+```{r}
+serie_167 <- roaming %>% 
+  filter(voz == "Tráfico de voz") %>%
+  filter(destino %in% c("RL", "RLDI", "RS")) %>% 
+  filter(year(fecha) == year(FECHA_INFORME)) %>% 
+  group_by(empresa) %>% 
+  summarize(numeric = sum(numeric, na.rm = TRUE))
+
+ serie_167 %>% 
+  pie_chart(numeric, empresa) %>% 
+   print
+```
+
+<br />
+
+## 165. Tráfico de voz de Roaming (minutos) por tipo de servicio (año 2019)
+
+```{r}
+serie_168 <- roaming %>% 
+  filter(voz == "Tráfico de voz") %>%
+  filter(destino %in% c("RL", "RLDI", "RS")) %>% 
+  filter(year(fecha) == year(FECHA_INFORME)) %>% 
+  mutate(destino = fct_recode(destino, 
+                    "Local" = "RL",
+                    "LDI"   = "RLDI",
+                    "Saliente" = "RS")) %>% 
+  group_by(destino) %>% 
+  summarize(numeric = sum(numeric, na.rm = TRUE))
+
+serie_168 %>% 
+  pie_chart(numeric, destino, nudge_radio = c(.7, 1.2, .6)) + 
+  labs(caption = 
+  "Local: Llamadas locales de clientes del operador en el pais que se visita.
+   LDI: Llamadas de LDI de clientes del operador que se encuentran en el exterior.
+   Saliente: Llamadas de LDI hacia Uruguay de clientes del operador que se encuentran en el exterior.") + 
+  theme(
+    plot.caption = element_text(size = 13)
+  )
+```
+
+<br />
+
+<br />
+
+<br />
+
+## 166. Tráfico de voz de Roaming Local (minutos)
+
+```{r}
+serie_169 <- roaming %>% 
+  filter(voz == "Tráfico de voz") %>%
+  filter(destino %in% c("RL")) %>% 
+  group_by(year = as.character(year(fecha)), semester=as.character(semester(fecha))) %>% 
+  summarize(numeric = sum(numeric, na.rm = TRUE))
+
+serie_169 %>% 
+  serie_historica_semestral(numeric, 5e4)
+```
+
+<br />
+
+## 167. Tráfico de voz de Roaming Local (minutos) por operador (año 2019)
+
+```{r}
+serie_170 <- roaming %>% 
+  filter(voz == "Tráfico de voz") %>%
+  filter(destino %in% c("RL")) %>% 
+  filter(year(fecha) == year(FECHA_INFORME)) %>% 
+  group_by(empresa) %>% 
+  summarize(numeric = sum(numeric, na.rm = TRUE))
+
+serie_170 %>% 
+  pie_chart(numeric, empresa) %>% 
+  print
+```
+
+<br />
+
+<br />
+
+<br />
+
+## 168. Tráfico de voz de Roaming Saliente (minutos)
+
+```{r}
+serie_171 <- roaming %>% 
+  filter(voz == "Tráfico de voz") %>%
+  filter(destino %in% c("RS")) %>% 
+  group_by(year = as.character(year(fecha)), semester=as.character(semester(fecha))) %>% 
+  summarize(numeric = sum(numeric, na.rm = TRUE))
+
+serie_171 %>% 
+  serie_historica_semestral(numeric, 4e5)
+```
+
+<br />
+
+## 169. Tráfico de voz de Roaming Saliente (minutos) por operador (año 2019)
+
+```{r}
+serie_172 <- roaming %>% 
+  filter(voz == "Tráfico de voz") %>%
+  filter(destino %in% c("RS")) %>% 
+  filter(year(fecha) == year(FECHA_INFORME)) %>% 
+  group_by(empresa) %>% 
+  summarize(numeric = sum(numeric, na.rm = TRUE))
+
+serie_172 %>% 
+  pie_chart(numeric, empresa) %>% 
+  print
+```
+
+<br />
+
+<br />
+
+<br />
+
+## 170. Tráfico de voz de Roaming de LDI (minutos)
+
+```{r}
+serie_173 <- roaming %>% 
+  filter(voz == "Tráfico de voz") %>%
+  filter(destino %in% c("RLDI")) %>% 
+  group_by(year = as.character(year(fecha)), semester=as.character(semester(fecha))) %>% 
+  summarize(numeric = sum(numeric, na.rm = TRUE))
+
+serie_173 %>% 
+  serie_historica_semestral(numeric, nudge_text = .5e5)
+```
+
+
+
+## 171. Tráfico de voz de Roaming de LDI (minutos) por operador (año 2019)
+
+```{r}
+serie_174 <- roaming %>% 
+  filter(voz == "Tráfico de voz") %>%
+  filter(destino %in% c("RLDI")) %>% 
+  filter(year(fecha) == year(FECHA_INFORME)) %>% 
+  group_by(empresa) %>% 
+  summarize(numeric = sum(numeric, na.rm = TRUE))
+
+serie_174 %>% 
+  pie_chart(numeric, empresa) %>% 
+  print
+```
+
+<br />
+
+<br />
+
+<br />
+
+## 172. Tráfico de datos de Roaming (terabytes)
+```{r}
+serie_175 <- tibble(
+    semester = c(1, 2, 1, 2),
+    year = c(2018, 2018, 2019, 2019),
+    numeric = c(67,	92,	141, 172)
+  )
+
+serie_175 %>% 
+  serie_historica_semestral(numeric, nudge_text = 5)
+```
+
+<br />
+
+## 173. Tráfico de datos de Roaming (terabytes) por operador
+
+```{r}
+serie_176 <- roaming %>%
+  filter(voz == "Tráfico de datos") %>%
+  filter(year(fecha) == year(FECHA_INFORME)) %>%
+  group_by(empresa) %>%
+  summarize(numeric = sum(numeric, na.rm = TRUE)) %>% 
+  filter(numeric > .01)
+
+serie_176 %>% 
+  pie_chart(numeric, empresa) %>% 
+  print
+```
+
+<br />
+
+<br />
+
+<br />
