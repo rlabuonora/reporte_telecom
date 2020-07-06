@@ -546,5 +546,112 @@ serie_136 %>%
 
 
 
+## 117. Tráfico de datos de servicios de banda ancha móvil (terabytes)
+
+```{r include=FALSE}
+trafico <- import_datos_trafico_moviles()
+```
+
+
+```{r}
+serie_137 <- trafico %>%
+    filter(servicio %in%  c("Banda Ancha Móvil",
+                            "Servicios de Banda Ancha Móvil")) %>% 
+    group_by(year=year(fecha), semester=semester(fecha)) %>% 
+    summarize(val = sum(numeric, na.rm = TRUE))
+
+serie_137 %>% 
+  serie_historica_semestral(val, 1e4)
+  
+```
+<br />
+
+
+
+## 118. Tráfico de datos de servicios de banda ancha móvil (terabytes) por operador
+```{r}
+serie_138 <- trafico %>% 
+    filter(year(fecha) == year(FECHA_INFORME)) %>% 
+    filter(servicio %in%  c("Banda Ancha Móvil",
+                            "Servicios de Banda Ancha Móvil")) %>% 
+    group_by(empresa) %>% 
+    summarize(val = sum(numeric, na.rm = TRUE))
+serie_138 %>% 
+  pie_chart(val, empresa)
+```
+
+
+## 119. Tráfico de datos de servicios de banda ancha móvil prepagos (terabytes) (año 2019)
+```{r}
+serie_139 <- trafico %>%
+  filter(pago == "Prepago") %>% 
+  filter(servicio %in%  c("Banda Ancha Móvil",
+                          "Servicios de Banda Ancha Móvil")) %>% 
+  group_by(year=year(fecha), semester=semester(fecha)) %>% 
+  summarize(val = sum(numeric, na.rm = TRUE))
+
+serie_139 %>% 
+  serie_historica_semestral(val, 3e3)
+
+```
+
+<br />
+
+<br />
+
+<br />
+
+## 120. Tráfico de datos de servicios de banda ancha móvil prepagos (terabytes) por operador (año 2019)
+```{r}
+serie_140 <- trafico %>% 
+  filter(pago == "Prepago") %>% 
+  filter(year(fecha) == year(FECHA_INFORME)) %>% 
+  filter(servicio %in%  c("Banda Ancha Móvil",
+                          "Servicios de Banda Ancha Móvil")) %>% 
+  group_by(empresa) %>% 
+  summarize(val = sum(numeric, na.rm = TRUE))
+
+serie_140 %>% 
+  pie_chart(val, empresa) %>% 
+  print
+```
+
+
+## 121. Tráfico de datos de servicios de banda ancha móvil pospagos (terabytes)
+```{r}
+serie_141 <- trafico %>%
+  filter(pago == "Pospago") %>% 
+  filter(servicio %in%  c("Banda Ancha Móvil",
+                          "Servicios de Banda Ancha Móvil")) %>% 
+  group_by(year=year(fecha), semester=semester(fecha)) %>% 
+  summarize(val = sum(numeric, na.rm = TRUE))
+
+serie_141 %>% 
+  serie_historica_semestral(val, nudge_text=4e3)
+```
+
+<br />
+
+<br />
+
+<br />
+
+## 122. Tráfico de datos de servicios de banda ancha móvil pospagos (terabytes) por operador (año 2019)
+```{r}
+serie_142 <- trafico %>% 
+  filter(pago == "Pospago") %>% 
+  filter(year(fecha) == year(FECHA_INFORME)) %>% 
+  filter(servicio %in%  c("Banda Ancha Móvil",
+                          "Servicios de Banda Ancha Móvil")) %>% 
+  group_by(empresa) %>% 
+  summarize(val = sum(numeric, na.rm = TRUE))
+
+serie_142 %>% 
+  pie_chart(val, empresa) %>% 
+  print
+```
+
+
+
 
 
