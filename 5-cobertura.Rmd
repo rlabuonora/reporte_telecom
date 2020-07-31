@@ -9,8 +9,8 @@ graphics: yes
 knitr::opts_chunk$set(echo = FALSE, 
                       warning = FALSE,
                       message = FALSE,
-                      fig.width = 10, 
-                      fig.height = 5.5)
+                      fig.width = 7, 
+                      fig.height = 4.5)
 
 options(scipen = 10000)
 
@@ -57,7 +57,7 @@ tabla_102 %>%
   labs(x="", y="")
 ```
 
-<br />
+
 
 ## 83. Cobertura territorial nacional GSM (%)
 
@@ -88,10 +88,10 @@ serie_103 %>%
   labs(x="", y="")
 ```
 
-<br />
 
 
-<br />
+
+
 
 ## 84. Cobertura territorial GSM (%) por departamento (diciembre 2019)
 
@@ -119,11 +119,11 @@ tabla_104 %>%
   coord_flip()
 ```
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 ## 85. Cobertura territorial nacional 3G (%)
 
@@ -178,11 +178,11 @@ tabla_106 %>%
   coord_flip()
 ```
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 ## 87. Cobertura territorial nacional LTE (%)
 
@@ -238,8 +238,8 @@ tabla_108 %>%
 
 ```
 
-<br />
 
-<br />
 
-<br />
+
+
+

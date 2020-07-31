@@ -9,8 +9,8 @@ graphics: yes
 knitr::opts_chunk$set(echo = FALSE, 
                       warning = FALSE,
                       message = FALSE,
-                      fig.width = 10, 
-                      fig.height = 5.5)
+                      fig.width = 7, 
+                      fig.height = 4.5)
 
 options(scipen = 10000)
 
@@ -55,7 +55,7 @@ serie_90 %>%
   labs(x="", y="")
 ```
 
-<br />
+
 
 
 ## 71. Cantidad de radiobases por departamento (diciembre 2019)
@@ -84,11 +84,11 @@ g_92 <- tabla_92 %>%
   print
 ```
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 ## 73. Cantidad de radiobases GSM
 
@@ -126,11 +126,11 @@ tabla_94 %>%
   barras_horizontales(radiobases, depto, nudge_text = 20)
 ```
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 ## 75. Cantidad de radiobases GSM por operador (diciembre 2019)
 
@@ -169,11 +169,11 @@ serie_96 %>%
   labs(x="", y="")
 ```
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 ## 77. Cantidad de radiobases 3G por departamento (diciembre 2019)
 
@@ -202,11 +202,11 @@ tabla_98 <-  radiobases %>%
    print
 ```
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 ## 79. Cantidad de radiobases LTE
 
@@ -234,11 +234,11 @@ tabla_100 <- radiobases %>%
   barras_horizontales(radiobases, depto, nudge_text = 60)
 ```
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 
 ## 81. Cantidad de radiobases LTE por operador (diciembre 2019)
@@ -299,7 +299,7 @@ serie_63 %>%
   serie_historica_anual(numeric, nudge_text = 5e4)
 ```
 
-<br />
+
 
 ## 43. Servicios de banda ancha fija según alámbrica e inalámbrica (diciembre 2019)
 ```{r}
@@ -326,11 +326,11 @@ serie_65 %>%
 ```
 
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 ## 45. Servicios de banda ancha fija por tipo de cliente (diciembre 2019)
 ```{r}
@@ -361,11 +361,11 @@ serie_67 %>%
 ```
 
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 ## 47. Servicios de banda ancha fija por medio de trasmisión (diciembre 2019)
 ```{r}
@@ -399,11 +399,11 @@ serie_69 %>%
 ```
 
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 ## 49. Servicios de banda ancha fija residencial por velocidad (diciembre 2019)
 ```{r}
@@ -436,11 +436,11 @@ serie_71 <- banda_ancha_servicios_residenciales %>%
 ```
 
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 
 ## 51. Servicios de banda ancha fija residencial por medio de trasmisión (diciembre 2019)
@@ -473,11 +473,11 @@ serie_73 %>%
 ```
 
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 ## 53. Servicios de banda ancha fija comercial por velocidad (diciembre 2019)
 ```{r}
@@ -506,11 +506,11 @@ serie_75 %>%
 ```
 
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 ## 55. Servicios de banda ancha fija comercial por medio de trasmisión (diciembre 2019)
 ```{r}
@@ -576,11 +576,11 @@ serie_81 <- banda_ancha_servicios_inalambrica %>%
 ```
 
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 
 ## 57. Servicios de banda ancha fija inalámbrica por velocidad (diciembre 2019)
@@ -612,11 +612,11 @@ serie_83 %>%
 ```
 
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 ## 59. Servicios de banda ancha fija inalámbrica por operador (diciembre 2019)
 ```{r}
@@ -645,11 +645,11 @@ serie_85 %>%
 ```
 
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 
 ```{r, include=FALSE}
@@ -687,11 +687,11 @@ serie_87 %>%
 ```
 
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 ## 63. Servicios de banda ancha fija alámbrica por medio de trasmisión (diciembre 2019)
 ```{r}
@@ -722,11 +722,11 @@ serie_89 %>%
 ```
 
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 ## 65. Servicios de banda ancha fija alámbrica por operador (diciembre 2019)
 
@@ -765,11 +765,11 @@ serie_91 %>%
 ```
 
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 ## 67. Tráfico de datos de servicios de banda ancha fija (terabytes) según alámbrica e inalámbrica (diciembre 2019)
 
@@ -800,11 +800,11 @@ serie_93 %>%
 ```
 
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 ## 69. Tráfico de datos (terabytes) por operador (diciembre 2019)
 

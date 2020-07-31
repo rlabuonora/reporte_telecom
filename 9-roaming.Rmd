@@ -9,8 +9,8 @@ graphics: yes
 knitr::opts_chunk$set(echo = FALSE, 
                       warning = FALSE,
                       message = FALSE,
-                      fig.width = 10, 
-                      fig.height = 5.5)
+                      fig.width = 7, 
+                      fig.height = 4.5)
 
 options(scipen = 10000)
 
@@ -39,7 +39,7 @@ serie_166 <- roaming %>%
 serie_166 %>% 
   serie_historica_semestral(numeric, nudge_text = 4e5)
 ```
-<br />
+
 
 
 ## 164. Tráfico de voz de Roaming (minutos) por operador (año 2019)
@@ -56,7 +56,7 @@ serie_167 <- roaming %>%
    print
 ```
 
-<br />
+
 
 ## 165. Tráfico de voz de Roaming (minutos) por tipo de servicio (año 2019)
 
@@ -83,11 +83,11 @@ serie_168 %>%
   )
 ```
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 ## 166. Tráfico de voz de Roaming Local (minutos)
 
@@ -102,7 +102,7 @@ serie_169 %>%
   serie_historica_semestral(numeric, 5e4)
 ```
 
-<br />
+
 
 ## 167. Tráfico de voz de Roaming Local (minutos) por operador (año 2019)
 
@@ -119,11 +119,11 @@ serie_170 %>%
   print
 ```
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 ## 168. Tráfico de voz de Roaming Saliente (minutos)
 
@@ -138,7 +138,7 @@ serie_171 %>%
   serie_historica_semestral(numeric, 4e5)
 ```
 
-<br />
+
 
 ## 169. Tráfico de voz de Roaming Saliente (minutos) por operador (año 2019)
 
@@ -155,11 +155,11 @@ serie_172 %>%
   print
 ```
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 ## 170. Tráfico de voz de Roaming de LDI (minutos)
 
@@ -191,11 +191,11 @@ serie_174 %>%
   print
 ```
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 ## 172. Tráfico de datos de Roaming (terabytes)
 ```{r}
@@ -209,7 +209,7 @@ serie_175 %>%
   serie_historica_semestral(numeric, nudge_text = 5)
 ```
 
-<br />
+
 
 ## 173. Tráfico de datos de Roaming (terabytes) por operador
 
@@ -226,8 +226,8 @@ serie_176 %>%
   print
 ```
 
-<br />
 
-<br />
 
-<br />
+
+
+

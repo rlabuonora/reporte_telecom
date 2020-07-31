@@ -9,8 +9,8 @@ graphics: yes
 knitr::opts_chunk$set(echo = FALSE, 
                       warning = FALSE,
                       message = FALSE,
-                      fig.width = 10, 
-                      fig.height = 5.5)
+                      fig.width = 7, 
+                      fig.height = 4.5)
 
 options(scipen = 10000)
 
@@ -59,7 +59,7 @@ serie_109 %>%
   serie_historica_anual(numeric, nudge_text = 3e5)
 ```
 
-<br />
+
 
 
 ## 90. Servicios móviles por operador (diciembre 2019)
@@ -96,11 +96,11 @@ serie_111 %>%
   print
 ```
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 ## 92. Suscriptores a la telefonía móvil celular
 ```{r}
@@ -129,11 +129,11 @@ serie_113 %>%
   print
 ```
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 
 ## 94. Servicios M2M
@@ -162,11 +162,11 @@ serie_115 %>%
   print
 ```
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 ## 96. Internet móvil (computadoras y tablets)
 ```{r}
@@ -198,11 +198,11 @@ serie_117 %>%
   print
 ```
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 ## 98. Suscriptores de banda ancha móvil
 ```{r}
@@ -231,11 +231,11 @@ serie_119 %>%
   print
 ```
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 ## 100. Suscriptores de banda ancha móvil según forma de pago (diciembre 2019)
 ```{r}
@@ -264,11 +264,11 @@ serie_121 %>%
   print
 ```
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 ## 102. Suscriptores prepagos a la telefonía móvil celular
 ```{r}
@@ -302,11 +302,11 @@ serie_123 %>%
 
 ```
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 ## 104. Internet móvil prepago (computadoras y tablets)
 
@@ -340,11 +340,11 @@ serie_125 %>%
   print
 ```
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 
 ## 106. Servicios M2M prepagos
@@ -374,11 +374,11 @@ serie_127 %>%
   labs(y="Miles")
 ```
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 ## 108. Suscriptores prepagos de banda ancha móvil por operador (diciembre 2019)
 
@@ -411,11 +411,11 @@ serie_129 %>%
   labs(y="Miles")
 ```
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 ## 110. Suscriptores pospagos a la telefonía móvil celular por operador (diciembre 2019)
 ```{r}
@@ -448,11 +448,11 @@ serie_131 %>%
   serie_historica_mensual(val, nudge_text = 3e4)
 ```
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 ## 112. Internet móvil pospago (computadoras y tablets) por operador (diciembre 2019)
 
@@ -486,11 +486,11 @@ serie_133 %>%
   serie_historica_mensual(val, nudge_text = 3e4)
 ```
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 ## 114. Servicios M2M popagos por operador (diciembre 2019)
 
@@ -522,11 +522,11 @@ serie_135 <- servicios %>%
   labs(y="Miles")
 ```
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 ## 116. Suscriptores pospagos de banda ancha móvil por operador (diciembre 2019)
 ```{r}
@@ -564,7 +564,7 @@ serie_137 %>%
   serie_historica_semestral(val, 1e4)
   
 ```
-<br />
+
 
 
 
@@ -595,11 +595,11 @@ serie_139 %>%
 
 ```
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 ## 120. Tráfico de datos de servicios de banda ancha móvil prepagos (terabytes) por operador (año 2019)
 ```{r}
@@ -630,11 +630,11 @@ serie_141 %>%
   serie_historica_semestral(val, nudge_text=4e3)
 ```
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 ## 122. Tráfico de datos de servicios de banda ancha móvil pospagos (terabytes) por operador (año 2019)
 ```{r}

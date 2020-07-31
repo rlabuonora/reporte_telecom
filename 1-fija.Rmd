@@ -9,8 +9,8 @@ graphics: yes
 knitr::opts_chunk$set(echo = FALSE, 
                       warning = FALSE,
                       message = FALSE,
-                      fig.width = 10, 
-                      fig.height = 5.5)
+                      fig.width = 7, 
+                      fig.height = 3.5)
 
 options(scipen = 10000)
 
@@ -41,9 +41,6 @@ fija %>%
 
 ```
 
-<br />
-
-
 ## 2. Líneas de telefonía fija por departamento (diciembre 2019)
 
 ```{r}
@@ -58,8 +55,8 @@ fija %>%
 
 ```
 
-
 ## 3. Teléfonos Públicos
+
 ```{r}
 fija %>% 
   filter(cabezal_1 == "Líneas") %>% 
@@ -70,12 +67,6 @@ fija %>%
   serie_historica(lineas, fecha, nudge_text = 5e2)
 
 ```
-
-<br />
-
-<br />
-
-<br />
 
 
 ## 4. Teléfonos públicos por departamento (diciembre 2019)
@@ -89,6 +80,8 @@ fija %>%
   barras_horizontales(lineas, depto, nudge_text = 25)
 ```
 
+
+\pagebreak
 
 ## 5. Líneas de telefonía fija por tipo de cliente (diciembre 2019)
 
@@ -116,6 +109,8 @@ fija %>%
   
 ```
 
+\pagebreak
+
 
 ## 7. Líneas de telefonía fija Comerciales por departamento (diciembre 2019)
 
@@ -131,11 +126,11 @@ fija %>%
 ```
 
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 ## 8. Líneas de telefonía fija residenciales
 ```{r}
@@ -146,6 +141,9 @@ fija %>%
   summarize(lineas = sum(numeric, na.rm = TRUE)) %>% 
   serie_historica(lineas, fecha, nudge_text = 4e4)
 ```
+
+
+\pagebreak
 
 
 ## 9. Líneas de telefonía fija Residenciales por departamento (diciembre 2019)
@@ -160,11 +158,11 @@ fija %>%
 ```
 
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 ## 10. Kilómetros de fibra óptica instalada
 ```{r}
@@ -176,6 +174,8 @@ fija %>%
   summarize(kms = sum(numeric, na.rm = TRUE)) %>% 
   serie_historica(kms, fecha, nudge_text = 6e2)
 ```
+
+\pagebreak
 
 
 ## 11. Kilómetros de fibra óptica instalada por departamento (diciembre 2019)
@@ -192,12 +192,6 @@ fija %>%
 
 
 
-<br />
-
-<br />
-
-<br />
-
 
 ## 12. Cómputos de telefonía fija
 ```{r}
@@ -211,6 +205,9 @@ fija %>%
   serie_historica(minutos/1e6, fecha, nudge_text = 1e2) +
   labs(y="Millones")
 ```
+
+
+\pagebreak
 
 
 ## 13. Minutos de telefonía fija a teléfonos móviles
@@ -227,11 +224,11 @@ fija %>%
 ```
 
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 ## 14. Minutos de tráfico de telefonía fija a teléfonos móviles por operador (año 2019)
 
@@ -250,6 +247,9 @@ print(p_14)
 ```
 
 
+\pagebreak
+
+
 ## 15. Minutos de tráfico de telefonía fija a red móvil de ANTEL
 
 ```{r}
@@ -265,11 +265,7 @@ fija %>%
 ```
 
 
-<br />
 
-<br />
-
-<br />
 
 
 ## 16. Minutos de tráfico de telefonía fija a red móvil de Movistar
@@ -286,6 +282,8 @@ fija %>%
   labs(y="Millones")
 ```
 
+\pagebreak
+
 
 ## 17. Minutos de tráfico de telefonía fija a red móvil de Claro
 
@@ -301,3 +299,5 @@ fija %>%
   labs(y="Millones")
 ```
 
+
+\pagebreak

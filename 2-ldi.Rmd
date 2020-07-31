@@ -10,8 +10,8 @@ graphics: yes
 knitr::opts_chunk$set(echo = FALSE, 
                       warning = FALSE,
                       message=FALSE,
-                      fig.width = 10, 
-                      fig.height = 5.5)
+                      fig.width = 7, 
+                      fig.height = 4.5)
 
 options(scipen = 10000)
 
@@ -35,7 +35,7 @@ serie_26 <- ldi %>%
 serie_26
 ```
 
-<br />
+
 
 
 ## 19. Minutos de tráfico de LDI saliente por operador (año 2019)
@@ -67,11 +67,11 @@ print(serie_28)
 ```
 
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 ## 21. Minutos de tráfico de LDI salientes de red fija - AMM por operador (año 2019)
 
@@ -106,11 +106,11 @@ serie_30
 
 
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 ## 23. Minutos de tráfico de LDI salientes de red fija - Resto País por operador (año 2019)
 
@@ -143,11 +143,11 @@ serie_32
 ```
 
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 ## 25. Minutos de tráfico de LDI salientes de redes móviles
 
@@ -184,11 +184,11 @@ serie_34
 ```
 
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 ## 27. Minutos de tráfico de LDI saliente de red móvil de ANTEL por operador (año 2019)
 
@@ -222,11 +222,11 @@ serie_36
 ```
 
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 ## 29. Minutos de tráfico de LDI saliente de red móvil de MOVISTAR por operador (año 2019)
 ```{r}
@@ -262,11 +262,11 @@ serie_38
 ```
 
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 ## 31. Minutos de tráfico de LDI saliente de red móvil de CLARO por operador (año 2019)
 
@@ -303,11 +303,11 @@ serie_40
 
 
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 
 ## 33. Minutos de tráfico de LDI saliente de Telefonía Fija según cliente (año 2019)
@@ -343,11 +343,11 @@ serie_42
 
 
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 
 ## 35. Minutos de tráfico de LDI saliente de Telefonía Fija de clientes Pospago
@@ -383,11 +383,11 @@ serie_44
 ```
 
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 ## 37. Minutos de tráfico de LDI saliente a Argentina
 ```{r}
@@ -418,11 +418,11 @@ serie_46
 
 
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 ## 39. Minutos de tráfico de LDI saliente a EUA
 ```{r}
@@ -454,11 +454,11 @@ serie_48
 
 
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 ## 41. Minutos de tráfico de LDI saliente a Resto del Mundo
 

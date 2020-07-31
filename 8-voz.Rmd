@@ -9,8 +9,8 @@ graphics: yes
 knitr::opts_chunk$set(echo = FALSE, 
                       warning = FALSE,
                       message = FALSE,
-                      fig.width = 10, 
-                      fig.height = 5.5)
+                      fig.width = 7, 
+                      fig.height = 4.5)
 
 options(scipen = 10000)
 
@@ -52,7 +52,7 @@ serie_150 %>%
   labs(y = "Millones")
 ```
 
-<br />
+
 
 ## 131. Tráfico de minutos de voz de suscriptores a la telefonía móvil (minutos) por operador (año 2019)
 ```{r}
@@ -66,7 +66,7 @@ serie_151 %>%
   print
 ```
 
-<br />
+
 
 ## 132. Tráfico de voz de servicios móviles (minutos) por destino (año 2019)
 ```{r}
@@ -82,11 +82,11 @@ serie_152 %>%
   print
 ```
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 ## 133. Tráfico de voz a red propia de servicios móviles (minutos) 
 ```{r}
@@ -114,11 +114,11 @@ serie_154 %>%
   print
 ```
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 ## 135. Tráfico de voz a otras redes móviles de servicios móviles (minutos)
 
@@ -150,11 +150,11 @@ serie_156 %>%
   print
 ```
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 ## 137. Tráfico voz al exterior de servicios móviles (minutos)
 ```{r}
@@ -182,11 +182,11 @@ serie_158 %>%
   print
 ```
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 ## 139. Tráfico de voz a red fija de servicios móviles (minutos)
 ```{r}
@@ -214,11 +214,11 @@ serie_160 %>%
 ```
 
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 
 ## 161. Tráfico de voz de servicios móviles (minutos) por tipo de servicio (año 2019)
@@ -259,11 +259,11 @@ serie_163 %>%
   labs("Miles")
 ```
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 ## 143. Tráfico de voz de servicios móviles prepagos (minutos) por operador (año 2019)
 ```{r}
@@ -289,11 +289,11 @@ serie_165 %>%
   serie_historica_anual(numeric/1e3, nudge_text = 8e4)
 ```
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 ## 145. Tráfico de voz a red propia de servicios móviles prepagos (minutos) por operador
 ```{r}
@@ -321,11 +321,11 @@ serie_167 <- voz %>%
   labs("Miles")
 ```
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 ## 147. Tráfico de voz a otras redes móviles de servicios móviles prepagos (minutos) por operador (año 2019)
 
@@ -354,11 +354,11 @@ serie_169 %>%
   labs("Miles")
 ```
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 ## 149. Tráfico voz al exterior de servicios móviles prepagos (minutos) por operador (año 2019)
 
@@ -387,11 +387,11 @@ serie_171 %>%
   labs("Miles")
 ```
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 ## 151. Tráfico voz a red fija de servicios móviles prepagos (minutos) por operador
 
@@ -421,11 +421,11 @@ serie_173 %>%
   labs("Miles")
 ```
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 ## 153. Tráfico de voz de servicios móviles pospagos (minutos) por operador (año 2019)
 
@@ -455,11 +455,11 @@ serie_175 %>%
   print
 ```
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 ## 155. Tráfico de voz a red propia de servicios móviles pospagos (minutos)
 ```{r}
@@ -488,11 +488,11 @@ serie_177 %>%
   print
 ```
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 ## 157. Tráfico de voz a otras redes móviles de servicios móviles pospagos (minutos)
 
@@ -524,11 +524,11 @@ serie_180 %>%
 
 ```
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 ## 159. Tráfico de voz al exterior de servicios móviles pospagos (minutos)
 
@@ -557,11 +557,11 @@ serie_182 %>%
   print
 ```
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 ## 161. Tráfico de voz a red fija de servicios móviles pospagos (minutos)
 ```{r}
@@ -593,5 +593,5 @@ serie_184 %>%
 ```
 
 
-<br />
+
 
