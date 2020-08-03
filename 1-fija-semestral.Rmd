@@ -15,8 +15,11 @@ knitr::opts_chunk$set(echo = FALSE,
 options(scipen = 10000)
 
 
+
 # Theme
 source('./common.R')
+FECHA_INFORME_SEMESTRAL <- as.Date("2019-06-01")
+FECHA_INFORME_TITULOS <- "Junio 2019"
 fija <- import_fija()
 
 ```
@@ -31,15 +34,15 @@ fija <- import_fija()
 fija %>% 
   filter(cabezal_1 == "Líneas") %>% 
   filter(cabezal_2 %in% c("Res.R", "Res.U", "Com.R", "Com.U")) %>% 
-  filter(month(fecha) == 12, year(fecha) >= 2011) %>% 
-  group_by(fecha) %>% 
-  summarize(lineas = sum(numeric, na.rm = TRUE)) %>% 
-  serie_historica(lineas, fecha, nudge_text = 5e4)
+  filter(month(fecha) == 6 | month(fecha) == 12, year(fecha) >= 2016) %>% 
+  group_by(year=year(fecha), semester=semester(fecha)) %>% 
+  summarize(lineas_miles = sum(numeric, na.rm = TRUE)/1e3) %>% 
+  serie_historica_semestral(lineas_miles, fecha, nudge_text = 5e1)
 
 
 ```
 
-## 2. Líneas de telefonía fija por departamento (diciembre 2019)
+## 2. Líneas de telefonía fija por departamento (`r FECHA_INFORME_TITULOS`)
 
 ```{r}
 
@@ -52,6 +55,8 @@ fija %>%
   barras_horizontales(lineas, depto, nudge_text = 5e4)
 
 ```
+
+\pagebreak
 
 ## 3. Teléfonos Públicos
 
@@ -67,7 +72,7 @@ fija %>%
 ```
 
 
-## 4. Teléfonos públicos por departamento (diciembre 2019)
+## 4. Teléfonos públicos por departamento (`r FECHA_INFORME_TITULOS`)
 ```{r}
 fija %>% 
   filter(cabezal_1 == "Líneas") %>% 
@@ -81,7 +86,7 @@ fija %>%
 
 \pagebreak
 
-## 5. Líneas de telefonía fija por tipo de cliente (diciembre 2019)
+## 5. Líneas de telefonía fija por tipo de cliente (`r FECHA_INFORME_TITULOS`)
 
 ```{r}
 s <- fija %>% 
@@ -110,7 +115,7 @@ fija %>%
 \pagebreak
 
 
-## 7. Líneas de telefonía fija Comerciales por departamento (diciembre 2019)
+## 7. Líneas de telefonía fija Comerciales por departamento (`r FECHA_INFORME_TITULOS`)
 
 ```{r}
 
@@ -144,7 +149,7 @@ fija %>%
 \pagebreak
 
 
-## 9. Líneas de telefonía fija Residenciales por departamento (diciembre 2019)
+## 9. Líneas de telefonía fija Residenciales por departamento (`r FECHA_INFORME_TITULOS`)
 
 ```{r}
 fija %>% 
@@ -176,7 +181,7 @@ fija %>%
 \pagebreak
 
 
-## 11. Kilómetros de fibra óptica instalada por departamento (diciembre 2019)
+## 11. Kilómetros de fibra óptica instalada por departamento (`r FECHA_INFORME_TITULOS`)
 
 ```{r}
 fija %>% 
