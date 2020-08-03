@@ -30,46 +30,43 @@ options(scipen = 10000)
 <!---BLOCK_TOC{level: 2}--->
 
 
-```{r child = '1-fija.Rmd'}
+```{r child = '01-fija.Rmd'}
 ```
 
 
 
-<!-- ```{r child = '2-ldi.Rmd'} -->
+<!-- ```{r child = '02-ldi.Rmd'} -->
 <!-- ``` -->
 
 
 
-<!-- ```{r child = '3-banda_ancha.Rmd'} -->
+<!-- ```{r child = '03-banda_ancha.Rmd'} -->
 <!-- ``` -->
 
 
-<!-- ```{r child = '6-01-radiobases.Rmd'} -->
+<!-- ```{r child = '04-radiobases.Rmd'} -->
 <!-- ``` -->
 
-<!-- ```{r child = '6-02-cobertura.Rmd'} -->
-<!-- ``` -->
-
-<!-- ```{r child = '6-03-servicios.Rmd'} -->
+<!-- ```{r child = '05-cobertura.Rmd'} -->
 <!-- ``` -->
 
 
-<!-- ```{r child = '6-04-moviles-datos.Rmd'} -->
+<!-- ```{r child = '06-datos_moviles_servicios.Rmd'} -->
 <!-- ``` -->
 
 
-<!-- ```{r child = '6-05-mensajes.Rmd'} -->
+<!-- ```{r child = '07-mensajes.Rmd'} -->
 <!-- ``` -->
 
 
-<!-- ```{r child = '6-06-voz.Rmd'} -->
+<!-- ```{r child = '08-voz.Rmd'} -->
 <!-- ``` -->
 
 
-<!-- ```{r child = '6-07-roaming.Rmd'} -->
+<!-- ```{r child = '09-roaming.Rmd'} -->
 <!-- ``` -->
 
 
-<!-- ```{r child = '7-abonados.Rmd'} -->
+<!-- ```{r child = '10-abonados.Rmd'} -->
 <!-- ``` -->
 

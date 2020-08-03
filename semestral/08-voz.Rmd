@@ -1,0 +1,597 @@
+---
+output:
+  word_document:
+    reference_docx: word_report.docx
+graphics: yes
+---
+
+```{r include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, 
+                      warning = FALSE,
+                      message = FALSE,
+                      fig.width = 7, 
+                      fig.height = 4.5)
+
+options(scipen = 10000)
+
+
+
+# Theme
+source('../common.R')
+
+
+FECHA_INFORME <- as.Date("2019-12-01")
+
+
+voz <- import_voz() %>% 
+  mutate(tipo_red = case_when(
+    a == "Antel Fija"~"Fija",
+    empresa == a ~ "Propia Movil",
+    empresa == "Antel" & a == "Antel Móvil"~"Propia Movil",
+    a == "LDI propio" ~ "Exterior",
+    a == "Otro LDI" ~ "Exterior",
+    TRUE ~ "Otra Movil"
+  ))
+
+
+
+
+```
+
+
+## 130. Tráfico de voz de servicios móviles (minutos) por año
+```{r}
+serie_150 <- voz %>% 
+  group_by(year=year(fecha)) %>% 
+  summarize(numeric = sum(numeric, na.rm = TRUE))
+
+serie_150 %>% 
+  ungroup %>% 
+  slice(4:n()) %>% 
+  serie_historica_anual(numeric/1e6, 5e2) + 
+  labs(y = "Millones")
+```
+
+
+
+## 131. Tráfico de minutos de voz de suscriptores a la telefonía móvil (minutos) por operador (año 2019)
+```{r}
+serie_151 <- voz %>% 
+  filter(year(fecha) == year(FECHA_INFORME)) %>% 
+  group_by(empresa) %>% 
+  summarize(numeric = sum(numeric, na.rm = TRUE))
+
+serie_151 %>% 
+  pie_chart(numeric, empresa) %>% 
+  print
+```
+
+
+
+## 132. Tráfico de voz de servicios móviles (minutos) por destino (año 2019)
+```{r}
+serie_152 <- voz %>% 
+  filter(year(fecha) == year(FECHA_INFORME)) %>% 
+  group_by(tipo_red) %>% 
+  summarize(numeric = sum(numeric, na.rm = TRUE))
+
+serie_152 %>% 
+  pie_chart(numeric, tipo_red, 
+              nudge_radio = c(.8, .75, .75, .75),
+              nudge_x = c(-3, 0, 0, 0)) %>% 
+  print
+```
+
+
+
+
+
+
+
+## 133. Tráfico de voz a red propia de servicios móviles (minutos) 
+```{r}
+serie_153 <- voz %>% 
+  filter(tipo_red == "Propia Movil") %>% 
+  group_by(year=year(fecha)) %>% 
+  summarize(numeric = sum(numeric, na.rm = TRUE))
+
+serie_153 %>% 
+  filter(year >= 2012) %>% 
+  serie_historica_anual(numeric/1e3, nudge_text = 4e5) + 
+  labs(y="Miles")
+```
+
+## 134. Tráfico de voz a red propia de servicios móviles (minutos) por operador (año 2019)
+```{r}
+serie_154 <- voz %>% 
+  filter(year(fecha) == year(FECHA_INFORME)) %>% 
+  filter(tipo_red == "Propia Movil") %>% 
+  group_by(empresa) %>% 
+  summarize(numeric = sum(numeric, na.rm = TRUE))
+
+serie_154 %>% 
+  pie_chart(numeric, empresa) %>% 
+  print
+```
+
+
+
+
+
+
+
+## 135. Tráfico de voz a otras redes móviles de servicios móviles (minutos)
+
+```{r}
+serie_155 <- voz %>% 
+  filter(tipo_red == "Otra Movil") %>% 
+  group_by(year=year(fecha)) %>% 
+  summarize(numeric = sum(numeric, na.rm = TRUE)) %>% 
+  ungroup %>% 
+  slice(2:n())
+
+serie_155 %>% 
+  ungroup %>% 
+  slice(4:n()) %>% 
+  serie_historica_anual(numeric/1e3, 4e4) + 
+  labs("Miles")
+```
+
+## 136. Tráfico de voz a otras redes de servicios móviles (minutos) por operador (año 2019)
+```{r}
+serie_156 <- voz %>% 
+  filter(year(fecha) == year(FECHA_INFORME)) %>% 
+  filter(tipo_red == "Otra Movil") %>% 
+  group_by(empresa) %>% 
+  summarize(numeric = sum(numeric, na.rm = TRUE))
+
+serie_156 %>% 
+  pie_chart(numeric, empresa) %>% 
+  print
+```
+
+
+
+
+
+
+
+## 137. Tráfico voz al exterior de servicios móviles (minutos)
+```{r}
+serie_157 <- voz %>% 
+  filter(tipo_red == "Exterior") %>% 
+  group_by(year=year(fecha)) %>% 
+  summarize(numeric = sum(numeric, na.rm = TRUE)) %>% 
+  filter(year >= 2012)
+
+serie_157 %>% 
+  serie_historica_anual(numeric, nudge_text = 4e6)
+
+```
+
+## 138. Tráfico de voz al exterior de servicios móviles (minutos) por operador (año 2019)
+```{r}
+serie_158 <- voz %>% 
+  filter(year(fecha) == year(FECHA_INFORME)) %>% 
+  filter(tipo_red == "Exterior") %>% 
+  group_by(empresa) %>% 
+  summarize(numeric = sum(numeric, na.rm = TRUE))
+
+serie_158 %>% 
+  pie_chart(numeric, empresa) %>% 
+  print
+```
+
+
+
+
+
+
+
+## 139. Tráfico de voz a red fija de servicios móviles (minutos)
+```{r}
+serie_159 <- voz %>% 
+  filter(tipo_red == "Fija") %>% 
+  group_by(year=year(fecha)) %>% 
+  summarize(numeric = sum(numeric, na.rm = TRUE)) %>% 
+  filter(year >= 2012)
+
+serie_159 %>% 
+  serie_historica_anual(numeric, nudge_text= 50e6)
+```
+
+## 140. Tráfico de voz a red fija de servicios móviles (minutos) por operador (año 2019)
+```{r}
+serie_160 <- voz %>% 
+  filter(year(fecha) == year(FECHA_INFORME)) %>% 
+  filter(tipo_red == "Fija") %>% 
+  group_by(empresa) %>% 
+  summarize(numeric = sum(numeric, na.rm = TRUE))
+
+serie_160 %>% 
+  pie_chart(numeric, empresa) %>% 
+  print
+```
+
+
+
+
+
+
+
+
+
+## 161. Tráfico de voz de servicios móviles (minutos) por tipo de servicio (año 2019)
+```{r}
+serie_161 <- voz %>% 
+  filter(year(fecha) == year(FECHA_INFORME)) %>% 
+  group_by(pago) %>% 
+  summarize(numeric = sum(numeric, na.rm = TRUE))
+
+serie_161 %>% 
+  pie_chart(numeric, pago) %>% 
+  print
+```
+
+## 141. Tráfico de voz de servicios móviles prepagos (minutos) por destino (año 2019)
+```{r}
+serie_162 <- voz %>% 
+  filter(pago == "Prepago", year(fecha) == year(FECHA_INFORME)) %>% 
+  group_by(tipo_red) %>% 
+  summarize(numeric = sum(numeric, na.rm = TRUE))
+
+serie_162 %>% 
+  pie_chart(numeric, tipo_red, nudge_radio=c(.99, .5, .9, .6)) %>% 
+  print
+```
+
+## 142. Tráfico de voz de servicios móviles prepagos (minutos)
+```{r}
+serie_163 <- voz %>% 
+  filter(pago == "Prepago") %>% 
+  group_by(year=year(fecha)) %>% 
+  summarize(numeric = sum(numeric, na.rm = TRUE)) %>% 
+  filter(year >= 2017)
+
+serie_163 %>% 
+  filter(year >= 2012) %>% 
+  serie_historica_anual(numeric/1e3, nudge_text = 8e4) + 
+  labs("Miles")
+```
+
+
+
+
+
+
+
+## 143. Tráfico de voz de servicios móviles prepagos (minutos) por operador (año 2019)
+```{r}
+serie_164 <- voz %>% 
+  filter(pago == "Prepago") %>% 
+  filter(year(fecha) == year(FECHA_INFORME)) %>% 
+  group_by(empresa) %>% 
+  summarize(numeric = sum(numeric, na.rm = TRUE))
+
+serie_164 %>% 
+  pie_chart(numeric, empresa)
+```
+
+## 144. Tráfico de voz a red propia de servicios móviles prepagos (minutos)
+```{r}
+serie_165 <- voz %>% 
+  filter(tipo_red == "Propia Movil", pago == "Prepago") %>% 
+  group_by(year=year(fecha)) %>% 
+  summarize(numeric = sum(numeric, na.rm = TRUE))
+
+serie_165 %>% 
+  filter(year >= 2017) %>% 
+  serie_historica_anual(numeric/1e3, nudge_text = 8e4)
+```
+
+
+
+
+
+
+
+## 145. Tráfico de voz a red propia de servicios móviles prepagos (minutos) por operador
+```{r}
+serie_166 <- voz %>% 
+  filter(tipo_red == "Propia Movil", pago == "Prepago") %>% 
+  filter(year(fecha) == year(FECHA_INFORME)) %>% 
+  group_by(empresa) %>% 
+  summarize(numeric = sum(numeric, na.rm = TRUE))
+
+serie_166 %>% 
+  pie_chart(numeric, empresa) %>% 
+  print
+```
+
+## 146. Tráfico de voz a otras redes móviles de servicios móviles prepagos (minutos)
+```{r}
+serie_167 <- voz %>% 
+  filter(tipo_red == "Otra Movil", pago == "Prepago") %>% 
+  group_by(year=year(fecha)) %>% 
+  summarize(numeric = sum(numeric, na.rm = TRUE))
+
+ serie_167 %>% 
+  filter(year >= 2017) %>% 
+  serie_historica_anual(numeric/1e3, nudge_text = 8e3) +
+  labs("Miles")
+```
+
+
+
+
+
+
+
+## 147. Tráfico de voz a otras redes móviles de servicios móviles prepagos (minutos) por operador (año 2019)
+
+```{r}
+serie_168 <- voz %>% 
+  filter(pago == "Prepago", tipo_red == "Otra Movil") %>% 
+  filter(year(fecha) == year(FECHA_INFORME)) %>% 
+  group_by(empresa) %>% 
+  summarize(numeric = sum(numeric, na.rm = TRUE))
+
+serie_168 %>% 
+  pie_chart(numeric, empresa, nudge_x=c(3, 0, -3)) %>% 
+  print
+```
+
+## 148. Tráfico voz al exterior de servicios móviles prepagos (minutos)
+```{r}
+serie_169 <- voz %>% 
+  filter(tipo_red == "Exterior", pago == "Prepago") %>% 
+  group_by(year=year(fecha)) %>% 
+  summarize(numeric = sum(numeric, na.rm = TRUE))
+
+serie_169 %>% 
+  filter(year >= 2017) %>% 
+  serie_historica_anual(numeric/1e3, nudge_text = 1e3) +
+  labs("Miles")
+```
+
+
+
+
+
+
+
+## 149. Tráfico voz al exterior de servicios móviles prepagos (minutos) por operador (año 2019)
+
+```{r}
+serie_170 <- voz %>% 
+  filter(pago == "Prepago", tipo_red == "Exterior") %>% 
+  filter(year(fecha) == year(FECHA_INFORME)) %>% 
+  group_by(empresa) %>% 
+  summarize(numeric = sum(numeric, na.rm = TRUE))
+
+serie_170 %>% 
+  pie_chart(numeric, empresa) %>% 
+  print
+```
+
+## 150. Tráfico voz a red fija de servicios móviles prepagos (minutos)
+```{r}
+serie_171 <- voz %>% 
+  filter(tipo_red == "Fija", pago == "Prepago") %>% 
+  group_by(year=year(fecha)) %>% 
+  summarize(numeric = sum(numeric, na.rm = TRUE))
+
+serie_171 %>% 
+  filter(year >= 2017) %>% 
+  serie_historica_anual(numeric/1e3, nudge_text = 1e4) +
+  labs("Miles")
+```
+
+
+
+
+
+
+
+## 151. Tráfico voz a red fija de servicios móviles prepagos (minutos) por operador
+
+```{r}
+serie_172 <- voz %>% 
+  filter(pago == "Prepago", tipo_red == "Fija") %>% 
+  filter(year(fecha) == year(FECHA_INFORME)) %>% 
+  group_by(empresa) %>% 
+  summarize(numeric = sum(numeric, na.rm = TRUE))
+
+serie_172 %>% 
+  pie_chart(numeric, empresa) %>% 
+  print
+```
+
+## 152. Tráfico de voz de servicios móviles pospagos (minutos)
+
+```{r}
+serie_173 <- voz %>% 
+  filter(pago == "Pospago") %>% 
+  group_by(year=year(fecha)) %>% 
+  summarize(numeric = sum(numeric, na.rm = TRUE))
+
+serie_173 %>% 
+  filter(year >= 2017) %>% 
+  serie_historica_anual(numeric/1e3, nudge_text = 4e5) +
+  labs("Miles")
+```
+
+
+
+
+
+
+
+## 153. Tráfico de voz de servicios móviles pospagos (minutos) por operador (año 2019)
+
+```{r}
+serie_174 <- voz %>% 
+  filter(pago == "Pospago") %>% 
+  filter(year(fecha) == year(FECHA_INFORME)) %>% 
+  group_by(empresa) %>% 
+  summarize(numeric = sum(numeric, na.rm = TRUE))
+
+serie_174 %>% 
+  pie_chart(numeric, empresa) %>% 
+  print
+```
+
+## 154. Tráfico de voz de servicios móviles pospagos (minutos) por destino (año 2019)
+
+```{r}
+serie_175 <- voz %>% 
+  filter(pago == "Pospago") %>% 
+  filter(year(fecha) == year(FECHA_INFORME)) %>% 
+  group_by(tipo_red) %>% 
+  summarize(numeric = sum(numeric, na.rm = TRUE))
+
+serie_175 %>% 
+  pie_chart(numeric, tipo_red, nudge_radio=c(.99, .5, .9, .6)) %>% 
+  print
+```
+
+
+
+
+
+
+
+## 155. Tráfico de voz a red propia de servicios móviles pospagos (minutos)
+```{r}
+serie_176 <- voz %>% 
+  filter(tipo_red == "Propia Movil", pago == "Pospago") %>% 
+  group_by(year=year(fecha)) %>% 
+  summarize(numeric = sum(numeric, na.rm = TRUE))
+
+serie_176 %>% 
+  filter(year >= 2017) %>% 
+  serie_historica_anual(numeric/1e3, nudge_text = 1e5) +
+  labs("Miles")
+```
+
+## 156. Tráfico de voz a red propia de servicios móviles pospagos (minutos) por operador (año 2019)
+
+```{r}
+serie_177 <- voz %>% 
+  filter(tipo_red == "Propia Movil", pago == "Pospago") %>% 
+  filter(year(fecha) == year(FECHA_INFORME)) %>% 
+  group_by(empresa) %>% 
+  summarize(numeric = sum(numeric, na.rm = TRUE))
+
+serie_177 %>% 
+  pie_chart(numeric, empresa) %>% 
+  print
+```
+
+
+
+
+
+
+
+## 157. Tráfico de voz a otras redes móviles de servicios móviles pospagos (minutos)
+
+```{r}
+serie_179 <- voz %>% 
+  filter(tipo_red == "Otra Movil", pago == "Pospago") %>% 
+  group_by(year=year(fecha)) %>% 
+  summarize(numeric = sum(numeric, na.rm = TRUE))
+
+serie_179 %>% 
+  filter(year >= 2017) %>% 
+  serie_historica_anual(numeric/1e3, nudge_text = 3e4) +
+  labs("Miles")
+```
+
+
+## 158. Tráfico de voz a otras redes móviles de servicios móviles pospagos (minutos) por operador (año 2019)
+
+```{r}
+serie_180 <- voz %>% 
+  filter(pago == "Pospago", tipo_red == "Otra Movil") %>% 
+  filter(year(fecha) == year(FECHA_INFORME)) %>% 
+  group_by(empresa) %>% 
+  summarize(numeric = sum(numeric, na.rm = TRUE))
+
+serie_180 %>% 
+  pie_chart(numeric, empresa) %>% 
+  print
+
+```
+
+
+
+
+
+
+
+## 159. Tráfico de voz al exterior de servicios móviles pospagos (minutos)
+
+```{r}
+serie_181 <- voz %>% 
+  filter(tipo_red == "Exterior", pago == "Pospago") %>% 
+  group_by(year=year(fecha)) %>% 
+  summarize(numeric = sum(numeric, na.rm = TRUE))
+
+serie_181 %>% 
+  filter(year >= 2017) %>% 
+  serie_historica_anual(numeric/1e3, nudge_text = 4e3) +
+  labs("Miles")
+```
+
+## 160. Tráfico de voz al exterior de servicios móviles pospagos (minutos) por operador (año 2019)
+```{r}
+serie_182 <- voz %>% 
+  filter(pago == "Pospago", tipo_red == "Exterior") %>% 
+  filter(year(fecha) == year(FECHA_INFORME)) %>% 
+  group_by(empresa) %>% 
+  summarize(numeric = sum(numeric, na.rm = TRUE))
+
+serie_182 %>% 
+  pie_chart(numeric, empresa) %>% 
+  print
+```
+
+
+
+
+
+
+
+## 161. Tráfico de voz a red fija de servicios móviles pospagos (minutos)
+```{r}
+serie_183 <- voz %>% 
+  filter(tipo_red == "Fija", pago == "Pospago") %>% 
+  group_by(year=year(fecha)) %>% 
+  summarize(numeric = sum(numeric, na.rm = TRUE))
+
+serie_183 %>% 
+  filter(year >= 2012) %>% 
+  serie_historica_anual(numeric/1e3, nudge_text = 5e4) +
+  labs("Miles")
+```
+
+
+## 162. Tráfico de voz a red fija de servicios móviles pospagos (minutos) por operador (año 2019)
+
+```{r}
+serie_184 <- voz %>% 
+  filter(pago == "Pospago", tipo_red == "Fija") %>% 
+  filter(year(fecha) == year(FECHA_INFORME)) %>% 
+  group_by(empresa) %>% 
+  summarize(numeric = sum(numeric, na.rm = TRUE))
+
+serie_184 %>% 
+  pie_chart(numeric, empresa) %>% 
+   print
+
+```
+
+
+
+

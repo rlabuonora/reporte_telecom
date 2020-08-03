@@ -1,0 +1,493 @@
+---
+output:
+  word_document:
+    reference_docx: word_report.docx
+graphics: yes
+---
+```{r, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, 
+                      warning = FALSE,
+                      message=FALSE,
+                      fig.width = 7, 
+                      fig.height = 4.5)
+
+options(scipen = 10000)
+
+source('../common.R')
+FECHA_INFORME_SEMESTRAL <- as.Date("2019-06-01")
+
+ldi <- import_ldi()
+```
+
+# 2. Telefonía de larga distancia internacional
+
+## 18. Minutos de tráfico de LDI salientes
+
+```{r}
+serie_26 <- ldi %>% 
+  group_by(year=year(fecha), semester=semester(fecha), 
+           servicio, sentido) %>% 
+  summarize(val = sum(numeric, na.rm=TRUE))  %>% 
+  filter(sentido == "desde", servicio == "Mn") %>% 
+  filter(year > 2016) %>% 
+  serie_historica_semestral(val, nudge_text=2e6)
+
+serie_26
+```
+
+
+
+
+## 19. Minutos de tráfico de LDI saliente por operador (año `r year(FECHA_INFORME_SEMESTRAL)`)
+
+```{r}
+serie_27 <- ldi %>% 
+  filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL)) %>% 
+  filter(sentido == "desde", servicio == "Mn") %>% 
+  group_by(empresa) %>% 
+  summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
+  filter(minutos > 0) %>% 
+  barras_horizontales(minutos, empresa, nudge_text = 4e6)
+
+serie_27
+```
+
+## 20. Minutos de tráfico de LDI saliente según red origen (año `r year(FECHA_INFORME_SEMESTRAL)`)
+```{r}
+serie_28 <- ldi %>%
+  mutate(red = fct_collapse(red, "Redes Móviles" = c("Claro", "ANTEL", "Movistar"))) %>% 
+  filter(sentido == "desde", servicio == "Mn") %>% 
+  filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL)) %>% 
+  group_by(red) %>% 
+  summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
+  pie_chart(minutos, red)
+
+
+print(serie_28)
+```
+
+
+
+
+
+
+
+
+## 21. Minutos de tráfico de LDI salientes de red fija - AMM por operador (año `r year(FECHA_INFORME_SEMESTRAL)`)
+
+```{r}
+serie_29 <- ldi %>% 
+  filter(sentido == "desde", servicio == "Mn") %>% 
+  filter(red %in% c("AMM")) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL)) %>% 
+  group_by(empresa) %>% 
+  summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
+  filter(minutos > 0) %>% 
+  barras_horizontales(minutos, empresa, nudge_text = 2e6)
+
+
+serie_29
+```
+
+## 22. Minutos de tráfico de LDI saliente de Red Fija - AMM
+
+```{r}
+serie_30 <- ldi %>% 
+  filter(sentido == "desde", servicio == "Mn") %>% 
+  filter(red %in% c("AMM")) %>% 
+  group_by(year=year(fecha), semester=semester(fecha)) %>% 
+  summarize(val = sum(numeric, na.rm=TRUE)) %>% 
+  filter(!is.na(year), year > 2016) %>% 
+  serie_historica_semestral(val, nudge_text = 1e6)
+
+
+serie_30
+```
+
+
+
+## 23. Minutos de tráfico de LDI salientes de red fija - Resto País por operador (año `r year(FECHA_INFORME_SEMESTRAL)`)
+
+```{r}
+serie_31 <- ldi %>% 
+  filter(sentido == "desde", servicio == "Mn") %>% 
+  filter(red %in% c("Resto país")) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL)) %>% 
+  group_by(empresa) %>% 
+  summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
+  filter(minutos > 0) %>% 
+  pie_chart(minutos, empresa, nudge_x=c(0, 0, 8) )
+
+
+serie_31
+```
+
+## 24. Minutos de tráfico de LDI salientes de Red Fija - Resto País
+
+```{r}
+serie_32 <- ldi %>% 
+  filter(sentido == "desde", servicio == "Mn") %>% 
+  filter(red %in% c("Resto país")) %>% 
+  group_by(year=year(fecha), semester=semester(fecha)) %>% 
+  summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
+  filter(!is.na(year), year > 2016) %>% 
+  serie_historica_semestral(minutos, nudge_text=4e5)
+
+serie_32
+```
+
+
+## 25. Minutos de tráfico de LDI salientes de redes móviles
+
+
+```{r}
+serie_33 <- ldi %>% 
+  filter(red %in% c("Claro", "ANTEL", "Movistar"), sentido == "desde", servicio == "Mn") %>% 
+  group_by(year=year(fecha), semester=semester(fecha)) %>% 
+  summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
+  filter(!is.na(year), year > 2016) %>% 
+  serie_historica_semestral(minutos, 2e6)
+
+serie_33
+
+```
+
+## 26. Minutos de tráfico de LDI saliente por operador (año `r year(FECHA_INFORME_SEMESTRAL)`)
+
+```{r}
+serie_34 <- ldi %>% 
+  filter(red %in% c("Claro", "ANTEL", "Movistar"), sentido == "desde", servicio == "Mn") %>% 
+  filter(year(FECHA_INFORME_SEMESTRAL)==year(fecha)) %>% 
+  mutate(empresa = if_else(empresa == "Antel" | empresa == "Convergia",
+                           "Antel", empresa)) %>% 
+  mutate(empresa = if_else(empresa == "A.M. Wireless Uruguay", 
+                           "Claro", empresa)) %>% 
+  group_by(empresa) %>% 
+  summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
+  filter(minutos > 0) %>% 
+  pie_chart(minutos, empresa)
+
+serie_34
+```
+
+
+
+
+
+
+
+
+## 27. Minutos de tráfico de LDI saliente de red móvil de ANTEL por operador (año `r year(FECHA_INFORME_SEMESTRAL)`)
+
+```{r}
+serie_35 <- ldi %>% 
+  filter(red %in% c("ANTEL"), 
+         sentido == "desde", 
+         servicio == "Mn") %>% 
+  filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL)) %>% 
+  group_by(empresa) %>% 
+  summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
+  filter(minutos > 0) %>% 
+  pie_chart(minutos, empresa)
+
+serie_35
+```
+
+## 28. Minutos de tráfico de LDI saliente de red móvil de ANTEL
+```{r}
+serie_36 <- ldi %>% 
+  filter(red %in% c("ANTEL"), 
+         sentido == "desde", 
+         servicio == "Mn") %>% 
+  group_by(year=year(fecha), semester=semester(fecha)) %>% 
+  summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
+  filter(!is.na(year), year > 2016) %>% 
+  serie_historica_semestral(minutos, nudge_text=6e5)
+
+
+serie_36
+```
+
+## 29. Minutos de tráfico de LDI saliente de red móvil de MOVISTAR por operador (año `r year(FECHA_INFORME_SEMESTRAL)`)
+```{r}
+serie_37 <- ldi %>% 
+  filter(red %in% c("Movistar"), 
+         sentido == "desde", 
+         servicio == "Mn") %>% 
+  filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL)) %>% 
+  group_by(empresa) %>% 
+  summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
+  filter(minutos > 0) %>% 
+  pie_chart(minutos, empresa)
+
+
+serie_37
+```
+
+
+
+## 30. Minutos de tráfico de LDI saliente de red móvil de MOVISTAR
+
+```{r}
+serie_38 <- ldi %>% 
+  filter(red %in% c("Movistar"), 
+         sentido == "desde", 
+         servicio == "Mn") %>% 
+  group_by(year=year(fecha), semester=semester(fecha)) %>% 
+  summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
+  filter(!is.na(year), year > 2016) %>% 
+  serie_historica_semestral(minutos, nudge_text=6e5)
+
+serie_38
+```
+
+## 31. Minutos de tráfico de LDI saliente de red móvil de CLARO por operador (año `r year(FECHA_INFORME_SEMESTRAL)`)
+
+```{r}
+serie_39 <- ldi %>% 
+  filter(red %in% c("Claro"), 
+         sentido == "desde", 
+         servicio == "Mn") %>% 
+  filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL)) %>% 
+  group_by(empresa) %>% 
+  summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
+  filter(minutos > 0) %>% 
+  mutate(empresa = fct_recode(empresa,
+                              "Claro" = "A.M. Wireless Uruguay")) %>% 
+  pie_chart(minutos, empresa)
+
+serie_39
+```
+
+## 32. Minutos de tráfico de LDI saliente de red móvil de CLARO
+
+```{r}
+serie_40 <- ldi %>% 
+  filter(red %in% c("Claro"), 
+         sentido == "desde", 
+         servicio == "Mn") %>%
+  group_by(year=year(fecha), semester=semester(fecha)) %>% 
+  summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
+  filter(!is.na(year), year > 2016) %>% 
+  serie_historica_semestral(minutos, nudge_text=4e5)
+
+serie_40
+```
+
+
+
+
+## 33. Minutos de tráfico de LDI saliente de Telefonía Fija según cliente (año `r year(FECHA_INFORME_SEMESTRAL)`)
+```{r}
+serie_41 <- ldi %>% 
+  filter(sentido == "desde", 
+         servicio == "Mn") %>% 
+  filter(red %in% c("AMM", "Resto país")) %>% # Solo Fija
+  filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL)) %>% 
+  group_by(tipo) %>% 
+  summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
+  pie_chart(minutos, tipo)
+
+
+serie_41
+```
+
+## 34. Minutos de tráfico de LDI saliente de Telefonía Fija de clientes Prepago
+
+```{r}
+serie_42 <- ldi %>% 
+  filter(tipo %in% c("Prepago"), 
+         sentido == "desde", 
+         servicio == "Mn") %>% 
+  filter(red %in% c("AMM", "Resto país")) %>% # Solo Fija
+  group_by(year=year(fecha), semester=semester(fecha)) %>% 
+  summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
+  filter(!is.na(year), year > 2016) %>% 
+  serie_historica_semestral(minutos, nudge_text=2e4)
+
+serie_42
+```
+
+## 35. Minutos de tráfico de LDI saliente de Telefonía Fija de clientes Pospago
+```{r}
+serie_43 <- ldi %>% 
+  filter(tipo %in% c("Pospago"), 
+         sentido == "desde", 
+         servicio == "Mn") %>% 
+  filter(red %in% c("AMM", "Resto país")) %>% # Solo Fija
+  group_by(year=year(fecha), semester=semester(fecha)) %>% 
+  summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
+  filter(!is.na(year), year > 2016) %>% 
+  serie_historica_semestral(minutos, nudge_text=1e6)
+
+serie_43
+```
+
+## 36. Minutos de tráfico de LDI saliente por destino (año `r year(FECHA_INFORME_SEMESTRAL)`)
+
+```{r}
+serie_44 <- ldi %>% 
+  filter(sentido == "desde", servicio == "Mn") %>% 
+  filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL)) %>% 
+  group_by(pais) %>% 
+  summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
+  mutate(pais=fct_recode(pais,
+                         "Argentina" = "Arg",
+                         "Brasil"    = "Bra",
+                         "España"    = "Esp")) %>% 
+  barras_horizontales(minutos, pais, nudge_text=4e6)
+
+serie_44
+```
+
+
+## 37. Minutos de tráfico de LDI saliente a Argentina
+```{r}
+serie_45 <- ldi %>% 
+  filter(sentido == "desde", servicio == "Mn") %>%
+  filter(pais == "Arg") %>% 
+  group_by(year=year(fecha), semester=semester(fecha)) %>% 
+  summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
+  filter(!is.na(year), year > 2016) %>% 
+  serie_historica_semestral(minutos, nudge_text=1e6)
+
+serie_45
+```
+
+## 38. Minutos de tráfico de LDI saliente a Brasil
+
+```{r}
+serie_46 <- ldi %>% 
+  filter(sentido == "desde", servicio == "Mn") %>%
+  filter(pais == "Bra") %>% 
+  group_by(year=year(fecha), semester=semester(fecha)) %>% 
+  summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
+  filter(!is.na(year), year > 2016) %>% 
+  serie_historica_semestral(minutos, nudge_text=3e5)
+
+serie_46
+```
+
+
+## 39. Minutos de tráfico de LDI saliente a EUA
+```{r}
+serie_47 <- ldi %>% 
+  filter(sentido == "desde", servicio == "Mn") %>%
+  filter(pais == "EUA") %>% 
+  group_by(year=year(fecha), semester=semester(fecha)) %>% 
+  summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
+  filter(!is.na(year), year > 2016) %>% 
+  serie_historica_semestral(minutos, nudge_text=4e5)
+
+serie_47
+```
+
+## 40. Minutos de tráfico de LDI saliente a España
+
+```{r}
+# 24.	Minutos de tráfico de LDI saliente a España
+serie_48 <- ldi %>% 
+  filter(sentido == "desde", servicio == "Mn") %>%
+  filter(pais == "Esp") %>% 
+  group_by(year=year(fecha), semester=semester(fecha)) %>% 
+  summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
+  filter(!is.na(year), year > 2016) %>% 
+  serie_historica_semestral(minutos, nudge_text=1e5)
+
+serie_48
+```
+
+## 41. Minutos de tráfico de LDI saliente a Resto del Mundo
+
+```{r}
+serie_49 <- ldi %>% 
+  filter(sentido == "desde", servicio == "Mn") %>%
+  filter(pais == "Resto del mundo") %>% 
+  group_by(year=year(fecha), semester=semester(fecha)) %>% 
+  summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
+  filter(!is.na(year), year > 2016) %>% 
+  serie_historica_semestral(minutos, nudge_text=1e6)
+
+serie_49
+```
+
+<!-- ## 50. Minutos de tráfico de LDI entrante -->
+<!-- ```{r} -->
+<!-- g_50 -->
+<!-- ``` -->
+
+
+<!-- ## 51. Minutos de tráfico de LDI entrante por operador (año `r year(FECHA_INFORME_SEMESTRAL)`) -->
+
+
+<!-- ```{r} -->
+<!-- g_51 -->
+<!-- ``` -->
+
+<!-- ## 52. Minutos de tráfico de LDI entrante por red destino (año `r year(FECHA_INFORME_SEMESTRAL)`) -->
+
+<!-- ```{r} -->
+<!-- g_52 -->
+<!-- ``` -->
+
+
+<!-- ## 53. Minutos de tráfico de LDI entrante a Red Fija -->
+
+<!-- ```{r} -->
+<!-- g_53 -->
+<!-- ``` -->
+
+
+<!-- ## 54. Minutos de tráfico de LDI entrante en red fija por operador (año `r year(FECHA_INFORME_SEMESTRAL)`) -->
+<!-- ```{r} -->
+<!-- g_54 -->
+<!-- ``` -->
+
+<!-- ## 55. Minutos de tráfico de LDI entrantes a Redes Móviles -->
+
+<!-- ```{r} -->
+<!-- g_55 -->
+<!-- ``` -->
+
+<!-- ## 56. Minutos de tráfico de LDI entrantes por red móvil destino (año `r year(FECHA_INFORME_SEMESTRAL)`) -->
+
+<!-- ```{r} -->
+<!-- g_56 -->
+<!-- ``` -->
+
+<!-- ## 57. Minutos de tráfico de LDI entrante a red móvil de Antel -->
+
+<!-- ```{r} -->
+<!-- g_57 -->
+<!-- ``` -->
+
+<!-- ## 58. Minutos de tráfico entrante de LDI en red móvil de Antel por operador (año `r year(FECHA_INFORME_SEMESTRAL)`) -->
+
+<!-- ```{r} -->
+<!-- g_58 -->
+<!-- ``` -->
+
+
+<!-- ## 59. Minutos de tráfico de LDI entrantes a red móvil de Movistar -->
+
+<!-- ```{r} -->
+<!-- g_59 -->
+<!-- ``` -->
+
+<!-- ## 60. Minutos de tráfico entrante de LDI en red móvil de Telefónica por operador (año `r year(FECHA_INFORME_SEMESTRAL)`) -->
+<!-- ```{r} -->
+<!-- g_60 -->
+<!-- ``` -->
+
+
+<!-- ## 61. Minutos de tráfico de LDI entrantes a red móvil de Claro -->
+<!-- ```{r} -->
+<!-- g_61 -->
+<!-- ``` -->
+
+<!-- ## 62. Minutos de tráfico de LDI entrante a red móvil de CLARO por operador (año `r year(FECHA_INFORME_SEMESTRAL)`) -->
+
+<!-- ```{r} -->
+<!-- g_62 -->
+<!-- ``` -->
+

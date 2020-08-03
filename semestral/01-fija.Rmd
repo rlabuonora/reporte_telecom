@@ -17,7 +17,7 @@ options(scipen = 10000)
 
 
 # Theme
-source('./common.R')
+source('../common.R')
 FECHA_INFORME_SEMESTRAL <- as.Date("2019-06-01")
 FECHA_INFORME_TITULOS <- "Junio 2019"
 fija <- import_fija()
@@ -36,8 +36,9 @@ fija %>%
   filter(cabezal_2 %in% c("Res.R", "Res.U", "Com.R", "Com.U")) %>% 
   filter(month(fecha) == 6 | month(fecha) == 12, year(fecha) >= 2016) %>% 
   group_by(year=year(fecha), semester=semester(fecha)) %>% 
-  summarize(lineas_miles = sum(numeric, na.rm = TRUE)/1e3) %>% 
-  serie_historica_semestral(lineas_miles, fecha, nudge_text = 5e1)
+  summarize(lineas = sum(numeric, na.rm = TRUE)) %>% 
+  serie_historica_semestral(lineas /1e3, nudge_text = 5e1) +
+  labs(y="Miles")
 
 
 ```
@@ -46,13 +47,15 @@ fija %>%
 
 ```{r}
 
+# Esta es estatica
+
 fija %>% 
-  filter(fecha == FECHA_TORTAS) %>% 
+  filter(fecha == FECHA_INFORME_SEMESTRAL) %>% 
   filter(cabezal_1 == "Líneas") %>% 
   filter(cabezal_2 %in% c("Res.R", "Res.U", "Com.R", "Com.U")) %>% 
   group_by(depto) %>% 
   summarize(lineas = sum(numeric, na.rm = TRUE)) %>% 
-  barras_horizontales(lineas, depto, nudge_text = 5e4)
+  barras_horizontales(lineas, depto, nudge_text = 4.5e4)
 
 ```
 
@@ -63,11 +66,11 @@ fija %>%
 ```{r}
 fija %>% 
   filter(cabezal_1 == "Líneas") %>% 
-  filter(month(fecha) == 12, year(fecha) >= 2011) %>% 
   filter(cabezal_2 %in% c("Púb.R", "Púb.U")) %>% 
-  group_by(fecha) %>% 
+  filter(month(fecha) == 6 | month(fecha) == 12, year(fecha) >= 2016) %>% 
+  group_by(year = year(fecha), semester=semester(fecha)) %>% 
   summarize(lineas = sum(numeric, na.rm = TRUE)) %>% 
-  serie_historica(lineas, fecha, nudge_text = 5e2)
+  serie_historica_semestral(lineas, nudge_text = 2e2)
 
 ```
 
@@ -77,7 +80,7 @@ fija %>%
 fija %>% 
   filter(cabezal_1 == "Líneas") %>% 
   filter(cabezal_2 %in% c("Púb.R", "Púb.U")) %>% 
-  filter(fecha == FECHA_TORTAS) %>% 
+  filter(fecha == FECHA_INFORME_SEMESTRAL) %>% 
   group_by(depto) %>% 
   summarize(lineas = sum(numeric, na.rm = TRUE)) %>% 
   barras_horizontales(lineas, depto, nudge_text = 25)
@@ -90,7 +93,7 @@ fija %>%
 
 ```{r}
 s <- fija %>% 
-  filter(fecha == FECHA_TORTAS) %>% 
+  filter(fecha == FECHA_INFORME_SEMESTRAL) %>% 
   filter(cliente %in% c("Residencial", "Comercial")) %>% 
   group_by(cliente) %>% 
   summarize(telefonos = sum(numeric, na.rm = TRUE)) %>% 
@@ -104,10 +107,11 @@ print(s)
 ```{r}
 fija %>% 
   filter(cliente == "Comercial") %>% 
-  filter(month(fecha) == 12, year(fecha) >= 2011) %>% 
-  group_by(fecha) %>% 
+  filter(month(fecha) == 6 | month(fecha) == 12, 
+         year(fecha) >= 2016) %>% 
+  group_by(year = year(fecha), semester=semester(fecha)) %>% 
   summarize(lineas = sum(numeric, na.rm = TRUE)-1) %>% 
-  serie_historica(lineas, fecha, nudge_text=8e3)
+  serie_historica_semestral(lineas, nudge_text=9e3)
 
   
 ```
@@ -121,7 +125,7 @@ fija %>%
 
 fija %>% 
   filter(cliente == "Comercial") %>% 
-  filter(fecha == FECHA_TORTAS) %>% 
+  filter(fecha == FECHA_INFORME_SEMESTRAL) %>% 
   group_by(depto) %>% 
   summarize(lineas = sum(numeric, na.rm = TRUE)) %>% 
   filter(!is.na(depto)) %>% 
@@ -129,20 +133,15 @@ fija %>%
 ```
 
 
-
-
-
-
-
-
 ## 8. Líneas de telefonía fija residenciales
 ```{r}
 fija %>% 
   filter(cliente == "Residencial") %>% 
-  filter(month(fecha) == 12, year(fecha) >= 2011) %>% 
-  group_by(fecha) %>% 
+  filter(month(fecha) == 6 | month(fecha) == 12, 
+         year(fecha) >= 2016) %>% 
+  group_by(year = year(fecha), semester=semester(fecha)) %>% 
   summarize(lineas = sum(numeric, na.rm = TRUE)) %>% 
-  serie_historica(lineas, fecha, nudge_text = 4e4)
+  serie_historica_semestral(lineas, nudge_text = 5e4)
 ```
 
 
@@ -154,17 +153,11 @@ fija %>%
 ```{r}
 fija %>% 
   filter(cliente == "Residencial") %>% 
-  filter(fecha == FECHA_TORTAS) %>% 
+  filter(fecha == FECHA_INFORME_SEMESTRAL) %>% 
   group_by(depto) %>% 
   summarize(lineas = sum(numeric, na.rm = TRUE)) %>% 
   barras_horizontales(lineas, depto, nudge_text = 3e4)
 ```
-
-
-
-
-
-
 
 
 ## 10. Kilómetros de fibra óptica instalada
@@ -172,10 +165,11 @@ fija %>%
 fija %>% 
   filter(cabezal_1 == "Centrales") %>% 
   filter(cabezal_2 == "Fib") %>% 
-  filter(month(fecha) == 12) %>% 
-  group_by(fecha) %>%
+  filter(month(fecha) == 12 | month(fecha) == 6) %>% 
+  filter(year(fecha) > 2016) %>% 
+  group_by(year = year(fecha), semester=semester(fecha)) %>%
   summarize(kms = sum(numeric, na.rm = TRUE)) %>% 
-  serie_historica(kms, fecha, nudge_text = 6e2)
+  serie_historica_semestral(kms, nudge_text = 6e2)
 ```
 
 \pagebreak
@@ -187,7 +181,7 @@ fija %>%
 fija %>% 
   filter(cabezal_1 == "Centrales") %>% 
   filter(cabezal_2 == "Fib") %>% 
-  filter(fecha == FECHA_TORTAS) %>% 
+  filter(fecha == FECHA_INFORME_SEMESTRAL) %>% 
   group_by(depto) %>% 
   summarize(kms = sum(numeric, na.rm = TRUE)) %>% 
   barras_horizontales(kms, depto, nudge_text=1e2)
@@ -198,15 +192,14 @@ fija %>%
 
 ## 12. Cómputos de telefonía fija
 ```{r}
+# Este es un flujo
 fija %>% 
   filter(cabezal_1 == "Tráfico por orig (País)") %>% 
   filter(cabezal_2 %in% c("Loc com/res min", "Loc pub min")) %>% 
-  filter(year(fecha) > 2010) %>% 
-  group_by(anio = year(fecha)) %>% 
+  filter(year(fecha) > 2016) %>% 
+  group_by(year = year(fecha), semester=semester(fecha)) %>% 
   summarize(minutos = sum(numeric, na.rm = TRUE)) %>% 
-  mutate(fecha = as.Date(paste(anio, "01", "01", sep = "-"))) %>% 
-  serie_historica(minutos/1e6, fecha, nudge_text = 1e2) +
-  labs(y="Millones")
+  serie_historica_semestral(minutos, nudge_text = 5e7) 
 ```
 
 
@@ -218,19 +211,11 @@ fija %>%
  fija %>% 
   filter(cabezal_1 == "Tráfico por orig (País)") %>% 
   filter(cabezal_2 %in% c("Ancel min", "TMU min", "AMWU min")) %>% 
-  filter(year(fecha) > 2010) %>% 
-  group_by(anio = year(fecha)) %>% 
+  filter(year(fecha) > 2016) %>% 
+  group_by(year = year(fecha), semester=semester(fecha)) %>% 
   summarize(minutos = sum(numeric, na.rm = TRUE)) %>% 
-  mutate(fecha = as.Date(paste(anio, "01", "01", sep = "-"))) %>% 
-  serie_historica(minutos/1e6, fecha, nudge_text = 2e1) +
-  labs(y="Millones")
+  serie_historica_semestral(minutos, nudge_text = 1.5e7)
 ```
-
-
-
-
-
-
 
 
 ## 14. Minutos de tráfico de telefonía fija a teléfonos móviles por operador (año 2019)
@@ -238,10 +223,12 @@ fija %>%
 
 ```{r}
 
+# Este lo dejamos asi por ahora
+
 p_14 <- fija %>% 
   filter(cabezal_1 == "Tráfico por orig (País)") %>% 
   filter(cabezal_2 %in% c("Ancel min", "TMU min", "AMWU min")) %>% 
-  filter(year(fecha) == year(FECHA_TORTAS)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL)) %>% 
   group_by(empresa=str_remove(cabezal_2, " min")) %>% 
   summarize(minutos = sum(numeric, na.rm = TRUE)) %>% 
   pie_chart(minutos, empresa)
@@ -259,12 +246,11 @@ print(p_14)
 fija %>% 
   filter(cabezal_1 == "Tráfico por orig (País)") %>% 
   filter(cabezal_2 %in% c("Ancel min")) %>% 
-  filter(year(fecha) > 2010) %>% 
-  group_by(anio = year(fecha)) %>% 
+  filter(year(fecha) > 2016) %>% 
+  group_by(year = year(fecha), semester = semester(fecha)) %>% 
   summarize(minutos = sum(numeric, na.rm = TRUE)) %>% 
-  mutate(fecha = as.Date(paste(anio, "01", "01", sep = "-"))) %>% 
-  serie_historica(minutos/1e6, fecha, nudge_text = 12) +
-  labs(y="Millones")
+  serie_historica_semestral(minutos / 1e6, nudge_text = 9) +
+  labs(x="Millones") # Es increible que esto funcione!
 ```
 
 
@@ -277,11 +263,10 @@ fija %>%
 fija %>% 
   filter(cabezal_1 == "Tráfico por orig (País)") %>% 
   filter(cabezal_2 %in% c("TMU min")) %>% 
-  filter(year(fecha) > 2010) %>% 
-  group_by(anio = year(fecha)) %>% 
+  filter(year(fecha) > 2016) %>% 
+  group_by(year = year(fecha), semester = semester(fecha)) %>% 
   summarize(minutos = sum(numeric, na.rm = TRUE)) %>% 
-  mutate(fecha = as.Date(paste(anio, "01", "01", sep = "-"))) %>% 
-  serie_historica(minutos/1e6, fecha, nudge_text = 8) +
+  serie_historica_semestral(minutos, nudge_text = 3.5e6) +
   labs(y="Millones")
 ```
 
@@ -294,12 +279,10 @@ fija %>%
 fija %>% 
   filter(cabezal_1 == "Tráfico por orig (País)") %>% 
   filter(cabezal_2 %in% c("AMWU min")) %>% 
-  filter(year(fecha) > 2010) %>% 
-  group_by(anio = year(fecha)) %>% 
+  filter(year(fecha) > 2016) %>% 
+  group_by(year = year(fecha), semester=semester(fecha)) %>% 
   summarize(minutos = sum(numeric, na.rm = TRUE)) %>% 
-  mutate(fecha = as.Date(paste(anio, "01", "01", sep = "-"))) %>% 
-  serie_historica(minutos/1e6, fecha, nudge_text = 3) +
-  labs(y="Millones")
+  serie_historica_semestral(minutos, nudge_text = 1e6)
 ```
 
 
