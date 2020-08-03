@@ -69,10 +69,6 @@ print(serie_28)
 
 
 
-
-
-
-
 ## 21. Minutos de tráfico de LDI salientes de red fija - AMM por operador (año `r year(FECHA_INFORME_SEMESTRAL)`)
 
 ```{r}

@@ -20,15 +20,10 @@ options(scipen = 10000)
 source('../common.R')
 
 servicios <- import_datos_servicios_moviles()
-FECHA_INFORME <- as.Date("2019-12-01")
-
-
-
+FECHA_INFORME_SEMESTRAL <- as.Date("2019-06-01")
+FECHA_INFORME_TITULOS <- "Junio 2019"
 
 ```
-
-
-
 
 ## 89. Servicios móviles
 ```{r}
@@ -52,11 +47,11 @@ serie_109_nueva <- servicios %>%
   summarize(numeric = sum(numeric, na.rm = TRUE)) 
 
 serie_109 <- bind_rows(serie_109_vieja, serie_109_nueva) %>% 
-  transmute(month = month(fecha), year = year(fecha), numeric)
+  transmute(semester = semester(fecha), year = year(fecha), numeric)
 
 serie_109 %>% 
-  filter(year > 2011, month == 12) %>% 
-  serie_historica_anual(numeric, nudge_text = 3e5)
+  filter(year > 2016) %>% 
+  serie_historica_semestral(numeric, nudge_text = 3e5)
 ```
 
 
@@ -174,12 +169,12 @@ serie_116 <- servicios %>%
   filter(servicio == "Internet Móvil") %>%
   filter(month(fecha) == 6 | month(fecha) == 12) %>%
   filter(year(fecha) >= 2016) %>% 
-  group_by(year=year(fecha), month=month(fecha)) %>%
+  group_by(year=year(fecha), semester=semester(fecha)) %>%
   summarize(val = sum(numeric, na.rm = TRUE)) %>% 
   filter(year >= 2018)
 
 serie_116 %>% 
-  serie_historica_mensual(val, nudge_text = 2e4)
+  serie_historica_semestral(val, nudge_text = 2e4)
 ```
 
 ## 97. Internet móvil (computadoras y tablets) por operador (diciembre 2019)
@@ -316,12 +311,12 @@ serie_124 <- servicios %>%
   filter(pago == "Prepago") %>% 
   filter(month(fecha) == 6 | month(fecha) == 12) %>%
   filter(year(fecha) >= 2016) %>% 
-  group_by(year=year(fecha), month=month(fecha)) %>%
+  group_by(year=year(fecha), semester=semester(fecha)) %>%
   summarize(val = sum(numeric, na.rm = TRUE)) %>% 
   filter(year >= 2018)
 
 serie_124 %>% 
-  serie_historica_mensual(val, nudge_text = 1e4)
+  serie_historica_semestral(val, nudge_text = 1e4)
 ```
 
 ## 105. Internet móvil prepago (computadoras y tablets) por operador (diciembre 2019)
@@ -339,10 +334,6 @@ serie_125 %>%
   pie_chart(val, empresa) %>% 
   print
 ```
-
-
-
-
 
 
 
@@ -440,12 +431,9 @@ serie_131 <- servicios %>%
   filter(pago == "Pospago") %>% 
   filter(month(fecha) == 6 | month(fecha) == 12) %>%
   filter(year(fecha) >= 2016) %>% 
-  group_by(year=year(fecha), month=month(fecha)) %>%
+  group_by(year=year(fecha), semester=semester(fecha)) %>%
   summarize(val = sum(numeric, na.rm = TRUE)) %>% 
-  filter(year >= 2018)
-
-serie_131 %>% 
-  serie_historica_mensual(val, nudge_text = 3e4)
+  serie_historica_semestral(val, nudge_text = 3e4)
 ```
 
 
@@ -576,8 +564,10 @@ serie_138 <- trafico %>%
                             "Servicios de Banda Ancha Móvil")) %>% 
     group_by(empresa) %>% 
     summarize(val = sum(numeric, na.rm = TRUE))
+
 serie_138 %>% 
-  pie_chart(val, empresa)
+  pie_chart(val, empresa) %>% 
+  print
 ```
 
 
