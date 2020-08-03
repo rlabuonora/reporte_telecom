@@ -15,7 +15,7 @@ knitr::opts_chunk$set(echo = FALSE,
 
 options(scipen = 10000)
 
-source('./common.R')
+source('../common.R')
 
 banda_ancha_servicios <- import_banda_ancha_servicios()
 

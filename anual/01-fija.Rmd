@@ -16,7 +16,7 @@ options(scipen = 10000)
 
 
 # Theme
-source('./common.R')
+source('../common.R')
 fija <- import_fija()
 
 ```

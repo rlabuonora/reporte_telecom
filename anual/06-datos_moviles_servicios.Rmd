@@ -17,7 +17,7 @@ options(scipen = 10000)
 
 
 # Theme
-source('./common.R')
+source('../common.R')
 
 servicios <- import_datos_servicios_moviles()
 FECHA_INFORME <- as.Date("2019-12-01")

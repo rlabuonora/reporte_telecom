@@ -1,0 +1,72 @@
+---
+title: "Informe de mercado de servicios de Telecomunicaciones de Uruguay"
+output:
+  word_document:
+    reference_docx: word_report.docx
+graphics: yes
+---
+```{r, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, 
+                      warning = FALSE,
+                      message=FALSE,
+                      fig.width = 7, 
+                      fig.height = 4.5)
+
+library(officedown)
+library(officer)
+library(tidyverse)
+
+options(scipen = 10000)
+
+
+
+
+```
+
+
+<!-- ```{r child = '1-pib-telecom.Rmd'} -->
+<!-- ``` -->
+
+<!---BLOCK_TOC{level: 2}--->
+
+
+```{r child = '01-fija.Rmd'}
+```
+
+
+
+```{r child = '02-ldi.Rmd'}
+```
+
+
+
+```{r child = '03-banda_ancha.Rmd'}
+```
+
+
+```{r child = '04-radiobases.Rmd'}
+```
+
+```{r child = '05-cobertura.Rmd'}
+```
+
+
+```{r child = '06-datos_moviles_servicios.Rmd'}
+```
+
+
+```{r child = '07-mensajes.Rmd'}
+```
+
+
+```{r child = '08-voz.Rmd'}
+```
+
+
+```{r child = '09-roaming.Rmd'}
+```
+
+
+```{r child = '10-abonados.Rmd'}
+```
+
