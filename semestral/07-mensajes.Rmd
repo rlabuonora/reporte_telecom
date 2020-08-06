@@ -20,7 +20,9 @@ options(scipen = 10000)
 source('../common.R')
 
 
-FECHA_INFORME <- as.Date("2019-12-01")
+FECHA_INFORME_SEMESTRAL <- as.Date("2019-06-01")
+FECHA_INFORME_TITULOS <- "Junio 2019"
+FECHA_INFORME_TITULOS_2 <- "Primer Semestre 2019"
 
 mensajes <- import_mensajes()
 
@@ -35,20 +37,22 @@ mensajes <- import_mensajes()
 ```{r}
 serie_141 <- mensajes %>% 
   filter( a %in% c("Antel", "Claro", "Movistar", "Exterior")) %>% 
-  group_by(year = year(fecha)) %>% 
+  group_by(year = year(fecha), semester = semester(fecha)) %>% 
+  filter(year(fecha) > 2016) %>% 
   summarize(mensajes = sum(numeric))
 
 serie_141 %>% 
-  serie_historica_anual(mensajes/1e6, nudge_text = 3e2) +
+  serie_historica_semestral(mensajes/1e6, nudge_text = 3e2) +
   labs(y="Millones")
 ```
 
 
 
-## 124. Mensajes de texto enviados por operador (año 2019)
+## 124. Mensajes de texto enviados por operador (`r FECHA_INFORME_TITULOS_2`)
 ```{r}
 serie_142 <- mensajes %>%
-  filter(year(fecha) == year(FECHA_INFORME)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL),
+         semester(fecha) == semester(FECHA_INFORME_SEMESTRAL)) %>% 
   filter( a %in% c("Antel", "Claro", "Movistar", "Exterior")) %>% 
   group_by(empresa) %>% 
   summarize(mensajes = sum(numeric, na.rm = TRUE))
@@ -59,10 +63,11 @@ serie_142 %>%
 
 ```
 
-## 125. Mensajes de texto enviados según destino (año 2019)
+## 125. Mensajes de texto enviados según destino (`r FECHA_INFORME_TITULOS_2`)
 ```{r}
 serie_143 <- mensajes %>%
-  filter(year(fecha) == 2019) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL), 
+         semester(fecha) == semester(FECHA_INFORME_SEMESTRAL)) %>% 
   mutate(red_destino = case_when(
     a == "Exterior" ~ "A Exterior",
     a != empresa  ~ "Otras Redes",
@@ -82,19 +87,21 @@ serie_143 %>%
 ```{r}
 serie_144 <- mensajes %>% 
   filter(a == "Exterior") %>% 
-  group_by(year = year(fecha)) %>% 
+  group_by(year = year(fecha), semester=semester(fecha)) %>% 
+  filter(year(fecha) > 2016) %>% 
   summarize(mensajes = sum(numeric)) 
 
 serie_144 %>% 
-  serie_historica_anual(mensajes/1e3, nudge_text = 1e4) +
+  serie_historica_semestral(mensajes/1e3, nudge_text = 1e4) +
   labs(y="Miles")
 ```
 
-## 127. Mensajes de texto enviados al exterior por operador (año 2019)
+## 127. Mensajes de texto enviados al exterior por operador (`r FECHA_INFORME_TITULOS_2`)
 ```{r}
 serie_145 <- mensajes %>% 
   filter(a == "Exterior") %>% 
-  filter(year(fecha) == year(FECHA_INFORME)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL),
+         semester(fecha) == semester(FECHA_INFORME_SEMESTRAL)) %>% 
   group_by(empresa) %>% 
   summarize(mensajes = sum(numeric, na.rm = TRUE))
 
@@ -111,21 +118,23 @@ serie_145 %>%
 ```{r}
 serie_146 <- mensajes %>% 
   filter(a != empresa & a != "Exterior") %>% 
-  group_by(year = year(fecha)) %>% 
+  group_by(year = year(fecha), semester=semester(fecha)) %>% 
+  filter(year(fecha) > 2016) %>% 
   summarize(mensajes = sum(numeric))
 
 serie_146 %>% 
-  serie_historica_anual(mensajes/1e3, nudge_text = 2e5) +
+  serie_historica_semestral(mensajes/1e3, nudge_text = 2e5) +
   labs(y="Miles")
 
 ```
 
-## 129. Mensajes de texto enviados a otras redes móviles por operador (año 2019)
+## 129. Mensajes de texto enviados a otras redes móviles por operador (`r FECHA_INFORME_TITULOS_2`)
 
 ```{r}
 serie_147 <- mensajes %>% 
   filter(a != empresa & a != "Exterior") %>% 
-  filter(year(fecha)== year(FECHA_INFORME)) %>% 
+  filter(year(fecha)== year(FECHA_INFORME_SEMESTRAL),
+         semester(fecha) == semester(FECHA_INFORME_SEMESTRAL)) %>% 
   group_by(empresa) %>% 
   summarize(mensajes = sum(numeric, na.rm = TRUE))
 

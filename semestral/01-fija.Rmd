@@ -20,6 +20,8 @@ options(scipen = 10000)
 source('../common.R')
 FECHA_INFORME_SEMESTRAL <- as.Date("2019-06-01")
 FECHA_INFORME_TITULOS <- "Junio 2019"
+FECHA_INFORME_TITULOS_2 <- "Primer Semestre 2019"
+
 fija <- import_fija()
 
 ```
@@ -218,7 +220,7 @@ fija %>%
 ```
 
 
-## 14. Minutos de tráfico de telefonía fija a teléfonos móviles por operador (año 2019)
+## 14. Minutos de tráfico de telefonía fija a teléfonos móviles por operador (`r FECHA_INFORME_TITULOS_2`)
 
 
 ```{r}

@@ -16,6 +16,13 @@ options(scipen = 10000)
 source('../common.R')
 FECHA_INFORME_SEMESTRAL <- as.Date("2019-06-01")
 
+# Esta se debería llamar flujo
+FECHA_INFORME_TITULOS_2 <- "Primer Semestre 2019"
+
+# Esta stock
+FECHA_INFORME_TITULOS <- "Junio 2019"
+
+
 ldi <- import_ldi()
 ```
 
@@ -36,13 +43,12 @@ serie_26
 ```
 
 
-
-
-## 19. Minutos de tráfico de LDI saliente por operador (año `r year(FECHA_INFORME_SEMESTRAL)`)
+## 19. Minutos de tráfico de LDI saliente por operador (`r FECHA_INFORME_TITULOS_2`)
 
 ```{r}
 serie_27 <- ldi %>% 
-  filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL),
+         semester(fecha) == semester(FECHA_INFORME_SEMESTRAL)) %>% 
   filter(sentido == "desde", servicio == "Mn") %>% 
   group_by(empresa) %>% 
   summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
@@ -52,12 +58,13 @@ serie_27 <- ldi %>%
 serie_27
 ```
 
-## 20. Minutos de tráfico de LDI saliente según red origen (año `r year(FECHA_INFORME_SEMESTRAL)`)
+## 20. Minutos de tráfico de LDI saliente según red origen (`r FECHA_INFORME_TITULOS_2`)
 ```{r}
 serie_28 <- ldi %>%
   mutate(red = fct_collapse(red, "Redes Móviles" = c("Claro", "ANTEL", "Movistar"))) %>% 
   filter(sentido == "desde", servicio == "Mn") %>% 
-  filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL),
+         semester(fecha) == semester(FECHA_INFORME_SEMESTRAL)) %>% 
   group_by(red) %>% 
   summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
   pie_chart(minutos, red)
@@ -69,13 +76,14 @@ print(serie_28)
 
 
 
-## 21. Minutos de tráfico de LDI salientes de red fija - AMM por operador (año `r year(FECHA_INFORME_SEMESTRAL)`)
+## 21. Minutos de tráfico de LDI salientes de red fija - AMM por operador (`r FECHA_INFORME_TITULOS_2`)
 
 ```{r}
 serie_29 <- ldi %>% 
   filter(sentido == "desde", servicio == "Mn") %>% 
   filter(red %in% c("AMM")) %>% 
-  filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL),
+         semester(fecha) == semester(FECHA_INFORME_SEMESTRAL)) %>% 
   group_by(empresa) %>% 
   summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
   filter(minutos > 0) %>% 
@@ -102,17 +110,18 @@ serie_30
 
 
 
-## 23. Minutos de tráfico de LDI salientes de red fija - Resto País por operador (año `r year(FECHA_INFORME_SEMESTRAL)`)
+## 23. Minutos de tráfico de LDI salientes de red fija - Resto País por operador (`r FECHA_INFORME_TITULOS_2`)
 
 ```{r}
 serie_31 <- ldi %>% 
   filter(sentido == "desde", servicio == "Mn") %>% 
   filter(red %in% c("Resto país")) %>% 
-  filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL),
+         semester(fecha) == semester(FECHA_INFORME_SEMESTRAL)) %>% 
   group_by(empresa) %>% 
   summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
   filter(minutos > 0) %>% 
-  pie_chart(minutos, empresa, nudge_x=c(0, 0, 8) )
+  pie_chart(minutos, empresa)
 
 
 serie_31
@@ -148,12 +157,13 @@ serie_33
 
 ```
 
-## 26. Minutos de tráfico de LDI saliente por operador (año `r year(FECHA_INFORME_SEMESTRAL)`)
+## 26. Minutos de tráfico de LDI saliente por operador (`r FECHA_INFORME_TITULOS_2`)
 
 ```{r}
 serie_34 <- ldi %>% 
   filter(red %in% c("Claro", "ANTEL", "Movistar"), sentido == "desde", servicio == "Mn") %>% 
-  filter(year(FECHA_INFORME_SEMESTRAL)==year(fecha)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL),
+         semester(fecha) == semester(FECHA_INFORME_SEMESTRAL)) %>% 
   mutate(empresa = if_else(empresa == "Antel" | empresa == "Convergia",
                            "Antel", empresa)) %>% 
   mutate(empresa = if_else(empresa == "A.M. Wireless Uruguay", 
@@ -167,20 +177,15 @@ serie_34
 ```
 
 
-
-
-
-
-
-
-## 27. Minutos de tráfico de LDI saliente de red móvil de ANTEL por operador (año `r year(FECHA_INFORME_SEMESTRAL)`)
+## 27. Minutos de tráfico de LDI saliente de red móvil de ANTEL por operador (`r FECHA_INFORME_TITULOS_2`)
 
 ```{r}
 serie_35 <- ldi %>% 
   filter(red %in% c("ANTEL"), 
          sentido == "desde", 
          servicio == "Mn") %>% 
-  filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL),
+         semester(fecha) == semester(FECHA_INFORME_SEMESTRAL)) %>% 
   group_by(empresa) %>% 
   summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
   filter(minutos > 0) %>% 
@@ -204,13 +209,14 @@ serie_36 <- ldi %>%
 serie_36
 ```
 
-## 29. Minutos de tráfico de LDI saliente de red móvil de MOVISTAR por operador (año `r year(FECHA_INFORME_SEMESTRAL)`)
+## 29. Minutos de tráfico de LDI saliente de red móvil de MOVISTAR por operador (`r FECHA_INFORME_TITULOS_2`)
 ```{r}
 serie_37 <- ldi %>% 
   filter(red %in% c("Movistar"), 
          sentido == "desde", 
          servicio == "Mn") %>% 
-  filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL),
+         semester(fecha) == semester(FECHA_INFORME_SEMESTRAL)) %>% 
   group_by(empresa) %>% 
   summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
   filter(minutos > 0) %>% 
@@ -237,14 +243,15 @@ serie_38 <- ldi %>%
 serie_38
 ```
 
-## 31. Minutos de tráfico de LDI saliente de red móvil de CLARO por operador (año `r year(FECHA_INFORME_SEMESTRAL)`)
+## 31. Minutos de tráfico de LDI saliente de red móvil de CLARO por operador (`r FECHA_INFORME_TITULOS_2`)
 
 ```{r}
 serie_39 <- ldi %>% 
   filter(red %in% c("Claro"), 
          sentido == "desde", 
          servicio == "Mn") %>% 
-  filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL),
+         semester(fecha) == semester(FECHA_INFORME_SEMESTRAL)) %>% 
   group_by(empresa) %>% 
   summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
   filter(minutos > 0) %>% 
@@ -273,13 +280,14 @@ serie_40
 
 
 
-## 33. Minutos de tráfico de LDI saliente de Telefonía Fija según cliente (año `r year(FECHA_INFORME_SEMESTRAL)`)
+## 33. Minutos de tráfico de LDI saliente de Telefonía Fija según cliente ( `r FECHA_INFORME_TITULOS_2`)
 ```{r}
 serie_41 <- ldi %>% 
   filter(sentido == "desde", 
          servicio == "Mn") %>% 
   filter(red %in% c("AMM", "Resto país")) %>% # Solo Fija
-  filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL),
+         semester(fecha) == semester(FECHA_INFORME_SEMESTRAL)) %>% 
   group_by(tipo) %>% 
   summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
   pie_chart(minutos, tipo)
@@ -319,12 +327,13 @@ serie_43 <- ldi %>%
 serie_43
 ```
 
-## 36. Minutos de tráfico de LDI saliente por destino (año `r year(FECHA_INFORME_SEMESTRAL)`)
+## 36. Minutos de tráfico de LDI saliente por destino (`r FECHA_INFORME_TITULOS_2`)
 
 ```{r}
 serie_44 <- ldi %>% 
   filter(sentido == "desde", servicio == "Mn") %>% 
-  filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL),
+         semester(fecha) == semester(FECHA_INFORME_SEMESTRAL)) %>% 
   group_by(pais) %>% 
   summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
   mutate(pais=fct_recode(pais,
