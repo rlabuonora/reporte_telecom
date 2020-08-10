@@ -21,8 +21,7 @@ options(scipen = 10000)
 source('../common.R')
 
 radiobases <- import_radiobases()
-FECHA_INFORME_SEMESTRAL <- as.Date("2019-06-01")
-FECHA_TITULO_STOCK <- "Junio 2019"
+
 
 month_label <- function(x) {
   y <- as_date(x)
@@ -44,8 +43,6 @@ serie_90 <- radiobases %>%
   summarize(radiobases = sum(val, na.rm = TRUE)) %>% 
   serie_historica_mensual(radiobases, nudge_text = 5e2)
 ```
-
-
 
 
 ## 71. Cantidad de radiobases por departamento (`r FECHA_TITULO_STOCK`)
@@ -74,15 +71,15 @@ g_92 <- tabla_92 %>%
   print
 ```
 
-## 73. Cantidad de radiobases GSM
+## 73. Cantidad de radiobases GSM (No va en semestral)
 
 ```{r}
-radiobases %>% 
-  filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL)) %>% 
-  filter(tipo == "Radiobases (GSM)") %>% 
-  group_by(year=year(fecha), month=month(fecha)) %>% 
-  summarize(radiobases = sum(val, na.rm = TRUE)) %>% 
-  serie_historica_mensual(radiobases, nudge_text = 100)
+# radiobases %>% 
+#   filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL)) %>% 
+#   filter(tipo == "Radiobases (GSM)") %>% 
+#   group_by(year=year(fecha), month=month(fecha)) %>% 
+#   summarize(radiobases = sum(val, na.rm = TRUE)) %>% 
+#   serie_historica_mensual(radiobases, nudge_text = 100)
 
 ```
 
@@ -115,15 +112,15 @@ tabla_95 %>%
 ```
 
 
-## 76. Cantidad de radiobases 3G
+## 76. Cantidad de radiobases 3G (No va en semestral)
 
 ```{r}
-serie_96 <- radiobases %>% 
-  filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL)) %>% 
-  filter(tipo == "Radiobases (3G)") %>% 
-  group_by(year=year(fecha), month=month(fecha)) %>% 
-  summarize(radiobases = sum(val, na.rm = TRUE)) %>% 
-  serie_historica_mensual(radiobases, nudge_text = 100)
+# serie_96 <- radiobases %>% 
+#   filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL)) %>% 
+#   filter(tipo == "Radiobases (3G)") %>% 
+#   group_by(year=year(fecha), month=month(fecha)) %>% 
+#   summarize(radiobases = sum(val, na.rm = TRUE)) %>% 
+#   serie_historica_mensual(radiobases, nudge_text = 100)
 
 
 ```
@@ -158,18 +155,18 @@ tabla_98 <-  radiobases %>%
 ```
 
 
-## 79. Cantidad de radiobases LTE
+## 79. Cantidad de radiobases LTE (no va semestral)
 
 ```{r}
-serie_99 <- radiobases %>% 
-  filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL)) %>% 
-  filter(tipo == "Radiobases (LTE)") %>% 
-  group_by(fecha) %>% 
-  summarize(radiobases = sum(val, na.rm = TRUE))
-
-serie_99 %>% 
-  mutate(year=year(fecha), month=month(fecha)) %>% 
-  serie_historica_mensual(radiobases, nudge_text = 100)
+# serie_99 <- radiobases %>% 
+#   filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL)) %>% 
+#   filter(tipo == "Radiobases (LTE)") %>% 
+#   group_by(fecha) %>% 
+#   summarize(radiobases = sum(val, na.rm = TRUE))
+# 
+# serie_99 %>% 
+#   mutate(year=year(fecha), month=month(fecha)) %>% 
+#   serie_historica_mensual(radiobases, nudge_text = 100)
 ```
 
 ## 80. Cantidad de radiobases LTE por departamento (`r FECHA_TITULO_STOCK`)
