@@ -10,7 +10,6 @@ library(scales)
 
 
 FECHA_TORTAS <- as.Date("2019-12-01")
-FECHA_INFORME <- as.Date("2019-12-01")
 
 
 

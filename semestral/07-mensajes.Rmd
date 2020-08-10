@@ -21,8 +21,7 @@ source('../common.R')
 
 
 FECHA_INFORME_SEMESTRAL <- as.Date("2019-06-01")
-FECHA_INFORME_TITULOS <- "Junio 2019"
-FECHA_INFORME_TITULOS_2 <- "Primer Semestre 2019"
+FECHA_TITULO_FLUJO <- "Primer Semestre 2019"
 
 mensajes <- import_mensajes()
 
@@ -48,7 +47,7 @@ serie_141 %>%
 
 
 
-## 124. Mensajes de texto enviados por operador (`r FECHA_INFORME_TITULOS_2`)
+## 124. Mensajes de texto enviados por operador (`r FECHA_TITULO_FLUJO`)
 ```{r}
 serie_142 <- mensajes %>%
   filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL),
@@ -63,7 +62,7 @@ serie_142 %>%
 
 ```
 
-## 125. Mensajes de texto enviados según destino (`r FECHA_INFORME_TITULOS_2`)
+## 125. Mensajes de texto enviados según destino (`r FECHA_TITULO_FLUJO`)
 ```{r}
 serie_143 <- mensajes %>%
   filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL), 
@@ -96,7 +95,7 @@ serie_144 %>%
   labs(y="Miles")
 ```
 
-## 127. Mensajes de texto enviados al exterior por operador (`r FECHA_INFORME_TITULOS_2`)
+## 127. Mensajes de texto enviados al exterior por operador (`r FECHA_TITULO_FLUJO`)
 ```{r}
 serie_145 <- mensajes %>% 
   filter(a == "Exterior") %>% 
@@ -128,7 +127,7 @@ serie_146 %>%
 
 ```
 
-## 129. Mensajes de texto enviados a otras redes móviles por operador (`r FECHA_INFORME_TITULOS_2`)
+## 129. Mensajes de texto enviados a otras redes móviles por operador (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
 serie_147 <- mensajes %>% 

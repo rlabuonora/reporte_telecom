@@ -21,7 +21,7 @@ source('../common.R')
 
 cobertura <- import_cobertura()
 FECHA_INFORME_SEMESTRAL <- as.Date("2019-06-01")
-FECHA_INFORME_TITULOS <- "Junio 2019"
+FECHA_TITULO_STOCK <- "Junio 2019"
 
 month_label <- function(x) {
   y <- as_date(x)
@@ -33,7 +33,7 @@ month_label <- function(x) {
 
 
 
-## 82. Cobertura territorial nacional (%) por tecnología (`r FECHA_INFORME_TITULOS`)
+## 82. Cobertura territorial nacional (%) por tecnología (`r FECHA_TITULO_STOCK`)
 
 ```{r}
 tabla_102 <- cobertura %>% 
@@ -91,7 +91,7 @@ serie_103 %>%
 
 
 
-## 84. Cobertura territorial GSM (%) por departamento (`r FECHA_INFORME_TITULOS`)
+## 84. Cobertura territorial GSM (%) por departamento (`r FECHA_TITULO_STOCK`)
 
 ```{r}
 tabla_104 <- cobertura %>% 
@@ -151,7 +151,7 @@ serie_105 %>%
   labs(x="", y="")
 ```
 
-## 86. Cobertura territorial 3G (%) por departamento (`r FECHA_INFORME_TITULOS`)
+## 86. Cobertura territorial 3G (%) por departamento (`r FECHA_TITULO_STOCK`)
 
 ```{r}
 tabla_106 <- cobertura %>% 
@@ -210,7 +210,7 @@ serie_107 %>%
   labs(x="", y="")
 ```
 
-## 88. Cobertura territorial LTE (%) por departamento (`r FECHA_INFORME_TITULOS`)
+## 88. Cobertura territorial LTE (%) por departamento (`r FECHA_TITULO_STOCK`)
 
 ```{r}
 tabla_108 <- cobertura %>% 

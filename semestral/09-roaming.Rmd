@@ -8,9 +8,7 @@ graphics: yes
 ```{r include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, 
                       warning = FALSE,
-                      message = FALSE,
-                      fig.width = 7, 
-                      fig.height = 4.5)
+                      message = FALSE)
 
 options(scipen = 10000)
 
@@ -19,10 +17,9 @@ options(scipen = 10000)
 # Theme
 source('../common.R')
 
-
-FECHA_INFORME <- as.Date("2019-12-01")
-
-
+FECHA_INFORME_SEMESTRAL <- as.Date("2019-06-01")
+FECHA_TITULO_STOCK <- "Junio 2019"
+FECHA_TITULO_FLUJO <- "Primer Semestre 2019"
 roaming <- import_roaming()
 
 ```
@@ -32,7 +29,7 @@ roaming <- import_roaming()
 serie_166 <- roaming %>% 
   filter(voz == "Tráfico de voz") %>%
   filter(destino %in% c("RL", "RLDI", "RS")) %>% 
-  group_by(year = as.character(year(fecha)), semester=as.character(semester(fecha))) %>% 
+  group_by(year = year(fecha), semester=semester(fecha)) %>% 
   summarize(numeric = sum(numeric, na.rm = TRUE)) %>% 
   ungroup()
 
@@ -42,12 +39,13 @@ serie_166 %>%
 
 
 
-## 164. Tráfico de voz de Roaming (minutos) por operador (año 2019)
+## 164. Tráfico de voz de Roaming (minutos) por operador (`r FECHA_TITULO_FLUJO`)
 ```{r}
 serie_167 <- roaming %>% 
   filter(voz == "Tráfico de voz") %>%
   filter(destino %in% c("RL", "RLDI", "RS")) %>% 
-  filter(year(fecha) == year(FECHA_INFORME)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL),
+         semester(fecha) == semester(FECHA_INFORME_SEMESTRAL)) %>% 
   group_by(empresa) %>% 
   summarize(numeric = sum(numeric, na.rm = TRUE))
 
@@ -58,13 +56,14 @@ serie_167 <- roaming %>%
 
 
 
-## 165. Tráfico de voz de Roaming (minutos) por tipo de servicio (año 2019)
+## 165. Tráfico de voz de Roaming (minutos) por tipo de servicio (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
 serie_168 <- roaming %>% 
   filter(voz == "Tráfico de voz") %>%
   filter(destino %in% c("RL", "RLDI", "RS")) %>% 
-  filter(year(fecha) == year(FECHA_INFORME)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL),
+         semester(fecha) == semester(FECHA_INFORME_SEMESTRAL)) %>% 
   mutate(destino = fct_recode(destino, 
                     "Local" = "RL",
                     "LDI"   = "RLDI",
@@ -84,18 +83,14 @@ serie_168 %>%
 ```
 
 
-
-
-
-
-
 ## 166. Tráfico de voz de Roaming Local (minutos)
 
 ```{r}
 serie_169 <- roaming %>% 
   filter(voz == "Tráfico de voz") %>%
   filter(destino %in% c("RL")) %>% 
-  group_by(year = as.character(year(fecha)), semester=as.character(semester(fecha))) %>% 
+  group_by(year = year(fecha), 
+           semester=semester(fecha)) %>% 
   summarize(numeric = sum(numeric, na.rm = TRUE))
 
 serie_169 %>% 
@@ -104,13 +99,14 @@ serie_169 %>%
 
 
 
-## 167. Tráfico de voz de Roaming Local (minutos) por operador (año 2019)
+## 167. Tráfico de voz de Roaming Local (minutos) por operador (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
 serie_170 <- roaming %>% 
   filter(voz == "Tráfico de voz") %>%
   filter(destino %in% c("RL")) %>% 
-  filter(year(fecha) == year(FECHA_INFORME)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL),
+         semester(fecha) == semester(FECHA_INFORME_SEMESTRAL)) %>% 
   group_by(empresa) %>% 
   summarize(numeric = sum(numeric, na.rm = TRUE))
 
@@ -119,19 +115,14 @@ serie_170 %>%
   print
 ```
 
-
-
-
-
-
-
 ## 168. Tráfico de voz de Roaming Saliente (minutos)
 
 ```{r}
 serie_171 <- roaming %>% 
   filter(voz == "Tráfico de voz") %>%
   filter(destino %in% c("RS")) %>% 
-  group_by(year = as.character(year(fecha)), semester=as.character(semester(fecha))) %>% 
+  group_by(year = year(fecha), 
+           semester=semester(fecha)) %>% 
   summarize(numeric = sum(numeric, na.rm = TRUE))
 
 serie_171 %>% 
@@ -140,13 +131,14 @@ serie_171 %>%
 
 
 
-## 169. Tráfico de voz de Roaming Saliente (minutos) por operador (año 2019)
+## 169. Tráfico de voz de Roaming Saliente (minutos) por operador (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
 serie_172 <- roaming %>% 
   filter(voz == "Tráfico de voz") %>%
   filter(destino %in% c("RS")) %>% 
-  filter(year(fecha) == year(FECHA_INFORME)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL),
+         semester(fecha) == semester(FECHA_INFORME_SEMESTRAL)) %>% 
   group_by(empresa) %>% 
   summarize(numeric = sum(numeric, na.rm = TRUE))
 
@@ -156,18 +148,14 @@ serie_172 %>%
 ```
 
 
-
-
-
-
-
 ## 170. Tráfico de voz de Roaming de LDI (minutos)
 
 ```{r}
 serie_173 <- roaming %>% 
   filter(voz == "Tráfico de voz") %>%
   filter(destino %in% c("RLDI")) %>% 
-  group_by(year = as.character(year(fecha)), semester=as.character(semester(fecha))) %>% 
+  group_by(year = year(fecha), 
+           semester=semester(fecha)) %>% 
   summarize(numeric = sum(numeric, na.rm = TRUE))
 
 serie_173 %>% 
@@ -176,13 +164,14 @@ serie_173 %>%
 
 
 
-## 171. Tráfico de voz de Roaming de LDI (minutos) por operador (año 2019)
+## 171. Tráfico de voz de Roaming de LDI (minutos) por operador (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
 serie_174 <- roaming %>% 
   filter(voz == "Tráfico de voz") %>%
   filter(destino %in% c("RLDI")) %>% 
-  filter(year(fecha) == year(FECHA_INFORME)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL),
+         semester(fecha) == semester(FECHA_INFORME_SEMESTRAL)) %>% 
   group_by(empresa) %>% 
   summarize(numeric = sum(numeric, na.rm = TRUE))
 
@@ -190,11 +179,6 @@ serie_174 %>%
   pie_chart(numeric, empresa) %>% 
   print
 ```
-
-
-
-
-
 
 
 ## 172. Tráfico de datos de Roaming (terabytes)
@@ -205,8 +189,8 @@ serie_175 <- tibble(
     numeric = c(67,	92,	141, 172)
   )
 
-serie_175 %>% 
-  serie_historica_semestral(numeric, nudge_text = 5)
+# serie_175 %>% 
+#   serie_historica_semestral(numeric, nudge_text = 5)
 ```
 
 
@@ -216,7 +200,8 @@ serie_175 %>%
 ```{r}
 serie_176 <- roaming %>%
   filter(voz == "Tráfico de datos") %>%
-  filter(year(fecha) == year(FECHA_INFORME)) %>%
+  filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL),
+         semester(fecha) == semester(FECHA_INFORME_SEMESTRAL)) %>%
   group_by(empresa) %>%
   summarize(numeric = sum(numeric, na.rm = TRUE)) %>% 
   filter(numeric > .01)
