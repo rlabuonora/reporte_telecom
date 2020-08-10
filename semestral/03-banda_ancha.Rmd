@@ -379,7 +379,7 @@ serie_88 <- banda_ancha_servicios_alambrica %>%
          month(fecha) == month(FECHA_INFORME_SEMESTRAL)) %>% 
   group_by(medio) %>% 
   summarize(servicios = sum(val, na.rm = TRUE)) %>% 
-  filter(servicios >0)
+  filter(servicios > 0)
 
 serie_88 %>% 
   pie_chart(servicios, medio) %>% 
@@ -432,9 +432,9 @@ serie_91 <- tibble(
   mutate(year= year(fecha), month= month(fecha)) %>% 
   select(-fecha)
 
-serie_91 %>% 
-  filter(year > 2018) %>% 
-  serie_historica_mensual(trafico, nudge_text=1e4)
+# serie_91 %>% 
+#   filter(year > 2018) %>% 
+#   serie_historica_mensual(trafico, nudge_text=1e4)
 ```
 
 
@@ -446,9 +446,9 @@ serie_92 <- tibble(
   trafico=c(1617219,	38710)
 )
 
-serie_92 %>% 
-  pie_chart(trafico, tipo) %>% 
-  print
+# serie_92 %>% 
+#   pie_chart(trafico, tipo) %>% 
+#   print
 ```
 
 ## 68. Tráfico de datos se servicios de banda ancha fija (terabytes) según tipo de cliente (*)
@@ -459,11 +459,11 @@ serie_93 <- tibble(
   trafico=c(1587200,	50526,	18203)
 )
 
-serie_93 %>% 
-  pie_chart(trafico, cliente, 
-              nudge_radio = c(.7, .6, .6),
-              nudge_x = c(0, -6, 6)) %>% 
-  print
+# serie_93 %>% 
+#   pie_chart(trafico, cliente, 
+#               nudge_radio = c(.7, .6, .6),
+#               nudge_x = c(0, -6, 6)) %>% 
+#   print
 ```
 
 ## 69. Tráfico de datos (terabytes) por operador (*)
@@ -473,8 +473,8 @@ serie_94 <- tibble(
   empresa = c("Antel",	"Dedicado",	"Kalil",	"Enalur",	"Movistar",	"Claro"),
   trafico = c(1650584,	0,	495,	0,	3966, 884))
 
-serie_94 %>% 
-  barras_horizontales(trafico, empresa, nudge_text= 1.5e5)
+# serie_94 %>% 
+#   barras_horizontales(trafico, empresa, nudge_text= 1.5e5)
 ```
 
 
