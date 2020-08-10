@@ -18,8 +18,7 @@ options(scipen = 10000)
 source('../common.R')
 
 cobertura <- import_cobertura()
-FECHA_INFORME_SEMESTRAL <- as.Date("2019-06-01")
-FECHA_TITULO_STOCK <- "Junio 2019"
+
 
 month_label <- function(x) {
   y <- as_date(x)

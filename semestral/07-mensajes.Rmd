@@ -20,9 +20,6 @@ options(scipen = 10000)
 source('../common.R')
 
 
-FECHA_INFORME_SEMESTRAL <- as.Date("2019-06-01")
-FECHA_TITULO_FLUJO <- "Primer Semestre 2019"
-
 mensajes <- import_mensajes()
 
 

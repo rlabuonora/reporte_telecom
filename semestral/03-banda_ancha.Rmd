@@ -14,8 +14,6 @@ knitr::opts_chunk$set(echo = FALSE,
 options(scipen = 10000)
 
 source('../common.R')
-FECHA_INFORME_SEMESTRAL <- as.Date("2019-06-01")
-FECHA_TITULO_STOCK <- "Junio 2019"
 banda_ancha_servicios <- import_banda_ancha_servicios()
 
 ```

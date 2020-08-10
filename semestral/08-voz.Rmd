@@ -19,11 +19,6 @@ options(scipen = 10000)
 # Theme
 source('../common.R')
 
-FECHA_INFORME_SEMESTRAL <- as.Date("2019-06-01")
-FECHA_TITULO_STOCK <- "Junio 2019"
-FECHA_TITULO_FLUJO <- "Primer Semestre 2019"
-
-
 voz <- import_voz() %>% 
   mutate(tipo_red = case_when(
     a == "Antel Fija"~"Fija",

@@ -18,9 +18,7 @@ options(scipen = 10000)
 source('../common.R')
 
 servicios <- import_datos_servicios_moviles()
-FECHA_INFORME_SEMESTRAL <- as.Date("2019-06-01")
-FECHA_TITULO_STOCK <- "Junio 2019"
-FECHA_TITULO_FLUJO <- "Primer Semestre 2019"
+
 
 ```
 
