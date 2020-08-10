@@ -3,7 +3,6 @@ title: "Informe de mercado de servicios de Telecomunicaciones de Uruguay"
 output:
   word_document:
     reference_docx: word_report.docx
-    output_file: "Reporte.docx"
 graphics: yes
 ---
 ```{r, include=FALSE}
