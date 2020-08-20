@@ -37,9 +37,9 @@ month_label <- function(x) {
 serie_90 <- radiobases %>% 
   filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL)) %>% 
   filter(tipo == "Radiobases (total)") %>% 
-  group_by(year = year(fecha), month = month(fecha)) %>% 
+  group_by(year = year(fecha), semester = semester(fecha)) %>% 
   summarize(radiobases = sum(val, na.rm = TRUE)) %>% 
-  serie_historica_mensual(radiobases, nudge_text = 5e2)
+  serie_historica_semestral(radiobases, nudge_text = 5e2)
 ```
 
 
@@ -69,17 +69,6 @@ g_92 <- tabla_92 %>%
   print
 ```
 
-## 73. Cantidad de radiobases GSM (No va en semestral)
-
-```{r}
-# radiobases %>% 
-#   filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL)) %>% 
-#   filter(tipo == "Radiobases (GSM)") %>% 
-#   group_by(year=year(fecha), month=month(fecha)) %>% 
-#   summarize(radiobases = sum(val, na.rm = TRUE)) %>% 
-#   serie_historica_mensual(radiobases, nudge_text = 100)
-
-```
 
 ## 74. Cantidad de radiobases GSM por departamento (`r FECHA_TITULO_STOCK`)
 
@@ -110,21 +99,6 @@ tabla_95 %>%
 ```
 
 
-## 76. Cantidad de radiobases 3G (No va en semestral)
-
-```{r}
-# serie_96 <- radiobases %>% 
-#   filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL)) %>% 
-#   filter(tipo == "Radiobases (3G)") %>% 
-#   group_by(year=year(fecha), month=month(fecha)) %>% 
-#   summarize(radiobases = sum(val, na.rm = TRUE)) %>% 
-#   serie_historica_mensual(radiobases, nudge_text = 100)
-
-
-```
-
-
-
 ## 77. Cantidad de radiobases 3G por departamento (`r FECHA_TITULO_STOCK`)
 
 ```{r}
@@ -150,21 +124,6 @@ tabla_98 <-  radiobases %>%
  tabla_98 %>% 
   pie_chart(radiobases, empresa) %>% 
    print
-```
-
-
-## 79. Cantidad de radiobases LTE (no va semestral)
-
-```{r}
-# serie_99 <- radiobases %>% 
-#   filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL)) %>% 
-#   filter(tipo == "Radiobases (LTE)") %>% 
-#   group_by(fecha) %>% 
-#   summarize(radiobases = sum(val, na.rm = TRUE))
-# 
-# serie_99 %>% 
-#   mutate(year=year(fecha), month=month(fecha)) %>% 
-#   serie_historica_mensual(radiobases, nudge_text = 100)
 ```
 
 ## 80. Cantidad de radiobases LTE por departamento (`r FECHA_TITULO_STOCK`)

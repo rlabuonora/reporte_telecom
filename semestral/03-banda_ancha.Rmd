@@ -428,9 +428,6 @@ serie_91 <- tibble(
   mutate(year= year(fecha), month= month(fecha)) %>% 
   select(-fecha)
 
-# serie_91 %>% 
-#   filter(year > 2018) %>% 
-#   serie_historica_mensual(trafico, nudge_text=1e4)
 ```
 
 

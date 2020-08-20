@@ -22,7 +22,7 @@ servicios <- import_datos_servicios_moviles()
 
 ```
 
-## 89. Servicios móviles
+<!-- # 89. Servicios móviles -->
 ```{r}
 serie_109_vieja <- tibble(
   fecha = seq(ymd('2010-12-01'), 
@@ -95,11 +95,11 @@ serie_111 %>%
 serie_112 <- servicios %>% 
   filter(servicio == "Suscriptores a la telefonía móvil celular") %>% 
   filter(year(fecha) >= 2019) %>% 
-  group_by(year=year(fecha), month=month(fecha)) %>%
+  group_by(year=year(fecha), semester=semester(fecha)) %>%
   summarize(val = sum(numeric, na.rm = TRUE))
 
 serie_112 %>% 
-  serie_historica_mensual(val / 1e3, nudge_text = 300) +
+  serie_historica_semestral(val / 1e3, nudge_text = 300) +
   labs(y="Miles")
 ```
 
@@ -117,23 +117,16 @@ serie_113 %>%
   print
 ```
 
-
-
-
-
-
-
-
 ## 94. Servicios M2M
 ```{r}
 serie_114 <- servicios %>% 
   filter(servicio == "M2M") %>% 
   filter(year(fecha) >= 2019) %>% 
-  group_by(year=year(fecha), month=month(fecha)) %>%
+  group_by(year=year(fecha), semester=semester(fecha)) %>%
   summarize(val = sum(numeric, na.rm = TRUE))
 
 serie_114 %>% 
-  serie_historica_mensual(val, nudge_text = 2e4)
+  serie_historica_semestral(val, nudge_text = 2e4)
 ```
 
 ## 95. Servicios M2M por operador (`r FECHA_TITULO_STOCK`)
@@ -149,11 +142,6 @@ serie_115 %>%
   pie_chart(val, empresa) %>% 
   print
 ```
-
-
-
-
-
 
 
 ## 96. Internet móvil (computadoras y tablets)
@@ -197,11 +185,11 @@ serie_117 %>%
 serie_118 <-  servicios %>% 
   filter(servicio == "Suscriptores de banda ancha móvil") %>% 
   filter(year(fecha) == 2019) %>% 
-  group_by(year=year(fecha), month=month(fecha)) %>%
+  group_by(year=year(fecha), semester=semester(fecha)) %>%
   summarize(val = sum(numeric, na.rm = TRUE))
 
 serie_118 %>% 
-  serie_historica_mensual(val/1e3, nudge_text = 2e2) +
+  serie_historica_semestral(val/1e3, nudge_text = 2e2) +
   labs(y="Miles")
 ```
 
@@ -264,11 +252,11 @@ serie_122 <- servicios %>%
   filter(year(fecha) == 2019) %>% 
   filter(pago == "Prepago") %>% 
   filter(servicio %in% c("Suscriptores a la telefonía móvil celular")) %>% 
-  group_by(year=year(fecha), month=month(fecha)) %>%
+  group_by(year=year(fecha), semester=semester(fecha)) %>%
   summarize(val = sum(numeric, na.rm = TRUE))
 
 serie_122 %>% 
-  serie_historica_mensual(val/1e3, nudge_text = 2e2) +
+  serie_historica_semestral(val/1e3, nudge_text = 2e2) +
   labs(y="Miles")
 ```
 
@@ -337,11 +325,11 @@ serie_126 <- servicios %>%
   filter(servicio == "M2M") %>%
   filter(pago == "Prepago") %>% 
   filter(year(fecha) >= 2019) %>% 
-  group_by(year=year(fecha), month=month(fecha)) %>%
+  group_by(year=year(fecha), semester=semester(fecha)) %>%
   summarize(val = sum(numeric, na.rm = TRUE))
 
 serie_126 %>% 
-  serie_historica_mensual(val, nudge_text = .15)
+  serie_historica_semestral(val, nudge_text = .15)
 ```
 
 ## 107. Suscriptores prepagos de banda ancha móvil
@@ -350,17 +338,13 @@ serie_127 <- servicios %>%
   filter(servicio == "Suscriptores de banda ancha móvil") %>%
   filter(pago == "Prepago") %>% 
   filter(year(fecha) >= 2019) %>% 
-  group_by(year=year(fecha), month=month(fecha)) %>%
+  group_by(year=year(fecha), semester=semester(fecha)) %>%
   summarize(val = sum(numeric, na.rm = TRUE))
 
 serie_127 %>% 
-  serie_historica_mensual(val/1e3, nudge_text = 1e2) + 
+  serie_historica_semestral(val/1e3, nudge_text = 1e2) + 
   labs(y="Miles")
 ```
-
-
-
-
 
 
 
@@ -387,18 +371,13 @@ serie_129 <- servicios %>%
   filter(year(fecha) == 2019) %>% 
   filter(servicio %in% c("Suscriptores a la telefonía móvil celular")) %>% 
   filter(pago == "Pospago") %>% 
-  group_by(year=year(fecha), month=month(fecha)) %>%
+  group_by(year=year(fecha), semester=semester(fecha)) %>%
   summarize(val = sum(numeric, na.rm = TRUE))
 
 serie_129 %>% 
-  serie_historica_mensual(val/1e3, nudge_text = 1e2) +
+  serie_historica_semestral(val/1e3, nudge_text = 1e2) +
   labs(y="Miles")
 ```
-
-
-
-
-
 
 
 ## 110. Suscriptores pospagos a la telefonía móvil celular por operador (`r FECHA_TITULO_STOCK`)
@@ -455,11 +434,11 @@ serie_133 <- servicios %>%
   filter(servicio == "M2M") %>%
   filter(pago == "Pospago") %>% 
   filter(year(fecha) >= 2019) %>% 
-  group_by(year=year(fecha), month=month(fecha)) %>%
+  group_by(year=year(fecha), semester=semester(fecha)) %>%
   summarize(val = sum(numeric, na.rm = TRUE))
 
 serie_133 %>% 
-  serie_historica_mensual(val, nudge_text = 3e4)
+  serie_historica_semestral(val, nudge_text = 3e4)
 ```
 
 
@@ -478,22 +457,6 @@ serie_134 <- servicios %>%
 #   pie_chart(val, empresa) %>% 
 #   print
 ```
-
-## 115. Suscriptores pospagos de banda ancha móvil (no va en el semestral)
-```{r}
-# serie_135 <- servicios %>% 
-#   filter(servicio == "Suscriptores de banda ancha móvil") %>%
-#   filter(pago == "Pospago") %>% 
-#   filter(year(fecha) >= 2019) %>% 
-#   group_by(year=year(fecha), month=month(fecha)) %>%
-#   summarize(val = sum(numeric, na.rm = TRUE))
-# 
-#  serie_135 %>% 
-#   serie_historica_mensual(val/1e3, nudge_text = 8e1) + 
-#   labs(y="Miles")
-```
-
-
 
 ## 116. Suscriptores pospagos de banda ancha móvil por operador (`r FECHA_TITULO_STOCK`)
 ```{r}
@@ -565,11 +528,6 @@ serie_139 %>%
 ```
 
 
-
-
-
-
-
 ## 120. Tráfico de datos de servicios de banda ancha móvil prepagos (terabytes) por operador (`r FECHA_TITULO_FLUJO`)
 ```{r}
 serie_140 <- trafico %>% 
@@ -598,11 +556,6 @@ serie_141 <- trafico %>%
 serie_141 %>% 
   serie_historica_semestral(val, nudge_text=4e3)
 ```
-
-
-
-
-
 
 
 ## 122. Tráfico de datos de servicios de banda ancha móvil pospagos (terabytes) por operador (`r FECHA_TITULO_FLUJO`)

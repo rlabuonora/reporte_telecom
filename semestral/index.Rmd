@@ -19,9 +19,9 @@ library(tidyverse)
 options(scipen = 10000)
 
 source('../common.R')
-FECHA_INFORME_SEMESTRAL <- as.Date("2019-06-01")
-FECHA_TITULO_STOCK <- "Junio 2019"
-FECHA_TITULO_FLUJO <- "Primer Semestre 2019"
+FECHA_INFORME_SEMESTRAL <- as.Date("2020-06-01")
+FECHA_TITULO_STOCK <- "Junio 2020"
+FECHA_TITULO_FLUJO <- "Primer Semestre 2020"
 
 
 ```
@@ -36,13 +36,13 @@ FECHA_TITULO_FLUJO <- "Primer Semestre 2019"
 
 
 
-```{r child = '02-ldi.Rmd'}
-```
+<!-- ```{r child = '02-ldi.Rmd'} -->
+<!-- ``` -->
 
 
 
-```{r child = '03-banda_ancha.Rmd'}
-```
+<!-- ```{r child = '03-banda_ancha.Rmd'} -->
+<!-- ``` -->
 
 
 ```{r child = '04-radiobases.Rmd'}
@@ -65,8 +65,8 @@ FECHA_TITULO_FLUJO <- "Primer Semestre 2019"
 ```
 
 
-```{r child = '09-roaming.Rmd'}
-```
+<!-- ```{r child = '09-roaming.Rmd'} -->
+<!-- ``` -->
 
 
 <!-- ```{r child = '10-abonados.Rmd'} -->

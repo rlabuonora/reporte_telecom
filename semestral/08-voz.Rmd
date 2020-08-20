@@ -498,19 +498,6 @@ serie_183 %>%
   labs("Miles")
 ```
 
-## 161. Tráfico de voz de servicios móviles (minutos) por tipo de servicio (`r FECHA_TITULO_FLUJO`) (No está en el semestral)
-```{r}
-serie_161 <- voz %>% 
-  filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL),
-         semester(fecha) == semester(FECHA_INFORME_SEMESTRAL)) %>% 
-  group_by(pago) %>% 
-  summarize(numeric = sum(numeric, na.rm = TRUE))
-
-serie_161 %>% 
-  pie_chart(numeric, pago) %>% 
-  print
-```
-
 
 ## 162. Tráfico de voz a red fija de servicios móviles pospagos (minutos) por operador (`r FECHA_TITULO_FLUJO`)
 
