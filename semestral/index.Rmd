@@ -12,11 +12,6 @@ knitr::opts_chunk$set(echo = FALSE,
                       fig.width = 7, 
                       fig.height = 3.5)
 
-library(officedown)
-library(officer)
-library(tidyverse)
-
-options(scipen = 10000)
 
 source('../common.R')
 FECHA_INFORME_SEMESTRAL <- as.Date("2020-06-01")
@@ -36,8 +31,8 @@ FECHA_TITULO_FLUJO <- "Primer Semestre 2020"
 
 
 
-<!-- ```{r child = '02-ldi.Rmd'} -->
-<!-- ``` -->
+```{r child = '02-ldi.Rmd'}
+```
 
 
 

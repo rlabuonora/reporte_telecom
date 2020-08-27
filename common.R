@@ -9,6 +9,12 @@ library(RColorBrewer)
 library(scales)
 
 
+library(officedown)
+library(officer)
+
+options(scipen = 10000)
+
+
 pal <- brewer.pal(n = 8, name = "Blues")
 
 theme_set(theme_minimal() + 
