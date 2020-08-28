@@ -14,9 +14,7 @@ knitr::opts_chunk$set(echo = FALSE,
 
 
 source('../common.R')
-FECHA_INFORME_SEMESTRAL <- as.Date("2020-06-01")
-FECHA_TITULO_STOCK <- "Junio 2020"
-FECHA_TITULO_FLUJO <- "Primer Semestre 2020"
+
 
 
 ```
