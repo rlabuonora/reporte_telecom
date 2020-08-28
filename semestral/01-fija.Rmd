@@ -34,7 +34,7 @@ fija %>%
   filter(month(fecha) == 6 | month(fecha) == 12, year(fecha) >= 2016) %>% 
   group_by(year=year(fecha), semester=semester(fecha)) %>% 
   summarize(lineas = sum(numeric, na.rm = TRUE)) %>% 
-  serie_historica_semestral(lineas /1e3, nudge_text = 5e1) +
+  serie_historica_semestral_stock(lineas /1e3, nudge_text = 5e1) +
   labs(y="Miles")
 
 
@@ -67,7 +67,7 @@ fija %>%
   filter(month(fecha) == 6 | month(fecha) == 12, year(fecha) >= 2016) %>% 
   group_by(year = year(fecha), semester=semester(fecha)) %>% 
   summarize(lineas = sum(numeric, na.rm = TRUE)) %>% 
-  serie_historica_semestral(lineas, nudge_text = 2e2)
+  serie_historica_semestral_stock(lineas, nudge_text = 2e2)
 
 ```
 
@@ -108,7 +108,7 @@ fija %>%
          year(fecha) >= 2016) %>% 
   group_by(year = year(fecha), semester=semester(fecha)) %>% 
   summarize(lineas = sum(numeric, na.rm = TRUE)-1) %>% 
-  serie_historica_semestral(lineas, nudge_text=9e3)
+  serie_historica_semestral_stock(lineas, nudge_text=9e3)
 
   
 ```
@@ -138,7 +138,7 @@ fija %>%
          year(fecha) >= 2016) %>% 
   group_by(year = year(fecha), semester=semester(fecha)) %>% 
   summarize(lineas = sum(numeric, na.rm = TRUE)) %>% 
-  serie_historica_semestral(lineas, nudge_text = 5e4)
+  serie_historica_semestral_stock(lineas, nudge_text = 5e4)
 ```
 
 
@@ -166,7 +166,7 @@ fija %>%
   filter(year(fecha) > 2016) %>% 
   group_by(year = year(fecha), semester=semester(fecha)) %>%
   summarize(kms = sum(numeric, na.rm = TRUE)) %>% 
-  serie_historica_semestral(kms, nudge_text = 6e2)
+  serie_historica_semestral_stock(kms, nudge_text = 6e2)
 ```
 
 \pagebreak
@@ -196,7 +196,7 @@ fija %>%
   filter(year(fecha) > 2016) %>% 
   group_by(year = year(fecha), semester=semester(fecha)) %>% 
   summarize(minutos = sum(numeric, na.rm = TRUE)) %>% 
-  serie_historica_semestral(minutos, nudge_text = 5e7) 
+  serie_historica_semestral_flujo(minutos, nudge_text = 5e7) 
 ```
 
 
@@ -211,7 +211,7 @@ fija %>%
   filter(year(fecha) > 2016) %>% 
   group_by(year = year(fecha), semester=semester(fecha)) %>% 
   summarize(minutos = sum(numeric, na.rm = TRUE)) %>% 
-  serie_historica_semestral(minutos, nudge_text = 1.5e7)
+  serie_historica_semestral_flujo(minutos, nudge_text = 1.5e7)
 ```
 
 
@@ -245,8 +245,9 @@ fija %>%
   filter(year(fecha) > 2016) %>% 
   group_by(year = year(fecha), semester = semester(fecha)) %>% 
   summarize(minutos = sum(numeric, na.rm = TRUE)) %>% 
-  serie_historica_semestral(minutos / 1e6, nudge_text = 9) +
-  labs(x="Millones") # Es increible que esto funcione!
+  # Es increible que esto funcione!
+  serie_historica_semestral_flujo(minutos / 1e6, nudge_text = 9) +
+  labs(y="Millones") 
 ```
 
 
@@ -262,7 +263,7 @@ fija %>%
   filter(year(fecha) > 2016) %>% 
   group_by(year = year(fecha), semester = semester(fecha)) %>% 
   summarize(minutos = sum(numeric, na.rm = TRUE)) %>% 
-  serie_historica_semestral(minutos, nudge_text = 3.5e6) +
+  serie_historica_semestral_flujo(minutos, nudge_text = 3.5e6) +
   labs(y="Millones")
 ```
 
@@ -278,7 +279,7 @@ fija %>%
   filter(year(fecha) > 2016) %>% 
   group_by(year = year(fecha), semester=semester(fecha)) %>% 
   summarize(minutos = sum(numeric, na.rm = TRUE)) %>% 
-  serie_historica_semestral(minutos, nudge_text = 1e6)
+  serie_historica_semestral_flujo(minutos, nudge_text = 1e6)
 ```
 
 
