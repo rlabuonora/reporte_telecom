@@ -123,7 +123,7 @@ serie_69 <- banda_ancha_servicios_residenciales %>%
            year(fecha) >= 2016) %>%
   group_by(year=year(fecha), semester=semester(fecha)) %>%
   summarize(servicios = sum(val, na.rm = TRUE)) %>% 
-  serie_historica_semestral(servicios, nudge_text = 8e4)
+  serie_historica_semestral_stock(servicios, nudge_text = 8e4)
 
 serie_69
 ```
@@ -186,7 +186,7 @@ serie_73 <- banda_ancha_servicios_empresariales %>%
            year(fecha) >= 2016) %>%
   group_by(year=year(fecha), semester=semester(fecha)) %>%
   summarize(servicios = sum(val, na.rm = TRUE)) %>% 
-  serie_historica_semestral(servicios, nudge_text = 8e4)
+  serie_historica_semestral_stock(servicios, nudge_text = 8e4)
 ```
 
 
@@ -276,7 +276,7 @@ banda_ancha_servicios_inalambrica %>%
            year(fecha) >= 2016) %>%
   group_by(year=year(fecha), semester=semester(fecha)) %>%
   summarize(servicios = sum(val, na.rm = TRUE)) %>% 
-  serie_historica_semestral(servicios, nudge_text = 2e3)
+  serie_historica_semestral_stock(servicios, nudge_text = 2e3)
 ```
 
 ## 57. Servicios de banda ancha fija inalámbrica por velocidad (`r FECHA_TITULO_STOCK`)
@@ -349,7 +349,7 @@ banda_ancha_servicios_alambrica %>%
            year(fecha) >= 2016) %>%
   group_by(year=year(fecha), semester=semester(fecha)) %>%
   summarize(servicios = sum(val, na.rm = TRUE)) %>% 
-  serie_historica_semestral(servicios, nudge_text = 4e3)
+  serie_historica_semestral_stock(servicios, nudge_text = 4e3)
 ```
 
 

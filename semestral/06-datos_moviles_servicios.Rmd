@@ -99,7 +99,7 @@ serie_112 <- servicios %>%
   summarize(val = sum(numeric, na.rm = TRUE))
 
 serie_112 %>% 
-  serie_historica_semestral(val / 1e3, nudge_text = 300) +
+  serie_historica_semestral_stock(val / 1e3, nudge_text = 300) +
   labs(y="Miles")
 ```
 
@@ -126,7 +126,7 @@ serie_114 <- servicios %>%
   summarize(val = sum(numeric, na.rm = TRUE))
 
 serie_114 %>% 
-  serie_historica_semestral(val, nudge_text = 2e4)
+  serie_historica_semestral_stock(val, nudge_text = 2e4)
 ```
 
 ## 95. Servicios M2M por operador (`r FECHA_TITULO_STOCK`)
@@ -155,7 +155,7 @@ serie_116 <- servicios %>%
   filter(year >= 2018)
 
 serie_116 %>% 
-  serie_historica_semestral(val, nudge_text = 2e4)
+  serie_historica_semestral_stock(val, nudge_text = 2e4)
 ```
 
 ## 97. Internet móvil (computadoras y tablets) por operador (`r FECHA_TITULO_STOCK`)
@@ -189,7 +189,7 @@ serie_118 <-  servicios %>%
   summarize(val = sum(numeric, na.rm = TRUE))
 
 serie_118 %>% 
-  serie_historica_semestral(val/1e3, nudge_text = 2e2) +
+  serie_historica_semestral_stock(val/1e3, nudge_text = 2e2) +
   labs(y="Miles")
 ```
 
@@ -242,10 +242,6 @@ serie_121 %>%
 
 
 
-
-
-
-
 ## 102. Suscriptores prepagos a la telefonía móvil celular
 ```{r}
 serie_122 <- servicios %>% 
@@ -256,7 +252,7 @@ serie_122 <- servicios %>%
   summarize(val = sum(numeric, na.rm = TRUE))
 
 serie_122 %>% 
-  serie_historica_semestral(val/1e3, nudge_text = 2e2) +
+  serie_historica_semestral_stock(val/1e3, nudge_text = 2e2) +
   labs(y="Miles")
 ```
 
@@ -297,7 +293,7 @@ serie_124 <- servicios %>%
   filter(year >= 2018)
 
 serie_124 %>% 
-  serie_historica_semestral(val, nudge_text = 1e4)
+  serie_historica_semestral_stock(val, nudge_text = 1e4)
 ```
 
 ## 105. Internet móvil prepago (computadoras y tablets) por operador (`r FECHA_TITULO_STOCK`)
@@ -329,7 +325,7 @@ serie_126 <- servicios %>%
   summarize(val = sum(numeric, na.rm = TRUE))
 
 serie_126 %>% 
-  serie_historica_semestral(val, nudge_text = .15)
+  serie_historica_semestral_stock(val, nudge_text = .15)
 ```
 
 ## 107. Suscriptores prepagos de banda ancha móvil
@@ -342,7 +338,7 @@ serie_127 <- servicios %>%
   summarize(val = sum(numeric, na.rm = TRUE))
 
 serie_127 %>% 
-  serie_historica_semestral(val/1e3, nudge_text = 1e2) + 
+  serie_historica_semestral_stock(val/1e3, nudge_text = 1e2) + 
   labs(y="Miles")
 ```
 
@@ -375,7 +371,7 @@ serie_129 <- servicios %>%
   summarize(val = sum(numeric, na.rm = TRUE))
 
 serie_129 %>% 
-  serie_historica_semestral(val/1e3, nudge_text = 1e2) +
+  serie_historica_semestral_stock(val/1e3, nudge_text = 1e2) +
   labs(y="Miles")
 ```
 
@@ -405,7 +401,7 @@ serie_131 <- servicios %>%
   filter(year(fecha) >= 2016) %>% 
   group_by(year=year(fecha), semester=semester(fecha)) %>%
   summarize(val = sum(numeric, na.rm = TRUE)) %>% 
-  serie_historica_semestral(val, nudge_text = 3e4)
+  serie_historica_semestral_stock(val, nudge_text = 3e4)
 ```
 
 
@@ -438,7 +434,7 @@ serie_133 <- servicios %>%
   summarize(val = sum(numeric, na.rm = TRUE))
 
 serie_133 %>% 
-  serie_historica_semestral(val, nudge_text = 3e4)
+  serie_historica_semestral_stock(val, nudge_text = 3e4)
 ```
 
 
@@ -491,14 +487,14 @@ serie_137 <- trafico %>%
     summarize(val = sum(numeric, na.rm = TRUE))
 
 serie_137 %>% 
-  serie_historica_semestral(val, 1e4)
+  serie_historica_semestral_flujo(val, 1e4)
   
 ```
 
 
 
 
-## 118. Tráfico de datos de servicios de banda ancha móvil (terabytes) por operador
+## 118. Tráfico de datos de servicios de banda ancha móvil (terabytes) por operador (`r FECHA_TITULO_FLUJO`)
 ```{r}
 serie_138 <- trafico %>% 
     filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL)) %>% 
@@ -523,7 +519,7 @@ serie_139 <- trafico %>%
   summarize(val = sum(numeric, na.rm = TRUE))
 
 serie_139 %>% 
-  serie_historica_semestral(val, 3e3)
+  serie_historica_semestral_flujo(val, 3e3)
 
 ```
 
@@ -554,7 +550,7 @@ serie_141 <- trafico %>%
   summarize(val = sum(numeric, na.rm = TRUE))
 
 serie_141 %>% 
-  serie_historica_semestral(val, nudge_text=4e3)
+  serie_historica_semestral_flujo(val, nudge_text=4e3)
 ```
 
 

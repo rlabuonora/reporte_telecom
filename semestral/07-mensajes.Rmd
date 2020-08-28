@@ -38,7 +38,7 @@ serie_141 <- mensajes %>%
   summarize(mensajes = sum(numeric))
 
 serie_141 %>% 
-  serie_historica_semestral(mensajes/1e6, nudge_text = 3e2) +
+  serie_historica_semestral_flujo(mensajes/1e6, nudge_text = 3e2) +
   labs(y="Millones")
 ```
 
@@ -88,7 +88,7 @@ serie_144 <- mensajes %>%
   summarize(mensajes = sum(numeric)) 
 
 serie_144 %>% 
-  serie_historica_semestral(mensajes/1e3, nudge_text = 1e4) +
+  serie_historica_semestral_flujo(mensajes/1e3, nudge_text = 1e4) +
   labs(y="Miles")
 ```
 
@@ -119,7 +119,7 @@ serie_146 <- mensajes %>%
   summarize(mensajes = sum(numeric))
 
 serie_146 %>% 
-  serie_historica_semestral(mensajes/1e3, nudge_text = 2e5) +
+  serie_historica_semestral_flujo(mensajes/1e3, nudge_text = 2e5) +
   labs(y="Miles")
 
 ```

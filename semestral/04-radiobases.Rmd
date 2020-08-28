@@ -39,7 +39,7 @@ serie_90 <- radiobases %>%
   filter(tipo == "Radiobases (total)") %>% 
   group_by(year = year(fecha), semester = semester(fecha)) %>% 
   summarize(radiobases = sum(val, na.rm = TRUE)) %>% 
-  serie_historica_semestral(radiobases, nudge_text = 5e2)
+  serie_historica_semestral_stock(radiobases, nudge_text = 5e2)
 ```
 
 

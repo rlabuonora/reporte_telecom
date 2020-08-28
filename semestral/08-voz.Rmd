@@ -40,7 +40,7 @@ serie_150 <- voz %>%
   summarize(numeric = sum(numeric, na.rm = TRUE))
 
 serie_150 %>% 
-  serie_historica_semestral(numeric/1e6, 5e2) + 
+  serie_historica_semestral_flujo(numeric/1e6, 5e2) + 
   labs(y = "Millones")
 ```
 
@@ -86,7 +86,7 @@ serie_153 <- voz %>%
 
 serie_153 %>% 
   filter(year > 2016) %>% 
-  serie_historica_semestral(numeric/1e3, nudge_text = 4e5) + 
+  serie_historica_semestral_flujo(numeric/1e3, nudge_text = 4e5) + 
   labs(y="Miles")
 ```
 
@@ -116,7 +116,7 @@ serie_155 <- voz %>%
 
 serie_155 %>% 
   filter(year > 2016) %>% 
-  serie_historica_semestral(numeric/1e3, 4e4) + 
+  serie_historica_semestral_flujo(numeric/1e3, 4e4) + 
   labs("Miles")
 ```
 
@@ -144,7 +144,7 @@ serie_157 <- voz %>%
   filter(year > 2016)
 
 serie_157 %>% 
-  serie_historica_semestral(numeric, nudge_text = 4e6)
+  serie_historica_semestral_flujo(numeric, nudge_text = 4e6)
 
 ```
 
@@ -174,7 +174,7 @@ serie_159 <- voz %>%
   filter(year > 2016)
 
 serie_159 %>% 
-  serie_historica_semestral(numeric, nudge_text= 50e6)
+  serie_historica_semestral_flujo(numeric, nudge_text= 50e6)
 ```
 
 ## 140. Tráfico de voz a red fija de servicios móviles (minutos) por operador (`r FECHA_TITULO_FLUJO`)
@@ -215,7 +215,7 @@ serie_163 <- voz %>%
   filter(year >= 2017)
 
 serie_163 %>% 
-  serie_historica_semestral(numeric/1e3, nudge_text = 8e4) + 
+  serie_historica_semestral_flujo(numeric/1e3, nudge_text = 8e4) + 
   labs("Miles")
 ```
 
@@ -243,7 +243,7 @@ serie_165 <- voz %>%
   filter(year >= 2017)
 
 serie_165 %>% 
-  serie_historica_semestral(numeric/1e3, nudge_text = 8e4)
+  serie_historica_semestral_flujo(numeric/1e3, nudge_text = 8e4)
 ```
 
 ## 145. Tráfico de voz a red propia de servicios móviles prepagos (minutos) por operador (`r FECHA_TITULO_FLUJO`)
@@ -269,7 +269,7 @@ serie_167 <- voz %>%
   filter(year >= 2017)
 
  serie_167 %>% 
-  serie_historica_semestral(numeric/1e3, nudge_text = 8e3) +
+  serie_historica_semestral_flujo(numeric/1e3, nudge_text = 8e3) +
   labs("Miles")
 ```
 
@@ -298,7 +298,7 @@ serie_169 <- voz %>%
   filter(year >= 2017)
 
 serie_169 %>% 
-  serie_historica_semestral(numeric/1e3, nudge_text = 1e3) +
+  serie_historica_semestral_flujo(numeric/1e3, nudge_text = 1e3) +
   labs("Miles")
 ```
 
@@ -327,12 +327,9 @@ serie_171 <- voz %>%
   filter(year >= 2017)
 
 serie_171 %>% 
-  serie_historica_semestral(numeric/1e3, nudge_text = 1e4) +
+  serie_historica_semestral_flujo(numeric/1e3, nudge_text = 1e4) +
   labs("Miles")
 ```
-
-
-
 
 ## 151. Tráfico voz a red fija de servicios móviles prepagos (minutos) por operador
 
@@ -359,7 +356,7 @@ serie_173 <- voz %>%
   filter(year >= 2016)
 
 serie_173 %>% 
-  serie_historica_semestral(numeric/1e3, nudge_text = 4e5) +
+  serie_historica_semestral_flujo(numeric/1e3, nudge_text = 4e5) +
   labs("Miles")
 ```
 
@@ -404,7 +401,7 @@ serie_176 <- voz %>%
   filter(year > 2016)
 
 serie_176 %>% 
-  serie_historica_semestral(numeric/1e3, nudge_text = 1e5) +
+  serie_historica_semestral_flujo(numeric/1e3, nudge_text = 1e5) +
   labs("Miles")
 ```
 
@@ -433,7 +430,7 @@ serie_179 <- voz %>%
   filter(year > 2016)
 
 serie_179 %>% 
-  serie_historica_semestral(numeric/1e3, nudge_text = 3e4) +
+  serie_historica_semestral_flujo(numeric/1e3, nudge_text = 3e4) +
   labs("Miles")
 ```
 
@@ -465,7 +462,7 @@ serie_181 <- voz %>%
   filter(year >= 2017)
 
 serie_181 %>% 
-  serie_historica_semestral(numeric/1e3, nudge_text = 4e3) +
+  serie_historica_semestral_flujo(numeric/1e3, nudge_text = 4e3) +
   labs("Miles")
 ```
 
@@ -494,7 +491,7 @@ serie_183 <- voz %>%
   filter(year > 2016)
 
 serie_183 %>% 
-  serie_historica_semestral(numeric/1e3, nudge_text = 5e4) +
+  serie_historica_semestral_flujo(numeric/1e3, nudge_text = 5e4) +
   labs("Miles")
 ```
 

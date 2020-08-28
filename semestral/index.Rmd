@@ -48,16 +48,17 @@ FECHA_TITULO_FLUJO <- "Primer Semestre 2020"
 ```
 
 
+
 ```{r child = '06-datos_moviles_servicios.Rmd'}
 ```
 
 
-```{r child = '07-mensajes.Rmd'}
-```
+<!-- ```{r child = '07-mensajes.Rmd'} -->
+<!-- ``` -->
 
 
-```{r child = '08-voz.Rmd'}
-```
+<!-- ```{r child = '08-voz.Rmd'} -->
+<!-- ``` -->
 
 
 <!-- ```{r child = '09-roaming.Rmd'} -->
