@@ -34,8 +34,8 @@ month_label <- function(x) {
 
 ## 70. Cantidad de radiobases
 ```{r}
-serie_90 <- radiobases %>% 
-  filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL)) %>% 
+radiobases %>% 
+  filter(month(fecha) %in% c(6, 12)) %>% 
   filter(tipo == "Radiobases (total)") %>% 
   group_by(year = year(fecha), semester = semester(fecha)) %>% 
   summarize(radiobases = sum(val, na.rm = TRUE)) %>% 
