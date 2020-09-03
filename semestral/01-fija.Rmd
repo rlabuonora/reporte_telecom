@@ -31,6 +31,7 @@ fija <- import_fija()
 fija %>% 
   filter(cabezal_1 == "Líneas") %>% 
   filter(cabezal_2 %in% c("Res.R", "Res.U", "Com.R", "Com.U")) %>% 
+  # Mala forma de sacar este total!
   filter(month(fecha) == 6 | month(fecha) == 12, year(fecha) >= 2016) %>% 
   group_by(year=year(fecha), semester=semester(fecha)) %>% 
   summarize(lineas = sum(numeric, na.rm = TRUE)) %>% 
@@ -65,6 +66,7 @@ fija %>%
   filter(cabezal_1 == "Líneas") %>% 
   filter(cabezal_2 %in% c("Púb.R", "Púb.U")) %>% 
   filter(month(fecha) == 6 | month(fecha) == 12, year(fecha) >= 2016) %>% 
+  # Mala forma de sacar el total
   group_by(year = year(fecha), semester=semester(fecha)) %>% 
   summarize(lineas = sum(numeric, na.rm = TRUE)) %>% 
   serie_historica_semestral_stock(lineas, nudge_text = 2e2)

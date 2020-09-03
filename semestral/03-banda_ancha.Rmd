@@ -16,6 +16,10 @@ options(scipen = 10000)
 source('../common.R')
 banda_ancha_servicios <- import_banda_ancha_servicios()
 
+FECHA_INFORME_SEMESTRAL <-  as.Date("2020-06-01")
+FECHA_TITULO_STOCK <-  "Junio 2020"
+FECHA_TITULO_FLUJO <-  "Primer Semestre 2020"
+
 ```
 
 # 3. Transmisión de datos e internet
@@ -24,21 +28,15 @@ banda_ancha_servicios <- import_banda_ancha_servicios()
 ## 42. Servicios de banda ancha fija
 ```{r}
 # g_63
-serie_63 <- tribble(
-           ~year, ~numeric,
-          2010,  382948,
-          2011,  472876,
-          2012,  580669,
-          2013,  737078,
-          2014,  840261,
-          2015,  900888,
-          2016,  921677,
-          2017,  949929,
-          2018,  977448,
-          2019,  1012467)
+serie_63 <- banda_ancha_servicios %>% 
+    filter(month(fecha) == 6 | month(fecha) == 12, 
+           year(fecha) >= 2016) %>%
+  group_by(year=year(fecha), semester=semester(fecha)) %>%
+  summarize(servicios = sum(val, na.rm = TRUE))
 
-serie_63 %>% 
-  serie_historica_anual(numeric, nudge_text = 5e4)
+
+serie_63 %>%
+  serie_historica_semestral_stock(servicios, nudge_text = 5e4)
 ```
 
 
@@ -185,8 +183,10 @@ serie_73 <- banda_ancha_servicios_empresariales %>%
   filter(month(fecha) == 6 | month(fecha) == 12, 
            year(fecha) >= 2016) %>%
   group_by(year=year(fecha), semester=semester(fecha)) %>%
-  summarize(servicios = sum(val, na.rm = TRUE)) %>% 
-  serie_historica_semestral_stock(servicios, nudge_text = 8e4)
+  summarize(servicios = sum(val, na.rm = TRUE)) 
+
+serie_73 %>% 
+  serie_historica_semestral_stock(servicios, nudge_text = 8e2)
 ```
 
 
@@ -413,62 +413,62 @@ serie_90 %>%
 
 ```
 
-## 66. Tráfico de datos de servicios de banda ancha fija (terabytes)
+<!-- ## 66. Tráfico de datos de servicios de banda ancha fija (terabytes) -->
 
-```{r}
-serie_91 <- tibble(
-  fecha = seq(as.Date('2018-01-01'),as.Date('2019-12-01'),by = 'month'),
-  trafico = c(96437, 93333, 101713, 101240,
-               109307, 108967,112982,
-               115621, 115825, 114350, 114150,
-               111965, 120039,
-               118777, 111572, 126237, 134348,
-               142193, 150576, 151067,
-               146393, 155685, 143900, 155142)) %>% 
-  mutate(year= year(fecha), month= month(fecha)) %>% 
-  select(-fecha)
+<!-- ```{r} -->
+<!-- serie_91 <- tibble( -->
+<!--   fecha = seq(as.Date('2018-01-01'),as.Date('2019-12-01'),by = 'month'), -->
+<!--   trafico = c(96437, 93333, 101713, 101240, -->
+<!--                109307, 108967,112982, -->
+<!--                115621, 115825, 114350, 114150, -->
+<!--                111965, 120039, -->
+<!--                118777, 111572, 126237, 134348, -->
+<!--                142193, 150576, 151067, -->
+<!--                146393, 155685, 143900, 155142)) %>%  -->
+<!--   mutate(year= year(fecha), month= month(fecha)) %>%  -->
+<!--   select(-fecha) -->
 
-```
+<!-- ``` -->
 
 
-## 67. Tráfico de datos de servicios de banda ancha fija (terabytes) según alámbrica e inalámbrica (`r FECHA_TITULO_STOCK`)
+<!-- ## 67. Tráfico de datos de servicios de banda ancha fija (terabytes) según alámbrica e inalámbrica (`r FECHA_TITULO_STOCK`) -->
 
-```{r}
-serie_92 <- tibble(
-  tipo=c("Alámbrica",	"Inalámbrica"),
-  trafico=c(1617219,	38710)
-)
+<!-- ```{r} -->
+<!-- serie_92 <- tibble( -->
+<!--   tipo=c("Alámbrica",	"Inalámbrica"), -->
+<!--   trafico=c(1617219,	38710) -->
+<!-- ) -->
 
-# serie_92 %>% 
-#   pie_chart(trafico, tipo) %>% 
-#   print
-```
+<!-- # serie_92 %>%  -->
+<!-- #   pie_chart(trafico, tipo) %>%  -->
+<!-- #   print -->
+<!-- ``` -->
 
-## 68. Tráfico de datos se servicios de banda ancha fija (terabytes) según tipo de cliente (*)
+<!-- ## 68. Tráfico de datos se servicios de banda ancha fija (terabytes) según tipo de cliente (*) -->
 
-```{r}
-serie_93 <- tibble(
-  cliente= c("Residenciales",	"Comerciales", 	"Gobierno"),
-  trafico=c(1587200,	50526,	18203)
-)
+<!-- ```{r} -->
+<!-- serie_93 <- tibble( -->
+<!--   cliente= c("Residenciales",	"Comerciales", 	"Gobierno"), -->
+<!--   trafico=c(1587200,	50526,	18203) -->
+<!-- ) -->
 
-# serie_93 %>% 
-#   pie_chart(trafico, cliente, 
-#               nudge_radio = c(.7, .6, .6),
-#               nudge_x = c(0, -6, 6)) %>% 
-#   print
-```
+<!-- # serie_93 %>%  -->
+<!-- #   pie_chart(trafico, cliente,  -->
+<!-- #               nudge_radio = c(.7, .6, .6), -->
+<!-- #               nudge_x = c(0, -6, 6)) %>%  -->
+<!-- #   print -->
+<!-- ``` -->
 
-## 69. Tráfico de datos (terabytes) por operador (*)
+<!-- ## 69. Tráfico de datos (terabytes) por operador (*) -->
 
-```{r}
-serie_94 <- tibble(
-  empresa = c("Antel",	"Dedicado",	"Kalil",	"Enalur",	"Movistar",	"Claro"),
-  trafico = c(1650584,	0,	495,	0,	3966, 884))
+<!-- ```{r} -->
+<!-- serie_94 <- tibble( -->
+<!--   empresa = c("Antel",	"Dedicado",	"Kalil",	"Enalur",	"Movistar",	"Claro"), -->
+<!--   trafico = c(1650584,	0,	495,	0,	3966, 884)) -->
 
-# serie_94 %>% 
-#   barras_horizontales(trafico, empresa, nudge_text= 1.5e5)
-```
+<!-- # serie_94 %>%  -->
+<!-- #   barras_horizontales(trafico, empresa, nudge_text= 1.5e5) -->
+<!-- ``` -->
 
 
 

@@ -19,10 +19,14 @@ source('../common.R')
 
 servicios <- import_datos_servicios_moviles()
 
+FECHA_INFORME_SEMESTRAL <-  as.Date("2020-06-01")
+FECHA_TITULO_STOCK <-  "Junio 2020"
+FECHA_TITULO_FLUJO <-  "Primer Semestre 2020"
+
 
 ```
 
-<!-- # 89. Servicios móviles -->
+# 89. Servicios móviles
 ```{r}
 serie_109_vieja <- tibble(
   fecha = seq(ymd('2010-12-01'), 
@@ -46,9 +50,9 @@ serie_109_nueva <- servicios %>%
 serie_109 <- bind_rows(serie_109_vieja, serie_109_nueva) %>% 
   transmute(semester = semester(fecha), year = year(fecha), numeric)
 
-# serie_109 %>% 
-#   filter(year > 2016) %>% 
-#   serie_historica_semestral(numeric, nudge_text = 3e5)
+serie_109 %>%
+  filter(year > 2016) %>%
+  serie_historica_semestral_stock(numeric, nudge_text = 3e5)
 ```
 
 
@@ -184,8 +188,10 @@ serie_117 %>%
 ```{r}
 serie_118 <-  servicios %>% 
   filter(servicio == "Suscriptores de banda ancha móvil") %>% 
-  filter(year(fecha) == 2019) %>% 
-  group_by(year=year(fecha), semester=semester(fecha)) %>%
+  filter(year(fecha) >= 2016) %>% 
+  group_by(year=year(fecha), semester=semester(fecha), month = month(fecha)) %>%
+  # Error! faltaba esto:
+  filter(month %in% c(6, 12)) %>% 
   summarize(val = sum(numeric, na.rm = TRUE))
 
 serie_118 %>% 
@@ -244,8 +250,9 @@ serie_121 %>%
 
 ## 102. Suscriptores prepagos a la telefonía móvil celular
 ```{r}
+# Falta filtrar junio y diciembre
 serie_122 <- servicios %>% 
-  filter(year(fecha) == 2019) %>% 
+  filter(year(fecha) >= 2016) %>% 
   filter(pago == "Prepago") %>% 
   filter(servicio %in% c("Suscriptores a la telefonía móvil celular")) %>% 
   group_by(year=year(fecha), semester=semester(fecha)) %>%
@@ -317,6 +324,8 @@ serie_125 %>%
 
 ## 106. Servicios M2M prepagos
 ```{r}
+
+# Faltan filtro de fechas
 serie_126 <- servicios %>% 
   filter(servicio == "M2M") %>%
   filter(pago == "Prepago") %>% 
@@ -330,6 +339,8 @@ serie_126 %>%
 
 ## 107. Suscriptores prepagos de banda ancha móvil
 ```{r}
+
+# Falta filtro de meses!
 serie_127 <- servicios %>% 
   filter(servicio == "Suscriptores de banda ancha móvil") %>%
   filter(pago == "Prepago") %>% 
@@ -363,8 +374,10 @@ serie_128 %>%
 
 ## 109. Suscriptores pospagos a la telefonía móvil celular
 ```{r}
+
+# Falta filtro de meses 6 y 12
 serie_129 <- servicios %>% 
-  filter(year(fecha) == 2019) %>% 
+  filter(year(fecha) >= 2016) %>% 
   filter(servicio %in% c("Suscriptores a la telefonía móvil celular")) %>% 
   filter(pago == "Pospago") %>% 
   group_by(year=year(fecha), semester=semester(fecha)) %>%
@@ -568,8 +581,3 @@ serie_142 %>%
   pie_chart(val, empresa) %>% 
   print
 ```
-
-
-
-
-
