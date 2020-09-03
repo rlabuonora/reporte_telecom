@@ -12,17 +12,10 @@ knitr::opts_chunk$set(echo = FALSE,
 
 options(scipen = 10000)
 
-
-
 # Theme
 source('../common.R')
 
 servicios <- import_datos_servicios_moviles()
-
-FECHA_INFORME_SEMESTRAL <-  as.Date("2020-06-01")
-FECHA_TITULO_STOCK <-  "Junio 2020"
-FECHA_TITULO_FLUJO <-  "Primer Semestre 2020"
-
 
 ```
 
@@ -99,6 +92,7 @@ serie_111 %>%
 serie_112 <- servicios %>% 
   filter(servicio == "Suscriptores a la telefonía móvil celular") %>% 
   filter(year(fecha) >= 2019) %>% 
+  filter(month(fecha) %in% c(6, 12)) %>% 
   group_by(year=year(fecha), semester=semester(fecha)) %>%
   summarize(val = sum(numeric, na.rm = TRUE))
 
@@ -126,6 +120,7 @@ serie_113 %>%
 serie_114 <- servicios %>% 
   filter(servicio == "M2M") %>% 
   filter(year(fecha) >= 2019) %>% 
+  filter(month(fecha) %in% c(6, 12)) %>% 
   group_by(year=year(fecha), semester=semester(fecha)) %>%
   summarize(val = sum(numeric, na.rm = TRUE))
 
@@ -152,7 +147,7 @@ serie_115 %>%
 ```{r}
 serie_116 <- servicios %>% 
   filter(servicio == "Internet Móvil") %>%
-  filter(month(fecha) == 6 | month(fecha) == 12) %>%
+  filter(month(fecha) %in% c(6, 12)) %>% 
   filter(year(fecha) >= 2016) %>% 
   group_by(year=year(fecha), semester=semester(fecha)) %>%
   summarize(val = sum(numeric, na.rm = TRUE)) %>% 
@@ -178,20 +173,13 @@ serie_117 %>%
   print
 ```
 
-
-
-
-
-
-
 ## 98. Suscriptores de banda ancha móvil
 ```{r}
 serie_118 <-  servicios %>% 
   filter(servicio == "Suscriptores de banda ancha móvil") %>% 
   filter(year(fecha) >= 2016) %>% 
-  group_by(year=year(fecha), semester=semester(fecha), month = month(fecha)) %>%
-  # Error! faltaba esto:
-  filter(month %in% c(6, 12)) %>% 
+  filter(month(fecha) %in% c(6, 12)) %>% 
+  group_by(year=year(fecha), semester=semester(fecha)) %>%
   summarize(val = sum(numeric, na.rm = TRUE))
 
 serie_118 %>% 
@@ -253,6 +241,7 @@ serie_121 %>%
 # Falta filtrar junio y diciembre
 serie_122 <- servicios %>% 
   filter(year(fecha) >= 2016) %>% 
+  filter(month(fecha) %in% c(6, 12)) %>% 
   filter(pago == "Prepago") %>% 
   filter(servicio %in% c("Suscriptores a la telefonía móvil celular")) %>% 
   group_by(year=year(fecha), semester=semester(fecha)) %>%
@@ -281,19 +270,13 @@ serie_123 %>%
 
 ```
 
-
-
-
-
-
-
 ## 104. Internet móvil prepago (computadoras y tablets)
 
 ```{r}
 serie_124 <- servicios %>% 
   filter(servicio == "Internet Móvil") %>%
   filter(pago == "Prepago") %>% 
-  filter(month(fecha) == 6 | month(fecha) == 12) %>%
+  filter(month(fecha) %in% c(6, 12)) %>% 
   filter(year(fecha) >= 2016) %>% 
   group_by(year=year(fecha), semester=semester(fecha)) %>%
   summarize(val = sum(numeric, na.rm = TRUE)) %>% 
@@ -319,9 +302,6 @@ serie_125 %>%
   print
 ```
 
-
-
-
 ## 106. Servicios M2M prepagos
 ```{r}
 
@@ -329,6 +309,7 @@ serie_125 %>%
 serie_126 <- servicios %>% 
   filter(servicio == "M2M") %>%
   filter(pago == "Prepago") %>% 
+  filter(month(fecha) %in% c(6, 12)) %>% 
   filter(year(fecha) >= 2019) %>% 
   group_by(year=year(fecha), semester=semester(fecha)) %>%
   summarize(val = sum(numeric, na.rm = TRUE))
@@ -339,11 +320,10 @@ serie_126 %>%
 
 ## 107. Suscriptores prepagos de banda ancha móvil
 ```{r}
-
-# Falta filtro de meses!
 serie_127 <- servicios %>% 
   filter(servicio == "Suscriptores de banda ancha móvil") %>%
   filter(pago == "Prepago") %>% 
+  filter(month(fecha) %in% c(6, 12)) %>% 
   filter(year(fecha) >= 2019) %>% 
   group_by(year=year(fecha), semester=semester(fecha)) %>%
   summarize(val = sum(numeric, na.rm = TRUE))
@@ -374,10 +354,9 @@ serie_128 %>%
 
 ## 109. Suscriptores pospagos a la telefonía móvil celular
 ```{r}
-
-# Falta filtro de meses 6 y 12
 serie_129 <- servicios %>% 
   filter(year(fecha) >= 2016) %>% 
+  filter(month(fecha) %in% c(6, 12)) %>% 
   filter(servicio %in% c("Suscriptores a la telefonía móvil celular")) %>% 
   filter(pago == "Pospago") %>% 
   group_by(year=year(fecha), semester=semester(fecha)) %>%
@@ -410,7 +389,7 @@ serie_130 %>%
 serie_131 <- servicios %>% 
   filter(servicio == "Internet Móvil") %>%
   filter(pago == "Pospago") %>% 
-  filter(month(fecha) == 6 | month(fecha) == 12) %>%
+  filter(month(fecha) %in% c(6, 12)) %>% 
   filter(year(fecha) >= 2016) %>% 
   group_by(year=year(fecha), semester=semester(fecha)) %>%
   summarize(val = sum(numeric, na.rm = TRUE)) %>% 
@@ -442,6 +421,7 @@ serie_132 %>%
 serie_133 <- servicios %>% 
   filter(servicio == "M2M") %>%
   filter(pago == "Pospago") %>% 
+  filter(month(fecha) %in% c(6, 12)) %>% 
   filter(year(fecha) >= 2019) %>% 
   group_by(year=year(fecha), semester=semester(fecha)) %>%
   summarize(val = sum(numeric, na.rm = TRUE))
