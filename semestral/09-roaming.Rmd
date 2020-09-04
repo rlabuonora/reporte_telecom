@@ -31,7 +31,7 @@ serie_166 <- roaming %>%
   ungroup()
 
 serie_166 %>% 
-  serie_historica_semestral(numeric, nudge_text = 4e5)
+  serie_historica_semestral_flujo(numeric, nudge_text = 4e5)
 ```
 
 
@@ -91,7 +91,7 @@ serie_169 <- roaming %>%
   summarize(numeric = sum(numeric, na.rm = TRUE))
 
 serie_169 %>% 
-  serie_historica_semestral(numeric, 5e4)
+  serie_historica_semestral_flujo(numeric, 5e4)
 ```
 
 
@@ -123,7 +123,7 @@ serie_171 <- roaming %>%
   summarize(numeric = sum(numeric, na.rm = TRUE))
 
 serie_171 %>% 
-  serie_historica_semestral(numeric, 4e5)
+  serie_historica_semestral_flujo(numeric, 4e5)
 ```
 
 
@@ -156,7 +156,7 @@ serie_173 <- roaming %>%
   summarize(numeric = sum(numeric, na.rm = TRUE))
 
 serie_173 %>% 
-  serie_historica_semestral(numeric, nudge_text = .5e5)
+  serie_historica_semestral_flujo(numeric, nudge_text = .5e5)
 ```
 
 
@@ -178,17 +178,17 @@ serie_174 %>%
 ```
 
 
-## 172. Tráfico de datos de Roaming (terabytes)
-```{r}
-serie_175 <- tibble(
-    semester = c(1, 2, 1, 2),
-    year = c(2018, 2018, 2019, 2019),
-    numeric = c(67,	92,	141, 172)
-  )
+<!-- ## 172. Tráfico de datos de Roaming (terabytes) -->
+<!-- ```{r} -->
+<!-- serie_175 <- tibble( -->
+<!--     semester = c(1, 2, 1, 2), -->
+<!--     year = c(2018, 2018, 2019, 2019), -->
+<!--     numeric = c(67,	92,	141, 172) -->
+<!--   ) -->
 
-# serie_175 %>% 
-#   serie_historica_semestral(numeric, nudge_text = 5)
-```
+<!-- # serie_175 %>%  -->
+<!-- #   serie_historica_semestral(numeric, nudge_text = 5) -->
+<!-- ``` -->
 
 
 
