@@ -254,7 +254,7 @@ serie_120 <- servicios %>%
   summarize(val = sum(numeric, na.rm = TRUE))
 
 serie_120 %>% 
-  pie_chart(val, pago) %>% 
+  pie_chart(val, empresa) %>% 
   print
 ```
 
@@ -274,7 +274,7 @@ serie_120 <- servicios %>%
   summarize(val = sum(numeric, na.rm = TRUE))
 
 serie_120 %>% 
-  pie_chart(val, pago) %>% 
+  pie_chart(val, servicio) %>% 
   print
 ```
 
@@ -312,7 +312,7 @@ serie_120 <- servicios %>%
   summarize(val = sum(numeric, na.rm = TRUE))
 
 serie_120 %>% 
-  pie_chart(val, pago) %>% 
+  pie_chart(val, empresa) %>% 
   print
 ```
 
@@ -332,7 +332,7 @@ serie_120 <- servicios %>%
   summarize(val = sum(numeric, na.rm = TRUE))
 
 serie_120 %>% 
-  pie_chart(val, pago) %>% 
+  pie_chart(val, servicio) %>% 
   print
 ```
 
@@ -364,8 +364,7 @@ serie_127 <- servicios %>%
   summarize(val = sum(numeric, na.rm = TRUE))
 
 serie_127 %>% 
-  serie_historica_semestral_stock(val/1e3, nudge_text = 1e2) + 
-  labs(y="Miles")
+  serie_historica_semestral_stock(val, nudge_text = 1e5) 
 ```
 
 
@@ -512,7 +511,7 @@ serie_125 <-  servicios %>%
   filter(val > 0)
 
 serie_125 %>% 
-  pie_chart(val, empresa) %>% 
+  pie_chart(val, pago) %>% 
   print
 ```
 
