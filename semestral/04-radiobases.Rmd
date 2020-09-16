@@ -69,6 +69,16 @@ g_92 <- tabla_92 %>%
   print
 ```
 
+## 73. Cantidad de radiobases GSM
+```{r}
+radiobases %>% 
+  filter(month(fecha) %in% c(6, 12)) %>% 
+  filter(tipo == "Radiobases (GSM)") %>% 
+  group_by(year = year(fecha), semester = semester(fecha)) %>% 
+  summarize(radiobases = sum(val, na.rm = TRUE)) %>% 
+  serie_historica_semestral_stock(radiobases, nudge_text = 5e2)
+```
+
 
 ## 74. Cantidad de radiobases GSM por departamento (`r FECHA_TITULO_STOCK`)
 
@@ -98,6 +108,16 @@ tabla_95 %>%
   print
 ```
 
+## 76. Cantidad de radiobases 3G
+```{r}
+radiobases %>% 
+  filter(month(fecha) %in% c(6, 12)) %>% 
+  filter(tipo == "Radiobases (3G)") %>% 
+  group_by(year = year(fecha), semester = semester(fecha)) %>% 
+  summarize(radiobases = sum(val, na.rm = TRUE)) %>% 
+  serie_historica_semestral_stock(radiobases, nudge_text = 5e2)
+```
+
 
 ## 77. Cantidad de radiobases 3G por departamento (`r FECHA_TITULO_STOCK`)
 
@@ -125,6 +145,18 @@ tabla_98 <-  radiobases %>%
   pie_chart(radiobases, empresa) %>% 
    print
 ```
+
+
+## 79. Cantidad de radiobases LTE
+```{r}
+radiobases %>% 
+  filter(month(fecha) %in% c(6, 12)) %>% 
+  filter(tipo == "Radiobases (LTE)") %>% 
+  group_by(year = year(fecha), semester = semester(fecha)) %>% 
+  summarize(radiobases = sum(val, na.rm = TRUE)) %>% 
+  serie_historica_semestral_stock(radiobases, nudge_text = 5e2)
+```
+
 
 ## 80. Cantidad de radiobases LTE por departamento (`r FECHA_TITULO_STOCK`)
 

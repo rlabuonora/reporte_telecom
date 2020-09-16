@@ -27,18 +27,18 @@ FECHA_TITULO_FLUJO <-  "Primer Semestre 2020"
 <!---BLOCK_TOC{level: 2}--->
 
 
-```{r child = '01-fija.Rmd'}
-```
+<!-- ```{r child = '01-fija.Rmd'} -->
+<!-- ``` -->
 
 
 
-```{r child = '02-ldi.Rmd'}
-```
+<!-- ```{r child = '02-ldi.Rmd'} -->
+<!-- ``` -->
 
 
 
-```{r child = '03-banda_ancha.Rmd'}
-```
+<!-- ```{r child = '03-banda_ancha.Rmd'} -->
+<!-- ``` -->
 
 
 ```{r child = '04-radiobases.Rmd'}
@@ -54,16 +54,16 @@ FECHA_TITULO_FLUJO <-  "Primer Semestre 2020"
 ```
 
 
-```{r child = '07-mensajes.Rmd'}
-```
+<!-- ```{r child = '07-mensajes.Rmd'} -->
+<!-- ``` -->
 
 
-```{r child = '08-voz.Rmd'}
-```
+<!-- ```{r child = '08-voz.Rmd'} -->
+<!-- ``` -->
 
 
-```{r child = '09-roaming.Rmd'}
-```
+<!-- ```{r child = '09-roaming.Rmd'} -->
+<!-- ``` -->
 
 
 <!-- ```{r child = '10-abonados.Rmd'} -->
