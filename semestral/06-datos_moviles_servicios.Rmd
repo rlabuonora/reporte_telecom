@@ -19,7 +19,7 @@ servicios <- import_datos_servicios_moviles()
 
 ```
 
-# 89. Servicios móviles
+## 89. Servicios móviles
 ```{r}
 serie_109_vieja <- tibble(
   fecha = seq(ymd('2010-12-01'), 
@@ -776,7 +776,7 @@ serie_130 %>%
 
 
 
-# X. Internet móvil (computadora y tablets) según forma de pago (`r FECHA_TITULO_STOCK`)
+## X. Internet móvil (computadora y tablets) según forma de pago (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_125 <-  servicios %>% 
   filter(servicio == "Internet Móvil") %>%

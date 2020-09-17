@@ -19,7 +19,7 @@ options(scipen = 10000)
 source('../common.R')
 
 radiobases <- import_radiobases()
-
+ingresos <- import_ingresos()
 
 month_label <- function(x) {
   y <- as_date(x)
@@ -31,6 +31,17 @@ month_label <- function(x) {
 
 
 # 4. Servicios de Telefonía móvil
+
+## X. Ingresos Telefonía Móvil (pesos)
+
+```{r}
+ingresos %>% 
+  group_by(year=year(fecha), semester=semester(fecha)) %>% 
+  summarize(ventas = sum(val)) %>% 
+  serie_historica_semestral_flujo(ventas, nudge_text = 1e9)
+```
+
+
 
 <br />
 
