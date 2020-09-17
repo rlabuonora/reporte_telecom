@@ -45,7 +45,7 @@ tabla_102 %>%
   geom_text(aes(label=percent_format(
     big.mark=".",
     decimal.mark = ".",
-    accuracy=0.5,
+    accuracy=0.1,
     scale = 1)(cobertura)), 
             nudge_y = 7) +
   scale_x_discrete(expand = expand_scale(add = c(0.5, 0.5),
@@ -54,6 +54,15 @@ tabla_102 %>%
   geom_hline(yintercept = 0) +
   labs(x="", y="")
 ```
+
+
+<br />
+
+<br />
+
+<br />
+
+
 
 ## X. Cobertura territorial GSM (%)
 ```{r}
@@ -80,6 +89,15 @@ serie_cobertura_gsm %>%
   geom_hline(yintercept = 0) +
   labs(x="", y="")
 ```
+
+
+
+<br />
+
+<br />
+
+<br />
+
 
 
 ## 84. Cobertura territorial GSM (%) por departamento (`r FECHA_TITULO_STOCK`)
@@ -109,6 +127,15 @@ tabla_104 %>%
 ```
 
 
+
+<br />
+
+<br />
+
+<br />
+
+
+
 ## X. Cobertura territorial 3G (%)
 ```{r}
 serie_cobertura_3g <- cobertura  %>% 
@@ -135,6 +162,16 @@ serie_cobertura_3g %>%
   labs(x="", y="")
 ```
 
+
+
+<br />
+
+<br />
+
+<br />
+
+
+
 ## 86. Cobertura territorial 3G (%) por departamento (`r FECHA_TITULO_STOCK`)
 
 ```{r}
@@ -159,6 +196,16 @@ tabla_106 %>%
   labs(x="", y="") +
   coord_flip()
 ```
+
+
+
+<br />
+
+<br />
+
+<br />
+
+
 
 ## X. Cobertura territorial LTE (%)
 ```{r}
@@ -185,6 +232,18 @@ serie_cobertura_lte %>%
   geom_hline(yintercept = 0) +
   labs(x="", y="")
 ```
+
+
+
+<br />
+
+<br />
+
+<br />
+
+
+
+
 ## 88. Cobertura territorial LTE (%) por departamento (`r FECHA_TITULO_STOCK`)
 
 ```{r}

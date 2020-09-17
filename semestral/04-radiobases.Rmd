@@ -32,6 +32,8 @@ month_label <- function(x) {
 
 # 4. Servicios de Telefonía móvil
 
+<br />
+
 ## 70. Cantidad de radiobases
 ```{r}
 radiobases %>% 
@@ -42,6 +44,11 @@ radiobases %>%
   serie_historica_semestral_stock(radiobases, nudge_text = 5e2)
 ```
 
+<br />
+
+<br />
+
+<br />
 
 ## 71. Cantidad de radiobases por departamento (`r FECHA_TITULO_STOCK`)
 ```{r}
@@ -54,6 +61,9 @@ tabla_91 <- radiobases %>%
 tabla_91 %>% 
   barras_horizontales(radiobases, depto, nudge_text = 1e2)
 ```
+
+
+<br />
 
 ## 72. Cantidad de radiobases por operador (`r FECHA_TITULO_STOCK`)
 
@@ -69,6 +79,11 @@ g_92 <- tabla_92 %>%
   print
 ```
 
+<br />
+
+<br />
+
+
 ## 73. Cantidad de radiobases GSM
 ```{r}
 radiobases %>% 
@@ -78,6 +93,15 @@ radiobases %>%
   summarize(radiobases = sum(val, na.rm = TRUE)) %>% 
   serie_historica_semestral_stock(radiobases, nudge_text = 5e2)
 ```
+
+
+<br />
+
+<br />
+
+<br />
+
+<br />
 
 
 ## 74. Cantidad de radiobases GSM por departamento (`r FECHA_TITULO_STOCK`)
@@ -92,6 +116,12 @@ tabla_94 <- radiobases %>%
 tabla_94 %>% 
   barras_horizontales(radiobases, depto, nudge_text = 20)
 ```
+
+<br />
+
+<br />
+
+<br />
 
 
 ## 75. Cantidad de radiobases GSM por operador (`r FECHA_TITULO_STOCK`)
@@ -108,6 +138,18 @@ tabla_95 %>%
   print
 ```
 
+
+
+<br />
+
+<br />
+
+<br />
+
+<br />
+
+
+
 ## 76. Cantidad de radiobases 3G
 ```{r}
 radiobases %>% 
@@ -117,6 +159,12 @@ radiobases %>%
   summarize(radiobases = sum(val, na.rm = TRUE)) %>% 
   serie_historica_semestral_stock(radiobases, nudge_text = 5e2)
 ```
+
+<br />
+
+<br />
+
+<br />
 
 
 ## 77. Cantidad de radiobases 3G por departamento (`r FECHA_TITULO_STOCK`)
@@ -132,6 +180,16 @@ tabla_97 %>%
   barras_horizontales(radiobases, depto, nudge_text = 30)
 ```
 
+
+<br />
+
+<br />
+
+<br />
+
+<br />
+
+
 ## 78. Cantidad de radiobases 3G por operador (`r FECHA_TITULO_STOCK`)
 
 ```{r}
@@ -146,6 +204,12 @@ tabla_98 <-  radiobases %>%
    print
 ```
 
+<br />
+
+<br />
+
+<br />
+
 
 ## 79. Cantidad de radiobases LTE
 ```{r}
@@ -156,6 +220,14 @@ radiobases %>%
   summarize(radiobases = sum(val, na.rm = TRUE)) %>% 
   serie_historica_semestral_stock(radiobases, nudge_text = 5e2)
 ```
+
+
+
+<br />
+
+<br />
+
+<br />
 
 
 ## 80. Cantidad de radiobases LTE por departamento (`r FECHA_TITULO_STOCK`)
@@ -171,6 +243,12 @@ tabla_100 <- radiobases %>%
   barras_horizontales(radiobases, depto, nudge_text = 60)
 ```
 
+<br />
+
+<br />
+
+<br />
+
 
 ## 81. Cantidad de radiobases LTE por operador (`r FECHA_TITULO_STOCK`)
 
@@ -185,4 +263,10 @@ tabla_101 %>%
   pie_chart(radiobases, empresa) %>% 
   print
 ```
+
+<br />
+
+<br />
+
+<br />
 
