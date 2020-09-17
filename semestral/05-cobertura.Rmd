@@ -59,6 +59,7 @@ tabla_102 %>%
 ```{r}
 serie_cobertura_gsm <- cobertura  %>% 
   filter(tipo == "GSM") %>% 
+  filter(depto == "País") %>% 
   filter(year(fecha) >= 2016) %>% 
   filter(month(fecha) %in% c(6, 12)) %>% 
   group_by(year=year(fecha), semester=semester(fecha)) %>%
@@ -112,6 +113,7 @@ tabla_104 %>%
 ```{r}
 serie_cobertura_3g <- cobertura  %>% 
   filter(tipo == "3G") %>% 
+  filter(depto == "País") %>% 
   filter(year(fecha) >= 2016) %>% 
   filter(month(fecha) %in% c(6, 12)) %>% 
   group_by(year=year(fecha), semester=semester(fecha)) %>%
@@ -161,7 +163,8 @@ tabla_106 %>%
 ## X. Cobertura territorial LTE (%)
 ```{r}
 serie_cobertura_lte <- cobertura  %>% 
-  filter(tipo == "LTE") %>% 
+  filter(tipo == "LTE") %>%
+  filter(depto == "País") %>% 
   filter(year(fecha) >= 2016) %>% 
   filter(month(fecha) %in% c(6, 12)) %>% 
   group_by(year=year(fecha), semester=semester(fecha)) %>%
