@@ -556,7 +556,9 @@ serie_131 <- servicios %>%
   filter(month(fecha) %in% c(6, 12)) %>% 
   filter(year(fecha) >= 2016) %>% 
   group_by(year=year(fecha), semester=semester(fecha)) %>%
-  summarize(val = sum(numeric, na.rm = TRUE)) %>% 
+  summarize(val = sum(numeric, na.rm = TRUE))
+
+serie_131 %>% 
   serie_historica_semestral_stock(val, nudge_text = 3e4)
 ```
 

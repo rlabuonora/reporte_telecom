@@ -55,6 +55,31 @@ tabla_102 %>%
   labs(x="", y="")
 ```
 
+## X. Cobertura territorial GSM (%)
+```{r}
+serie_cobertura_gsm <- cobertura  %>% 
+  filter(tipo == "GSM") %>% 
+  filter(year(fecha) >= 2016) %>% 
+  filter(month(fecha) %in% c(6, 12)) %>% 
+  group_by(year=year(fecha), semester=semester(fecha)) %>%
+  summarize(cobertura = max(val, na.rm = TRUE))
+
+serie_cobertura_gsm %>% 
+    mutate(lbl = fct_inorder(glue::glue("{year}\n{as.roman(semester)}"))) %>%
+  ggplot(aes(lbl, cobertura)) +
+  geom_col(fill = pal[5], width = 0.5) + 
+  geom_text(aes(label=percent_format(big.mark=".", 
+                                     decimal.mark = ",",
+                                     accuracy = .1,
+                                     scale = 1)(cobertura)), 
+            nudge_y = 7) +
+  scale_x_discrete(expand = expand_scale(add = c(0.5, 0.5),
+                                         mult = c(0, 0))) +
+  scale_y_continuous(breaks = NULL) +
+  geom_hline(yintercept = 0) +
+  labs(x="", y="")
+```
+
 
 ## 84. Cobertura territorial GSM (%) por departamento (`r FECHA_TITULO_STOCK`)
 
@@ -83,6 +108,30 @@ tabla_104 %>%
 ```
 
 
+## X. Cobertura territorial 3G (%)
+```{r}
+serie_cobertura_3g <- cobertura  %>% 
+  filter(tipo == "3G") %>% 
+  filter(year(fecha) >= 2016) %>% 
+  filter(month(fecha) %in% c(6, 12)) %>% 
+  group_by(year=year(fecha), semester=semester(fecha)) %>%
+  summarize(cobertura = max(val, na.rm = TRUE))
+
+serie_cobertura_3g %>% 
+    mutate(lbl = fct_inorder(glue::glue("{year}\n{as.roman(semester)}"))) %>%
+  ggplot(aes(lbl, cobertura)) +
+  geom_col(fill = pal[5], width = 0.5) + 
+  geom_text(aes(label=percent_format(big.mark=".", 
+                                     decimal.mark = ",",
+                                     accuracy = .1,
+                                     scale = 1)(cobertura)), 
+            nudge_y = 7) +
+  scale_x_discrete(expand = expand_scale(add = c(0.5, 0.5),
+                                         mult = c(0, 0))) +
+  scale_y_continuous(breaks = NULL) +
+  geom_hline(yintercept = 0) +
+  labs(x="", y="")
+```
 
 ## 86. Cobertura territorial 3G (%) por departamento (`r FECHA_TITULO_STOCK`)
 
@@ -109,7 +158,30 @@ tabla_106 %>%
   coord_flip()
 ```
 
+## X. Cobertura territorial LTE (%)
+```{r}
+serie_cobertura_lte <- cobertura  %>% 
+  filter(tipo == "LTE") %>% 
+  filter(year(fecha) >= 2016) %>% 
+  filter(month(fecha) %in% c(6, 12)) %>% 
+  group_by(year=year(fecha), semester=semester(fecha)) %>%
+  summarize(cobertura = max(val, na.rm = TRUE))
 
+serie_cobertura_lte %>% 
+    mutate(lbl = fct_inorder(glue::glue("{year}\n{as.roman(semester)}"))) %>%
+  ggplot(aes(lbl, cobertura)) +
+  geom_col(fill = pal[5], width = 0.5) + 
+  geom_text(aes(label=percent_format(big.mark=".", 
+                                     decimal.mark = ",",
+                                     accuracy = .1,
+                                     scale = 1)(cobertura)), 
+            nudge_y = 7) +
+  scale_x_discrete(expand = expand_scale(add = c(0.5, 0.5),
+                                         mult = c(0, 0))) +
+  scale_y_continuous(breaks = NULL) +
+  geom_hline(yintercept = 0) +
+  labs(x="", y="")
+```
 ## 88. Cobertura territorial LTE (%) por departamento (`r FECHA_TITULO_STOCK`)
 
 ```{r}
