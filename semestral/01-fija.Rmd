@@ -24,6 +24,11 @@ fija <- import_fija()
 
 # 1. Telefonía Fija
 
+
+<br />
+
+
+
 ## 1. Líneas de telefonía fija
 
 ```{r}
@@ -40,6 +45,16 @@ fija %>%
 
 
 ```
+
+
+<br />
+
+<br />
+
+<br />
+
+
+
 
 ## 2. Líneas de telefonía fija por departamento (`r FECHA_TITULO_STOCK`)
 
@@ -59,6 +74,15 @@ fija %>%
 
 
 
+<br />
+
+<br />
+
+<br />
+
+
+
+
 ## 3. Teléfonos Públicos
 
 ```{r}
@@ -74,6 +98,15 @@ fija %>%
 ```
 
 
+
+<br />
+
+<br />
+
+<br />
+
+
+
 ## 4. Teléfonos públicos por departamento (`r FECHA_TITULO_STOCK`)
 ```{r}
 fija %>% 
@@ -86,7 +119,14 @@ fija %>%
 ```
 
 
-\pagebreak
+
+<br />
+
+<br />
+
+<br />
+
+
 
 ## 5. Líneas de telefonía fija por tipo de cliente (`r FECHA_TITULO_STOCK`)
 
@@ -102,6 +142,17 @@ print(s)
 
 ```
 
+
+<br />
+
+<br />
+
+<br />
+
+
+
+
+
 ## 6. Lineas de telefonia fija comerciales
 ```{r}
 fija %>% 
@@ -115,7 +166,14 @@ fija %>%
   
 ```
 
-\pagebreak
+
+<br />
+
+<br />
+
+<br />
+
+
 
 
 ## 7. Líneas de telefonía fija Comerciales por departamento (`r FECHA_TITULO_STOCK`)
@@ -132,6 +190,15 @@ fija %>%
 ```
 
 
+
+<br />
+
+<br />
+
+<br />
+
+
+
 ## 8. Líneas de telefonía fija residenciales
 ```{r}
 fija %>% 
@@ -144,7 +211,14 @@ fija %>%
 ```
 
 
-\pagebreak
+
+<br />
+
+<br />
+
+<br />
+
+
 
 
 ## 9. Líneas de telefonía fija Residenciales por departamento (`r FECHA_TITULO_STOCK`)
@@ -159,6 +233,16 @@ fija %>%
 ```
 
 
+
+<br />
+
+<br />
+
+<br />
+
+
+
+
 ## 10. Kilómetros de fibra óptica instalada
 ```{r}
 fija %>% 
@@ -171,7 +255,14 @@ fija %>%
   serie_historica_semestral_stock(kms, nudge_text = 6e2)
 ```
 
-\pagebreak
+
+<br />
+
+<br />
+
+<br />
+
+
 
 
 ## 11. Kilómetros de fibra óptica instalada por departamento (`r FECHA_TITULO_STOCK`)
@@ -185,6 +276,13 @@ fija %>%
   summarize(kms = sum(numeric, na.rm = TRUE)) %>% 
   barras_horizontales(kms, depto, nudge_text=1e2)
 ```
+
+
+<br />
+
+<br />
+
+<br />
 
 
 
@@ -202,7 +300,14 @@ fija %>%
 ```
 
 
-\pagebreak
+
+<br />
+
+<br />
+
+<br />
+
+
 
 
 ## 13. Minutos de telefonía fija a teléfonos móviles
@@ -215,6 +320,16 @@ fija %>%
   summarize(minutos = sum(numeric, na.rm = TRUE)) %>% 
   serie_historica_semestral_flujo(minutos, nudge_text = 1.5e7)
 ```
+
+
+
+<br />
+
+<br />
+
+<br />
+
+
 
 
 ## 14. Minutos de tráfico de telefonía fija a teléfonos móviles por operador (`r FECHA_TITULO_FLUJO`)
@@ -237,6 +352,13 @@ print(p_14)
 ```
 
 
+<br />
+
+<br />
+
+<br />
+
+
 
 ## 15. Minutos de tráfico de telefonía fija a red móvil de ANTEL
 
@@ -254,6 +376,13 @@ fija %>%
 
 
 
+<br />
+
+<br />
+
+<br />
+
+
 
 
 ## 16. Minutos de tráfico de telefonía fija a red móvil de Movistar
@@ -269,7 +398,14 @@ fija %>%
   labs(y="Millones")
 ```
 
-\pagebreak
+
+<br />
+
+<br />
+
+<br />
+
+
 
 
 ## 17. Minutos de tráfico de telefonía fija a red móvil de Claro
@@ -285,4 +421,11 @@ fija %>%
 ```
 
 
-\pagebreak
+
+<br />
+
+<br />
+
+<br />
+
+

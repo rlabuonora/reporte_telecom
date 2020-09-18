@@ -27,8 +27,8 @@ FECHA_TITULO_FLUJO <-  "Primer Semestre 2020"
 <!---BLOCK_TOC{level: 2}--->
 
 
-<!-- ```{r child = '01-fija.Rmd'} -->
-<!-- ``` -->
+```{r child = '01-fija.Rmd'}
+```
 
 
 
