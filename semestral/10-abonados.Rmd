@@ -19,7 +19,385 @@ options(scipen = 10000)
 # Theme
 source('../common.R')
 
+abonados_por_depto <- import_abonados_por_depto()
+abonados_por_tecnologia <- import_abonados_por_tecnologia()
+abonados_por_operador_depto <- import_abonados_por_empresa_depto()
+
 
 
 ```
+
+# 10. TV para abonados
+
+
+## 1. Servicios de TV para abonados
+```{r}
+abonados_por_depto %>% 
+  filter(depto=="TOTAL") %>% 
+  filter(year(fecha) >= 2017) %>% 
+  group_by(year=year(fecha), semester=semester(fecha)) %>%
+  summarize(val = sum(abonados, na.rm = TRUE)) %>% 
+  serie_historica_semestral_stock(val, nudge_text = 1e5)
+
+```
+
+
+## 2. Cantidad de Abonados en Artigas
+```{r}
+abonados_por_depto %>% 
+  filter(depto=="Artigas") %>% 
+  filter(year(fecha) >= 2017) %>% 
+  group_by(year=year(fecha), semester=semester(fecha)) %>%
+  summarize(val = sum(abonados, na.rm = TRUE)) %>% 
+  serie_historica_semestral_stock(val, nudge_text = 6e3)
+```
+
+## 3. Abonados en Artigas por operador (`r FECHA_TITULO_STOCK`)
+```{r}
+abonados_por_operador_depto %>% 
+    filter(depto=="Artigas") %>% 
+    barras_horizontales(abonados, empresa, nudge_text = 1000)
+```
+
+
+## 4. Cantidad de Abonados en Canelones
+```{r}
+abonados_por_depto %>% 
+  filter(depto=="Canelones") %>% 
+  filter(year(fecha) >= 2017) %>% 
+  group_by(year=year(fecha), semester=semester(fecha)) %>%
+  summarize(val = sum(abonados, na.rm = TRUE)) %>% 
+  serie_historica_semestral_stock(val, nudge_text = 4e4)
+```
+
+## 5. Abonados en Canelones por operador (`r FECHA_TITULO_STOCK`)
+```{r}
+abonados_por_operador_depto %>% 
+    filter(depto=="Canelones") %>% 
+    barras_horizontales(abonados, empresa, nudge_text = 1000)
+```
+
+
+
+## 6. Cantidad de Abonados en Cerro Largo
+```{r}
+abonados_por_depto %>% 
+  filter(depto=="Cerro largo") %>% 
+  filter(year(fecha) >= 2017) %>% 
+  group_by(year=year(fecha), semester=semester(fecha)) %>%
+  summarize(val = sum(abonados, na.rm = TRUE)) %>% 
+  serie_historica_semestral_stock(val, nudge_text = 1e4)
+```
+
+## 7. Abonados en Cerro Largo por operador (`r FECHA_TITULO_STOCK`)
+```{r}
+abonados_por_operador_depto %>% 
+    filter(depto=="Cerro largo") %>% 
+    barras_horizontales(abonados, empresa, nudge_text = 1000)
+```
+
+
+
+## 8. Cantidad de Abonados en Colonia
+```{r}
+abonados_por_depto %>% 
+  filter(depto=="Colonia") %>% 
+  filter(year(fecha) >= 2017) %>% 
+  group_by(year=year(fecha), semester=semester(fecha)) %>%
+  summarize(val = sum(abonados, na.rm = TRUE)) %>% 
+  serie_historica_semestral_stock(val, nudge_text = 1e4)
+```
+
+## 9. Abonados en Colonia por operador (`r FECHA_TITULO_STOCK`)
+```{r}
+abonados_por_operador_depto %>% 
+    filter(depto=="Colonia") %>% 
+    barras_horizontales(abonados, empresa, nudge_text = 3000)
+```
+
+
+
+## 10. Cantidad de Abonados en Durazno
+```{r}
+abonados_por_depto %>% 
+  filter(depto=="Durazno") %>% 
+  filter(year(fecha) >= 2017) %>% 
+  group_by(year=year(fecha), semester=semester(fecha)) %>%
+  summarize(val = sum(abonados, na.rm = TRUE)) %>% 
+  serie_historica_semestral_stock(val, nudge_text = 4e3)
+```
+
+## 11. Abonados en Durazno por operador (`r FECHA_TITULO_STOCK`)
+```{r}
+abonados_por_operador_depto %>% 
+    filter(depto=="Durazno") %>% 
+    barras_horizontales(abonados, empresa, nudge_text = 500)
+```
+
+
+
+## 12. Cantidad de Abonados en Flores
+```{r}
+abonados_por_depto %>% 
+  filter(depto=="Flores") %>% 
+  filter(year(fecha) >= 2017) %>% 
+  group_by(year=year(fecha), semester=semester(fecha)) %>%
+  summarize(val = sum(abonados, na.rm = TRUE)) %>% 
+  serie_historica_semestral_stock(val, nudge_text = 2e3)
+```
+
+## 13. Abonados en Flores por operador (`r FECHA_TITULO_STOCK`)
+```{r}
+abonados_por_operador_depto %>% 
+    filter(depto=="Flores") %>% 
+    barras_horizontales(abonados, empresa, nudge_text = 500)
+```
+
+
+
+## 14. Cantidad de Abonados en Florida
+```{r}
+abonados_por_depto %>% 
+  filter(depto=="Florida") %>% 
+  filter(year(fecha) >= 2017) %>% 
+  group_by(year=year(fecha), semester=semester(fecha)) %>%
+  summarize(val = sum(abonados, na.rm = TRUE)) %>% 
+  serie_historica_semestral_stock(val, nudge_text = 6e3)
+```
+
+## 15. Abonados en Florida por operador (`r FECHA_TITULO_STOCK`)
+```{r}
+abonados_por_operador_depto %>% 
+    filter(depto=="Florida") %>% 
+    barras_horizontales(abonados, empresa, nudge_text = 500)
+```
+
+
+
+## 16. Cantidad de Abonados en Lavalleja
+```{r}
+abonados_por_depto %>% 
+  filter(depto=="Lavalleja") %>% 
+  filter(year(fecha) >= 2017) %>% 
+  group_by(year=year(fecha), semester=semester(fecha)) %>%
+  summarize(val = sum(abonados, na.rm = TRUE)) %>% 
+  serie_historica_semestral_stock(val, nudge_text = 6e3)
+```
+
+## 17. Abonados en Lavalleja por operador (`r FECHA_TITULO_STOCK`)
+```{r}
+abonados_por_operador_depto %>% 
+    filter(depto=="Lavalleja") %>% 
+    barras_horizontales(abonados, empresa, nudge_text = 500)
+```
+
+
+
+## 18. Cantidad de Abonados en Maldonado
+```{r}
+abonados_por_depto %>% 
+  filter(depto=="Maldonado") %>% 
+  filter(year(fecha) >= 2017) %>% 
+  group_by(year=year(fecha), semester=semester(fecha)) %>%
+  summarize(val = sum(abonados, na.rm = TRUE)) %>% 
+  serie_historica_semestral_stock(val, nudge_text = 2e4)
+```
+
+## 19. Abonados en Maldonado por operador (`r FECHA_TITULO_STOCK`)
+```{r}
+abonados_por_operador_depto %>% 
+    filter(depto=="Maldonado") %>% 
+    barras_horizontales(abonados, empresa, nudge_text = 500)
+```
+
+## 20. Servicios de TV para Abonados en Montevideo
+```{r}
+abonados_por_depto %>% 
+  filter(depto=="Montevideo") %>% 
+  filter(year(fecha) >= 2017) %>% 
+  group_by(year=year(fecha), semester=semester(fecha)) %>%
+  summarize(val = sum(abonados, na.rm = TRUE)) %>% 
+  serie_historica_semestral_stock(val, nudge_text = 1e5)
+```
+
+
+## 21. Abonados en Montevideo por operador (`r FECHA_TITULO_STOCK`)
+```{r}
+abonados_por_operador_depto %>% 
+    filter(depto=="Montevideo") %>% 
+    barras_horizontales(abonados, empresa, nudge_text = 500)
+```
+
+
+## 22. Cantidad de Abonados en Paysandú
+```{r}
+abonados_por_depto %>% 
+  filter(depto=="Paysandú") %>% 
+  filter(year(fecha) >= 2017) %>% 
+  group_by(year=year(fecha), semester=semester(fecha)) %>%
+  summarize(val = sum(abonados, na.rm = TRUE)) %>% 
+  serie_historica_semestral_stock(val, nudge_text = 1e4)
+```
+
+## 23. Abonados en Paysandú por operador (`r FECHA_TITULO_STOCK`)
+```{r}
+abonados_por_operador_depto %>% 
+    filter(depto=="Paysandú") %>% 
+    barras_horizontales(abonados, empresa, nudge_text = 500)
+```
+
+
+## 24. Cantidad de Abonados en Río Negro
+```{r}
+abonados_por_depto %>% 
+  filter(depto=="Río Negro") %>% 
+  filter(year(fecha) >= 2017) %>% 
+  group_by(year=year(fecha), semester=semester(fecha)) %>%
+  summarize(val = sum(abonados, na.rm = TRUE)) %>% 
+  serie_historica_semestral_stock(val, nudge_text = 8e3)
+```
+
+## 25. Abonados en Río Negro por operador (`r FECHA_TITULO_STOCK`)
+```{r}
+abonados_por_operador_depto %>% 
+    filter(depto=="Río Negro") %>% 
+    barras_horizontales(abonados, empresa, nudge_text = 500)
+```
+
+
+## 26. Cantidad de Abonados en Rivera
+```{r}
+abonados_por_depto %>% 
+  filter(depto=="Rivera") %>% 
+  filter(year(fecha) >= 2017) %>% 
+  group_by(year=year(fecha), semester=semester(fecha)) %>%
+  summarize(val = sum(abonados, na.rm = TRUE)) %>% 
+  serie_historica_semestral_stock(val, nudge_text = 1e5)
+```
+
+## 27. Abonados en Rivera por operador (`r FECHA_TITULO_STOCK`)
+```{r}
+abonados_por_operador_depto %>% 
+    filter(depto=="Rivera") %>% 
+    barras_horizontales(abonados, empresa, nudge_text = 500)
+```
+
+
+## 28. Cantidad de Abonados en Rocha
+```{r}
+abonados_por_depto %>% 
+  filter(depto=="Rocha") %>% 
+  filter(year(fecha) >= 2017) %>% 
+  group_by(year=year(fecha), semester=semester(fecha)) %>%
+  summarize(val = sum(abonados, na.rm = TRUE)) %>% 
+  serie_historica_semestral_stock(val, nudge_text = 1e5)
+```
+
+## 29. Abonados en Rocha por operador (`r FECHA_TITULO_STOCK`)
+```{r}
+abonados_por_operador_depto %>% 
+    filter(depto=="Rocha") %>% 
+    barras_horizontales(abonados, empresa, nudge_text = 500)
+```
+
+
+## 30. Cantidad de Abonados en Salto
+```{r}
+abonados_por_depto %>% 
+  filter(depto=="Salto") %>% 
+  filter(year(fecha) >= 2017) %>% 
+  group_by(year=year(fecha), semester=semester(fecha)) %>%
+  summarize(val = sum(abonados, na.rm = TRUE)) %>% 
+  serie_historica_semestral_stock(val, nudge_text = 1e4)
+```
+
+## 31. Abonados en Salto por operador (`r FECHA_TITULO_STOCK`)
+```{r}
+abonados_por_operador_depto %>% 
+    filter(depto=="Salto") %>% 
+    barras_horizontales(abonados, empresa, nudge_text = 500)
+```
+
+
+## 32. Cantidad de Abonados en San José
+```{r}
+abonados_por_depto %>% 
+  filter(depto=="San José") %>% 
+  filter(year(fecha) >= 2017) %>% 
+  group_by(year=year(fecha), semester=semester(fecha)) %>%
+  summarize(val = sum(abonados, na.rm = TRUE)) %>% 
+  serie_historica_semestral_stock(val, nudge_text = 1e4)
+```
+
+
+## 33. Abonados en San José por operador (`r FECHA_TITULO_STOCK`)
+```{r}
+abonados_por_operador_depto %>% 
+    filter(depto=="San José") %>% 
+    barras_horizontales(abonados, empresa, nudge_text = 500)
+```
+
+
+## 34. Cantidad de Abonados en Tacuarembó
+```{r}
+abonados_por_depto %>% 
+  filter(depto=="Tacuarembó") %>% 
+  filter(year(fecha) >= 2017) %>% 
+  group_by(year=year(fecha), semester=semester(fecha)) %>%
+  summarize(val = sum(abonados, na.rm = TRUE)) %>% 
+  serie_historica_semestral_stock(val, nudge_text = 1e4)
+```
+
+## 35. Abonados en Tacuarembó por operador (`r FECHA_TITULO_STOCK`)
+```{r}
+abonados_por_operador_depto %>% 
+    filter(depto=="Tacuarembó") %>% 
+    barras_horizontales(abonados, empresa, nudge_text = 500)
+```
+
+
+## 36. Cantidad de Abonados en Treinta y Tres
+```{r}
+abonados_por_depto %>% 
+  filter(depto=="Treinta y tres") %>% 
+  filter(year(fecha) >= 2017) %>% 
+  group_by(year=year(fecha), semester=semester(fecha)) %>%
+  summarize(val = sum(abonados, na.rm = TRUE)) %>% 
+  serie_historica_semestral_stock(val, nudge_text = 1e4)
+```
+
+## 37. Abonados en Treinta y Tres por operador (`r FECHA_TITULO_STOCK`)
+```{r}
+abonados_por_operador_depto %>% 
+    filter(depto=="Treinta y tres") %>% 
+    barras_horizontales(abonados, empresa, nudge_text = 500)
+```
+
+
+## 38. Servicios de TV para abonados por tecnología (`r FECHA_TITULO_STOCK`)
+```{r}
+
+
+```
+
+## 39. Servicios de TV para abonados por Cable Coaxial
+```{r}
+
+```
+
+## 40. Servicios de TV para abonados por UHF
+```{r}
+
+```
+
+## 41. Servicios de TV para abonados por MMDS  
+```{r}
+
+```
+
+## 42. Servicios de TV para abonados por Satelital
+```{r}
+#abonados_por_tecnologia
+```
+
 
