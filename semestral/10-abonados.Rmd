@@ -397,7 +397,7 @@ abonados_por_operador_depto %>%
 
 ## 42. Servicios de TV para abonados por Satelital
 ```{r}
-abonados_por_tecnologia
+#abonados_por_tecnologia
 ```
 
 
