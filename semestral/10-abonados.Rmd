@@ -389,6 +389,8 @@ abonados_por_tecnologia %>%
 ```{r}
 abonados_por_tecnologia %>% 
   filter(tecnologia=="Cable coaxial") %>% 
+  filter(year(fecha) >= 2017) %>% 
+  group_by(year=year(fecha), semester=semester(fecha)) %>% 
   serie_historica_semestral_stock(abonados, nudge_text = 10)
 ```
 
@@ -396,6 +398,8 @@ abonados_por_tecnologia %>%
 ```{r}
 abonados_por_tecnologia %>% 
   filter(tecnologia=="UHF") %>% 
+  filter(year(fecha) >= 2017) %>% 
+  group_by(year=year(fecha), semester=semester(fecha)) %>% 
   serie_historica_semestral_stock(abonados, nudge_text = 10)
 ```
 
@@ -403,6 +407,8 @@ abonados_por_tecnologia %>%
 ```{r}
 abonados_por_tecnologia %>% 
   filter(tecnologia=="MMDS") %>% 
+  filter(year(fecha) >= 2017) %>% 
+  group_by(year=year(fecha), semester=semester(fecha)) %>% 
   serie_historica_semestral_stock(abonados, nudge_text = 10)
 ```
 
@@ -410,6 +416,8 @@ abonados_por_tecnologia %>%
 ```{r}
 abonados_por_tecnologia %>% 
   filter(tecnologia=="Satelital") %>% 
+  filter(year(fecha) >= 2017) %>% 
+  group_by(year=year(fecha), semester=semester(fecha)) %>% 
   serie_historica_semestral_stock(abonados, nudge_text = 10)
 ```
 
