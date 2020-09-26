@@ -30,14 +30,14 @@ abonados_por_operador_depto <- import_abonados_por_empresa_depto()
 # 10. TV para abonados
 
 
-## 1. Servicios de TV para abonados
+## 1. Servicios de TV para abonados en todo el país
 ```{r}
 abonados_por_depto %>% 
   filter(depto=="TOTAL") %>% 
   filter(year(fecha) >= 2017) %>% 
   group_by(year=year(fecha), semester=semester(fecha)) %>%
   summarize(val = sum(abonados, na.rm = TRUE)) %>% 
-  serie_historica_semestral_stock(val, nudge_text = 1e5)
+  serie_historica_semestral_stock(val, nudge_text = 4e5)
 
 ```
 
@@ -49,7 +49,7 @@ abonados_por_depto %>%
   filter(year(fecha) >= 2017) %>% 
   group_by(year=year(fecha), semester=semester(fecha)) %>%
   summarize(val = sum(abonados, na.rm = TRUE)) %>% 
-  serie_historica_semestral_stock(val, nudge_text = 6e3)
+  serie_historica_semestral_stock(val, nudge_text = 2e3)
 ```
 
 ## 3. Abonados en Artigas por operador (`r FECHA_TITULO_STOCK`)
@@ -74,7 +74,7 @@ abonados_por_depto %>%
 ```{r}
 abonados_por_operador_depto %>% 
     filter(depto=="Canelones") %>% 
-    barras_horizontales(abonados, empresa, nudge_text = 1000)
+    barras_horizontales(abonados, empresa, nudge_text = 6000)
 ```
 
 
@@ -86,14 +86,14 @@ abonados_por_depto %>%
   filter(year(fecha) >= 2017) %>% 
   group_by(year=year(fecha), semester=semester(fecha)) %>%
   summarize(val = sum(abonados, na.rm = TRUE)) %>% 
-  serie_historica_semestral_stock(val, nudge_text = 1e4)
+  serie_historica_semestral_stock(val, nudge_text = 6e3)
 ```
 
 ## 7. Abonados en Cerro Largo por operador (`r FECHA_TITULO_STOCK`)
 ```{r}
 abonados_por_operador_depto %>% 
     filter(depto=="Cerro largo") %>% 
-    barras_horizontales(abonados, empresa, nudge_text = 1000)
+    barras_horizontales(abonados, empresa, nudge_text = 500)
 ```
 
 
@@ -131,7 +131,7 @@ abonados_por_depto %>%
 ```{r}
 abonados_por_operador_depto %>% 
     filter(depto=="Durazno") %>% 
-    barras_horizontales(abonados, empresa, nudge_text = 500)
+    barras_horizontales(abonados, empresa, nudge_text = 300)
 ```
 
 
@@ -150,7 +150,7 @@ abonados_por_depto %>%
 ```{r}
 abonados_por_operador_depto %>% 
     filter(depto=="Flores") %>% 
-    barras_horizontales(abonados, empresa, nudge_text = 500)
+    barras_horizontales(abonados, empresa, nudge_text = 400)
 ```
 
 
@@ -377,27 +377,40 @@ abonados_por_operador_depto %>%
 ## 38. Servicios de TV para abonados por tecnología (`r FECHA_TITULO_STOCK`)
 ```{r}
 
-
+abonados_por_tecnologia %>% 
+   filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL),
+         semester(fecha) == semester(FECHA_INFORME_SEMESTRAL)) %>% 
+   filter(!is.na(abonados), tecnologia != "TOTAL", abonados != 0) %>% 
+   pie_chart(abonados, tecnologia) %>% 
+   print
 ```
 
 ## 39. Servicios de TV para abonados por Cable Coaxial
 ```{r}
-
+abonados_por_tecnologia %>% 
+  filter(tecnologia=="Cable coaxial") %>% 
+  serie_historica_semestral_stock(abonados, nudge_text = 10)
 ```
 
 ## 40. Servicios de TV para abonados por UHF
 ```{r}
-
+abonados_por_tecnologia %>% 
+  filter(tecnologia=="UHF") %>% 
+  serie_historica_semestral_stock(abonados, nudge_text = 10)
 ```
 
 ## 41. Servicios de TV para abonados por MMDS  
 ```{r}
-
+abonados_por_tecnologia %>% 
+  filter(tecnologia=="MMDS") %>% 
+  serie_historica_semestral_stock(abonados, nudge_text = 10)
 ```
 
 ## 42. Servicios de TV para abonados por Satelital
 ```{r}
-#abonados_por_tecnologia
+abonados_por_tecnologia %>% 
+  filter(tecnologia=="Satelital") %>% 
+  serie_historica_semestral_stock(abonados, nudge_text = 10)
 ```
 
 
