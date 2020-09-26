@@ -382,10 +382,7 @@ abonados_por_operador_depto %>%
 
 ## 39. Servicios de TV para abonados por Cable Coaxial
 ```{r}
-abonados_por_tecnologia %>% 
-  filter(tecnologia=="Satelital") %>% 
-  mutate(semester=c(rep(c(1, 2), 6), 1))
-         year = rep(20))
+
 ```
 
 ## 40. Servicios de TV para abonados por UHF
