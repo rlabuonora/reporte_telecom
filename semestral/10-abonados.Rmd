@@ -23,3 +23,249 @@ source('../common.R')
 
 ```
 
+# 10. TV para abonados
+
+## 1. Servicios de TV para abonados
+```{r}
+
+```
+
+
+## 2. Servicios de TV para Abonados en Montevideo
+```{r}
+
+```
+
+## 3. Cantidad de Abonados en Artigas
+```{r}
+
+```
+
+## 4. Abonados en Artigas por operador
+```{r}
+
+```
+
+
+## 5. Cantidad de Abonados en Canelones
+```{r}
+
+```
+
+## 6. Abonados en Canelones por operador
+```{r}
+
+```
+
+
+
+## 183. Cantidad de Abonados en Cerro Largo
+```{r}
+
+```
+
+## 181. Abonados en Cerro Largo por operador
+```{r}
+
+```
+
+
+
+## 184. Cantidad de Abonados en Colonia
+```{r}
+
+```
+
+## 181. Abonados en Colonia por operador
+```{r}
+
+```
+
+
+
+## 185. Cantidad de Abonados en Durazno
+```{r}
+
+```
+
+## 181. Abonados en Durazno por operador
+```{r}
+
+```
+
+
+
+## 186. Cantidad de Abonados en Flores
+```{r}
+
+```
+
+## 181. Abonados en Flores por operador
+```{r}
+
+```
+
+
+
+## 187. Cantidad de Abonados en Florida
+```{r}
+
+```
+
+## 181. Abonados en Florida por operador
+```{r}
+
+```
+
+
+
+## 188. Cantidad de Abonados en Lavalleja
+```{r}
+
+```
+
+## 181. Abonados en Lavalleja por operador
+```{r}
+
+```
+
+
+
+## 189. Cantidad de Abonados en Maldonado
+```{r}
+
+```
+
+## 181. Abonados en Maldonado por operador
+```{r}
+
+```
+
+
+## 189. Cantidad de Abonados en Montevideo
+```{r}
+
+```
+
+## 181. Abonados en Montevideo por operador
+```{r}
+
+```
+
+
+## 190. Cantidad de Abonados en Paysandú
+```{r}
+
+```
+
+## 181. Abonados en Paysandú por operador
+```{r}
+
+```
+
+
+## 191. Cantidad de Abonados en Río Negro
+```{r}
+
+```
+
+## 181. Abonados en Río Negro por operador
+```{r}
+
+```
+
+
+## 192. Cantidad de Abonados en Rivera
+```{r}
+
+```
+
+## 181. Abonados en Rivera por operador
+```{r}
+
+```
+
+
+## 193. Cantidad de Abonados en Rocha
+```{r}
+
+```
+
+## 181. Abonados en Rocha por operador
+```{r}
+
+```
+
+
+## 194. Cantidad de Abonados en Salto
+```{r}
+
+```
+
+## 181. Abonados en Salto por operador
+```{r}
+
+```
+
+
+## 195. Cantidad de Abonados en San José
+```{r}
+
+```
+
+
+## 181. Abonados en San José por operador
+```{r}
+
+```
+
+
+## 196. Cantidad de Abonados en Tacuarembó
+```{r}
+
+```
+
+## 181. Abonados en Tacuarembó por operador
+```{r}
+
+```
+
+
+## 197. Cantidad de Abonados en Treinta y Tres
+```{r}
+
+```
+
+## 181. Abonados en Treinta y Tres por operador
+```{r}
+
+```
+
+
+## 198. Servicios de TV para abonados por tecnología (diciembre 2019)
+```{r}
+
+
+```
+
+## 199. Servicios de TV para abonados por Cable Coaxial
+```{r}
+
+```
+
+## 200. Servicios de TV para abonados por UHF
+```{r}
+
+```
+
+## 201. Servicios de TV para abonados por MMDS  
+```{r}
+
+```
+
+## 202. Servicios de TV para abonados por Satelital
+```{r}
+
+```
+
+
