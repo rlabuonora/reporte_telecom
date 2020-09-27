@@ -15,6 +15,8 @@ options(scipen = 10000)
 
 source('../common.R')
 banda_ancha_servicios <- import_banda_ancha_servicios()
+banda_ancha_trafico <- import_banda_ancha_trafico()
+
 
 FECHA_INFORME_SEMESTRAL <-  as.Date("2020-06-01")
 FECHA_TITULO_STOCK <-  "Junio 2020"
@@ -413,7 +415,14 @@ serie_90 %>%
 
 ```
 
-<!-- ## 66. Tráfico de datos de servicios de banda ancha fija (terabytes) -->
+## 66. Tráfico de datos de servicios de banda ancha fija (terabytes)
+```{r}
+banda_ancha_trafico %>% 
+  filter(fecha < as.Date("2020-07-01")) %>% 
+  group_by(year = year(fecha), semester=semester(fecha)) %>% 
+  summarize(minutos=sum(numeric))
+```
+
 
 <!-- ```{r} -->
 <!-- serie_91 <- tibble( -->
@@ -431,20 +440,38 @@ serie_90 %>%
 <!-- ``` -->
 
 
-<!-- ## 67. Tráfico de datos de servicios de banda ancha fija (terabytes) según alámbrica e inalámbrica (`r FECHA_TITULO_STOCK`) -->
+## 67. Tráfico de datos de servicios de banda ancha fija (terabytes) según alámbrica e inalámbrica (`r FECHA_TITULO_STOCK`)
 
-<!-- ```{r} -->
-<!-- serie_92 <- tibble( -->
-<!--   tipo=c("Alámbrica",	"Inalámbrica"), -->
-<!--   trafico=c(1617219,	38710) -->
-<!-- ) -->
+```{r}
 
-<!-- # serie_92 %>%  -->
-<!-- #   pie_chart(trafico, tipo) %>%  -->
-<!-- #   print -->
-<!-- ``` -->
+# TODO: da una diferencia chica
+banda_ancha_trafico %>% 
+  filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL), 
+        semester(fecha) == semester(FECHA_INFORME_SEMESTRAL)) %>% 
+   group_by(alambrico=
+              if_else(medio %in% c("Dedicados", "Otros"),
+                      "Inalámbrico",
+                      "Alámbrico")) %>% 
+  summarize(minutos=sum(numeric)) %>% 
+  pie_chart(minutos, alambrico) %>% 
+  print
+  
 
-<!-- ## 68. Tráfico de datos se servicios de banda ancha fija (terabytes) según tipo de cliente (*) -->
+```
+
+## 68. Tráfico de datos se servicios de banda ancha fija (terabytes) según tipo de cliente (*)
+
+```{r}
+
+# TODO: da una diferencia chica
+banda_ancha_trafico %>% 
+  filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL), 
+        semester(fecha) == semester(FECHA_INFORME_SEMESTRAL)) %>% 
+  group_by(cliente) %>% 
+  summarize(minutos=sum(numeric)) %>% 
+  pie_chart(minutos, cliente, nudge_x = c(-6, 2, 0)) %>% 
+  print
+```
 
 <!-- ```{r} -->
 <!-- serie_93 <- tibble( -->
@@ -459,16 +486,19 @@ serie_90 %>%
 <!-- #   print -->
 <!-- ``` -->
 
-<!-- ## 69. Tráfico de datos (terabytes) por operador (*) -->
+## 69. Tráfico de datos (terabytes) por operador (*)
 
-<!-- ```{r} -->
-<!-- serie_94 <- tibble( -->
-<!--   empresa = c("Antel",	"Dedicado",	"Kalil",	"Enalur",	"Movistar",	"Claro"), -->
-<!--   trafico = c(1650584,	0,	495,	0,	3966, 884)) -->
+```{r}
+banda_ancha_trafico %>% 
+  filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL), 
+        semester(fecha) == semester(FECHA_INFORME_SEMESTRAL)) %>% 
+  group_by(empresa) %>% 
+  summarize(minutos=sum(numeric)) %>% 
+  filter(minutos > 0) %>% 
+  barras_horizontales(minutos, empresa, nudge_text = 2e5)
 
-<!-- # serie_94 %>%  -->
-<!-- #   barras_horizontales(trafico, empresa, nudge_text= 1.5e5) -->
-<!-- ``` -->
+```
+
 
 
 
