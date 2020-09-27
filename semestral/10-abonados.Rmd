@@ -74,7 +74,7 @@ abonados_por_depto %>%
 ```{r}
 abonados_por_operador_depto %>% 
     filter(depto=="Canelones") %>% 
-    barras_horizontales(abonados, empresa, nudge_text = 6000)
+    barras_horizontales(abonados, empresa, nudge_text = 5000)
 ```
 
 
@@ -112,7 +112,7 @@ abonados_por_depto %>%
 ```{r}
 abonados_por_operador_depto %>% 
     filter(depto=="Colonia") %>% 
-    barras_horizontales(abonados, empresa, nudge_text = 3000)
+    barras_horizontales(abonados, empresa, nudge_text = 2000)
 ```
 
 
@@ -225,7 +225,7 @@ abonados_por_depto %>%
 ```{r}
 abonados_por_operador_depto %>% 
     filter(depto=="Montevideo") %>% 
-    barras_horizontales(abonados, empresa, nudge_text = 500)
+    barras_horizontales(abonados, empresa, nudge_text = 1e3)
 ```
 
 
@@ -243,7 +243,7 @@ abonados_por_depto %>%
 ```{r}
 abonados_por_operador_depto %>% 
     filter(depto=="Paysandú") %>% 
-    barras_horizontales(abonados, empresa, nudge_text = 500)
+    barras_horizontales(abonados, empresa, nudge_text = 2000)
 ```
 
 
@@ -272,7 +272,7 @@ abonados_por_depto %>%
   filter(year(fecha) >= 2017) %>% 
   group_by(year=year(fecha), semester=semester(fecha)) %>%
   summarize(val = sum(abonados, na.rm = TRUE)) %>% 
-  serie_historica_semestral_stock(val, nudge_text = 1e5)
+  serie_historica_semestral_stock(val, nudge_text = 8e3)
 ```
 
 ## 27. Abonados en Rivera por operador (`r FECHA_TITULO_STOCK`)
