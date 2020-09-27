@@ -290,7 +290,7 @@ abonados_por_depto %>%
   filter(year(fecha) >= 2017) %>% 
   group_by(year=year(fecha), semester=semester(fecha)) %>%
   summarize(val = sum(abonados, na.rm = TRUE)) %>% 
-  serie_historica_semestral_stock(val, nudge_text = 1e5)
+  serie_historica_semestral_stock(val, nudge_text = 4e4)
 ```
 
 ## 29. Abonados en Rocha por operador (`r FECHA_TITULO_STOCK`)
@@ -315,7 +315,7 @@ abonados_por_depto %>%
 ```{r}
 abonados_por_operador_depto %>% 
     filter(depto=="Salto") %>% 
-    barras_horizontales(abonados, empresa, nudge_text = 500)
+    barras_horizontales(abonados, empresa, nudge_text = 700)
 ```
 
 
@@ -363,14 +363,14 @@ abonados_por_depto %>%
   filter(year(fecha) >= 2017) %>% 
   group_by(year=year(fecha), semester=semester(fecha)) %>%
   summarize(val = sum(abonados, na.rm = TRUE)) %>% 
-  serie_historica_semestral_stock(val, nudge_text = 1e4)
+  serie_historica_semestral_stock(val, nudge_text = 4e3)
 ```
 
 ## 37. Abonados en Treinta y Tres por operador (`r FECHA_TITULO_STOCK`)
 ```{r}
 abonados_por_operador_depto %>% 
     filter(depto=="Treinta y tres") %>% 
-    barras_horizontales(abonados, empresa, nudge_text = 500)
+    barras_horizontales(abonados, empresa, nudge_text = 300)
 ```
 
 
@@ -391,7 +391,7 @@ abonados_por_tecnologia %>%
   filter(tecnologia=="Cable coaxial") %>% 
   filter(year(fecha) >= 2017) %>% 
   group_by(year=year(fecha), semester=semester(fecha)) %>% 
-  serie_historica_semestral_stock(abonados, nudge_text = 10)
+  serie_historica_semestral_stock(abonados, nudge_text = 10e3)
 ```
 
 ## 40. Servicios de TV para abonados por UHF
@@ -400,7 +400,7 @@ abonados_por_tecnologia %>%
   filter(tecnologia=="UHF") %>% 
   filter(year(fecha) >= 2017) %>% 
   group_by(year=year(fecha), semester=semester(fecha)) %>% 
-  serie_historica_semestral_stock(abonados, nudge_text = 10)
+  serie_historica_semestral_stock(abonados, nudge_text = 4e3)
 ```
 
 ## 41. Servicios de TV para abonados por MMDS  
@@ -409,7 +409,7 @@ abonados_por_tecnologia %>%
   filter(tecnologia=="MMDS") %>% 
   filter(year(fecha) >= 2017) %>% 
   group_by(year=year(fecha), semester=semester(fecha)) %>% 
-  serie_historica_semestral_stock(abonados, nudge_text = 10)
+  serie_historica_semestral_stock(abonados, nudge_text = 1e3)
 ```
 
 ## 42. Servicios de TV para abonados por Satelital
@@ -418,7 +418,7 @@ abonados_por_tecnologia %>%
   filter(tecnologia=="Satelital") %>% 
   filter(year(fecha) >= 2017) %>% 
   group_by(year=year(fecha), semester=semester(fecha)) %>% 
-  serie_historica_semestral_stock(abonados, nudge_text = 10)
+  serie_historica_semestral_stock(abonados, nudge_text = 10e3)
 ```
 
 
