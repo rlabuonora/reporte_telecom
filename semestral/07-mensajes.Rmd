@@ -59,6 +59,9 @@ serie_142 %>%
 
 ```
 
+##### Salto
+
+
 ## 125. Mensajes de texto enviados según destino (`r FECHA_TITULO_FLUJO`)
 ```{r}
 serie_143 <- mensajes %>%
@@ -92,6 +95,10 @@ serie_144 %>%
   labs(y="Miles")
 ```
 
+
+##### Salto
+
+
 ## 127. Mensajes de texto enviados al exterior por operador (`r FECHA_TITULO_FLUJO`)
 ```{r}
 serie_145 <- mensajes %>% 
@@ -123,6 +130,9 @@ serie_146 %>%
   labs(y="Miles")
 
 ```
+
+##### Salto
+
 
 ## 129. Mensajes de texto enviados a otras redes móviles por operador (`r FECHA_TITULO_FLUJO`)
 

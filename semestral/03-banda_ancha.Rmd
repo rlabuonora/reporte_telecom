@@ -57,6 +57,8 @@ serie_64 %>%
 ```
 
 
+##### Salto
+
 ## 44. Servicios de banda ancha fija por velocidad (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_65 <- banda_ancha_servicios %>% 
@@ -86,6 +88,8 @@ serie_66 %>%
 ```
 
 
+##### Salto
+
 ## 46. Servicios de banda ancha fija por operador (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_67 <- banda_ancha_servicios %>% 
@@ -114,7 +118,7 @@ serie_68 %>%
 banda_ancha_servicios_residenciales <- filter(banda_ancha_servicios, cliente == "Residencial")
 
 ```
-
+##### Salto
 
 ## 48. Servicios de banda ancha fija residencial
 ```{r}
@@ -143,6 +147,7 @@ serie_70 %>%
   print
 ```
 
+##### Salto
 
 ## 50. Servicios de banda ancha fija residencial por operador (`r FECHA_TITULO_STOCK`)
 
@@ -174,6 +179,9 @@ serie_72 %>%
 
 ```
 
+##### Salto
+
+
 ```{r, include =FALSE}
 banda_ancha_servicios_empresariales <- filter(banda_ancha_servicios, cliente == "Empresarial")
 
@@ -204,6 +212,7 @@ serie_74 %>%
   barras_horizontales(servicios, velocidad, nudge_text=1e3)
 ```
 
+##### Salto
 
 ## 54. Servicios de banda ancha fija comercial por operador (`r FECHA_TITULO_STOCK`)
 
@@ -231,6 +240,9 @@ serie_76 %>%
   pie_chart(servicios, medio, nudge_radio = .7) %>% 
   print
 ```
+
+##### Salto
+
 
 
 ```{r}
@@ -293,6 +305,8 @@ serie_82 %>%
   barras_horizontales(servicios, velocidad, nudge_text = 5e3)
 ```
 
+##### Salto
+
 
 ## 58. Servicios de banda ancha fija inalámbrica por tipo de cliente (`r FECHA_TITULO_STOCK`)
 ```{r}
@@ -322,6 +336,8 @@ serie_84 <- banda_ancha_servicios_inalambrica %>%
 serie_84 %>% 
   barras_horizontales(servicios, empresa, nudge_text = 4e3)
 ```
+
+##### Salto
 
 
 ## 60. Servicios de banda ancha fija inalámbrica por medio de trasmisión (`r FECHA_TITULO_STOCK`)
@@ -354,6 +370,8 @@ banda_ancha_servicios_alambrica %>%
   serie_historica_semestral_stock(servicios, nudge_text = 4e3)
 ```
 
+##### Salto
+
 
 ## 62. Servicios de banda ancha fija alámbrica por velocidad (`r FECHA_TITULO_STOCK`)
 ```{r}
@@ -383,6 +401,9 @@ serie_88 %>%
   pie_chart(servicios, medio) %>% 
   print
 ```
+
+##### Salto
+
 
 ## 64. Servicios de banda ancha fija alámbrica por tipo de cliente (`r FECHA_TITULO_STOCK`)
 ```{r}
@@ -414,6 +435,9 @@ serie_90 %>%
   print
 
 ```
+
+##### Salto
+
 
 ## 66. Tráfico de datos de servicios de banda ancha fija (terabytes)
 ```{r}
@@ -458,6 +482,11 @@ banda_ancha_trafico %>%
   
 
 ```
+
+
+##### Salto
+
+
 
 ## 68. Tráfico de datos se servicios de banda ancha fija (terabytes) según tipo de cliente (*)
 

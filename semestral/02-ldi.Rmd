@@ -33,6 +33,9 @@ serie_26
 ```
 
 
+
+
+
 ## 19. Minutos de tráfico de LDI saliente por operador (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
@@ -49,6 +52,15 @@ serie_27
 ```
 
 
+##### Salto
+
+
+
+
+
+
+
+
 ## 20. Minutos de tráfico de LDI saliente según red origen (`r FECHA_TITULO_FLUJO`)
 ```{r}
 serie_28 <- ldi %>%
@@ -63,6 +75,16 @@ serie_28 <- ldi %>%
 
 print(serie_28)
 ```
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -84,7 +106,17 @@ serie_29 <- ldi %>%
 serie_29
 ```
 
-\pagebreak
+##### Salto
+
+
+
+
+
+
+
+
+
+
 
 
 ## 22. Minutos de tráfico de LDI saliente de Red Fija - AMM
@@ -101,6 +133,16 @@ serie_30 <- ldi %>%
 
 serie_30
 ```
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -121,6 +163,18 @@ serie_31 <- ldi %>%
 serie_31
 ```
 
+
+
+
+
+
+
+##### Salto
+
+
+
+
+
 ## 24. Minutos de tráfico de LDI salientes de Red Fija - Resto País
 
 ```{r}
@@ -134,6 +188,18 @@ serie_32 <- ldi %>%
 
 serie_32
 ```
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ## 25. Minutos de tráfico de LDI salientes de redes móviles
@@ -152,7 +218,16 @@ serie_33
 ```
 
 
-\pagebreak
+
+##### Salto
+
+
+
+
+
+
+
+
 
 ## 26. Minutos de tráfico de LDI saliente por operador (`r FECHA_TITULO_FLUJO`)
 
@@ -174,6 +249,17 @@ serie_34
 ```
 
 
+
+
+
+
+
+
+
+
+
+
+
 ## 27. Minutos de tráfico de LDI saliente de red móvil de ANTEL por operador (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
@@ -191,6 +277,19 @@ serie_35 <- ldi %>%
 serie_35
 ```
 
+
+##### Salto
+
+
+
+
+
+
+
+
+
+
+
 ## 28. Minutos de tráfico de LDI saliente de red móvil de ANTEL
 ```{r}
 serie_36 <- ldi %>% 
@@ -205,6 +304,19 @@ serie_36 <- ldi %>%
 
 serie_36
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## 29. Minutos de tráfico de LDI saliente de red móvil de MOVISTAR por operador (`r FECHA_TITULO_FLUJO`)
 ```{r}
@@ -225,6 +337,16 @@ serie_37
 
 
 
+
+
+
+##### Salto
+
+
+
+
+
+
 ## 30. Minutos de tráfico de LDI saliente de red móvil de MOVISTAR
 
 ```{r}
@@ -239,6 +361,17 @@ serie_38 <- ldi %>%
 
 serie_38
 ```
+
+
+
+
+
+
+
+
+
+
+
 
 ## 31. Minutos de tráfico de LDI saliente de red móvil de CLARO por operador (`r FECHA_TITULO_FLUJO`)
 
@@ -259,6 +392,17 @@ serie_39 <- ldi %>%
 serie_39
 ```
 
+
+
+
+##### Salto
+
+
+
+
+
+
+
 ## 32. Minutos de tráfico de LDI saliente de red móvil de CLARO
 
 ```{r}
@@ -273,6 +417,18 @@ serie_40 <- ldi %>%
 
 serie_40
 ```
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -293,6 +449,19 @@ serie_41 <- ldi %>%
 serie_41
 ```
 
+
+
+
+
+
+
+
+##### Salto
+
+
+
+
+
 ## 34. Minutos de tráfico de LDI saliente de Telefonía Fija de clientes Prepago
 
 ```{r}
@@ -309,6 +478,17 @@ serie_42 <- ldi %>%
 serie_42
 ```
 
+
+
+
+
+
+
+
+
+
+
+
 ## 35. Minutos de tráfico de LDI saliente de Telefonía Fija de clientes Pospago
 ```{r}
 serie_43 <- ldi %>% 
@@ -323,6 +503,17 @@ serie_43 <- ldi %>%
 
 serie_43
 ```
+
+
+
+
+
+
+
+##### Salto
+
+
+
 
 ## 36. Minutos de tráfico de LDI saliente por destino (`r FECHA_TITULO_FLUJO`)
 
@@ -343,6 +534,16 @@ serie_44
 ```
 
 
+
+
+
+
+
+
+
+
+
+
 ## 37. Minutos de tráfico de LDI saliente a Argentina
 ```{r}
 serie_45 <- ldi %>% 
@@ -355,6 +556,17 @@ serie_45 <- ldi %>%
 
 serie_45
 ```
+
+
+
+
+
+
+
+##### Salto
+
+
+
 
 ## 38. Minutos de tráfico de LDI saliente a Brasil
 
@@ -371,6 +583,17 @@ serie_46
 ```
 
 
+
+
+
+
+
+
+
+
+
+
+
 ## 39. Minutos de tráfico de LDI saliente a EUA
 ```{r}
 serie_47 <- ldi %>% 
@@ -383,6 +606,17 @@ serie_47 <- ldi %>%
 
 serie_47
 ```
+
+
+
+
+
+
+##### Salto
+
+
+
+
 
 ## 40. Minutos de tráfico de LDI saliente a España
 
@@ -399,6 +633,17 @@ serie_48 <- ldi %>%
 serie_48
 ```
 
+
+
+
+
+
+
+
+
+
+
+
 ## 41. Minutos de tráfico de LDI saliente a Resto del Mundo
 
 ```{r}
@@ -412,6 +657,16 @@ serie_49 <- ldi %>%
 
 serie_49
 ```
+
+
+
+
+
+
+
+
+
+
 
 <!-- ## 50. Minutos de tráfico de LDI entrante -->
 <!-- ```{r} -->

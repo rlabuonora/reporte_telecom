@@ -52,6 +52,8 @@ abonados_por_depto %>%
   serie_historica_semestral_stock(val, nudge_text = 2e3)
 ```
 
+##### Salto
+
 ## 3. Abonados en Artigas por operador (`r FECHA_TITULO_STOCK`)
 ```{r}
 abonados_por_operador_depto %>% 
@@ -69,6 +71,8 @@ abonados_por_depto %>%
   summarize(val = sum(abonados, na.rm = TRUE)) %>% 
   serie_historica_semestral_stock(val, nudge_text = 4e4)
 ```
+##### Salto
+
 
 ## 5. Abonados en Canelones por operador (`r FECHA_TITULO_STOCK`)
 ```{r}
@@ -89,6 +93,9 @@ abonados_por_depto %>%
   serie_historica_semestral_stock(val, nudge_text = 6e3)
 ```
 
+##### Salto
+
+
 ## 7. Abonados en Cerro Largo por operador (`r FECHA_TITULO_STOCK`)
 ```{r}
 abonados_por_operador_depto %>% 
@@ -107,6 +114,8 @@ abonados_por_depto %>%
   summarize(val = sum(abonados, na.rm = TRUE)) %>% 
   serie_historica_semestral_stock(val, nudge_text = 1e4)
 ```
+
+##### Salto
 
 ## 9. Abonados en Colonia por operador (`r FECHA_TITULO_STOCK`)
 ```{r}
@@ -127,6 +136,9 @@ abonados_por_depto %>%
   serie_historica_semestral_stock(val, nudge_text = 4e3)
 ```
 
+##### Salto
+
+
 ## 11. Abonados en Durazno por operador (`r FECHA_TITULO_STOCK`)
 ```{r}
 abonados_por_operador_depto %>% 
@@ -145,6 +157,9 @@ abonados_por_depto %>%
   summarize(val = sum(abonados, na.rm = TRUE)) %>% 
   serie_historica_semestral_stock(val, nudge_text = 2e3)
 ```
+
+##### Salto
+
 
 ## 13. Abonados en Flores por operador (`r FECHA_TITULO_STOCK`)
 ```{r}
@@ -165,6 +180,10 @@ abonados_por_depto %>%
   serie_historica_semestral_stock(val, nudge_text = 6e3)
 ```
 
+
+##### Salto
+
+
 ## 15. Abonados en Florida por operador (`r FECHA_TITULO_STOCK`)
 ```{r}
 abonados_por_operador_depto %>% 
@@ -183,6 +202,8 @@ abonados_por_depto %>%
   summarize(val = sum(abonados, na.rm = TRUE)) %>% 
   serie_historica_semestral_stock(val, nudge_text = 6e3)
 ```
+
+##### Salto
 
 ## 17. Abonados en Lavalleja por operador (`r FECHA_TITULO_STOCK`)
 ```{r}
@@ -203,6 +224,9 @@ abonados_por_depto %>%
   serie_historica_semestral_stock(val, nudge_text = 2e4)
 ```
 
+##### Salto
+
+
 ## 19. Abonados en Maldonado por operador (`r FECHA_TITULO_STOCK`)
 ```{r}
 abonados_por_operador_depto %>% 
@@ -219,6 +243,8 @@ abonados_por_depto %>%
   summarize(val = sum(abonados, na.rm = TRUE)) %>% 
   serie_historica_semestral_stock(val, nudge_text = 1e5)
 ```
+
+##### Salto
 
 
 ## 21. Abonados en Montevideo por operador (`r FECHA_TITULO_STOCK`)
@@ -239,6 +265,9 @@ abonados_por_depto %>%
   serie_historica_semestral_stock(val, nudge_text = 1e4)
 ```
 
+##### Salto
+
+
 ## 23. Abonados en Paysandú por operador (`r FECHA_TITULO_STOCK`)
 ```{r}
 abonados_por_operador_depto %>% 
@@ -256,6 +285,10 @@ abonados_por_depto %>%
   summarize(val = sum(abonados, na.rm = TRUE)) %>% 
   serie_historica_semestral_stock(val, nudge_text = 8e3)
 ```
+
+
+##### Salto
+
 
 ## 25. Abonados en Río Negro por operador (`r FECHA_TITULO_STOCK`)
 ```{r}
@@ -275,6 +308,10 @@ abonados_por_depto %>%
   serie_historica_semestral_stock(val, nudge_text = 8e3)
 ```
 
+##### Salto
+
+
+
 ## 27. Abonados en Rivera por operador (`r FECHA_TITULO_STOCK`)
 ```{r}
 abonados_por_operador_depto %>% 
@@ -293,6 +330,8 @@ abonados_por_depto %>%
   serie_historica_semestral_stock(val, nudge_text = 4e4)
 ```
 
+##### Salto
+
 ## 29. Abonados en Rocha por operador (`r FECHA_TITULO_STOCK`)
 ```{r}
 abonados_por_operador_depto %>% 
@@ -310,6 +349,8 @@ abonados_por_depto %>%
   summarize(val = sum(abonados, na.rm = TRUE)) %>% 
   serie_historica_semestral_stock(val, nudge_text = 1e4)
 ```
+
+##### Salto
 
 ## 31. Abonados en Salto por operador (`r FECHA_TITULO_STOCK`)
 ```{r}
@@ -330,6 +371,8 @@ abonados_por_depto %>%
 ```
 
 
+##### Salto
+
 ## 33. Abonados en San José por operador (`r FECHA_TITULO_STOCK`)
 ```{r}
 abonados_por_operador_depto %>% 
@@ -348,6 +391,10 @@ abonados_por_depto %>%
   serie_historica_semestral_stock(val, nudge_text = 1e4)
 ```
 
+
+##### Salto
+
+
 ## 35. Abonados en Tacuarembó por operador (`r FECHA_TITULO_STOCK`)
 ```{r}
 abonados_por_operador_depto %>% 
@@ -365,6 +412,8 @@ abonados_por_depto %>%
   summarize(val = sum(abonados, na.rm = TRUE)) %>% 
   serie_historica_semestral_stock(val, nudge_text = 4e3)
 ```
+
+##### Salto
 
 ## 37. Abonados en Treinta y Tres por operador (`r FECHA_TITULO_STOCK`)
 ```{r}
@@ -385,6 +434,8 @@ abonados_por_tecnologia %>%
    print
 ```
 
+##### Salto
+
 ## 39. Servicios de TV para abonados por Cable Coaxial
 ```{r}
 abonados_por_tecnologia %>% 
@@ -402,6 +453,8 @@ abonados_por_tecnologia %>%
   group_by(year=year(fecha), semester=semester(fecha)) %>% 
   serie_historica_semestral_stock(abonados, nudge_text = 4e3)
 ```
+
+##### Salto
 
 ## 41. Servicios de TV para abonados por MMDS  
 ```{r}

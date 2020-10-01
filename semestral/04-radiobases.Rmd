@@ -43,7 +43,7 @@ ingresos %>%
 
 
 
-<br />
+
 
 ## 70. Cantidad de radiobases
 ```{r}
@@ -55,11 +55,11 @@ radiobases %>%
   serie_historica_semestral_stock(radiobases, nudge_text = 5e2)
 ```
 
-<br />
 
-<br />
 
-<br />
+##### Salto
+
+
 
 ## 71. Cantidad de radiobases por departamento (`r FECHA_TITULO_STOCK`)
 ```{r}
@@ -74,7 +74,7 @@ tabla_91 %>%
 ```
 
 
-<br />
+
 
 ## 72. Cantidad de radiobases por operador (`r FECHA_TITULO_STOCK`)
 
@@ -91,14 +91,14 @@ g_92 <- tabla_92 %>%
 ```
 
 
-<br />
-
-<br />
-
-<br />
 
 
-<br />
+
+##### Salto
+
+
+
+
 
 
 ## 73. Cantidad de radiobases GSM
@@ -112,13 +112,13 @@ radiobases %>%
 ```
 
 
-<br />
 
-<br />
 
-<br />
 
-<br />
+
+
+
+
 
 
 ## 74. Cantidad de radiobases GSM por departamento (`r FECHA_TITULO_STOCK`)
@@ -134,11 +134,11 @@ tabla_94 %>%
   barras_horizontales(radiobases, depto, nudge_text = 20)
 ```
 
-<br />
 
-<br />
 
-<br />
+
+##### Salto
+
 
 
 ## 75. Cantidad de radiobases GSM por operador (`r FECHA_TITULO_STOCK`)
@@ -157,13 +157,13 @@ tabla_95 %>%
 
 
 
-<br />
 
-<br />
 
-<br />
 
-<br />
+
+
+
+
 
 
 
@@ -177,11 +177,11 @@ radiobases %>%
   serie_historica_semestral_stock(radiobases, nudge_text = 5e2)
 ```
 
-<br />
 
-<br />
 
-<br />
+
+##### Salto
+
 
 
 ## 77. Cantidad de radiobases 3G por departamento (`r FECHA_TITULO_STOCK`)
@@ -198,13 +198,13 @@ tabla_97 %>%
 ```
 
 
-<br />
 
-<br />
 
-<br />
 
-<br />
+
+
+
+
 
 
 ## 78. Cantidad de radiobases 3G por operador (`r FECHA_TITULO_STOCK`)
@@ -221,11 +221,11 @@ tabla_98 <-  radiobases %>%
    print
 ```
 
-<br />
 
-<br />
 
-<br />
+
+##### Salto
+
 
 
 ## 79. Cantidad de radiobases LTE
@@ -240,11 +240,11 @@ radiobases %>%
 
 
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 
 ## 80. Cantidad de radiobases LTE por departamento (`r FECHA_TITULO_STOCK`)
@@ -260,11 +260,11 @@ tabla_100 <- radiobases %>%
   barras_horizontales(radiobases, depto, nudge_text = 60)
 ```
 
-<br />
 
-<br />
+##### Salto
 
-<br />
+
+
 
 
 ## 81. Cantidad de radiobases LTE por operador (`r FECHA_TITULO_STOCK`)
@@ -281,9 +281,9 @@ tabla_101 %>%
   print
 ```
 
-<br />
 
-<br />
 
-<br />
+
+
+
 

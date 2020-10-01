@@ -25,11 +25,28 @@ fija <- import_fija()
 # 1. Telefonía Fija
 
 
-<br />
 
+## X. Ventas
+
+
+
+```{r}
+tibble::tribble(
+  ~year, ~semester, ~ventas,
+  2018, 1, 2594825643,
+  2018, 2, 2583094540,
+  2019, 1, 2617190545,
+  2019, 2, 2583844809,
+  2020, 1, 2559234085
+) %>% serie_historica_semestral_flujo(ventas, nudge_text=2.5e8)
+  
+```
 
 
 ## 1. Líneas de telefonía fija
+
+
+
 
 ```{r}
 
@@ -47,16 +64,14 @@ fija %>%
 ```
 
 
-<br />
 
-<br />
 
-<br />
-
+##### Salto
 
 
 
 ## 2. Líneas de telefonía fija por departamento (`r FECHA_TITULO_STOCK`)
+
 
 ```{r}
 
@@ -74,16 +89,15 @@ fija %>%
 
 
 
-<br />
-
-<br />
-
-<br />
 
 
 
 
 ## 3. Teléfonos Públicos
+
+
+
+
 
 ```{r}
 fija %>% 
@@ -98,16 +112,21 @@ fija %>%
 ```
 
 
+##### Salto
 
-<br />
 
-<br />
 
-<br />
+
+
 
 
 
 ## 4. Teléfonos públicos por departamento (`r FECHA_TITULO_STOCK`)
+
+
+
+
+
 ```{r}
 fija %>% 
   filter(cabezal_1 == "Líneas") %>% 
@@ -120,15 +139,20 @@ fija %>%
 
 
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 
 
 ## 5. Líneas de telefonía fija por tipo de cliente (`r FECHA_TITULO_STOCK`)
+
+
+
+
+
 
 ```{r}
 s <- fija %>% 
@@ -143,17 +167,22 @@ print(s)
 ```
 
 
-<br />
 
-<br />
 
-<br />
+##### Salto
+
+
 
 
 
 
 
 ## 6. Lineas de telefonia fija comerciales
+
+
+
+
+
 ```{r}
 fija %>% 
   filter(cliente == "Comercial") %>% 
@@ -167,16 +196,21 @@ fija %>%
 ```
 
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 
 
 
 ## 7. Líneas de telefonía fija Comerciales por departamento (`r FECHA_TITULO_STOCK`)
+
+
+
+
+
 
 ```{r}
 
@@ -190,16 +224,21 @@ fija %>%
 ```
 
 
+##### Salto
 
-<br />
 
-<br />
 
-<br />
+
+
 
 
 
 ## 8. Líneas de telefonía fija residenciales
+
+
+
+
+
 ```{r}
 fija %>% 
   filter(cliente == "Residencial") %>% 
@@ -212,16 +251,21 @@ fija %>%
 
 
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 
 
 
 ## 9. Líneas de telefonía fija Residenciales por departamento (`r FECHA_TITULO_STOCK`)
+
+
+
+
+
 
 ```{r}
 fija %>% 
@@ -234,16 +278,21 @@ fija %>%
 
 
 
-<br />
 
-<br />
 
-<br />
+
+##### Salto
+
 
 
 
 
 ## 10. Kilómetros de fibra óptica instalada
+
+
+
+
+
 ```{r}
 fija %>% 
   filter(cabezal_1 == "Centrales") %>% 
@@ -256,16 +305,21 @@ fija %>%
 ```
 
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 
 
 
 ## 11. Kilómetros de fibra óptica instalada por departamento (`r FECHA_TITULO_STOCK`)
+
+
+
+
+
 
 ```{r}
 fija %>% 
@@ -278,16 +332,21 @@ fija %>%
 ```
 
 
-<br />
 
-<br />
 
-<br />
+
+
+##### Salto
 
 
 
 
 ## 12. Cómputos de telefonía fija
+
+
+
+
+
 ```{r}
 # Este es un flujo
 fija %>% 
@@ -301,16 +360,21 @@ fija %>%
 
 
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 
 
 
 ## 13. Minutos de telefonía fija a teléfonos móviles
+
+
+
+
+
 ```{r}
  fija %>% 
   filter(cabezal_1 == "Tráfico por orig (País)") %>% 
@@ -323,16 +387,21 @@ fija %>%
 
 
 
-<br />
+##### Salto
 
-<br />
 
-<br />
+
+
 
 
 
 
 ## 14. Minutos de tráfico de telefonía fija a teléfonos móviles por operador (`r FECHA_TITULO_FLUJO`)
+
+
+
+
+
 
 
 ```{r}
@@ -352,15 +421,20 @@ print(p_14)
 ```
 
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 
 
 ## 15. Minutos de tráfico de telefonía fija a red móvil de ANTEL
+
+
+
+
+
 
 ```{r}
 fija %>% 
@@ -370,22 +444,26 @@ fija %>%
   group_by(year = year(fecha), semester = semester(fecha)) %>% 
   summarize(minutos = sum(numeric, na.rm = TRUE)) %>% 
   # Es increible que esto funcione!
-  serie_historica_semestral_flujo(minutos / 1e6, nudge_text = 9) +
-  labs(y="Millones") 
+  serie_historica_semestral_flujo(minutos / 1e6, nudge_text = 9)
 ```
 
 
 
-<br />
 
-<br />
 
-<br />
+
+##### Salto
+
 
 
 
 
 ## 16. Minutos de tráfico de telefonía fija a red móvil de Movistar
+
+
+
+
+
 
 ```{r}
 fija %>% 
@@ -394,21 +472,25 @@ fija %>%
   filter(year(fecha) > 2016) %>% 
   group_by(year = year(fecha), semester = semester(fecha)) %>% 
   summarize(minutos = sum(numeric, na.rm = TRUE)) %>% 
-  serie_historica_semestral_flujo(minutos, nudge_text = 3.5e6) +
-  labs(y="Millones")
+  serie_historica_semestral_flujo(minutos, nudge_text = 3.5e6) 
 ```
 
 
-<br />
 
-<br />
 
-<br />
+
+
+
 
 
 
 
 ## 17. Minutos de tráfico de telefonía fija a red móvil de Claro
+
+
+
+
+
 
 ```{r}
 fija %>% 
@@ -422,10 +504,8 @@ fija %>%
 
 
 
-<br />
 
-<br />
 
-<br />
+
 
 
