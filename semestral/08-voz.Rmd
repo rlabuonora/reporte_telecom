@@ -208,6 +208,16 @@ serie_160 %>%
 ```
 
 
+## 141. Tráfico de voz de servicios móviles (minutos) por forma de pago (`r FECHA_TITULO_FLUJO`)
+
+```{r}
+tibble(
+    pago=c("Prepago", "Pospago"),
+    minutos=c(423125278, 1774673781)
+) %>% 
+  pie_chart(minutos, pago) %>% 
+  print
+```
 
 
 <!-- ## 141. Tráfico de voz de servicios móviles prepagos (minutos) por destino (`r FECHA_TITULO_FLUJO`) -->

@@ -35,9 +35,17 @@ month_label <- function(x) {
 ## X. Ingresos Telefonía Móvil (pesos)
 
 ```{r}
+
 ingresos %>% 
   group_by(year=year(fecha), semester=semester(fecha)) %>% 
-  summarize(ventas = sum(val)) %>% 
+  summarize(ventas = sum(val))
+
+# Corregir por los datos de Diego
+tibble(
+  year = c(2018, 2018, 2019, 2019, 2020),
+  semester = c(1, 2, 1, 2, 1),
+  ventas = c(11120628765, 11738624664, 11888263352,
+             12425439504, 12309589788)) %>% 
   serie_historica_semestral_flujo(ventas, nudge_text = 1e9)
 ```
 

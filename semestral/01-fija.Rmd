@@ -189,7 +189,12 @@ fija %>%
   filter(month(fecha) == 6 | month(fecha) == 12, 
          year(fecha) >= 2016) %>% 
   group_by(year = year(fecha), semester=semester(fecha)) %>% 
-  summarize(lineas = sum(numeric, na.rm = TRUE)-1) %>% 
+  summarize(lineas = sum(numeric, na.rm = TRUE)-1) %>%
+  # Corregir por dato de Diego
+  mutate(lineas = if_else(
+    year == 2019 & semester == 2,
+    198228, lineas
+    )) %>% 
   serie_historica_semestral_stock(lineas, nudge_text=9e3)
 
   
@@ -246,6 +251,11 @@ fija %>%
          year(fecha) >= 2016) %>% 
   group_by(year = year(fecha), semester=semester(fecha)) %>% 
   summarize(lineas = sum(numeric, na.rm = TRUE)) %>% 
+  # Corregir por dato de Diego
+  mutate(lineas = if_else(
+    year == 2019 & semester == 2,
+    972717, lineas
+  )) %>%
   serie_historica_semestral_stock(lineas, nudge_text = 5e4)
 ```
 
@@ -294,13 +304,18 @@ fija %>%
 
 
 ```{r}
-fija %>% 
-  filter(cabezal_1 == "Centrales") %>% 
-  filter(cabezal_2 == "Fib") %>% 
-  filter(month(fecha) == 12 | month(fecha) == 6) %>% 
-  filter(year(fecha) > 2016) %>% 
-  group_by(year = year(fecha), semester=semester(fecha)) %>%
-  summarize(kms = sum(numeric, na.rm = TRUE)) %>% 
+# fija %>% 
+#   filter(cabezal_1 == "Centrales") %>% 
+#   filter(cabezal_2 == "Fib") %>% 
+#   filter(month(fecha) == 12 | month(fecha) == 6) %>% 
+#   filter(year(fecha) > 2016) %>% 
+#   group_by(year = year(fecha), semester=semester(fecha)) %>%
+#   summarize(kms = sum(numeric, na.rm = TRUE)) %>% 
+data.frame(
+        year = c(2017, 2017, 2018, 2018, 2019, 2019, 2020),
+    semester = c(1L, 2L, 1L, 2L, 1L, 2L, 1L),
+         kms = c(11327, 11457, 11574, 11730, 11771, 11805, 11855)
+  ) %>% 
   serie_historica_semestral_stock(kms, nudge_text = 6e2)
 ```
 
