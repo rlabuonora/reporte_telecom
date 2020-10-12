@@ -57,8 +57,14 @@ fija %>%
   filter(month(fecha) == 6 | month(fecha) == 12, year(fecha) >= 2016) %>% 
   group_by(year=year(fecha), semester=semester(fecha)) %>% 
   summarize(lineas = sum(numeric, na.rm = TRUE)) %>% 
-  serie_historica_semestral_stock(lineas /1e3, nudge_text = 5e1) +
-  labs(y="Miles")
+  # Dato Diego
+  mutate(lineas = case_when(
+    year == 2016 & semester==1 ~ 1112829,
+    year == 2016 & semester==2 ~ 1112235,
+    year == 2017 & semester==2 ~ 1136229,
+    year == 2019 & semester==1 ~ 1170945,
+    TRUE ~ lineas)) %>% 
+  serie_historica_semestral_stock(lineas, nudge_text = 5e4)
 
 ```
 
@@ -190,9 +196,11 @@ fija %>%
   group_by(year = year(fecha), semester=semester(fecha)) %>% 
   summarize(lineas = sum(numeric, na.rm = TRUE)-1) %>%
   # Corregir por dato de Diego
-  mutate(lineas = if_else(
-    year == 2019 & semester == 2,
-    198228, lineas
+  mutate(lineas = case_when(
+    year == 2019 & semester == 2~187541,
+    year == 2019 & semester == 1~198228,
+    #198228, 
+    TRUE~lineas
     )) %>% 
   serie_historica_semestral_stock(lineas, nudge_text=9e3)
 
@@ -252,7 +260,7 @@ fija %>%
   summarize(lineas = sum(numeric, na.rm = TRUE)) %>% 
   # Corregir por dato de Diego
   mutate(lineas = if_else(
-    year == 2019 & semester == 2,
+    year == 2019 & semester == 1,
     972717, lineas
   )) %>%
   serie_historica_semestral_stock(lineas, nudge_text = 5e4)
@@ -424,11 +432,14 @@ fija %>%
 
 p_14 <- fija %>% 
   filter(cabezal_1 == "Tráfico por orig (País)") %>% 
-  filter(cabezal_2 %in% c("Ancel min", "TMU min", "AMWU min")) %>% 
+  filter(cabezal_2 %in% c("Ancel min", "TMU min", "AMWU min")) %>%
+  mutate(empresa=str_remove(cabezal_2, " min")) %>% 
+  mutate(empresa=if_else(empresa == "Ancel", "Antel", empresa)) %>% 
   filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL),
          semester(fecha) == semester(FECHA_INFORME_SEMESTRAL)) %>% 
-  group_by(empresa=str_remove(cabezal_2, " min")) %>% 
+  group_by(empresa) %>% 
   summarize(minutos = sum(numeric, na.rm = TRUE)) %>% 
+  mutate(empresa == if_else(empresa == "Ancel", "Antel", empresa)) %>% 
   pie_chart(minutos, empresa)
   
 print(p_14)
@@ -458,7 +469,7 @@ fija %>%
   group_by(year = year(fecha), semester = semester(fecha)) %>% 
   summarize(minutos = sum(numeric, na.rm = TRUE)) %>% 
   # Es increible que esto funcione!
-  serie_historica_semestral_flujo(minutos / 1e6, nudge_text = 9)
+  serie_historica_semestral_flujo(minutos, nudge_text = 9e3)
 ```
 
 
