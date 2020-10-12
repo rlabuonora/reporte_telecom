@@ -49,15 +49,6 @@ serie_109 %>%
 ```
 
 
-
-
-
-
-
-
-
-
-
 ## 90. Servicios móviles por operador (`r FECHA_TITULO_STOCK`)
 
 ```{r}
@@ -74,11 +65,6 @@ serie_110 <- servicios %>%
   pie_chart(numeric, empresa) %>% 
   print
 ```
-
-
-
-
-
 
 
 ##### Salto
@@ -101,16 +87,6 @@ serie_111 %>%
   print
 ```
 
-
-
-
-
-
-
-
-
-
-
 ## 92. Suscriptores a la telefonía móvil celular
 ```{r}
 serie_112 <- servicios %>% 
@@ -125,12 +101,7 @@ serie_112 %>%
 ```
 
 
-
-
-
 ##### Salto
-
-
 
 
 ## 93. Suscriptores a la telefonía móvil celular por operador (`r FECHA_TITULO_STOCK`)
@@ -146,17 +117,6 @@ serie_113 %>%
   pie_chart(val, empresa) %>% 
   print
 ```
-
-
-
-
-
-
-
-
-
-
-
 
 ## 94. Servicios M2M
 ```{r}
@@ -176,10 +136,6 @@ serie_114 %>%
 ##### Salto
 
 
-
-
-
-
 ## 95. Servicios M2M por operador (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_115 <- servicios %>% 
@@ -196,14 +152,6 @@ serie_115 %>%
 
 
 
-
-
-
-
-
-
-
-
 ## 96. Internet móvil (computadoras y tablets)
 ```{r}
 serie_116 <- servicios %>% 
@@ -217,11 +165,6 @@ serie_116 <- servicios %>%
 serie_116 %>% 
   serie_historica_semestral_stock(val, nudge_text = 2e4)
 ```
-
-
-
-
-
 
 ##### Salto
 
@@ -246,14 +189,6 @@ serie_117 %>%
 
 
 
-
-
-
-
-
-
-
-
 ## 98. Suscriptores de banda ancha móvil
 ```{r}
 serie_118 <-  servicios %>% 
@@ -268,13 +203,7 @@ serie_118 %>%
 ```
 
 
-
-
-
 ##### Salto
-
-
-
 
 
 ## 99. Suscriptores de banda ancha móvil por operador (`r FECHA_TITULO_STOCK`)
@@ -290,14 +219,6 @@ serie_119 %>%
   pie_chart(val, empresa) %>% 
   print
 ```
-
-
-
-
-
-
-
-
 
 
 ## X. Servicios móviles según forma de pago (`r FECHA_TITULO_STOCK`)
@@ -320,13 +241,7 @@ serie_120 %>%
 ```
 
 
-
-
-
 ##### Salto
-
-
-
 
 
 ## X. Servicios Móviles Prepagos
@@ -355,15 +270,6 @@ bind_rows(serie_pre_2018, serie_post_2019) %>%
 ```
 
 
-
-
-
-
-
-
-
-
-
 ## X. Servicios móviles prepagos por operador  (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_120 <- servicios %>% 
@@ -386,14 +292,6 @@ serie_120 %>%
 ##### Salto
 
 
-
-
-
-
-
-
-
-
 ## X. Servicios móviles prepagos por tipo  (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_120 <- servicios %>% 
@@ -413,15 +311,6 @@ serie_120 %>%
                            nudge_y = c(0, -2, 0)) %>% 
   print
 ```
-
-
-
-
-
-
-
-
-
 
 
 
@@ -455,14 +344,6 @@ serie_121 %>%
 
 ##### Salto
 
-
-
-
-
-
-
-
-
 ## X. Servicios móviles pospagos por operador (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_120 <- servicios %>% 
@@ -481,14 +362,6 @@ serie_120 %>%
   pie_chart(val, empresa) %>% 
   print
 ```
-
-
-
-
-
-
-
-
 
 
 
@@ -512,14 +385,7 @@ serie_120 %>%
 ```
 
 
-
-
-
-
 ##### Salto
-
-
-
 
 ## 100. Suscriptores de banda ancha móvil según forma de pago (`r FECHA_TITULO_STOCK`)
 ```{r}
@@ -535,16 +401,6 @@ serie_120 %>%
   print
 ```
 
-
-
-
-
-
-
-
-
-
-
 ## 107. Suscriptores prepagos de banda ancha móvil
 ```{r}
 serie_127 <- servicios %>% 
@@ -559,13 +415,7 @@ serie_127 %>%
   serie_historica_semestral_stock(val, nudge_text = 1e5) 
 ```
 
-
-
-
-
 ##### Salto
-
-
 
 
 ## 108. Suscriptores prepagos de banda ancha móvil por operador (`r FECHA_TITULO_STOCK`)
@@ -586,17 +436,6 @@ serie_128 %>%
 ```
 
 
-
-
-
-
-
-
-
-
-
-
-
 # X. Suscriptores pospagos de banda ancha móvil
 
 ```{r}
@@ -612,12 +451,6 @@ serie_121 <-  servicios %>%
 serie_121 %>% 
   serie_historica_semestral_stock(val, nudge_text = 2e5)
 ```
-
-
-
-
-
-
 
 
 ##### Salto
@@ -641,15 +474,6 @@ serie_136 %>%
 ```
 
 
-
-
-
-
-
-
-
-
-
 ## 101. Suscriptores a la telefonía móvil según forma de pago (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_121 <- servicios %>% 
@@ -665,14 +489,7 @@ serie_121 %>%
 
 
 
-
-
-
-
 ##### Salto
-
-
-
 
 ## 102. Suscriptores prepagos a la telefonía móvil
 ```{r}
@@ -688,16 +505,6 @@ serie_122 <- servicios %>%
 serie_122 %>% 
   serie_historica_semestral_stock(val, nudge_text = 2e5)
 ```
-
-
-
-
-
-
-
-
-
-
 
 
 ## 103. Suscriptores prepagos a la telefonía móvil por operador (`r FECHA_TITULO_STOCK`)
@@ -740,14 +547,6 @@ serie_129 <- servicios %>%
 serie_129 %>% 
   serie_historica_semestral_stock(val, nudge_text = 1e5)
 ```
-
-
-
-
-
-
-
-
 
 
 ## 110. Suscriptores pospagos a la telefonía móvil celular por operador (`r FECHA_TITULO_STOCK`)
