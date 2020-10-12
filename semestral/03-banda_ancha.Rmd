@@ -553,20 +553,20 @@ tribble(
   2019,   2,       684834, 
   2020,   1,       974834,
 ) %>% 
-  serie_historica_semestral_flujo()
+  serie_historica_semestral_flujo(val, nudge_text=10e3)
   
 ```
 
-X. Capacidad propioa de acceso a Internet por operador (`r FECHA_TITULO_STOCK`)
+X. Capacidad propia de acceso a Internet por operador (`r FECHA_TITULO_STOCK`)
 ```{r}
 
-tibble(
+tribble(
   ~empresa, ~val,
   "Telefónica", 36050,
   "Telstar",    41984,
   "Antel",      896800
 ) %>% 
-  pie_chart(val, empresas, nudge_x = c(0, 0, 0)) %>% 
+  pie_chart(val, empresa, nudge_x = c(0, 0, 0)) %>% 
   print
   
 ```

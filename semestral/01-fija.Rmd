@@ -182,7 +182,7 @@ print(s)
 
 
 
-## 6. Lineas de telefonia fija comerciales
+## 6. Líneas de telefonía fija comerciales
 
 
 
