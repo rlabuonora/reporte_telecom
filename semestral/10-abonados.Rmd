@@ -29,6 +29,19 @@ abonados_por_operador_depto <- import_abonados_por_empresa_depto()
 
 # 10. TV para abonados
 
+## X. Ingresos TV para abonados (pesos corrientes)
+```{r}
+tribble(
+  ~year, ~semester, ~ingresos,
+  2018, 1, 5343718684,
+  2018, 2, 5403859517, 
+  2019, 1, 5490827913,
+  2019, 2, 5494393113,
+  2020, 1, 5507277001
+) %>% 
+  serie_historica_semestral_flujo(ingresos)
+```
+
 
 ## 1. Servicios de TV para abonados en todo el país
 ```{r}

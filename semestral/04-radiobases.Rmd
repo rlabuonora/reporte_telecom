@@ -36,9 +36,9 @@ month_label <- function(x) {
 
 ```{r}
 
-ingresos %>% 
-  group_by(year=year(fecha), semester=semester(fecha)) %>% 
-  summarize(ventas = sum(val))
+# ingresos %>% 
+#   group_by(year=year(fecha), semester=semester(fecha)) %>% 
+#   summarize(ventas = sum(val))
 
 # Corregir por los datos de Diego
 tibble(

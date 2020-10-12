@@ -449,10 +449,10 @@ serie_90 %>%
 
 ## 66. Tráfico de datos de servicios de banda ancha fija (terabytes)
 ```{r}
-banda_ancha_trafico %>% 
-  filter(fecha < as.Date("2020-07-01")) %>% 
-  group_by(year = year(fecha), semester=semester(fecha)) %>% 
-  summarize(minutos=sum(numeric))
+# banda_ancha_trafico %>% 
+#   filter(fecha < as.Date("2020-07-01")) %>% 
+#   group_by(year = year(fecha), semester=semester(fecha)) %>% 
+#   summarize(minutos=sum(numeric))
 
 tibble(
   year = c(2018, 2018, 2019, 2019, 2020),
@@ -505,7 +505,7 @@ tibble(
 #   summarize(minutos=sum(numeric)) 
 
 tibble(
-  cliente = c("Gobierno", "Empresarial", "Residencial"),
+  cliente = c("Gobierno", "Residencial", "Empresarial"),
   minutos = c(6076, 1104125, 27925)) %>% 
   pie_chart(minutos, cliente, nudge_x = c(-6, 0, 4)) %>% 
   print
@@ -542,7 +542,7 @@ tibble(
 ```
 
 
-X. Capacidad propioa de acceso a Internet (Mbps) (`r FECHA_TITULO_FLUJO`)
+## X. Capacidad propia de acceso a Internet (Mbps) (`r FECHA_TITULO_FLUJO`)
 ```{r}
 
 tribble(
@@ -553,11 +553,11 @@ tribble(
   2019,   2,       684834, 
   2020,   1,       974834,
 ) %>% 
-  serie_historica_semestral_flujo(val, nudge_text=10e3)
+  serie_historica_semestral_flujo(val, nudge_text=1e5)
   
 ```
 
-X. Capacidad propia de acceso a Internet por operador (`r FECHA_TITULO_STOCK`)
+## X. Capacidad propia de acceso a Internet por operador (`r FECHA_TITULO_STOCK`)
 ```{r}
 
 tribble(
@@ -566,7 +566,7 @@ tribble(
   "Telstar",    41984,
   "Antel",      896800
 ) %>% 
-  pie_chart(val, empresa, nudge_x = c(0, 0, 0)) %>% 
+  pie_chart(val, empresa, nudge_x = c(-4, 4, 0)) %>% 
   print
   
 ```
