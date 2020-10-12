@@ -102,7 +102,8 @@ ldi %>%
   group_by(empresa) %>% 
   summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
   filter(minutos > 0) %>% 
-  pie_chart(minutos, empresa)
+  pie_chart(minutos, empresa) %>% 
+  print
 
 ```
 
@@ -183,7 +184,17 @@ ldi %>%
          servicio == "Mn") %>% 
   group_by(year=year(fecha), semester=semester(fecha)) %>% 
   summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
-  filter(!is.na(year), year > 2016) %>% 
+  filter(!is.na(year), year > 2016) 
+# corregir por datos diego
+tribble(
+  ~year, ~semester, ~minutos,
+  2017,   1      , 6653595,
+  2017,   2      , 7297016,
+  2018,   1      , 6552425,
+  2018,   2      , 6617219,
+  2019,   1      , 6574181,
+  2019,   2      , 6112582,
+  2020,   1      , 5776782) %>% 
   serie_historica_semestral_flujo(minutos, nudge_text=6e5)
 
 ```
@@ -261,57 +272,56 @@ ldi %>%
 
 
 
-## 33. Minutos de tráfico de LDI saliente de Telefonía Fija según cliente ( `r FECHA_TITULO_FLUJO`)
-```{r}
-ldi %>% 
-  filter(sentido == "desde", 
-         servicio == "Mn") %>% 
-  filter(red %in% c("AMM", "Resto país")) %>% # Solo Fija
-  filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL),
-         semester(fecha) == semester(FECHA_INFORME_SEMESTRAL)) %>% 
-  group_by(tipo) %>% 
-  summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
-  pie_chart(minutos, tipo) %>% 
-  print
+<!-- ## 33. Minutos de tráfico de LDI saliente de Telefonía Fija según cliente ( `r FECHA_TITULO_FLUJO`) -->
+<!-- ```{r} -->
+<!-- ldi %>%  -->
+<!--   filter(sentido == "desde",  -->
+<!--          servicio == "Mn") %>%  -->
+<!--   filter(red %in% c("AMM", "Resto país")) %>% # Solo Fija -->
+<!--   filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL), -->
+<!--          semester(fecha) == semester(FECHA_INFORME_SEMESTRAL)) %>%  -->
+<!--   group_by(tipo) %>%  -->
+<!--   summarize(minutos = sum(numeric, na.rm=TRUE)) %>%  -->
+<!--   pie_chart(minutos, tipo) %>%  -->
+<!--   print -->
 
-```
-
-
-##### Salto
+<!-- ``` -->
 
 
-## 34. Minutos de tráfico de LDI saliente de Telefonía Fija de clientes Prepago
-
-```{r}
-ldi %>% 
-  filter(tipo %in% c("Prepago"), 
-         sentido == "desde", 
-         servicio == "Mn") %>% 
-  filter(red %in% c("AMM", "Resto país")) %>% # Solo Fija
-  group_by(year=year(fecha), semester=semester(fecha)) %>% 
-  summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
-  filter(!is.na(year), year > 2016) %>% 
-  serie_historica_semestral_flujo(minutos, nudge_text=2e4)
-
-```
-
-## 35. Minutos de tráfico de LDI saliente de Telefonía Fija de clientes Pospago
-```{r}
-ldi %>% 
-  filter(tipo %in% c("Pospago"), 
-         sentido == "desde", 
-         servicio == "Mn") %>% 
-  filter(red %in% c("AMM", "Resto país")) %>% # Solo Fija
-  group_by(year=year(fecha), semester=semester(fecha)) %>% 
-  summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
-  filter(!is.na(year), year > 2016) %>% 
-  serie_historica_semestral_flujo(minutos, nudge_text=1e6)
-
-```
+<!-- ##### Salto -->
 
 
+<!-- ## 34. Minutos de tráfico de LDI saliente de Telefonía Fija de clientes Prepago -->
 
-##### Salto
+<!-- ```{r} -->
+<!-- ldi %>%  -->
+<!--   filter(tipo %in% c("Prepago"),  -->
+<!--          sentido == "desde",  -->
+<!--          servicio == "Mn") %>%  -->
+<!--   filter(red %in% c("AMM", "Resto país")) %>% # Solo Fija -->
+<!--   group_by(year=year(fecha), semester=semester(fecha)) %>%  -->
+<!--   summarize(minutos = sum(numeric, na.rm=TRUE)) %>%  -->
+<!--   filter(!is.na(year), year > 2016) %>%  -->
+<!--   serie_historica_semestral_flujo(minutos, nudge_text=2e4) -->
+
+<!-- ``` -->
+
+<!-- ## 35. Minutos de tráfico de LDI saliente de Telefonía Fija de clientes Pospago -->
+<!-- ```{r} -->
+<!-- ldi %>%  -->
+<!--   filter(tipo %in% c("Pospago"),  -->
+<!--          sentido == "desde",  -->
+<!--          servicio == "Mn") %>%  -->
+<!--   filter(red %in% c("AMM", "Resto país")) %>% # Solo Fija -->
+<!--   group_by(year=year(fecha), semester=semester(fecha)) %>%  -->
+<!--   summarize(minutos = sum(numeric, na.rm=TRUE)) %>%  -->
+<!--   filter(!is.na(year), year > 2016) %>%  -->
+<!--   serie_historica_semestral_flujo(minutos, nudge_text=1e6) -->
+
+<!-- ``` -->
+
+
+
 
 
 
@@ -332,6 +342,10 @@ ldi %>%
 
 ```
 
+
+##### Salto
+
+
 ## 37. Minutos de tráfico de LDI saliente a Argentina
 ```{r}
 ldi %>%
@@ -345,7 +359,6 @@ ldi %>%
 ```
 
 
-##### Salto
 
 ## 38. Minutos de tráfico de LDI saliente a Brasil
 
@@ -360,6 +373,8 @@ ldi %>%
 
 ```
 
+##### Salto
+
 
 ## 39. Minutos de tráfico de LDI saliente a EUA
 ```{r}
@@ -373,7 +388,6 @@ ldi %>%
 ```
 
 
-##### Salto
 
 
 ## 40. Minutos de tráfico de LDI saliente a España
@@ -390,6 +404,8 @@ ldi %>%
 
 ```
 
+##### Salto
+
 
 ## 41. Minutos de tráfico de LDI saliente a Resto del Mundo
 
@@ -405,7 +421,6 @@ ldi %>%
 ```
 
 
-##### Salto
 
 ## 50. Minutos de tráfico de LDI entrante
 ```{r}
@@ -416,10 +431,18 @@ ldi %>%
   summarize(val = sum(numeric, na.rm=TRUE))  %>%
   filter(sentido == "hacia", servicio == "Mn") %>%
   filter(year > 2016) %>%
+  # Datos Diego
+  mutate(val = case_when(
+    year == 2019 & semester==1 ~ 39164055,
+    TRUE~val
+  )) %>% 
   serie_historica_semestral_flujo(val, nudge_text=2e6)
 
 
 ```
+
+##### Salto
+
 
 ## 51. Minutos de tráfico de LDI entrante por operador (`r FECHA_TITULO_FLUJO`)
 
@@ -436,7 +459,6 @@ ldi %>%
 ```
 
 
-##### Salto
 
 ## 52. Minutos de tráfico de LDI entrante por red destino (`r FECHA_TITULO_FLUJO`)
 
@@ -455,6 +477,8 @@ ldi %>%
 
 ```
 
+##### Salto
+
 
 ## 53. Minutos de tráfico de LDI entrante a Red Fija
 
@@ -472,7 +496,6 @@ ldi %>%
 ```
 
 
-##### Salto
 
 ## 54. Minutos de tráfico de LDI entrante en red fija por operador (`r FECHA_TITULO_FLUJO`)
 ```{r}
@@ -486,6 +509,9 @@ ldi %>%
   filter(minutos > 0) %>%
   barras_horizontales(minutos, empresa, nudge_text = 2e6)
 ```
+
+
+##### Salto
 
 ## 55. Minutos de tráfico de LDI entrantes a Redes Móviles
 
@@ -502,7 +528,6 @@ ldi %>%
 ```
 
 
-##### Salto
 
 
 ## 56. Minutos de tráfico de LDI entrantes por red móvil destino (`r FECHA_TITULO_FLUJO`)
@@ -518,6 +543,10 @@ ldi %>%
   print
 ```
 
+
+##### Salto
+
+
 ## 57. Minutos de tráfico de LDI entrante a red móvil de Antel
 
 ```{r}
@@ -529,7 +558,7 @@ ldi %>%
    summarize(minutos = sum(numeric, na.rm=TRUE)) %>%
     # Dato Diego
    mutate(minutos = if_else(year == 2019 & semester==1, 7508040, minutos)) %>%
-   filter(!is.na(year), year > 2016) %>%
+   filter(!is.na(year), year > 2018) %>%
    serie_historica_semestral_flujo(minutos, 6e5)
 ```
 
@@ -568,7 +597,7 @@ ldi %>%
    # Dato Diego
    mutate(minutos = if_else(year == 2019 & semester==1, 4164968, minutos)) %>%
    filter(!is.na(year), year > 2016) %>%
-  serie_historica_semestral_flujo(minutos, 1e6)
+  serie_historica_semestral_flujo(minutos, 6e5)
 ```
 
 
@@ -602,7 +631,7 @@ ldi %>%
    group_by(year=year(fecha), semester=semester(fecha)) %>%
    summarize(minutos = sum(numeric, na.rm=TRUE)) %>%
    # Dato Diego
-   mutate(minutos = if_else(year == 2019 & semester==1, 6805070, minutos)) %>%
+   mutate(minutos = if_else(year == 2019 & semester==1, 6805470, minutos)) %>%
    filter(!is.na(year), year > 2016) %>%
    serie_historica_semestral_flujo(minutos, 2e6)
 ```
