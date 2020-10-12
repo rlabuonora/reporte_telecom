@@ -48,7 +48,8 @@ serie_150 <- voz %>%
 serie_150 %>% 
   ungroup %>% 
   slice(4:n()) %>% 
-  serie_historica_anual(numeric/1e6, 5e2) + 
+  mutate(numeric=numeric/1e6)
+  serie_historica_anual(numeric, 5e2) + 
   labs(y = "Millones")
 ```
 
@@ -97,7 +98,8 @@ serie_153 <- voz %>%
 
 serie_153 %>% 
   filter(year >= 2012) %>% 
-  serie_historica_anual(numeric/1e3, nudge_text = 4e5) + 
+  mutate(mensajes=mensajes/1e3) %>% 
+  serie_historica_anual(numeric, nudge_text = 4e5) + 
   labs(y="Miles")
 ```
 
@@ -133,7 +135,8 @@ serie_155 <- voz %>%
 serie_155 %>% 
   ungroup %>% 
   slice(4:n()) %>% 
-  serie_historica_anual(numeric/1e3, 4e4) + 
+  mutate(mensajes=mensajes/1e3) %>% 
+  serie_historica_anual(numeric, 4e4) + 
   labs("Miles")
 ```
 
