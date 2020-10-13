@@ -475,10 +475,6 @@ trafico_voz_historico %>%
 ```
 
 
-##### Salto
-
-
-
 ## 156. Tráfico de voz a red propia de servicios móviles pospagos (minutos) por operador (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
