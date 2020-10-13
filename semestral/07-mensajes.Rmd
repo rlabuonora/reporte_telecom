@@ -43,6 +43,7 @@ serie_141 %>%
   labs(y="Millones")
 ```
 
+##### Salto
 
 
 ## 124. Mensajes de texto enviados por operador (`r FECHA_TITULO_FLUJO`)
@@ -60,7 +61,6 @@ serie_142 %>%
 
 ```
 
-##### Salto
 
 
 ## 125. Mensajes de texto enviados según destino (`r FECHA_TITULO_FLUJO`)
@@ -81,6 +81,7 @@ serie_143 %>%
   print
 ```
 
+##### Salto
 
 
 ## 126. Mensajes de texto enviados al exterior 
@@ -98,7 +99,6 @@ serie_144 %>%
 ```
 
 
-##### Salto
 
 
 ## 127. Mensajes de texto enviados al exterior por operador (`r FECHA_TITULO_FLUJO`)
@@ -118,6 +118,7 @@ serie_145 %>%
 ```
 
 
+##### Salto
 
 ## 128. Mensajes de texto enviados a otras redes móviles
 ```{r}
@@ -134,7 +135,6 @@ serie_146 %>%
 
 ```
 
-##### Salto
 
 
 ## 129. Mensajes de texto enviados a otras redes móviles por operador (`r FECHA_TITULO_FLUJO`)
@@ -151,6 +151,8 @@ serie_147 %>%
   pie_chart(mensajes, empresa) %>% 
   print
 ```
+
+##### Salto
 
 
 <!-- # 148. Mensajes de texto enviados a red propia -->

@@ -565,7 +565,6 @@ ldi %>%
 
 
 
-##### Salto
 
 
 ## 58. Minutos de tráfico entrante de LDI en red móvil de Antel por operador (`r FECHA_TITULO_FLUJO`)
@@ -585,6 +584,8 @@ ldi %>%
 
 ```
 
+##### Salto
+
 
 ## 59. Minutos de tráfico de LDI entrantes a red móvil de Movistar
 
@@ -603,7 +604,6 @@ ldi %>%
 
 
 
-##### Salto
 
 
 ## 60. Minutos de tráfico entrante de LDI en red móvil de Telefónica por operador (`r FECHA_TITULO_FLUJO`)
@@ -622,6 +622,8 @@ ldi %>%
 
 ```
 
+##### Salto
+
 
 ## 61. Minutos de tráfico de LDI entrantes a red móvil de Claro
 ```{r}
@@ -639,7 +641,6 @@ ldi %>%
 
 
 
-##### Salto
 
 
 ## 62. Minutos de tráfico de LDI entrante a red móvil de CLARO por operador (`r FECHA_TITULO_FLUJO`)

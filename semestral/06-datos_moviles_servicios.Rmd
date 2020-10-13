@@ -48,6 +48,8 @@ serie_109 %>%
   serie_historica_semestral_stock(numeric, nudge_text = 3e5)
 ```
 
+##### Salto
+
 
 ## 90. Servicios móviles por operador (`r FECHA_TITULO_STOCK`)
 
@@ -67,7 +69,6 @@ serie_110 <- servicios %>%
 ```
 
 
-##### Salto
 
 
 ## 91. Servicios móviles por tipo (`r FECHA_TITULO_STOCK`)
@@ -87,6 +88,9 @@ serie_111 %>%
   print
 ```
 
+##### Salto
+
+
 ## 92. Suscriptores a la telefonía móvil celular
 ```{r}
 serie_112 <- servicios %>% 
@@ -102,7 +106,6 @@ serie_112 %>%
 ```
 
 
-##### Salto
 
 
 ## 93. Suscriptores a la telefonía móvil celular por operador (`r FECHA_TITULO_STOCK`)
@@ -118,6 +121,10 @@ serie_113 %>%
   pie_chart(val, empresa) %>% 
   print
 ```
+
+
+##### Salto
+
 
 ## 94. Servicios M2M
 ```{r}
@@ -135,7 +142,6 @@ serie_114 %>%
 
 
 
-##### Salto
 
 
 ## 95. Servicios M2M por operador (`r FECHA_TITULO_STOCK`)
@@ -151,6 +157,8 @@ serie_115 %>%
   pie_chart(val, empresa) %>% 
   print
 ```
+
+##### Salto
 
 
 
@@ -168,7 +176,6 @@ serie_116 %>%
   serie_historica_semestral_stock(val, nudge_text = 2e4)
 ```
 
-##### Salto
 
 
 
@@ -190,6 +197,8 @@ serie_117 %>%
 ```
 
 
+##### Salto
+
 
 ## 98. Suscriptores de banda ancha móvil
 ```{r}
@@ -206,7 +215,6 @@ serie_118 %>%
 ```
 
 
-##### Salto
 
 
 ## 99. Suscriptores de banda ancha móvil por operador (`r FECHA_TITULO_STOCK`)
@@ -222,6 +230,8 @@ serie_119 %>%
   pie_chart(val, empresa) %>% 
   print
 ```
+
+##### Salto
 
 
 ## X. Servicios móviles según forma de pago (`r FECHA_TITULO_STOCK`)
@@ -244,7 +254,6 @@ serie_120 %>%
 ```
 
 
-##### Salto
 
 
 ## X. Servicios Móviles Prepagos
@@ -273,6 +282,9 @@ bind_rows(serie_pre_2018, serie_post_2019) %>%
 ```
 
 
+##### Salto
+
+
 ## X. Servicios móviles prepagos por operador  (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_120 <- servicios %>% 
@@ -292,7 +304,6 @@ serie_120 %>%
   print
 ```
 
-##### Salto
 
 
 ## X. Servicios móviles prepagos por tipo  (`r FECHA_TITULO_STOCK`)
@@ -314,6 +325,8 @@ serie_120 %>%
                            nudge_y = c(0, -2, 0)) %>% 
   print
 ```
+
+##### Salto
 
 
 
@@ -340,12 +353,12 @@ serie_121 <-  servicios %>%
   summarize(val = sum(numeric, na.rm = TRUE))
 
 serie_121 %>% 
-  serie_historica_semestral_stock(val, nudge_text = 2e5)
+  serie_historica_semestral_stock(val, nudge_text = 2e5) +
+  scale_x_discrete(expand=expansion(add=c(2, 2)))
 ```
 
 
 
-##### Salto
 
 ## X. Servicios móviles pospagos por operador (`r FECHA_TITULO_STOCK`)
 ```{r}
@@ -366,6 +379,8 @@ serie_120 %>%
   print
 ```
 
+
+##### Salto
 
 
 ## X. Servicios móviles pospagos por tipo (`r FECHA_TITULO_STOCK`)
@@ -388,7 +403,6 @@ serie_120 %>%
 ```
 
 
-##### Salto
 
 ## 100. Suscriptores de banda ancha móvil según forma de pago (`r FECHA_TITULO_STOCK`)
 ```{r}
@@ -404,6 +418,9 @@ serie_120 %>%
   print
 ```
 
+##### Salto
+
+
 ## 107. Suscriptores prepagos de banda ancha móvil
 ```{r}
 serie_127 <- servicios %>% 
@@ -415,10 +432,10 @@ serie_127 <- servicios %>%
   summarize(val = sum(numeric, na.rm = TRUE))
 
 serie_127 %>% 
-  serie_historica_semestral_stock(val, nudge_text = 1e5) 
+  serie_historica_semestral_stock(val, nudge_text = 1e5) +
+  scale_x_discrete(expand=expansion(add=c(2, 2)))
 ```
 
-##### Salto
 
 
 ## 108. Suscriptores prepagos de banda ancha móvil por operador (`r FECHA_TITULO_STOCK`)
@@ -439,6 +456,9 @@ serie_128 %>%
 ```
 
 
+##### Salto
+
+
 # X. Suscriptores pospagos de banda ancha móvil
 
 ```{r}
@@ -452,11 +472,9 @@ serie_121 <-  servicios %>%
   summarize(val = sum(numeric, na.rm = TRUE))
 
 serie_121 %>% 
-  serie_historica_semestral_stock(val, nudge_text = 2e5)
+  serie_historica_semestral_stock(val, nudge_text = 2e5) +
+  scale_x_discrete(expand=expansion(add=c(2, 2)))
 ```
-
-
-##### Salto
 
 
 
@@ -476,6 +494,8 @@ serie_136 %>%
   print
 ```
 
+##### Salto
+
 
 ## 101. Suscriptores a la telefonía móvil según forma de pago (`r FECHA_TITULO_STOCK`)
 ```{r}
@@ -492,7 +512,6 @@ serie_121 %>%
 
 
 
-##### Salto
 
 ## 102. Suscriptores prepagos a la telefonía móvil
 ```{r}
@@ -506,8 +525,12 @@ serie_122 <- servicios %>%
   summarize(val = sum(numeric, na.rm = TRUE))
 
 serie_122 %>% 
-  serie_historica_semestral_stock(val, nudge_text = 2e5)
+  serie_historica_semestral_stock(val, nudge_text = 2e5) +
+  scale_x_discrete(expand=expansion(add=c(2, 2)))
 ```
+
+
+##### Salto
 
 
 ## 103. Suscriptores prepagos a la telefonía móvil por operador (`r FECHA_TITULO_STOCK`)
@@ -532,8 +555,6 @@ serie_123 %>%
 
 
 
-##### Salto
-
 
 
 
@@ -548,8 +569,11 @@ serie_129 <- servicios %>%
   summarize(val = sum(numeric, na.rm = TRUE))
 
 serie_129 %>% 
-  serie_historica_semestral_stock(val, nudge_text = 1e5)
+  serie_historica_semestral_stock(val, nudge_text = 1e5) +
+  scale_x_discrete(expand=expansion(add=c(2, 2)))
 ```
+
+##### Salto
 
 
 ## 110. Suscriptores pospagos a la telefonía móvil celular por operador (`r FECHA_TITULO_STOCK`)
@@ -570,14 +594,6 @@ serie_130 %>%
 
 
 
-##### Salto
-
-
-
-
-
-
-
 ## X. Internet móvil (computadora y tablets) según forma de pago (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_125 <-  servicios %>% 
@@ -594,13 +610,7 @@ serie_125 %>%
 ```
 
 
-
-
-
-
-
-
-
+##### Salto
 
 
 ## 104. Internet móvil prepago (computadoras y tablets)
@@ -621,15 +631,6 @@ serie_124 %>%
 
 
 
-
-
-##### Salto
-
-
-
-
-
-
 ## 105. Internet móvil prepago (computadoras y tablets) por operador (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_125 <-  servicios %>% 
@@ -647,14 +648,7 @@ serie_125 %>%
 ```
 
 
-
-
-
-
-
-
-
-
+##### Salto
 
 ## 111. Internet móvil pospago (computadoras y tablets)
 ```{r}
@@ -669,14 +663,6 @@ serie_131 <- servicios %>%
 serie_131 %>% 
   serie_historica_semestral_stock(val, nudge_text = 3e4)
 ```
-
-
-
-
-##### Salto
-
-
-
 
 
 
@@ -700,13 +686,7 @@ serie_132 %>%
 ```
 
 
-
-
-
-
-
-
-
+##### Salto
 
 
 ## 113. Servicios M2M pospagos
@@ -720,16 +700,9 @@ serie_133 <- servicios %>%
   summarize(val = sum(numeric, na.rm = TRUE))
 
 serie_133 %>% 
-  serie_historica_semestral_stock(val, nudge_text = 3e4)
+  serie_historica_semestral_stock(val, nudge_text = 3e4) +
+  scale_x_discrete(expand=expansion(add=c(2, 2)))
 ```
-
-
-##### Salto
-
-
-
-
-
 
 
 ## 114. Servicios M2M posagos por operador (`r FECHA_TITULO_STOCK`)
@@ -749,12 +722,7 @@ serie_134 %>%
 ```
 
 
-
-
-
-
-
-
+##### Salto
 
 
 
@@ -772,12 +740,9 @@ serie_126 <- servicios %>%
   summarize(val = sum(numeric, na.rm = TRUE))
 
 serie_126 %>% 
-  serie_historica_semestral_stock(val, nudge_text = .15)
+  serie_historica_semestral_stock(val, nudge_text = .15) +
+  scale_x_discrete(expand=expansion(add=c(2, 2)))
 ```
-
-
-##### Salto
-
 
 
 
@@ -806,13 +771,7 @@ serie_137 %>%
 ```
 
 
-
-
-
-
-
-
-
+##### Salto
 
 
 ## 118. Tráfico de datos de servicios de banda ancha móvil (terabytes) por operador (`r FECHA_TITULO_FLUJO`)
@@ -830,15 +789,6 @@ serie_138 %>%
 ```
 
 
-
-
-
-
-##### Salto
-
-
-
-
 ## 119. Tráfico de datos de servicios de banda ancha móvil prepagos (terabytes) (`r FECHA_TITULO_FLUJO`)
 ```{r}
 serie_139 <- trafico %>%
@@ -854,13 +804,7 @@ serie_139 %>%
 ```
 
 
-
-
-
-
-
-
-
+##### Salto
 
 ## 120. Tráfico de datos de servicios de banda ancha móvil prepagos (terabytes) por operador (`r FECHA_TITULO_FLUJO`)
 ```{r}
@@ -878,15 +822,6 @@ serie_140 %>%
 ```
 
 
-
-
-
-
-
-##### Salto
-
-
-
 ## 121. Tráfico de datos de servicios de banda ancha móvil pospagos (terabytes)
 ```{r}
 serie_141 <- trafico %>%
@@ -900,16 +835,7 @@ serie_141 %>%
   serie_historica_semestral_flujo(val, nudge_text=4e3)
 ```
 
-
-
-
-
-
-
-
-
-
-
+##### Salto
 
 ## 122. Tráfico de datos de servicios de banda ancha móvil pospagos (terabytes) por operador (`r FECHA_TITULO_FLUJO`)
 ```{r}
@@ -925,11 +851,3 @@ serie_142 %>%
   pie_chart(val, empresa) %>% 
   print
 ```
-
-
-
-
-
-
-
-
