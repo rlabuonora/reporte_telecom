@@ -101,8 +101,7 @@ serie_112 <- servicios %>%
   summarize(val = sum(numeric, na.rm = TRUE))
 
 serie_112 %>% 
-  serie_historica_semestral_stock(val, nudge_text = 300e4) +
-  scale_x_discrete(expand=expansion(add=c(2, 2)))
+  serie_historica_semestral_stock(val, nudge_text = 300e4) 
 ```
 
 
@@ -136,8 +135,7 @@ serie_114 <- servicios %>%
   summarize(val = sum(numeric, na.rm = TRUE))
 
 serie_114 %>% 
-  serie_historica_semestral_stock(val, nudge_text = 2e4) +
-  scale_x_discrete(expand=expansion(add=c(1, 1)))
+  serie_historica_semestral_stock(val, nudge_text = 2e4) 
 ```
 
 
@@ -210,8 +208,7 @@ serie_118 <-  servicios %>%
   summarize(val = sum(numeric, na.rm = TRUE))
 
 serie_118 %>% 
-  serie_historica_semestral_stock(val, nudge_text = 2e5) +
-  scale_x_discrete(expand=expansion(add=c(1, 1)))
+  serie_historica_semestral_stock(val, nudge_text = 2e5) 
 ```
 
 
@@ -353,8 +350,7 @@ serie_121 <-  servicios %>%
   summarize(val = sum(numeric, na.rm = TRUE))
 
 serie_121 %>% 
-  serie_historica_semestral_stock(val, nudge_text = 2e5) +
-  scale_x_discrete(expand=expansion(add=c(2, 2)))
+  serie_historica_semestral_stock(val, nudge_text = 2e5)
 ```
 
 
@@ -432,8 +428,7 @@ serie_127 <- servicios %>%
   summarize(val = sum(numeric, na.rm = TRUE))
 
 serie_127 %>% 
-  serie_historica_semestral_stock(val, nudge_text = 1e5) +
-  scale_x_discrete(expand=expansion(add=c(2, 2)))
+  serie_historica_semestral_stock(val, nudge_text = 1e5) 
 ```
 
 
@@ -472,8 +467,7 @@ serie_121 <-  servicios %>%
   summarize(val = sum(numeric, na.rm = TRUE))
 
 serie_121 %>% 
-  serie_historica_semestral_stock(val, nudge_text = 2e5) +
-  scale_x_discrete(expand=expansion(add=c(2, 2)))
+  serie_historica_semestral_stock(val, nudge_text = 2e5)
 ```
 
 
@@ -525,8 +519,7 @@ serie_122 <- servicios %>%
   summarize(val = sum(numeric, na.rm = TRUE))
 
 serie_122 %>% 
-  serie_historica_semestral_stock(val, nudge_text = 2e5) +
-  scale_x_discrete(expand=expansion(add=c(2, 2)))
+  serie_historica_semestral_stock(val, nudge_text = 2e5)
 ```
 
 
@@ -569,8 +562,7 @@ serie_129 <- servicios %>%
   summarize(val = sum(numeric, na.rm = TRUE))
 
 serie_129 %>% 
-  serie_historica_semestral_stock(val, nudge_text = 1e5) +
-  scale_x_discrete(expand=expansion(add=c(2, 2)))
+  serie_historica_semestral_stock(val, nudge_text = 1e5)
 ```
 
 ##### Salto
@@ -700,8 +692,7 @@ serie_133 <- servicios %>%
   summarize(val = sum(numeric, na.rm = TRUE))
 
 serie_133 %>% 
-  serie_historica_semestral_stock(val, nudge_text = 3e4) +
-  scale_x_discrete(expand=expansion(add=c(2, 2)))
+  serie_historica_semestral_stock(val, nudge_text = 3e4) 
 ```
 
 
@@ -740,8 +731,7 @@ serie_126 <- servicios %>%
   summarize(val = sum(numeric, na.rm = TRUE))
 
 serie_126 %>% 
-  serie_historica_semestral_stock(val, nudge_text = .15) +
-  scale_x_discrete(expand=expansion(add=c(2, 2)))
+  serie_historica_semestral_stock(val, nudge_text = .15) 
 ```
 
 

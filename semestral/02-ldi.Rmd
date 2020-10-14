@@ -559,8 +559,7 @@ ldi %>%
     # Dato Diego
    mutate(minutos = if_else(year == 2019 & semester==1, 7508040, minutos)) %>%
    filter(!is.na(year), year > 2018) %>%
-   serie_historica_semestral_flujo(minutos, 6e5) +
-  scale_x_discrete(expand=expansion(add=c(2, 2)))
+   serie_historica_semestral_flujo(minutos, 6e5)
 ```
 
 
