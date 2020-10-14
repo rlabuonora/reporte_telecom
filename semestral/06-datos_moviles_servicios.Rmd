@@ -91,7 +91,7 @@ serie_111 %>%
 ##### Salto
 
 
-## 92. Suscriptores a la telefonía móvil celular
+## 92. Suscriptores a la telefonía móvil
 ```{r}
 serie_112 <- servicios %>% 
   filter(servicio == "Suscriptores a la telefonía móvil celular") %>% 
@@ -107,7 +107,7 @@ serie_112 %>%
 
 
 
-## 93. Suscriptores a la telefonía móvil celular por operador (`r FECHA_TITULO_STOCK`)
+## 93. Suscriptores a la telefonía móvil por operador (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_113 <- servicios %>% 
   filter(servicio == "Suscriptores a la telefonía móvil celular") %>%
@@ -568,7 +568,7 @@ serie_129 %>%
 ##### Salto
 
 
-## 110. Suscriptores pospagos a la telefonía móvil celular por operador (`r FECHA_TITULO_STOCK`)
+## 110. Suscriptores pospagos a la telefonía móvil por operador (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_130 <- servicios %>% 
   filter(servicio == "Suscriptores a la telefonía móvil celular") %>% 

@@ -105,7 +105,7 @@ serie_111 %>%
 ## 92. Suscriptores a la telefonía móvil celular
 ```{r}
 serie_112 <- servicios %>% 
-  filter(servicio == "Suscriptores a la telefonía móvil celular") %>% 
+  filter(servicio == "Suscriptores a la telefonía móvil ") %>% 
   filter(year(fecha) >= 2019) %>% 
   group_by(year=year(fecha), month=month(fecha)) %>%
   summarize(val = sum(numeric, na.rm = TRUE))
@@ -115,7 +115,7 @@ serie_112 %>%
   labs(y="Miles")
 ```
 
-## 93. Suscriptores a la telefonía móvil celular por operador (diciembre 2019)
+## 93. Suscriptores a la telefonía móvil por operador (diciembre 2019)
 ```{r}
 serie_113 <- servicios %>% 
   filter(servicio == "Suscriptores a la telefonía móvil celular") %>%
@@ -251,7 +251,7 @@ serie_120 %>%
   print
 ```
 
-## 101. Suscriptores a la telefonía móvil celular según forma de pago (diciembre 2019)
+## 101. Suscriptores a la telefonía móvil según forma de pago (diciembre 2019)
 ```{r}
 serie_121 <- servicios %>% 
   filter(year(fecha) == year(FECHA_INFORME), month(fecha) == month(FECHA_INFORME)) %>% 
@@ -270,7 +270,7 @@ serie_121 %>%
 
 
 
-## 102. Suscriptores prepagos a la telefonía móvil celular
+## 102. Suscriptores prepagos a la telefonía móvil
 ```{r}
 serie_122 <- servicios %>% 
   filter(year(fecha) == 2019) %>% 
@@ -284,7 +284,7 @@ serie_122 %>%
   labs(y="Miles")
 ```
 
-## 103. Suscriptores prepagos a la telefonía móvil celular por operador (diciembre 2019)
+## 103. Suscriptores prepagos a la telefonía móvil por operador (diciembre 2019)
 ```{r}
 serie_123 <- servicios %>% 
   filter(servicio == "Suscriptores a la telefonía móvil celular") %>% 
@@ -397,7 +397,7 @@ serie_128 %>%
   print
 ```
 
-## 109. Suscriptores pospagos a la telefonía móvil celular
+## 109. Suscriptores pospagos a la telefonía móvil
 ```{r}
 serie_129 <- servicios %>% 
   filter(year(fecha) == 2019) %>% 
