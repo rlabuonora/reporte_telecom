@@ -349,7 +349,8 @@ serie_121 <-  servicios %>%
   group_by(year=year(fecha), semester=semester(fecha)) %>%
   summarize(val = sum(numeric, na.rm = TRUE))
 
-serie_121 %>% 
+serie_pre_2018 %>% 
+  bind_rows(serie_121) %>% 
   serie_historica_semestral_stock(val, nudge_text = 2e5)
 ```
 
@@ -696,7 +697,7 @@ serie_133 %>%
 ```
 
 
-## 114. Servicios M2M posagos por operador (`r FECHA_TITULO_STOCK`)
+## 114. Servicios M2M pospagos por operador (`r FECHA_TITULO_STOCK`)
 
 ```{r}
 serie_134 <- servicios %>% 
@@ -718,21 +719,21 @@ serie_134 %>%
 
 
 
-## 106. Servicios M2M prepagos
-```{r}
+<!-- ## 106. Servicios M2M prepagos -->
+<!-- ```{r} -->
 
-# Faltan filtro de fechas
-serie_126 <- servicios %>% 
-  filter(servicio == "M2M") %>%
-  filter(pago == "Prepago") %>% 
-  filter(month(fecha) %in% c(6, 12)) %>% 
-  filter(year(fecha) >= 2019) %>% 
-  group_by(year=year(fecha), semester=semester(fecha)) %>%
-  summarize(val = sum(numeric, na.rm = TRUE))
+<!-- # Faltan filtro de fechas -->
+<!-- serie_126 <- servicios %>%  -->
+<!--   filter(servicio == "M2M") %>% -->
+<!--   filter(pago == "Prepago") %>%  -->
+<!--   filter(month(fecha) %in% c(6, 12)) %>%  -->
+<!--   filter(year(fecha) >= 2019) %>%  -->
+<!--   group_by(year=year(fecha), semester=semester(fecha)) %>% -->
+<!--   summarize(val = sum(numeric, na.rm = TRUE)) -->
 
-serie_126 %>% 
-  serie_historica_semestral_stock(val, nudge_text = .15) 
-```
+<!-- serie_126 %>%  -->
+<!--   serie_historica_semestral_stock(val, nudge_text = .15)  -->
+<!-- ``` -->
 
 
 

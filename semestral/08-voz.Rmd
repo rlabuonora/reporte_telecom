@@ -145,7 +145,7 @@ serie_155 %>%
   filter(year > 2016) %>% 
   mutate(numeric=numeric/1e3) %>% 
   serie_historica_semestral_flujo(numeric, 4e4) + 
-  labs("Miles")
+  labs(y="Miles")
 ```
 
 

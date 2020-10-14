@@ -35,12 +35,15 @@ serie_141 <- mensajes %>%
   filter( a %in% c("Antel", "Claro", "Movistar", "Exterior")) %>% 
   group_by(year = year(fecha), semester = semester(fecha)) %>% 
   filter(year(fecha) > 2016) %>% 
-  summarize(mensajes = sum(numeric))
+  summarize(mensajes = sum(numeric)) %>% 
+  # Datos Diego
+  mutate(mensajes = case_when(
+    year == 2019 & semester==1 ~ 434979231,
+    TRUE~mensajes
+  ))
 
 serie_141 %>% 
-  mutate(mensajes=mensajes/1e6) %>% 
-  serie_historica_semestral_flujo(mensajes, nudge_text = 3e2) +
-  labs(y="Millones")
+  serie_historica_semestral_flujo(mensajes) 
 ```
 
 ##### Salto
@@ -90,12 +93,15 @@ serie_144 <- mensajes %>%
   filter(a == "Exterior") %>% 
   group_by(year = year(fecha), semester=semester(fecha)) %>% 
   filter(year(fecha) > 2016) %>% 
-  summarize(mensajes = sum(numeric)) 
+  summarize(mensajes = sum(numeric)) %>% 
+  # Datos Diego
+  mutate(mensajes = case_when(
+    year == 2019 & semester==1 ~ 13073724,
+    TRUE~mensajes
+  ))
 
 serie_144 %>% 
-  mutate(mensajes=mensajes/1e3) %>% 
-  serie_historica_semestral_flujo(mensajes, nudge_text = 1e4) +
-  labs(y="Miles")
+  serie_historica_semestral_flujo(mensajes, nudge_text = 1e4) 
 ```
 
 
@@ -125,7 +131,7 @@ serie_145 %>%
 serie_146 <- mensajes %>% 
   filter(a != empresa & a != "Exterior") %>% 
   group_by(year = year(fecha), semester=semester(fecha)) %>% 
-  filter(year(fecha) > 2016) %>% 
+  filter(year(fecha) > 2017) %>% 
   summarize(mensajes = sum(numeric))
 
 serie_146 %>% 
