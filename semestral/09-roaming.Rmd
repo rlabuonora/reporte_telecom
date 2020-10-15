@@ -149,19 +149,19 @@ serie_172 %>%
 ```
 
 
-## 170. Tráfico de voz de Roaming de LDI (minutos)
+<!-- ## 170. Tráfico de voz de Roaming de LDI (minutos) -->
 
-```{r}
-serie_173 <- roaming %>% 
-  filter(voz == "Tráfico de voz") %>%
-  filter(destino %in% c("RLDI")) %>% 
-  group_by(year = year(fecha), 
-           semester=semester(fecha)) %>% 
-  summarize(numeric = sum(numeric, na.rm = TRUE))
+<!-- ```{r} -->
+<!-- serie_173 <- roaming %>%  -->
+<!--   filter(voz == "Tráfico de voz") %>% -->
+<!--   filter(destino %in% c("RLDI")) %>%  -->
+<!--   group_by(year = year(fecha),  -->
+<!--            semester=semester(fecha)) %>%  -->
+<!--   summarize(numeric = sum(numeric, na.rm = TRUE)) -->
 
-serie_173 %>% 
-  serie_historica_semestral_flujo(numeric, nudge_text = .5e5)
-```
+<!-- serie_173 %>%  -->
+<!--   serie_historica_semestral_flujo(numeric, nudge_text = .5e5) -->
+<!-- ``` -->
 
 ##### Salto
 

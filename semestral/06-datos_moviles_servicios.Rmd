@@ -455,7 +455,7 @@ serie_128 %>%
 ##### Salto
 
 
-# X. Suscriptores pospagos de banda ancha móvil
+## X. Suscriptores pospagos de banda ancha móvil
 
 ```{r}
 serie_121 <-  servicios %>% 

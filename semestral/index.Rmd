@@ -31,10 +31,8 @@ FECHA_TITULO_FLUJO <-  "Primer Semestre 2020"
 ```
 
 
-
 ```{r child = '02-ldi.Rmd'}
 ```
-
 
 
 ```{r child = '03-banda_ancha.Rmd'}
