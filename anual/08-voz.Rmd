@@ -55,7 +55,7 @@ serie_150 %>%
 
 
 
-## 131. Tráfico de minutos de voz de suscriptores a la telefonía móvil (minutos) por operador (año 2019)
+## 131. Tráfico de minutos de voz de suscripciones a la telefonía móvil (minutos) por operador (año 2019)
 ```{r}
 serie_151 <- voz %>% 
   filter(year(fecha) == year(FECHA_INFORME)) %>% 

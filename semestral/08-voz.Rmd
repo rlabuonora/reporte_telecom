@@ -52,15 +52,17 @@ trafico_voz_historico <- import_trafico_voz_historico() %>%
 serie_150 <- voz %>% 
   group_by(year=year(fecha), semester=semester(fecha)) %>% 
   filter(year > 2016) %>% 
+  mutate(numeric=numeric/1e3) %>% 
   summarize(numeric = sum(numeric, na.rm = TRUE))
 
 serie_150 %>% 
-  serie_historica_semestral_flujo(numeric) 
+  serie_historica_semestral_flujo(numeric) +
+  labs(y="Miles")
 ```
 
 
 
-## 131. Tráfico de minutos de voz de suscriptores a la telefonía móvil (minutos) por operador (`r FECHA_TITULO_STOCK`)
+## 131. Tráfico de voz de suscripciones a la telefonía móvil (minutos) por operador (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_151 <- voz %>% 
   filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL),
@@ -317,7 +319,6 @@ serie_166 %>%
   print
 ```
 
-##### Salto
 
 ## 146. Tráfico de voz a otras redes móviles de servicios móviles prepagos (minutos)
 ```{r}
@@ -332,6 +333,8 @@ trafico_voz_historico %>%
   serie_historica_semestral_flujo(numeric, nudge_text = 8e6)
 ```
 
+##### Salto
+
 
 ## 147. Tráfico de voz a otras redes móviles de servicios móviles prepagos (minutos) por operador (`r FECHA_TITULO_FLUJO`)
 
@@ -344,11 +347,10 @@ serie_168 <- voz %>%
   summarize(numeric = sum(numeric, na.rm = TRUE))
 
 serie_168 %>%
-  pie_chart(numeric, empresa, nudge_x=c(3, 0, -3)) %>%
+  pie_chart(numeric, empresa, nudge_x=c(2, 0, -2)) %>%
   print
 ```
 
-##### Salto
 
 
 ## 148. Tráfico voz al exterior de servicios móviles prepagos (minutos)
@@ -591,5 +593,6 @@ serie_184 %>%
 ```
 
 
+##### Salto
 
 

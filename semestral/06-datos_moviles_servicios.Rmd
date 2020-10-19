@@ -91,7 +91,7 @@ serie_111 %>%
 ##### Salto
 
 
-## 92. Suscriptores a la telefonía móvil
+## 92. Suscripciones a la telefonía móvil
 ```{r}
 serie_112 <- servicios %>% 
   filter(servicio == "Suscriptores a la telefonía móvil celular") %>% 
@@ -107,7 +107,7 @@ serie_112 %>%
 
 
 
-## 93. Suscriptores a la telefonía móvil por operador (`r FECHA_TITULO_STOCK`)
+## 93. Suscripciones a la telefonía móvil por operador (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_113 <- servicios %>% 
   filter(servicio == "Suscriptores a la telefonía móvil celular") %>%
@@ -198,7 +198,7 @@ serie_117 %>%
 ##### Salto
 
 
-## 98. Suscriptores de banda ancha móvil
+## 98. Suscripciones de banda ancha móvil
 ```{r}
 serie_118 <-  servicios %>% 
   filter(servicio == "Suscriptores de banda ancha móvil") %>% 
@@ -214,7 +214,7 @@ serie_118 %>%
 
 
 
-## 99. Suscriptores de banda ancha móvil por operador (`r FECHA_TITULO_STOCK`)
+## 99. Suscripciones de banda ancha móvil por operador (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_119 <- servicios %>% 
   filter(servicio == "Suscriptores de banda ancha móvil") %>%
@@ -401,7 +401,7 @@ serie_120 %>%
 
 
 
-## 100. Suscriptores de banda ancha móvil según forma de pago (`r FECHA_TITULO_STOCK`)
+## 100. Suscripciones de banda ancha móvil según forma de pago (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_120 <- servicios %>% 
   filter(servicio == "Suscriptores de banda ancha móvil") %>%
@@ -418,7 +418,7 @@ serie_120 %>%
 ##### Salto
 
 
-## 107. Suscriptores prepagos de banda ancha móvil
+## 107. Suscripciones prepagos de banda ancha móvil
 ```{r}
 serie_127 <- servicios %>% 
   filter(servicio == "Suscriptores de banda ancha móvil") %>%
@@ -434,7 +434,7 @@ serie_127 %>%
 
 
 
-## 108. Suscriptores prepagos de banda ancha móvil por operador (`r FECHA_TITULO_STOCK`)
+## 108. Suscripciones prepagos de banda ancha móvil por operador (`r FECHA_TITULO_STOCK`)
 
 ```{r}
 serie_128 <- servicios %>% 
@@ -455,7 +455,7 @@ serie_128 %>%
 ##### Salto
 
 
-## X. Suscriptores pospagos de banda ancha móvil
+## X. Suscripciones pospagos de banda ancha móvil
 
 ```{r}
 serie_121 <-  servicios %>% 
@@ -473,7 +473,7 @@ serie_121 %>%
 
 
 
-## 116. Suscriptores pospagos de banda ancha móvil por operador (`r FECHA_TITULO_STOCK`)
+## 116. Suscripciones pospagos de banda ancha móvil por operador (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_136 <- servicios %>% 
   filter(servicio == "Suscriptores de banda ancha móvil") %>%
@@ -492,7 +492,7 @@ serie_136 %>%
 ##### Salto
 
 
-## 101. Suscriptores a la telefonía móvil según forma de pago (`r FECHA_TITULO_STOCK`)
+## 101. Suscripciones a la telefonía móvil según forma de pago (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_121 <- servicios %>% 
   filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL), month(fecha) == month(FECHA_INFORME_SEMESTRAL)) %>% 
@@ -508,7 +508,7 @@ serie_121 %>%
 
 
 
-## 102. Suscriptores prepagos a la telefonía móvil
+## 102. Suscripciones prepagos a la telefonía móvil
 ```{r}
 # Falta filtrar junio y diciembre
 serie_122 <- servicios %>% 
@@ -527,7 +527,7 @@ serie_122 %>%
 ##### Salto
 
 
-## 103. Suscriptores prepagos a la telefonía móvil por operador (`r FECHA_TITULO_STOCK`)
+## 103. Suscripciones prepagos a la telefonía móvil por operador (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_123 <- servicios %>% 
   filter(servicio == "Suscriptores a la telefonía móvil celular") %>% 
@@ -552,7 +552,7 @@ serie_123 %>%
 
 
 
-## 109. Suscriptores pospagos a la telefonía móvil
+## 109. Suscripciones pospagos a la telefonía móvil
 ```{r}
 serie_129 <- servicios %>% 
   filter(year(fecha) >= 2019) %>% 
@@ -569,7 +569,7 @@ serie_129 %>%
 ##### Salto
 
 
-## 110. Suscriptores pospagos a la telefonía móvil por operador (`r FECHA_TITULO_STOCK`)
+## 110. Suscripciones pospagos a la telefonía móvil por operador (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_130 <- servicios %>% 
   filter(servicio == "Suscriptores a la telefonía móvil celular") %>% 

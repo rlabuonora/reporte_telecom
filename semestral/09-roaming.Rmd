@@ -163,7 +163,6 @@ serie_172 %>%
 <!--   serie_historica_semestral_flujo(numeric, nudge_text = .5e5) -->
 <!-- ``` -->
 
-##### Salto
 
 
 ## 171. Tráfico de voz de Roaming de LDI (minutos) por operador (`r FECHA_TITULO_FLUJO`)
@@ -181,6 +180,9 @@ serie_174 %>%
   pie_chart(numeric, empresa) %>% 
   print
 ```
+
+
+##### Salto
 
 
 <!-- ## 172. Tráfico de datos de Roaming (terabytes) -->
