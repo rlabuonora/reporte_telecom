@@ -328,7 +328,7 @@ serie_120 %>%
 
 
 ## X. Servicios móviles pospagos
-```{r eval=FALSE}
+```{r}
 
 serie <- tibble(
   year=c(2017, 2017, 2018, 2018, 2019, 2019, 2020),

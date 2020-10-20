@@ -167,7 +167,7 @@ serie_71 <- banda_ancha_servicios_residenciales %>%
   )
 
  serie_71 %>% 
-  filter(servicios > 100) %>% # 
+  filter(servicios > 10) %>% # 
   pie_chart(servicios, empresa) %>% 
   print
 

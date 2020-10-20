@@ -184,10 +184,6 @@ print(s)
 
 ## 6. Líneas de telefonía fija comerciales
 
-
-
-
-
 ```{r}
 fija %>% 
   filter(cliente == "Comercial") %>% 
@@ -197,8 +193,10 @@ fija %>%
   summarize(lineas = sum(numeric, na.rm = TRUE)-1) %>%
   # Corregir por dato de Diego
   mutate(lineas = case_when(
-    year == 2019 & semester == 2~187541,
-    year == 2019 & semester == 1~198228,
+    year == 2016 & semester == 1 ~ 196150,
+    year == 2016 & semester == 2 ~ 196553,
+    year == 2019 & semester == 2 ~ 187541,
+    year == 2019 & semester == 1 ~ 198228,
     #198228, 
     TRUE~lineas
     )) %>% 
@@ -259,9 +257,11 @@ fija %>%
   group_by(year = year(fecha), semester=semester(fecha)) %>% 
   summarize(lineas = sum(numeric, na.rm = TRUE)) %>% 
   # Corregir por dato de Diego
-  mutate(lineas = if_else(
-    year == 2019 & semester == 1,
-    972717, lineas
+  mutate(lineas = case_when(
+    year == 2016 & semester == 1 ~ 916679,
+    year == 2016 & semester == 2 ~ 915682,
+    year == 2019 & semester == 1 ~ 972717, 
+    TRUE ~ lineas
   )) %>%
   serie_historica_semestral_stock(lineas, nudge_text = 5e4)
 ```
