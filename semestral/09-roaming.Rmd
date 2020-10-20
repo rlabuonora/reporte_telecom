@@ -35,6 +35,8 @@ serie_166 %>%
 ```
 
 
+##### Salto
+
 
 ## 164. Tráfico de voz de Roaming (minutos) por operador (`r FECHA_TITULO_FLUJO`)
 ```{r}
@@ -52,7 +54,6 @@ serie_167 <- roaming %>%
 ```
 
 
-##### Salto
 
 
 ## 165. Tráfico de voz de Roaming (minutos) por tipo de servicio (`r FECHA_TITULO_FLUJO`)
@@ -77,9 +78,11 @@ serie_168 %>%
    LDI: Llamadas de LDI de clientes del operador que se encuentran en el exterior.
    Saliente: Llamadas de LDI hacia Uruguay de clientes del operador que se encuentran en el exterior.") + 
   theme(
-    plot.caption = element_text(size = 11)
+    plot.caption = element_text(size = 8)
   )
 ```
+
+##### Salto
 
 
 ## 166. Tráfico de voz de Roaming Local (minutos)
@@ -97,7 +100,6 @@ serie_169 %>%
 ```
 
 
-##### Salto
 
 ## 167. Tráfico de voz de Roaming Local (minutos) por operador (`r FECHA_TITULO_FLUJO`)
 
@@ -115,6 +117,9 @@ serie_170 %>%
   print
 ```
 
+##### Salto
+
+
 ## 168. Tráfico de voz de Roaming Saliente (minutos)
 
 ```{r}
@@ -129,7 +134,6 @@ serie_171 %>%
   serie_historica_semestral_flujo(numeric, 4e5)
 ```
 
-##### Salto
 
 
 ## 169. Tráfico de voz de Roaming Saliente (minutos) por operador (`r FECHA_TITULO_FLUJO`)
@@ -148,6 +152,7 @@ serie_172 %>%
   print
 ```
 
+##### Salto
 
 <!-- ## 170. Tráfico de voz de Roaming de LDI (minutos) -->
 
@@ -182,7 +187,6 @@ serie_174 %>%
 ```
 
 
-##### Salto
 
 
 <!-- ## 172. Tráfico de datos de Roaming (terabytes) -->
@@ -214,9 +218,5 @@ serie_176 %>%
   pie_chart(numeric, empresa) %>% 
   print
 ```
-
-
-
-
 
 

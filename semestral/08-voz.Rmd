@@ -6,12 +6,6 @@ graphics: yes
 ---
 
 ```{r include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, 
-                      warning = FALSE,
-                      message = FALSE,
-                      fig.width = 7, 
-                      fig.height = 4.5)
-
 options(scipen = 10000)
 
 
@@ -61,6 +55,8 @@ serie_150 %>%
 ```
 
 
+##### Salto
+
 
 ## 131. Tráfico de voz de suscripciones a la telefonía móvil (minutos) por operador (`r FECHA_TITULO_STOCK`)
 ```{r}
@@ -76,7 +72,6 @@ serie_151 %>%
 ```
 
 
-##### Salto
 
 
 ## 132. Tráfico de voz de servicios móviles (minutos) por destino (`r FECHA_TITULO_STOCK`)
@@ -94,6 +89,8 @@ serie_152 %>%
   print
 ```
 
+##### Salto
+
 
 ## 133. Tráfico de voz a red propia de servicios móviles (minutos) 
 ```{r}
@@ -110,7 +107,6 @@ serie_153 %>%
 ```
 
 
-##### Salto
 
 
 ## 134. Tráfico de voz a red propia de servicios móviles (minutos) por operador (`r FECHA_TITULO_FLUJO`)
@@ -126,6 +122,8 @@ serie_154 %>%
   pie_chart(numeric, empresa) %>% 
   print
 ```
+
+##### Salto
 
 
 ## 135. Tráfico de voz a otras redes móviles de servicios móviles (minutos)
@@ -151,7 +149,6 @@ serie_155 %>%
 ```
 
 
-##### Salto
 
 
 ## 136. Tráfico de voz a otras redes de servicios móviles (minutos) por operador (`r FECHA_TITULO_FLUJO`)
@@ -168,6 +165,8 @@ serie_156 %>%
   print
 ```
 
+##### Salto
+
 
 ## 137. Tráfico voz al exterior de servicios móviles (minutos)
 ```{r}
@@ -182,7 +181,6 @@ serie_157 %>%
 
 ```
 
-##### Salto
 
 
 ## 138. Tráfico voz al exterior de servicios móviles por operador (`r FECHA_TITULO_FLUJO`)
@@ -201,6 +199,9 @@ serie_158 %>%
 ```
 
 
+##### Salto
+
+
 ## 139. Tráfico de voz a red fija de servicios móviles 
 ```{r}
 serie_159 <- voz %>% 
@@ -214,7 +215,6 @@ serie_159 %>%
 ```
 
 
-##### Salto
 
 
 ## 140. Tráfico de voz a red fija de servicios móviles (minutos) por operador (`r FECHA_TITULO_FLUJO`)
@@ -232,6 +232,9 @@ serie_160 %>%
 ```
 
 
+##### Salto
+
+
 ## 141. Tráfico de voz de servicios móviles (minutos) por forma de pago (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
@@ -243,7 +246,6 @@ tibble(
   print
 ```
 
-##### Salto
 
 
 ## 141. Tráfico de voz de servicios móviles prepagos (minutos) por destino (`r FECHA_TITULO_FLUJO`)
@@ -257,6 +259,9 @@ serie_162 %>%
   pie_chart(numeric, tipo_red, nudge_radio=c(.99, .5, .9, .6)) %>%
   print
 ```
+
+
+##### Salto
 
 ## 142. Tráfico de voz de servicios móviles prepagos (minutos)
 ```{r}
@@ -276,7 +281,6 @@ trafico_voz_historico %>%
   serie_historica_semestral_flujo(numeric, nudge_text = 8e7)
 ```
 
-##### Salto
 
 ## 143. Tráfico de voz de servicios móviles prepagos (minutos) por operador (`r FECHA_TITULO_FLUJO`)
 ```{r}
@@ -291,6 +295,10 @@ serie_164 %>%
   pie_chart(numeric, empresa) %>% 
   print
 ```
+
+
+##### Salto
+
 
 ## 144. Tráfico de voz a red propia de servicios móviles prepagos (minutos)
 ```{r}
@@ -320,6 +328,10 @@ serie_166 %>%
 ```
 
 
+##### Salto
+
+
+
 ## 146. Tráfico de voz a otras redes móviles de servicios móviles prepagos (minutos)
 ```{r}
 # serie_167 <- voz %>%
@@ -333,7 +345,6 @@ trafico_voz_historico %>%
   serie_historica_semestral_flujo(numeric, nudge_text = 8e6)
 ```
 
-##### Salto
 
 
 ## 147. Tráfico de voz a otras redes móviles de servicios móviles prepagos (minutos) por operador (`r FECHA_TITULO_FLUJO`)
@@ -352,6 +363,9 @@ serie_168 %>%
 ```
 
 
+##### Salto
+
+
 
 ## 148. Tráfico voz al exterior de servicios móviles prepagos (minutos)
 ```{r}
@@ -367,7 +381,6 @@ trafico_voz_historico %>%
 
 ```
 
-##### Salto
 
 
 ## 149. Tráfico voz al exterior de servicios móviles prepagos (minutos) por operador (`r FECHA_TITULO_FLUJO`)
@@ -385,6 +398,11 @@ serie_170 %>%
   print
 ```
 
+
+##### Salto
+
+
+
 ## 150. Tráfico voz a red fija de servicios móviles prepagos (minutos)
 ```{r}
 # serie_171 <- voz %>%
@@ -399,7 +417,6 @@ trafico_voz_historico %>%
 
 ```
 
-##### Salto
 
 
 ## 151. Tráfico voz a red fija de servicios móviles prepagos (minutos) por operador
@@ -417,6 +434,10 @@ serie_172 %>%
   print
 ```
 
+
+##### Salto
+
+
 ## 152. Tráfico de voz de servicios móviles pospagos (minutos)
 
 ```{r}
@@ -429,7 +450,6 @@ trafico_voz_historico %>%
 ```
 
 
-##### Salto
 
 
 ## 153. Tráfico de voz de servicios móviles pospagos (minutos) por operador (`r FECHA_TITULO_FLUJO`)
@@ -447,6 +467,12 @@ serie_174 %>%
   print
 ```
 
+
+##### Salto
+
+
+
+
 ## 154. Tráfico de voz de servicios móviles pospagos (minutos) por destino (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
@@ -463,7 +489,6 @@ serie_175 %>%
 ```
 
 
-##### Salto
 
 
 
@@ -476,6 +501,8 @@ trafico_voz_historico %>%
 
 
 ```
+
+##### Salto
 
 
 ## 156. Tráfico de voz a red propia de servicios móviles pospagos (minutos) por operador (`r FECHA_TITULO_FLUJO`)
@@ -493,7 +520,6 @@ serie_177 %>%
   print
 ```
 
-##### Salto
 
 
 ## 157. Tráfico de voz a otras redes móviles de servicios móviles pospagos (minutos)
@@ -505,6 +531,7 @@ trafico_voz_historico %>%
   serie_historica_semestral_flujo(numeric, nudge_text = 3e7)
 
 ```
+##### Salto
 
 
 ## 158. Tráfico de voz a otras redes móviles de servicios móviles pospagos (minutos) por operador (`r FECHA_TITULO_FLUJO`)
@@ -524,7 +551,6 @@ serie_180 %>%
 ```
 
 
-##### Salto
 
 
 ## 159. Tráfico de voz al exterior de servicios móviles pospagos (minutos)
@@ -542,6 +568,11 @@ trafico_voz_historico %>%
 
 ```
 
+
+##### Salto
+
+
+
 ## 160. Tráfico de voz al exterior de servicios móviles pospagos (minutos) por operador (`r FECHA_TITULO_FLUJO`)
 ```{r}
 serie_182 <- voz %>%
@@ -556,7 +587,6 @@ serie_182 %>%
   print
 ```
 
-##### Salto
 
 
 
@@ -574,6 +604,9 @@ trafico_voz_historico %>%
 
 
 ```
+
+##### Salto
+
 
 
 ## 162. Tráfico de voz a red fija de servicios móviles pospagos (minutos) por operador (`r FECHA_TITULO_FLUJO`)
@@ -593,6 +626,5 @@ serie_184 %>%
 ```
 
 
-##### Salto
 
 

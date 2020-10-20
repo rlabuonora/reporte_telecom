@@ -6,11 +6,6 @@ graphics: yes
 ---
 
 ```{r include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, 
-                      warning = FALSE,
-                      message = FALSE,
-                      fig.width = 7, 
-                      fig.height = 4.5)
 
 options(scipen = 10000)
 
@@ -26,8 +21,7 @@ mensajes <- import_mensajes()
 
 ```
 
-
-
+##### Salto
 
 ## 123. Mensajes de texto enviados
 ```{r}
@@ -46,7 +40,6 @@ serie_141 %>%
   serie_historica_semestral_flujo(mensajes) 
 ```
 
-##### Salto
 
 
 ## 124. Mensajes de texto enviados por operador (`r FECHA_TITULO_FLUJO`)
@@ -64,6 +57,7 @@ serie_142 %>%
 
 ```
 
+##### Salto
 
 
 ## 125. Mensajes de texto enviados según destino (`r FECHA_TITULO_FLUJO`)
@@ -84,7 +78,6 @@ serie_143 %>%
   print
 ```
 
-##### Salto
 
 
 ## 126. Mensajes de texto enviados al exterior 
@@ -104,6 +97,7 @@ serie_144 %>%
   serie_historica_semestral_flujo(mensajes, nudge_text = 1e4) 
 ```
 
+##### Salto
 
 
 
@@ -124,7 +118,6 @@ serie_145 %>%
 ```
 
 
-##### Salto
 
 ## 128. Mensajes de texto enviados a otras redes móviles
 ```{r}
@@ -142,6 +135,8 @@ serie_146 %>%
 ```
 
 
+##### Salto
+
 
 ## 129. Mensajes de texto enviados a otras redes móviles por operador (`r FECHA_TITULO_FLUJO`)
 
@@ -158,7 +153,6 @@ serie_147 %>%
   print
 ```
 
-##### Salto
 
 
 <!-- # 148. Mensajes de texto enviados a red propia -->

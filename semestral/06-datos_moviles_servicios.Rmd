@@ -328,12 +328,12 @@ serie_120 %>%
 
 
 ## X. Servicios móviles pospagos
-```{r}
+```{r eval=FALSE}
 
-serie_pre_2018 <- tibble(
-  year=c(rep(2017, 2), rep(2018, 2)),
-  semester = c(rep(c(1, 2), 2)),
-  val=c(2099924, 2173233, 2308992, 2525824)
+serie <- tibble(
+  year=c(2017, 2017, 2018, 2018, 2019, 2019, 2020),
+  semester = c(1, 2, 1, 2, 1, 2, 1),
+  val=c(2099924, 2173233, 2308992, 2525824, 2567356)
 )
 
 
@@ -349,8 +349,7 @@ serie_121 <-  servicios %>%
   group_by(year=year(fecha), semester=semester(fecha)) %>%
   summarize(val = sum(numeric, na.rm = TRUE))
 
-serie_pre_2018 %>% 
-  bind_rows(serie_121) %>% 
+serie %>% 
   serie_historica_semestral_stock(val, nudge_text = 2e5)
 ```
 
@@ -762,7 +761,6 @@ serie_137 %>%
 ```
 
 
-##### Salto
 
 
 ## 118. Tráfico de datos de servicios de banda ancha móvil (terabytes) por operador (`r FECHA_TITULO_FLUJO`)
@@ -778,6 +776,8 @@ serie_138 %>%
   pie_chart(val, empresa) %>% 
   print
 ```
+
+##### Salto
 
 
 ## 119. Tráfico de datos de servicios de banda ancha móvil prepagos (terabytes) (`r FECHA_TITULO_FLUJO`)
@@ -795,7 +795,6 @@ serie_139 %>%
 ```
 
 
-##### Salto
 
 ## 120. Tráfico de datos de servicios de banda ancha móvil prepagos (terabytes) por operador (`r FECHA_TITULO_FLUJO`)
 ```{r}
@@ -812,6 +811,8 @@ serie_140 %>%
   print
 ```
 
+##### Salto
+
 
 ## 121. Tráfico de datos de servicios de banda ancha móvil pospagos (terabytes)
 ```{r}
@@ -826,7 +827,6 @@ serie_141 %>%
   serie_historica_semestral_flujo(val, nudge_text=4e3)
 ```
 
-##### Salto
 
 ## 122. Tráfico de datos de servicios de banda ancha móvil pospagos (terabytes) por operador (`r FECHA_TITULO_FLUJO`)
 ```{r}
@@ -842,3 +842,5 @@ serie_142 %>%
   pie_chart(val, empresa) %>% 
   print
 ```
+
+
