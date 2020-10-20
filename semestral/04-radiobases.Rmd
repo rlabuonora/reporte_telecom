@@ -32,7 +32,7 @@ month_label <- function(x) {
 
 # 4. Servicios de Telefonía móvil
 
-## X. Ingresos Telefonía Móvil (pesos)
+## 1. Ingresos Telefonía Móvil (pesos)
 
 ```{r}
 
@@ -53,7 +53,7 @@ tibble(
 
 
 
-## 70. Cantidad de radiobases
+## 2. Cantidad de radiobases
 ```{r}
 radiobases %>% 
   filter(month(fecha) %in% c(6, 12)) %>% 
@@ -69,7 +69,7 @@ radiobases %>%
 
 
 
-## 71. Cantidad de radiobases por departamento (`r FECHA_TITULO_STOCK`)
+## 3. Cantidad de radiobases por departamento (`r FECHA_TITULO_STOCK`)
 ```{r}
 tabla_91 <- radiobases %>% 
   filter(tipo == "Radiobases (total)") %>% 
@@ -84,7 +84,7 @@ tabla_91 %>%
 
 
 
-## 72. Cantidad de radiobases por operador (`r FECHA_TITULO_STOCK`)
+## 4. Cantidad de radiobases por operador (`r FECHA_TITULO_STOCK`)
 
 ```{r}
 tabla_92 <-  radiobases %>% 
@@ -98,18 +98,9 @@ g_92 <- tabla_92 %>%
   print
 ```
 
-
-
-
-
 ##### Salto
 
-
-
-
-
-
-## 73. Cantidad de radiobases GSM
+## 5. Cantidad de radiobases GSM
 ```{r}
 radiobases %>% 
   filter(month(fecha) %in% c(6, 12)) %>% 
@@ -121,15 +112,7 @@ radiobases %>%
 
 
 
-
-
-
-
-
-
-
-
-## 74. Cantidad de radiobases GSM por departamento (`r FECHA_TITULO_STOCK`)
+## 6. Cantidad de radiobases GSM por departamento (`r FECHA_TITULO_STOCK`)
 
 ```{r}
 tabla_94 <- radiobases %>% 
@@ -143,13 +126,9 @@ tabla_94 %>%
 ```
 
 
-
-
 ##### Salto
 
-
-
-## 75. Cantidad de radiobases GSM por operador (`r FECHA_TITULO_STOCK`)
+## 7. Cantidad de radiobases GSM por operador (`r FECHA_TITULO_STOCK`)
 
 ```{r}
 tabla_95 <- radiobases %>% 
@@ -164,18 +143,7 @@ tabla_95 %>%
 ```
 
 
-
-
-
-
-
-
-
-
-
-
-
-## 76. Cantidad de radiobases 3G
+## 8. Cantidad de radiobases 3G
 ```{r}
 radiobases %>% 
   filter(month(fecha) %in% c(6, 12)) %>% 
@@ -192,7 +160,7 @@ radiobases %>%
 
 
 
-## 77. Cantidad de radiobases 3G por departamento (`r FECHA_TITULO_STOCK`)
+## 9. Cantidad de radiobases 3G por departamento (`r FECHA_TITULO_STOCK`)
 
 ```{r}
 tabla_97 <- radiobases %>% 
@@ -206,16 +174,7 @@ tabla_97 %>%
 ```
 
 
-
-
-
-
-
-
-
-
-
-## 78. Cantidad de radiobases 3G por operador (`r FECHA_TITULO_STOCK`)
+## 10. Cantidad de radiobases 3G por operador (`r FECHA_TITULO_STOCK`)
 
 ```{r}
 tabla_98 <-  radiobases %>% 
@@ -229,14 +188,11 @@ tabla_98 <-  radiobases %>%
    print
 ```
 
-
-
-
 ##### Salto
 
 
 
-## 79. Cantidad de radiobases LTE
+## 11. Cantidad de radiobases LTE
 ```{r}
 radiobases %>% 
   filter(month(fecha) %in% c(6, 12)) %>% 
@@ -246,16 +202,7 @@ radiobases %>%
   serie_historica_semestral_stock(radiobases, nudge_text = 5e2)
 ```
 
-
-
-
-
-
-
-
-
-
-## 80. Cantidad de radiobases LTE por departamento (`r FECHA_TITULO_STOCK`)
+## 12. Cantidad de radiobases LTE por departamento (`r FECHA_TITULO_STOCK`)
 
 ```{r}
 tabla_100 <- radiobases %>% 
@@ -272,10 +219,7 @@ tabla_100 <- radiobases %>%
 ##### Salto
 
 
-
-
-
-## 81. Cantidad de radiobases LTE por operador (`r FECHA_TITULO_STOCK`)
+## 13. Cantidad de radiobases LTE por operador (`r FECHA_TITULO_STOCK`)
 
 ```{r}
 tabla_101 <- radiobases %>% 

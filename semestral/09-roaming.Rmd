@@ -21,7 +21,7 @@ roaming <- import_roaming()
 
 ```
 
-## 163. Tráfico de voz de Roaming (minutos)
+## 103. Tráfico de voz de Roaming (minutos)
 ```{r}
 serie_166 <- roaming %>% 
   filter(voz == "Tráfico de voz") %>%
@@ -38,7 +38,7 @@ serie_166 %>%
 ##### Salto
 
 
-## 164. Tráfico de voz de Roaming (minutos) por operador (`r FECHA_TITULO_FLUJO`)
+## 104. Tráfico de voz de Roaming (minutos) por operador (`r FECHA_TITULO_FLUJO`)
 ```{r}
 serie_167 <- roaming %>% 
   filter(voz == "Tráfico de voz") %>%
@@ -56,7 +56,7 @@ serie_167 <- roaming %>%
 
 
 
-## 165. Tráfico de voz de Roaming (minutos) por tipo de servicio (`r FECHA_TITULO_FLUJO`)
+## 105. Tráfico de voz de Roaming (minutos) por tipo de servicio (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
 serie_168 <- roaming %>% 
@@ -85,7 +85,7 @@ serie_168 %>%
 ##### Salto
 
 
-## 166. Tráfico de voz de Roaming Local (minutos)
+## 106. Tráfico de voz de Roaming Local (minutos)
 
 ```{r}
 serie_169 <- roaming %>% 
@@ -101,7 +101,7 @@ serie_169 %>%
 
 
 
-## 167. Tráfico de voz de Roaming Local (minutos) por operador (`r FECHA_TITULO_FLUJO`)
+## 107. Tráfico de voz de Roaming Local (minutos) por operador (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
 serie_170 <- roaming %>% 
@@ -120,7 +120,7 @@ serie_170 %>%
 ##### Salto
 
 
-## 168. Tráfico de voz de Roaming Saliente (minutos)
+## 108. Tráfico de voz de Roaming Saliente (minutos)
 
 ```{r}
 serie_171 <- roaming %>% 
@@ -136,7 +136,7 @@ serie_171 %>%
 
 
 
-## 169. Tráfico de voz de Roaming Saliente (minutos) por operador (`r FECHA_TITULO_FLUJO`)
+## 109. Tráfico de voz de Roaming Saliente (minutos) por operador (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
 serie_172 <- roaming %>% 
@@ -170,7 +170,7 @@ serie_172 %>%
 
 
 
-## 171. Tráfico de voz de Roaming de LDI (minutos) por operador (`r FECHA_TITULO_FLUJO`)
+## 110. Tráfico de voz de Roaming de LDI (minutos) por operador (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
 serie_174 <- roaming %>% 
@@ -203,7 +203,7 @@ serie_174 %>%
 
 
 
-## 173. Tráfico de datos de Roaming (terabytes) por operador
+## 111. Tráfico de datos de Roaming (terabytes) por operador
 
 ```{r}
 serie_176 <- roaming %>%
