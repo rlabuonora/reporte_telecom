@@ -19,7 +19,12 @@ options(scipen = 10000)
 # Theme
 source('../common.R')
 
-servicios <- import_datos_servicios_moviles()
+servicios <- import_datos_servicios_moviles() %>% 
+  mutate(servicio = recode_factor(servicio,
+                    `Suscriptores de banda ancha móvil` = "Suscripciones de banda ancha móvil",
+                    `Suscriptores a la telefonía móvil celular`= "Suscripciones a la telefonía móvil")
+             )
+
 FECHA_INFORME <- as.Date("2019-12-01")
 
 
@@ -45,7 +50,7 @@ serie_109_vieja <- tibble(
 serie_109_nueva <- servicios %>% 
   filter(servicio %in% c("Internet Móvil",
                          "M2M",
-                         "Suscriptores a la telefonía móvil celular")) %>% 
+                         "Suscripciones a la telefonía móvil")) %>% 
   filter(year(fecha) >= 2019) %>% 
   filter(month(fecha) %in% c(6, 12)) %>% 
   group_by(fecha) %>% 
@@ -68,7 +73,7 @@ serie_109 %>%
 serie_110 <- servicios %>% 
   filter(servicio %in% c("Internet Móvil",
                          "M2M",
-                         "Suscriptores a la telefonía móvil celular")) %>% 
+                         "Suscripciones a la telefonía móvil")) %>% 
   filter(year(fecha) >= year(FECHA_INFORME)) %>% 
   filter(month(fecha) %in% month(FECHA_INFORME)) %>% 
   group_by(empresa) %>% 
@@ -85,7 +90,7 @@ serie_110 <- servicios %>%
 serie_111 <- servicios %>% 
   filter(servicio %in% c("Internet Móvil",
                          "M2M",
-                         "Suscriptores a la telefonía móvil celular")) %>% 
+                         "Suscripciones a la telefonía móvil")) %>% 
   filter(year(fecha) >= year(FECHA_INFORME)) %>% 
   filter(month(fecha) %in% month(FECHA_INFORME)) %>% 
   group_by(servicio) %>% 
@@ -118,7 +123,7 @@ serie_112 %>%
 ## 93. Suscripciones a la telefonía móvil por operador (diciembre 2019)
 ```{r}
 serie_113 <- servicios %>% 
-  filter(servicio == "Suscriptores a la telefonía móvil celular") %>%
+  filter(servicio == "Suscripciones a la telefonía móvil") %>%
   filter(month(fecha) == month(FECHA_INFORME), 
          year(fecha) == year(FECHA_INFORME)) %>%
   group_by(empresa) %>% 
@@ -255,7 +260,7 @@ serie_120 %>%
 ```{r}
 serie_121 <- servicios %>% 
   filter(year(fecha) == year(FECHA_INFORME), month(fecha) == month(FECHA_INFORME)) %>% 
-  filter(servicio %in% "Suscriptores a la telefonía móvil celular") %>% 
+  filter(servicio %in% "Suscripciones a la telefonía móvil") %>% 
   group_by(pago) %>% 
   summarize(val = sum(numeric, na.rm = TRUE))
 
@@ -275,7 +280,7 @@ serie_121 %>%
 serie_122 <- servicios %>% 
   filter(year(fecha) == 2019) %>% 
   filter(pago == "Prepago") %>% 
-  filter(servicio %in% c("Suscriptores a la telefonía móvil celular")) %>% 
+  filter(servicio %in% c("Suscripciones a la telefonía móvil")) %>% 
   group_by(year=year(fecha), month=month(fecha)) %>%
   summarize(val = sum(numeric, na.rm = TRUE))
 
@@ -287,7 +292,7 @@ serie_122 %>%
 ## 103. Suscripciones prepagos a la telefonía móvil por operador (diciembre 2019)
 ```{r}
 serie_123 <- servicios %>% 
-  filter(servicio == "Suscriptores a la telefonía móvil celular") %>% 
+  filter(servicio == "Suscripciones a la telefonía móvil") %>% 
   filter(pago == "Prepago") %>% 
   filter(month(fecha) == month(FECHA_INFORME)) %>% 
   filter(year(fecha) == year(FECHA_INFORME)) %>% 
@@ -401,7 +406,7 @@ serie_128 %>%
 ```{r}
 serie_129 <- servicios %>% 
   filter(year(fecha) == 2019) %>% 
-  filter(servicio %in% c("Suscriptores a la telefonía móvil celular")) %>% 
+  filter(servicio %in% c("Suscripciones a la telefonía móvil")) %>% 
   filter(pago == "Pospago") %>% 
   group_by(year=year(fecha), month=month(fecha)) %>%
   summarize(val = sum(numeric, na.rm = TRUE))
@@ -420,7 +425,7 @@ serie_129 %>%
 ## 110. Suscripciones pospagos a la telefonía móvil celular por operador (diciembre 2019)
 ```{r}
 serie_130 <- servicios %>% 
-  filter(servicio == "Suscriptores a la telefonía móvil celular") %>% 
+  filter(servicio == "Suscripciones a la telefonía móvil") %>% 
   filter(pago == "Pospago") %>% 
   filter(month(fecha) == month(FECHA_INFORME)) %>% 
   filter(year(fecha) == year(FECHA_INFORME)) %>% 
