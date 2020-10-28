@@ -321,19 +321,10 @@ fija %>%
 data.frame(
         year = c(2017, 2017, 2018, 2018, 2019, 2019, 2020),
     semester = c(1L, 2L, 1L, 2L, 1L, 2L, 1L),
-         kms = c(11327, 11457, 11574, 11730, 11771, 11805, 11855)
+         kms = c(11248, 11379, 11495, 11647, 11688, 11770, 11844)
   ) %>% 
   serie_historica_semestral_stock(kms, nudge_text = 6e2)
 ```
-
-
-
-
-
-
-
-
-
 
 
 ## 11. Kilómetros de fibra óptica instalada por departamento (`r FECHA_TITULO_STOCK`)

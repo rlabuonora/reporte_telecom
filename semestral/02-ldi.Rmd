@@ -490,7 +490,7 @@ ldi %>%
   group_by(year=year(fecha), semester=semester(fecha)) %>%
   summarize(val = sum(numeric, na.rm=TRUE)) %>%
   # Dato Diego
-  mutate(minutos = if_else(year == 2019 & semester==1, 20685577, val)) %>%
+  mutate(val = if_else(year == 2019 & semester==1, 20685577, val)) %>%
   filter(!is.na(year), year > 2016) %>%
   serie_historica_semestral_flujo(val, nudge_text = 4e5)
 
