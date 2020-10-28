@@ -161,10 +161,7 @@ serie_71 <- banda_ancha_servicios_residenciales %>%
   filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL), 
          month(fecha) == month(FECHA_INFORME_SEMESTRAL)) %>% 
   group_by(empresa) %>% 
-  summarize(servicios = sum(val, na.rm = TRUE)) %>% 
-  bind_rows(
-    tibble(empresa = "Enalur", servicios = 58)
-  )
+  summarize(servicios = sum(val, na.rm = TRUE))
 
  serie_71 %>% 
   filter(servicios > 10) %>% # 
