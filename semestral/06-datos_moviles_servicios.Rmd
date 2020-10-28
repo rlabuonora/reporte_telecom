@@ -87,7 +87,7 @@ serie_111 <- servicios %>%
   summarize(numeric = sum(numeric, na.rm = TRUE))
 
 serie_111 %>% 
-  pie_chart(numeric, servicio, nudge_x =c(-1,1,0)) %>% 
+  pie_chart(numeric, servicio, nudge_x =c(0,-2,2)) %>% 
   print
 ```
 

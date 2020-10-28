@@ -168,7 +168,7 @@ serie_71 <- banda_ancha_servicios_residenciales %>%
 
  serie_71 %>% 
   filter(servicios > 10) %>% # 
-  pie_chart(servicios, empresa) %>% 
+  pie_chart(servicios, empresa, nudge_x = c(0, 0, 8, -8)) %>% 
   print
 
 ```
@@ -493,7 +493,7 @@ tibble(
 
 
 
-## 68. Tráfico de datos se servicios de banda ancha fija (terabytes) según tipo de cliente (`r FECHA_TITULO_FLUJO`)(*)
+## 68. Tráfico de datos se servicios de banda ancha fija (terabytes) según tipo de cliente (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
 
