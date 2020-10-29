@@ -30,7 +30,7 @@ month_label <- function(x) {
 
 
 
-## 82. Cobertura territorial nacional (%) por tecnología (`r FECHA_TITULO_STOCK`)
+## 4.14. Cobertura territorial nacional (%) por tecnología (`r FECHA_TITULO_STOCK`)
 
 ```{r}
 tabla_102 <- cobertura %>% 
@@ -62,7 +62,7 @@ tabla_102 %>%
 
 
 
-## X. Cobertura territorial GSM (%)
+## 4.15. Cobertura territorial GSM (%)
 ```{r}
 serie_cobertura_gsm <- cobertura  %>% 
   filter(tipo == "GSM") %>% 
@@ -89,7 +89,7 @@ serie_cobertura_gsm %>%
 ```
 
 
-## 84. Cobertura territorial GSM (%) por departamento (`r FECHA_TITULO_STOCK`)
+## 4.16. Cobertura territorial GSM (%) por departamento (`r FECHA_TITULO_STOCK`)
 
 ```{r}
 tabla_104 <- cobertura %>% 
@@ -121,12 +121,7 @@ tabla_104 %>%
 
 
 
-
-
-
-
-
-## X. Cobertura territorial 3G (%)
+## 4.17. Cobertura territorial 3G (%)
 ```{r}
 serie_cobertura_3g <- cobertura  %>% 
   filter(tipo == "3G") %>% 
@@ -154,7 +149,7 @@ serie_cobertura_3g %>%
 
 
 
-## 86. Cobertura territorial 3G (%) por departamento (`r FECHA_TITULO_STOCK`)
+## 4.18. Cobertura territorial 3G (%) por departamento (`r FECHA_TITULO_STOCK`)
 
 ```{r}
 tabla_106 <- cobertura %>% 
@@ -186,7 +181,7 @@ tabla_106 %>%
 
 
 
-## X. Cobertura territorial LTE (%)
+## 4.19. Cobertura territorial LTE (%)
 ```{r}
 serie_cobertura_lte <- cobertura  %>% 
   filter(tipo == "LTE") %>%
@@ -215,7 +210,7 @@ serie_cobertura_lte %>%
 
 
 
-## 88. Cobertura territorial LTE (%) por departamento (`r FECHA_TITULO_STOCK`)
+## 4.20. Cobertura territorial LTE (%) por departamento (`r FECHA_TITULO_STOCK`)
 
 ```{r}
 tabla_108 <- cobertura %>% 

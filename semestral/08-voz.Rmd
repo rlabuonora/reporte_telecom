@@ -41,7 +41,7 @@ trafico_voz_historico <- import_trafico_voz_historico() %>%
 ```
 
 
-## 130. Tráfico de voz de suscripciones móviles (minutos) por año
+## 4.69. Tráfico de voz de suscripciones móviles (minutos) por año
 ```{r}
 serie_150 <- voz %>% 
   group_by(year=year(fecha), semester=semester(fecha)) %>% 
@@ -58,7 +58,7 @@ serie_150 %>%
 ##### Salto
 
 
-## 131. Tráfico de voz de suscripciones móviles (minutos) por operador (`r FECHA_TITULO_STOCK`)
+## 4.70. Tráfico de voz de suscripciones móviles (minutos) por operador (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_151 <- voz %>% 
   filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL),
@@ -74,7 +74,7 @@ serie_151 %>%
 
 
 
-## 132. Tráfico de voz de suscripciones móviles (minutos) por destino (`r FECHA_TITULO_STOCK`)
+## 4.71. Tráfico de voz de suscripciones móviles (minutos) por destino (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_152 <- voz %>% 
   filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL),
@@ -92,7 +92,7 @@ serie_152 %>%
 ##### Salto
 
 
-## 133. Tráfico de voz a red propia de suscripciones móviles (minutos) 
+## 4.72. Tráfico de voz a red propia de suscripciones móviles (minutos) 
 ```{r}
 serie_153 <- voz %>% 
   filter(tipo_red == "Propia Móvil") %>% 
@@ -109,7 +109,7 @@ serie_153 %>%
 
 
 
-## 134. Tráfico de voz a red propia de suscripciones móviles (minutos) por operador (`r FECHA_TITULO_FLUJO`)
+## 4.73. Tráfico de voz a red propia de suscripciones móviles (minutos) por operador (`r FECHA_TITULO_FLUJO`)
 ```{r}
 serie_154 <- voz %>% 
   filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL),
@@ -126,7 +126,7 @@ serie_154 %>%
 ##### Salto
 
 
-## 135. Tráfico de voz a otras redes móviles de suscripciones móviles (minutos)
+## 4.74. Tráfico de voz a otras redes móviles de suscripciones móviles (minutos)
 
 ```{r}
 
@@ -151,7 +151,7 @@ serie_155 %>%
 
 
 
-## 136. Tráfico de voz a otras redes de suscripciones móviles (minutos) por operador (`r FECHA_TITULO_FLUJO`)
+## 4.75. Tráfico de voz a otras redes de suscripciones móviles (minutos) por operador (`r FECHA_TITULO_FLUJO`)
 ```{r}
 serie_156 <- voz %>% 
   filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL),
@@ -168,7 +168,7 @@ serie_156 %>%
 ##### Salto
 
 
-## 137. Tráfico voz al exterior de suscripciones móviles (minutos)
+## 4.76. Tráfico voz al exterior de suscripciones móviles (minutos)
 ```{r}
 serie_157 <- voz %>% 
   filter(tipo_red == "Exterior") %>% 
@@ -183,7 +183,7 @@ serie_157 %>%
 
 
 
-## 138. Tráfico voz al exterior de suscripciones móviles por operador (`r FECHA_TITULO_FLUJO`)
+## 4.77. Tráfico voz al exterior de suscripciones móviles por operador (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
 serie_158 <- voz %>% 
@@ -202,7 +202,7 @@ serie_158 %>%
 ##### Salto
 
 
-## 139. Tráfico de voz a red fija de suscripciones móviles 
+## 4.78. Tráfico de voz a red fija de suscripciones móviles 
 ```{r}
 serie_159 <- voz %>% 
   filter(tipo_red == "Fija") %>% 
@@ -217,7 +217,7 @@ serie_159 %>%
 
 
 
-## 140. Tráfico de voz a red fija de suscripciones móviles (minutos) por operador (`r FECHA_TITULO_FLUJO`)
+## 4.79. Tráfico de voz a red fija de suscripciones móviles (minutos) por operador (`r FECHA_TITULO_FLUJO`)
 ```{r}
 serie_160 <- voz %>% 
   filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL),
@@ -235,7 +235,7 @@ serie_160 %>%
 ##### Salto
 
 
-## 141. Tráfico de voz de suscripciones móviles prepagos (minutos) por destino (`r FECHA_TITULO_FLUJO`)
+## 4.80. Tráfico de voz de suscripciones móviles prepagos (minutos) por destino (`r FECHA_TITULO_FLUJO`)
 ```{r}
 serie_162 <- voz %>%
   filter(pago == "Prepago", year(fecha) == year(FECHA_INFORME_SEMESTRAL)) %>%
@@ -250,7 +250,7 @@ serie_162 %>%
 ```
 
 
-## 141. Tráfico de voz de suscripciones móviles (minutos) por forma de pago (`r FECHA_TITULO_FLUJO`)
+## 4.81. Tráfico de voz de suscripciones móviles (minutos) por forma de pago (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
 tibble(
@@ -266,7 +266,7 @@ tibble(
 
 ##### Salto
 
-## 142. Tráfico de voz de suscripciones móviles prepagos (minutos)
+## 4.82. Tráfico de voz de suscripciones móviles prepagos (minutos)
 ```{r}
 # TODO
 
@@ -285,7 +285,7 @@ trafico_voz_historico %>%
 ```
 
 
-## 143. Tráfico de voz de suscripciones móviles prepagos (minutos) por operador (`r FECHA_TITULO_FLUJO`)
+## 4.83. Tráfico de voz de suscripciones móviles prepagos (minutos) por operador (`r FECHA_TITULO_FLUJO`)
 ```{r}
 serie_164 <- voz %>%
   filter(pago == "Prepago") %>%
@@ -303,7 +303,7 @@ serie_164 %>%
 ##### Salto
 
 
-## 144. Tráfico de voz a red propia de suscripciones móviles prepagos (minutos)
+## 4.84. Tráfico de voz a red propia de suscripciones móviles prepagos (minutos)
 ```{r}
 # serie_165 <- voz %>%
 #   filter(tipo_red == "Propia Móvil", pago == "Prepago") %>%
@@ -316,7 +316,7 @@ trafico_voz_historico %>%
   serie_historica_semestral_flujo(numeric, nudge_text = 8e7)
 ```
 
-## 145. Tráfico de voz a red propia de suscripciones móviles prepagos (minutos) por operador (`r FECHA_TITULO_FLUJO`)
+## 4.85. Tráfico de voz a red propia de suscripciones móviles prepagos (minutos) por operador (`r FECHA_TITULO_FLUJO`)
 ```{r}
 serie_166 <- voz %>%
   filter(tipo_red == "Propia Móvil", pago == "Prepago") %>%
@@ -335,7 +335,7 @@ serie_166 %>%
 
 
 
-## 146. Tráfico de voz a otras redes móviles de suscripciones móviles prepagos (minutos)
+## 4.86. Tráfico de voz a otras redes móviles de suscripciones móviles prepagos (minutos)
 ```{r}
 # serie_167 <- voz %>%
 #   filter(tipo_red == "Otra Móvil", pago == "Prepago") %>%
@@ -350,7 +350,7 @@ trafico_voz_historico %>%
 
 
 
-## 147. Tráfico de voz a otras redes móviles de suscripciones móviles prepagos (minutos) por operador (`r FECHA_TITULO_FLUJO`)
+## 4.87. Tráfico de voz a otras redes móviles de suscripciones móviles prepagos (minutos) por operador (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
 serie_168 <- voz %>%
@@ -370,7 +370,7 @@ serie_168 %>%
 
 
 
-## 148. Tráfico voz al exterior de suscripciones móviles prepagos (minutos)
+## 4.88. Tráfico voz al exterior de suscripciones móviles prepagos (minutos)
 ```{r}
 # serie_169 <- voz %>%
 #   filter(tipo_red == "Exterior", pago == "Prepago") %>%
@@ -386,7 +386,7 @@ trafico_voz_historico %>%
 
 
 
-## 149. Tráfico voz al exterior de suscripciones móviles prepagos (minutos) por operador (`r FECHA_TITULO_FLUJO`)
+## 4.89. Tráfico voz al exterior de suscripciones móviles prepagos (minutos) por operador (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
 serie_170 <- voz %>%
@@ -406,7 +406,7 @@ serie_170 %>%
 
 
 
-## 150. Tráfico voz a red fija de suscripciones móviles prepagos (minutos)
+## 4.90. Tráfico voz a red fija de suscripciones móviles prepagos (minutos)
 ```{r}
 # serie_171 <- voz %>%
 #   filter(tipo_red == "Fija", pago == "Prepago") %>%
@@ -422,7 +422,7 @@ trafico_voz_historico %>%
 
 
 
-## 151. Tráfico voz a red fija de suscripciones móviles prepagos (minutos) por operador
+## 4.91. Tráfico voz a red fija de suscripciones móviles prepagos (minutos) por operador
 
 ```{r}
 serie_172 <- voz %>%
@@ -441,7 +441,7 @@ serie_172 %>%
 ##### Salto
 
 
-## 152. Tráfico de voz de suscripciones móviles pospagos (minutos)
+## 4.92. Tráfico de voz de suscripciones móviles pospagos (minutos)
 
 ```{r}
 
@@ -455,7 +455,7 @@ trafico_voz_historico %>%
 
 
 
-## 153. Tráfico de voz de suscripciones móviles pospagos (minutos) por operador (`r FECHA_TITULO_FLUJO`)
+## 4.93. Tráfico de voz de suscripciones móviles pospagos (minutos) por operador (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
 serie_174 <- voz %>%
@@ -476,7 +476,7 @@ serie_174 %>%
 
 
 
-## 154. Tráfico de voz de suscripciones móviles pospagos (minutos) por destino (`r FECHA_TITULO_FLUJO`)
+## 4.94. Tráfico de voz de suscripciones móviles pospagos (minutos) por destino (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
 serie_175 <- voz %>%
@@ -495,7 +495,7 @@ serie_175 %>%
 
 
 
-## 155. Tráfico de voz a red propia de suscripciones móviles pospagos (minutos)
+## 4.95. Tráfico de voz a red propia de suscripciones móviles pospagos (minutos)
 ```{r}
 
 trafico_voz_historico %>% 
@@ -508,7 +508,7 @@ trafico_voz_historico %>%
 ##### Salto
 
 
-## 156. Tráfico de voz a red propia de suscripciones móviles pospagos (minutos) por operador (`r FECHA_TITULO_FLUJO`)
+## 4.96. Tráfico de voz a red propia de suscripciones móviles pospagos (minutos) por operador (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
 serie_177 <- voz %>%
@@ -525,7 +525,7 @@ serie_177 %>%
 
 
 
-## 157. Tráfico de voz a otras redes móviles de suscripciones móviles pospagos (minutos)
+## 4.97. Tráfico de voz a otras redes móviles de suscripciones móviles pospagos (minutos)
 
 ```{r}
 
@@ -537,7 +537,7 @@ trafico_voz_historico %>%
 ##### Salto
 
 
-## 158. Tráfico de voz a otras redes móviles de suscripciones móviles pospagos (minutos) por operador (`r FECHA_TITULO_FLUJO`)
+## 4.98. Tráfico de voz a otras redes móviles de suscripciones móviles pospagos (minutos) por operador (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
 serie_180 <- voz %>%
@@ -556,7 +556,7 @@ serie_180 %>%
 
 
 
-## 159. Tráfico de voz al exterior de suscripciones móviles pospagos (minutos)
+## 4.99. Tráfico de voz al exterior de suscripciones móviles pospagos (minutos)
 
 ```{r}
 # serie_181 <- voz %>%
@@ -576,7 +576,7 @@ trafico_voz_historico %>%
 
 
 
-## 160. Tráfico de voz al exterior de suscripciones móviles pospagos (minutos) por operador (`r FECHA_TITULO_FLUJO`)
+## 4.100. Tráfico de voz al exterior de suscripciones móviles pospagos (minutos) por operador (`r FECHA_TITULO_FLUJO`)
 ```{r}
 serie_182 <- voz %>%
   filter(pago == "Pospago", tipo_red == "Exterior") %>%
@@ -593,7 +593,7 @@ serie_182 %>%
 
 
 
-## 161. Tráfico de voz a red fija de suscripciones móviles pospagos (minutos)
+## 4.101. Tráfico de voz a red fija de suscripciones móviles pospagos (minutos)
 ```{r}
 # serie_183 <- voz %>%
 #   filter(tipo_red == "Fija", pago == "Pospago") %>%
@@ -612,7 +612,7 @@ trafico_voz_historico %>%
 
 
 
-## 162. Tráfico de voz a red fija de suscripciones móviles pospagos (minutos) por operador (`r FECHA_TITULO_FLUJO`)
+## 4.102. Tráfico de voz a red fija de suscripciones móviles pospagos (minutos) por operador (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
 serie_184 <- voz %>%
