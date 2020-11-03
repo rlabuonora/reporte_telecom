@@ -170,7 +170,7 @@ serie_172 %>%
 
 
 
-## 171. Tráfico de voz de Roaming de LDI (minutos) por operador (`r FECHA_TITULO_FLUJO`)
+## 4.110. Tráfico de voz de Roaming de LDI (minutos) por operador (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
 serie_174 <- roaming %>% 
@@ -203,7 +203,7 @@ serie_174 %>%
 
 
 
-## 173. Tráfico de datos de Roaming (terabytes) por operador
+## 4.111. Tráfico de datos de Roaming (terabytes) por operador
 
 ```{r}
 serie_176 <- roaming %>%
