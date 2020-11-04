@@ -72,7 +72,9 @@ serie_168 <- roaming %>%
   summarize(numeric = sum(numeric, na.rm = TRUE))
 
 serie_168 %>% 
-  pie_chart(numeric, destino, nudge_radio = c(.7, 1.2, .6)) + 
+  pie_chart(numeric, destino, 
+            percent_accuracy = .01,
+            nudge_radio = c(.7, 1.2, .6)) + 
   labs(caption = 
   "Local: Llamadas locales de clientes del operador en el pais que se visita.
    LDI: Llamadas de LDI de clientes del operador que se encuentran en el exterior.
@@ -182,7 +184,7 @@ serie_174 <- roaming %>%
   summarize(numeric = sum(numeric, na.rm = TRUE))
 
 serie_174 %>% 
-  pie_chart(numeric, empresa) %>% 
+  pie_chart(numeric, empresa, percent_accuracy = .01) %>% 
   print
 ```
 

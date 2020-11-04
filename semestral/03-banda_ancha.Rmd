@@ -242,7 +242,7 @@ serie_76 <- banda_ancha_servicios_empresariales %>%
   summarize(servicios = sum(val, na.rm = TRUE)) 
 
 serie_76 %>% 
-  pie_chart(servicios, medio, nudge_radio = .7) %>% 
+  pie_chart(servicios, medio, nudge_radio = .7, percent_accuracy = .01) %>% 
   print
 ```
 
@@ -521,7 +521,7 @@ tibble(
 <!-- #   print -->
 <!-- ``` -->
 
-## 3.28. Tráfico de datos (terabytes) por operador (`r FECHA_TITULO_FLUJO`)(*)
+## 3.28. Tráfico de datos (terabytes) por operador (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
 # banda_ancha_trafico %>% 
@@ -554,7 +554,7 @@ tribble(
   
 ```
 
-## 3.30. Capacidad propia de acceso a Internet por operador (`r FECHA_TITULO_STOCK`)
+## 3.30. Capacidad propia de acceso a Internet por operador (megabytes) (`r FECHA_TITULO_STOCK`)
 ```{r}
 
 tribble(

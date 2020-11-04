@@ -537,7 +537,7 @@ ldi %>%
          semester(fecha) == semester(FECHA_INFORME_SEMESTRAL)) %>%
   group_by(red) %>%
   summarize(minutos = sum(numeric, na.rm=TRUE)) %>%
-  pie_chart(minutos, red, percent_accuracy = .01) %>%
+  pie_chart(minutos, red, percent_accuracy = 1) %>%
   print
 ```
 

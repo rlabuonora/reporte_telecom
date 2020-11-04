@@ -52,7 +52,7 @@ serie_142 <- mensajes %>%
   summarize(mensajes = sum(numeric, na.rm = TRUE))
 
 serie_142 %>% 
-  pie_chart(mensajes, empresa) %>% 
+  pie_chart(mensajes, empresa, percent_accuracy = 1) %>% 
   print
 
 ```
@@ -74,7 +74,9 @@ serie_143 <- mensajes %>%
   summarize(mensajes = sum(numeric, na.rm = TRUE))
 
 serie_143 %>% 
-  pie_chart(mensajes, red_destino, nudge_radio = c(.9, .8, .6)) %>% 
+  pie_chart(mensajes, red_destino, 
+            percent_accuracy = .01,
+            nudge_radio = c(.9, .8, .6)) %>% 
   print
 ```
 

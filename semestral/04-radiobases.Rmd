@@ -259,7 +259,7 @@ tabla_101 <- radiobases %>%
   summarize(radiobases = sum(val, na.rm = TRUE))
 
 tabla_101 %>% 
-  pie_chart(radiobases, empresa) %>% 
+  pie_chart(radiobases, empresa, percent_accuracy=.01) %>% 
   print
 ```
 

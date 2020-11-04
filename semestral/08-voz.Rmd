@@ -161,7 +161,7 @@ serie_156 <- voz %>%
   summarize(numeric = sum(numeric, na.rm = TRUE))
 
 serie_156 %>% 
-  pie_chart(numeric, empresa) %>% 
+  pie_chart(numeric, empresa, percent_accuracy = .01) %>% 
   print
 ```
 
@@ -183,7 +183,7 @@ serie_157 %>%
 
 
 
-## 4.77. Tráfico voz al exterior de suscripciones móviles por operador (`r FECHA_TITULO_FLUJO`)
+## 4.77. Tráfico voz al exterior de suscripciones móviles por operador (minutos) (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
 serie_158 <- voz %>% 
@@ -422,7 +422,7 @@ trafico_voz_historico %>%
 
 
 
-## 4.91. Tráfico voz a red fija de suscripciones móviles prepagos (minutos) por operador
+## 4.91. Tráfico voz a red fija de suscripciones móviles prepagos (minutos) por operador (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
 serie_172 <- voz %>%
@@ -487,7 +487,9 @@ serie_175 <- voz %>%
   summarize(numeric = sum(numeric, na.rm = TRUE))
 
 serie_175 %>%
-  pie_chart(numeric, tipo_red, nudge_radio =c(1, 1, 1, 1)) %>%
+  pie_chart(numeric, tipo_red, 
+            percent_accuracy = 1,
+            nudge_radio =c(1, 1, 1, 1)) %>%
   print
 ```
 
@@ -519,7 +521,7 @@ serie_177 <- voz %>%
   summarize(numeric = sum(numeric, na.rm = TRUE))
 
 serie_177 %>%
-  pie_chart(numeric, empresa) %>%
+  pie_chart(numeric, empresa, percent_accuracy = .01) %>%
   print
 ```
 
