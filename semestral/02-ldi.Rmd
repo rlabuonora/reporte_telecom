@@ -603,7 +603,7 @@ ldi %>%
 
 
 
-## 2.32. Minutos de tráfico entrante de LDI en red móvil de Telefónica por operador (`r FECHA_TITULO_FLUJO`)
+## 2.32. Minutos de tráfico entrante de LDI en red móvil de Movistar por operador (`r FECHA_TITULO_FLUJO`)
 ```{r}
 ldi %>%
   filter(red %in% c("Movistar"),
