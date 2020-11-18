@@ -540,7 +540,7 @@ tibble(
 
 ##### Salto
 
-## 3.29. Capacidad propia de acceso a Internet (Mbps) (`r FECHA_TITULO_FLUJO`)
+## 3.29. Capacidad propia de acceso a Internet (Mbps) (`r FECHA_TITULO_STOCK`)
 ```{r}
 
 tribble(
@@ -551,7 +551,7 @@ tribble(
   2019,   2,       684834, 
   2020,   1,       974834,
 ) %>% 
-  serie_historica_semestral_flujo(val, nudge_text=1e5)
+  serie_historica_semestral_stock(val, nudge_text=1e5)
   
 ```
 

@@ -265,9 +265,9 @@ serie_120 %>%
 ```{r}
 
 serie_pre_2018 <- tibble(
-  year=c(rep(2017, 2), rep(2018, 2)),
-  semester = c(rep(c(1, 2), 2)),
-  val=c(3226685, 3263337, 3130398, 3141807)
+  year=c(2018, 2018),
+  semester = c(1, 2),
+  val=c(3130398, 3141807)
 )
 
 serie_post_2019 <-  servicios %>% 
@@ -338,15 +338,26 @@ serie_120 %>%
 ## 4.36. Servicios móviles pospagos
 ```{r}
 
-# Datos Diego
+serie_post_2019 <-  servicios %>% 
+  filter(servicio %in% c(
+    "Suscripciones a la telefonía móvil",
+    #"",
+    "M2M",
+    "Internet Móvil")) %>%
+  filter(pago == "Pospago") %>% 
+  filter(year(fecha) >= 2019) %>% 
+  filter(month(fecha) %in% c(6, 12)) %>% 
+  group_by(year=year(fecha), semester=semester(fecha)) %>%
+  summarize(val = sum(numeric, na.rm = TRUE))
+
 serie <- tibble(
-  year=c(2018, 2018, 2019, 2019, 2020),
-  semester = c(1, 2, 1, 2, 1),
-  val=c(2714611, 2804626, 2758253, 2841197, 2771527)
+  year=c(2018, 2018),
+  semester = c(1, 2),
+  val=c(2099924, 2173233)
 )
 
-
 serie %>% 
+  bind_rows(serie_post_2019) %>% 
   serie_historica_semestral_stock(val)
 ```
 

@@ -1,5 +1,4 @@
 ---
-title: "Informe de mercado de servicios de Telecomunicaciones de Uruguay"
 output:
   word_document:
     reference_docx: word_report.docx
@@ -22,7 +21,7 @@ FECHA_TITULO_FLUJO <-  "Primer Semestre 2020"
 
 ```
 
-
+![](portada.png)
 
 <!---BLOCK_TOC{level: 2}--->
 
