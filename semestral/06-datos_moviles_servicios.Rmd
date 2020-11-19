@@ -29,7 +29,7 @@ servicios <- import_datos_servicios_moviles() %>%
 serie_109_vieja <- tibble(
   fecha = c(ymd('2018-06-01'),
             ymd('2018-12-01')),
-  numeric = c(4814535, 4977859))
+  numeric = c(4801889, 4960802))
 
 
 
@@ -105,8 +105,8 @@ serie_112 <- servicios %>%
 serie_112 %>% 
   # Datos Diego
   mutate(val = case_when(
-    year == 2018 & semester == 1 ~ 4422622,
-    year == 2018 & semester == 2 ~ 4493287,
+    year == 2018 & semester == 1 ~ 4397330,
+    year == 2018 & semester == 2 ~ 4459173,
     TRUE~val
   )) %>% 
   serie_historica_semestral_stock(val, nudge_text = 300e4) 
@@ -267,7 +267,7 @@ serie_120 %>%
 serie_pre_2018 <- tibble(
   year=c(2018, 2018),
   semester = c(1, 2),
-  val=c(3130398, 3141807)
+  val=c(2714611, 2804626)
 )
 
 serie_post_2019 <-  servicios %>% 
@@ -353,7 +353,7 @@ serie_post_2019 <-  servicios %>%
 serie <- tibble(
   year=c(2018, 2018),
   semester = c(1, 2),
-  val=c(2099924, 2173233)
+  val=c(2087278, 2156176)
 )
 
 serie %>% 
@@ -568,8 +568,8 @@ serie_129 %>%
   # Datos Diego
   mutate(val = 
            case_when(
-             year == 2018 & semester == 1 ~ 1752094,
-             year == 2018 & semester == 2 ~ 1764856,
+             year == 2018 & semester == 1 ~ 1726802,
+             year == 2018 & semester == 2 ~ 1730742,
              TRUE ~ val
            )) %>% 
   serie_historica_semestral_stock(val, nudge_text = 1e5)
