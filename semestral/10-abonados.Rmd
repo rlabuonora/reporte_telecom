@@ -53,6 +53,26 @@ abonados_por_depto %>%
 ##### Salto
 
 
+## 5.4. Servicios de TV para abonados por operador (`r FECHA_TITULO_STOCK`)
+```{r}
+tribble(
+  ~empresa,       ~abonados,
+  "Audomar S.A.", 15173,
+  "Bersabel S.A.", 62222,
+  "Cable Plus S.A", 15602,
+  "Consorcio San Fernando", 19081,
+  "Directv de Uruguay Ltda.", 190740,
+  "Monte Cablevideo S.A.", 33666,
+  "Multicanal S.A.", 15284,
+  "Riselco S.A.", 36139,
+  "Space Energy Tech S.A.", 21279,
+  "Tractoral S.A.", 40384,
+  "Visión Satelital S.A.", 20113,
+  "Otros", 169125) %>% 
+    barras_horizontales(abonados, empresa, nudge_text = 1000)
+```
+
+
 ## 5.3. Servicios de TV para abonados en Artigas
 ```{r}
 abonados_por_depto %>% 
@@ -64,13 +84,7 @@ abonados_por_depto %>%
 ```
 
 
-<!-- ## 5.4. Servicios de TV para abonados en Artigas por operador (`r FECHA_TITULO_STOCK`) -->
-<!-- ```{r} -->
-<!-- abonados_por_operador_depto %>%  -->
-<!--     filter(depto=="Artigas") %>%  -->
-<!--     barras_horizontales(abonados, empresa, nudge_text = 1000) -->
-<!-- ``` -->
-
+##### Salto
 
 
 ## 5.5. Servicios de TV para abonados en Canelones
@@ -82,7 +96,6 @@ abonados_por_depto %>%
   summarize(val = sum(abonados, na.rm = TRUE)) %>% 
   serie_historica_semestral_stock(val, nudge_text = 4e4)
 ```
-##### Salto
 
 
 <!-- ## 5.6. Servicios de TV para abonados en Canelones por operador (`r FECHA_TITULO_STOCK`) -->
@@ -105,6 +118,7 @@ abonados_por_depto %>%
   serie_historica_semestral_stock(val, nudge_text = 6e3)
 ```
 
+##### Salto
 
 
 <!-- ## 5.8. Servicios de TV para abonados en Cerro Largo por operador (`r FECHA_TITULO_STOCK`) -->
@@ -128,7 +142,6 @@ abonados_por_depto %>%
   serie_historica_semestral_stock(val, nudge_text = 1e4)
 ```
 
-##### Salto
 
 
 <!-- ## 5.10. Servicios de TV para abonados en Colonia por operador (`r FECHA_TITULO_STOCK`) -->
@@ -151,6 +164,8 @@ abonados_por_depto %>%
   serie_historica_semestral_stock(val, nudge_text = 4e3)
 ```
 
+##### Salto
+
 
 <!-- ## 5.12. Servicios de TV para abonados en Durazno por operador (`r FECHA_TITULO_STOCK`) -->
 <!-- ```{r} -->
@@ -172,7 +187,6 @@ abonados_por_depto %>%
   serie_historica_semestral_stock(val, nudge_text = 2e3)
 ```
 
-##### Salto
 
 
 <!-- ## 5.14. Servicios de TV para abonados en Flores por operador (`r FECHA_TITULO_STOCK`) -->
@@ -195,6 +209,7 @@ abonados_por_depto %>%
   serie_historica_semestral_stock(val, nudge_text = 6e3)
 ```
 
+##### Salto
 
 
 <!-- ## 5.16. Servicios de TV para abonados en Florida por operador (`r FECHA_TITULO_STOCK`) -->
@@ -216,7 +231,6 @@ abonados_por_depto %>%
   summarize(val = sum(abonados, na.rm = TRUE)) %>% 
   serie_historica_semestral_stock(val, nudge_text = 6e3)
 ```
-##### Salto
 
 
 <!-- ## 5.18. Servicios de TV para abonados en Lavalleja por operador (`r FECHA_TITULO_STOCK`) -->
@@ -241,6 +255,8 @@ abonados_por_depto %>%
 ```
 
 
+##### Salto
+
 <!-- ## 5.20. Servicios de TV para abonados en Maldonado por operador (`r FECHA_TITULO_STOCK`) -->
 <!-- ```{r} -->
 <!-- abonados_por_operador_depto %>%  -->
@@ -261,7 +277,23 @@ abonados_por_depto %>%
   serie_historica_semestral_stock(val, nudge_text = 1e5)
 ```
 
+
+## 5.4. Servicios de TV para abonados por operador en Montevideo (`r FECHA_TITULO_STOCK`)
+```{r}
+tribble(
+  ~empresa,         ~abonados,
+  "Bersabel S.A.", 58494,
+  "Directv de Uruguay Ltda.", 47918,
+  "Tractoral S.A.", 40384,
+  "Riselco S.A.", 36139,
+  "Monte Cablevideo S.A.", 33666,
+  "Multicanal S.A.", 15284) %>% 
+    barras_horizontales(abonados, empresa)
+```
+
+
 ##### Salto
+
 
 
 <!-- ## 5.22. Servicios de TV para abonados en Montevideo por operador (`r FECHA_TITULO_STOCK`) -->
@@ -307,8 +339,8 @@ abonados_por_depto %>%
   serie_historica_semestral_stock(val, nudge_text = 8e3)
 ```
 
-
 ##### Salto
+
 
 
 <!-- ## 5.26. Servicios de TV para abonados en Río Negro por operador (`r FECHA_TITULO_STOCK`) -->
@@ -466,6 +498,7 @@ abonados_por_depto %>%
 <!-- ##### Salto -->
 
 
+
 ## 5.37. Servicios de TV para abonados en Treinta y Tres
 ```{r}
 abonados_por_depto %>% 
@@ -475,6 +508,7 @@ abonados_por_depto %>%
   summarize(val = sum(abonados, na.rm = TRUE)) %>% 
   serie_historica_semestral_stock(val, nudge_text = 4e3)
 ```
+
 
 
 <!-- ## 5.38. Servicios de TV para abonados en Treinta y Tres por operador (`r FECHA_TITULO_STOCK`) -->
@@ -499,7 +533,6 @@ abonados_por_tecnologia %>%
 ```
 
 
-##### Salto
 
 
 <!-- ## 5.40. Servicios de TV para abonados por Cable Coaxial -->
@@ -514,6 +547,7 @@ abonados_por_tecnologia %>%
 
 <!-- ##### Salto -->
 
+##### Salto
 
 ## 5.41. Servicios de TV para abonados por UHF
 ```{r}
@@ -536,6 +570,8 @@ abonados_por_tecnologia %>%
 
 
 <!-- ##### Salto -->
+
+
 
 
 

@@ -339,6 +339,7 @@ serie_84 <- banda_ancha_servicios_inalambrica %>%
   summarize(servicios = sum(val, na.rm = TRUE))
 
 serie_84 %>% 
+  filter(servicios > 0) %>% 
   barras_horizontales(servicios, empresa, nudge_text = 4e3)
 ```
 
@@ -521,26 +522,25 @@ tibble(
 <!-- #   print -->
 <!-- ``` -->
 
-## 3.28. Tráfico de datos (terabytes) por operador (`r FECHA_TITULO_FLUJO`)
+<!-- ## 3.28. Tráfico de datos (terabytes) por operador (`r FECHA_TITULO_FLUJO`) -->
 
-```{r}
-# banda_ancha_trafico %>% 
-#   filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL), 
-#         semester(fecha) == semester(FECHA_INFORME_SEMESTRAL)) %>% 
-#   group_by(empresa) %>% 
-#   summarize(minutos=sum(numeric)) %>% 
-#   filter(minutos > 0) 
+<!-- ```{r} -->
+<!-- # banda_ancha_trafico %>%  -->
+<!-- #   filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL),  -->
+<!-- #         semester(fecha) == semester(FECHA_INFORME_SEMESTRAL)) %>%  -->
+<!-- #   group_by(empresa) %>%  -->
+<!-- #   summarize(minutos=sum(numeric)) %>%  -->
+<!-- #   filter(minutos > 0)  -->
 
-tibble(
-  empresa = c("Antel", "Claro", "Dedicado", "Enalur Sa", "Kalil", "Movistar"),
-  minutos = c(1135018, 611, 0, 0, 0, 2488))  %>% 
-  barras_horizontales(minutos, empresa, nudge_text = 1.3e5)
+<!-- tibble( -->
+<!--   empresa = c("Antel", "Claro", "Dedicado", "Enalur Sa", "Kalil", "Movistar"), -->
+<!--   minutos = c(1135018, 611, 0, 0, 0, 2488))  %>%  -->
+<!--   barras_horizontales(minutos, empresa, nudge_text = 1.3e5) -->
 
-```
+<!-- ``` -->
 
-##### Salto
 
-## 3.29. Capacidad propia de acceso a Internet (Mbps) (`r FECHA_TITULO_STOCK`)
+## 3.29. Capacidad propia de acceso a Internet (Mbps)
 ```{r}
 
 tribble(
@@ -554,6 +554,9 @@ tribble(
   serie_historica_semestral_stock(val, nudge_text=1e5)
   
 ```
+
+##### Salto
+
 
 ## 3.30. Capacidad propia de acceso a Internet por operador (megabytes) (`r FECHA_TITULO_STOCK`)
 ```{r}
