@@ -168,7 +168,7 @@ serie_115 %>%
 
 
 
-## 4.28. Internet móvil (computadoras y tablets)
+## 4.28. Internet móvil (computadoras y tablets) - minutos
 ```{r}
 serie_116 <- servicios %>% 
   filter(servicio == "Internet Móvil") %>%
