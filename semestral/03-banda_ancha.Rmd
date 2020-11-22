@@ -540,7 +540,7 @@ tibble(
 <!-- ``` -->
 
 
-## 3.29. Capacidad propia de acceso a Internet (Mbps)
+## 3.28. Capacidad propia de acceso a Internet (Mbps)
 ```{r}
 
 tribble(
@@ -558,7 +558,7 @@ tribble(
 ##### Salto
 
 
-## 3.30. Capacidad propia de acceso a Internet por operador (megabytes) (`r FECHA_TITULO_STOCK`)
+## 3.29. Capacidad propia de acceso a Internet por operador (megabytes) (`r FECHA_TITULO_STOCK`)
 ```{r}
 
 tribble(

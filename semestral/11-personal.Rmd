@@ -39,6 +39,8 @@ personal_formacion <- tibble::tribble(
 
 ```
 
+# 6. Personal
+
 
 ## 6.1. Personal del sector telecomunicaciones por funciones (`r FECHA_TITULO_STOCK`)
 
@@ -90,7 +92,6 @@ personal_funcion %>%
   scale_fill_manual("", values = c("#80b1d3", "#fb8072")) + 
   facet_wrap(~funcion) +
   labs(x="", y="") +
-  theme_minimal() +
   theme(legend.position = "bottom")
 
 ```
@@ -110,7 +111,6 @@ personal_formacion %>%
   scale_fill_manual("", values = c("#80b1d3", "#fb8072")) + 
   facet_wrap(~formacion) +
   labs(x="", y="") +
-  theme_minimal() +
   theme(legend.position = "bottom")
 ```
 
