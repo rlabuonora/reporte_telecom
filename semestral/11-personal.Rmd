@@ -40,7 +40,7 @@ personal_formacion <- tibble::tribble(
 ```
 
 
-## 11.1. Personal del sector telecomunicaciones por funciones (`r FECHA_TITULO_STOCK`)
+## 6.1. Personal del sector telecomunicaciones por funciones (`r FECHA_TITULO_STOCK`)
 
 ```{r}
 
@@ -53,7 +53,7 @@ personal_funcion %>%
 ```
 
 
-## 11.2. Personal del sector telecomunicaciones por  formación (`r FECHA_TITULO_STOCK`)
+## 6.2. Personal del sector telecomunicaciones por  formación (`r FECHA_TITULO_STOCK`)
 ```{r}
 
 personal_formacion %>% 
@@ -67,7 +67,7 @@ personal_formacion %>%
 
 ##### Salto
 
-## 11.3. Personal del sector telecomunicaciones (`r FECHA_TITULO_STOCK`)
+## 6.3. Personal del sector telecomunicaciones (`r FECHA_TITULO_STOCK`)
 
 ```{r}
 personal_formacion %>% 
@@ -78,7 +78,7 @@ personal_formacion %>%
 ```
 
 
-## 11.4. Personal por género según funciones (`r FECHA_TITULO_STOCK`)
+## 6.4. Personal por género según funciones (`r FECHA_TITULO_STOCK`)
 
 ```{r}
 personal_funcion %>% 
@@ -98,7 +98,7 @@ personal_funcion %>%
 ##### Salto
 
 
-## 11.5. Personal por género según formación (`r FECHA_TITULO_STOCK`)
+## 6.5. Personal por género según formación (`r FECHA_TITULO_STOCK`)
 
 ```{r}
 personal_formacion %>% 

@@ -52,6 +52,15 @@ abonados_por_depto %>%
 
 ##### Salto
 
+## 5.3. Servicios de TV para abonados por departamento (`r FECHA_TITULO_STOCK`)
+```{r}
+abonados_por_depto %>% 
+  filter(year(fecha)==2020, month(fecha) ==6) %>% 
+  filter(depto != "TOTAL") %>% 
+    barras_horizontales(abonados, depto, nudge_text = 1000)
+```
+
+
 
 ## 5.4. Servicios de TV para abonados por operador (`r FECHA_TITULO_STOCK`)
 ```{r}
@@ -72,8 +81,10 @@ tribble(
     barras_horizontales(abonados, empresa, nudge_text = 1000)
 ```
 
+##### Salto
 
-## 5.3. Servicios de TV para abonados en Artigas
+
+## 5.5. Servicios de TV para abonados en Artigas
 ```{r}
 abonados_por_depto %>% 
   filter(depto=="Artigas") %>% 
@@ -84,10 +95,9 @@ abonados_por_depto %>%
 ```
 
 
-##### Salto
 
 
-## 5.5. Servicios de TV para abonados en Canelones
+## 5.6. Servicios de TV para abonados en Canelones
 ```{r}
 abonados_por_depto %>% 
   filter(depto=="Canelones") %>% 
@@ -96,6 +106,8 @@ abonados_por_depto %>%
   summarize(val = sum(abonados, na.rm = TRUE)) %>% 
   serie_historica_semestral_stock(val, nudge_text = 4e4)
 ```
+
+##### Salto
 
 
 <!-- ## 5.6. Servicios de TV para abonados en Canelones por operador (`r FECHA_TITULO_STOCK`) -->
@@ -118,7 +130,6 @@ abonados_por_depto %>%
   serie_historica_semestral_stock(val, nudge_text = 6e3)
 ```
 
-##### Salto
 
 
 <!-- ## 5.8. Servicios de TV para abonados en Cerro Largo por operador (`r FECHA_TITULO_STOCK`) -->
@@ -132,7 +143,7 @@ abonados_por_depto %>%
 
 
 
-## 5.9. Servicios de TV para abonados en Colonia
+## 5.8. Servicios de TV para abonados en Colonia
 ```{r}
 abonados_por_depto %>% 
   filter(depto=="Colonia") %>% 
@@ -142,6 +153,7 @@ abonados_por_depto %>%
   serie_historica_semestral_stock(val, nudge_text = 1e4)
 ```
 
+##### Salto
 
 
 <!-- ## 5.10. Servicios de TV para abonados en Colonia por operador (`r FECHA_TITULO_STOCK`) -->
@@ -154,7 +166,7 @@ abonados_por_depto %>%
 
 
 
-## 5.11. Servicios de TV para abonados en Durazno
+## 5.9. Servicios de TV para abonados en Durazno
 ```{r}
 abonados_por_depto %>% 
   filter(depto=="Durazno") %>% 
@@ -164,7 +176,6 @@ abonados_por_depto %>%
   serie_historica_semestral_stock(val, nudge_text = 4e3)
 ```
 
-##### Salto
 
 
 <!-- ## 5.12. Servicios de TV para abonados en Durazno por operador (`r FECHA_TITULO_STOCK`) -->
@@ -177,7 +188,7 @@ abonados_por_depto %>%
 <!-- ##### Salto -->
 
 
-## 5.13. Servicios de TV para abonados en Flores
+## 5.10. Servicios de TV para abonados en Flores
 ```{r}
 abonados_por_depto %>% 
   filter(depto=="Flores") %>% 
@@ -188,6 +199,7 @@ abonados_por_depto %>%
 ```
 
 
+##### Salto
 
 <!-- ## 5.14. Servicios de TV para abonados en Flores por operador (`r FECHA_TITULO_STOCK`) -->
 <!-- ```{r} -->
@@ -199,7 +211,7 @@ abonados_por_depto %>%
 
 
 
-## 5.15. Servicios de TV para abonados en Florida
+## 5.11. Servicios de TV para abonados en Florida
 ```{r}
 abonados_por_depto %>% 
   filter(depto=="Florida") %>% 
@@ -209,7 +221,6 @@ abonados_por_depto %>%
   serie_historica_semestral_stock(val, nudge_text = 6e3)
 ```
 
-##### Salto
 
 
 <!-- ## 5.16. Servicios de TV para abonados en Florida por operador (`r FECHA_TITULO_STOCK`) -->
@@ -222,7 +233,7 @@ abonados_por_depto %>%
 <!-- ##### Salto -->
 
 
-## 5.17. Servicios de TV para abonados en Lavalleja
+## 5.12. Servicios de TV para abonados en Lavalleja
 ```{r}
 abonados_por_depto %>% 
   filter(depto=="Lavalleja") %>% 
@@ -232,6 +243,8 @@ abonados_por_depto %>%
   serie_historica_semestral_stock(val, nudge_text = 6e3)
 ```
 
+
+##### Salto
 
 <!-- ## 5.18. Servicios de TV para abonados en Lavalleja por operador (`r FECHA_TITULO_STOCK`) -->
 <!-- ```{r} -->
@@ -244,7 +257,7 @@ abonados_por_depto %>%
 
 
 
-## 5.19. Servicios de TV para abonados en Maldonado
+## 5.13. Servicios de TV para abonados en Maldonado
 ```{r}
 abonados_por_depto %>% 
   filter(depto=="Maldonado") %>% 
@@ -255,7 +268,6 @@ abonados_por_depto %>%
 ```
 
 
-##### Salto
 
 <!-- ## 5.20. Servicios de TV para abonados en Maldonado por operador (`r FECHA_TITULO_STOCK`) -->
 <!-- ```{r} -->
@@ -267,7 +279,7 @@ abonados_por_depto %>%
 
 
 
-## 5.21. Servicios de TV para abonados en Montevideo
+## 5.14. Servicios de TV para abonados en Montevideo
 ```{r}
 abonados_por_depto %>% 
   filter(depto=="Montevideo") %>% 
@@ -277,8 +289,10 @@ abonados_por_depto %>%
   serie_historica_semestral_stock(val, nudge_text = 1e5)
 ```
 
+##### Salto
 
-## 5.4. Servicios de TV para abonados por operador en Montevideo (`r FECHA_TITULO_STOCK`)
+
+## 5.15. Servicios de TV para abonados por operador en Montevideo (`r FECHA_TITULO_STOCK`)
 ```{r}
 tribble(
   ~empresa,         ~abonados,
@@ -292,7 +306,6 @@ tribble(
 ```
 
 
-##### Salto
 
 
 
@@ -307,7 +320,7 @@ tribble(
 <!-- ##### Salto -->
 
 
-## 5.23. Servicios de TV para abonados en Paysandú
+## 5.16. Servicios de TV para abonados en Paysandú
 ```{r}
 abonados_por_depto %>% 
   filter(depto=="Paysandú") %>% 
@@ -317,6 +330,7 @@ abonados_por_depto %>%
   serie_historica_semestral_stock(val, nudge_text = 1e4)
 ```
 
+##### Salto
 
 
 <!-- ## 5.24. Servicios de TV para abonados en Paysandú por operador (`r FECHA_TITULO_STOCK`) -->
@@ -329,7 +343,7 @@ abonados_por_depto %>%
 
 
 
-## 5.25. Servicios de TV para abonados en Río Negro
+## 5.17. Servicios de TV para abonados en Río Negro
 ```{r}
 abonados_por_depto %>% 
   filter(depto=="Río Negro") %>% 
@@ -339,7 +353,6 @@ abonados_por_depto %>%
   serie_historica_semestral_stock(val, nudge_text = 8e3)
 ```
 
-##### Salto
 
 
 
@@ -355,7 +368,7 @@ abonados_por_depto %>%
 
 
 
-## 5.27. Servicios de TV para abonados en Rivera
+## 5.18. Servicios de TV para abonados en Rivera
 ```{r}
 abonados_por_depto %>% 
   filter(depto=="Rivera") %>% 
@@ -366,6 +379,7 @@ abonados_por_depto %>%
 ```
 
 
+##### Salto
 
 
 <!-- ## 5.28. Servicios de TV para abonados en Rivera por operador (`r FECHA_TITULO_STOCK`) -->
@@ -380,7 +394,7 @@ abonados_por_depto %>%
 
 
 
-## 5.29. Servicios de TV para abonados en Rocha
+## 5.19. Servicios de TV para abonados en Rocha
 ```{r}
 abonados_por_depto %>% 
   filter(depto=="Rocha") %>% 
@@ -390,7 +404,6 @@ abonados_por_depto %>%
   serie_historica_semestral_stock(val, nudge_text = 4e4)
 ```
 
-##### Salto
 
 
 <!-- ## 5.30. Servicios de TV para abonados en Rocha por operador (`r FECHA_TITULO_STOCK`) -->
@@ -403,7 +416,7 @@ abonados_por_depto %>%
 
 
 
-## 5.31. Servicios de TV para abonados en Salto
+## 5.20. Servicios de TV para abonados en Salto
 ```{r}
 abonados_por_depto %>% 
   filter(depto=="Salto") %>% 
@@ -413,6 +426,7 @@ abonados_por_depto %>%
   serie_historica_semestral_stock(val, nudge_text = 1e4)
 ```
 
+##### Salto
 
 
 <!-- ## 5.32. Servicios de TV para abonados en Salto por operador (`r FECHA_TITULO_STOCK`) -->
@@ -427,7 +441,7 @@ abonados_por_depto %>%
 
 
 
-## 5.33. Servicios de TV para abonados en San José
+## 5.21. Servicios de TV para abonados en San José
 ```{r}
 abonados_por_depto %>% 
   filter(depto=="San José") %>% 
@@ -438,7 +452,6 @@ abonados_por_depto %>%
 ```
 
 
-##### Salto
 
 
 <!-- ## 5.34. Servicios de TV para abonados en San José por operador (`r FECHA_TITULO_STOCK`) -->
@@ -452,7 +465,7 @@ abonados_por_depto %>%
 
 
 
-## 5.33. Servicios de TV para abonados en Soriano
+## 5.22. Servicios de TV para abonados en Soriano
 ```{r}
 abonados_por_depto %>% 
   filter(depto=="Soriano") %>% 
@@ -463,6 +476,7 @@ abonados_por_depto %>%
 ```
 
 
+##### Salto
 
 <!-- ## 5.34. Servicios de TV para abonados en Soriano (`r FECHA_TITULO_STOCK`) -->
 <!-- ```{r} -->
@@ -474,7 +488,7 @@ abonados_por_depto %>%
 <!-- ##### Salto -->
 
 
-## 5.35. Servicios de TV para abonados en Tacuarembó
+## 5.23. Servicios de TV para abonados en Tacuarembó
 ```{r}
 abonados_por_depto %>% 
   filter(depto=="Tacuarembó") %>% 
@@ -484,7 +498,6 @@ abonados_por_depto %>%
   serie_historica_semestral_stock(val, nudge_text = 1e4)
 ```
 
-##### Salto
 
 
 
@@ -499,7 +512,7 @@ abonados_por_depto %>%
 
 
 
-## 5.37. Servicios de TV para abonados en Treinta y Tres
+## 5.24. Servicios de TV para abonados en Treinta y Tres
 ```{r}
 abonados_por_depto %>% 
   filter(depto=="Treinta y tres") %>% 
@@ -510,6 +523,7 @@ abonados_por_depto %>%
 ```
 
 
+##### Salto
 
 <!-- ## 5.38. Servicios de TV para abonados en Treinta y Tres por operador (`r FECHA_TITULO_STOCK`) -->
 <!-- ```{r} -->
@@ -521,7 +535,7 @@ abonados_por_depto %>%
 <!-- ##### Salto -->
 
 
-## 5.39. Servicios de TV para abonados por tecnología (`r FECHA_TITULO_STOCK`)
+## 5.25. Servicios de TV para abonados por tecnología (`r FECHA_TITULO_STOCK`)
 ```{r}
 
 abonados_por_tecnologia %>% 
@@ -547,9 +561,8 @@ abonados_por_tecnologia %>%
 
 <!-- ##### Salto -->
 
-##### Salto
 
-## 5.41. Servicios de TV para abonados por UHF
+## 5.26. Servicios de TV para abonados por UHF
 ```{r}
 abonados_por_tecnologia %>% 
   filter(tecnologia=="UHF") %>% 
@@ -557,6 +570,8 @@ abonados_por_tecnologia %>%
   group_by(year=year(fecha), semester=semester(fecha)) %>% 
   serie_historica_semestral_stock(abonados, nudge_text = 4e3)
 ```
+
+##### Salto
 
 
 <!-- ## 5.42. Servicios de TV para abonados por MMDS   -->
@@ -575,7 +590,7 @@ abonados_por_tecnologia %>%
 
 
 
-## 5.43. Servicios de TV para abonados Satelital
+## 5.27. Servicios de TV para abonados Satelital
 ```{r}
 abonados_por_tecnologia %>% 
   filter(tecnologia=="Satelital") %>% 
