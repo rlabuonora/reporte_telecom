@@ -32,8 +32,8 @@ personal_formacion <- tibble::tribble(
     "Profesional\nuniversitario",  "Femenino",  726,
     "Técnicos", "Masculino", 136,
     "Técnicos",  "Femenino", 43,
-    "Resto",     "Masculino",  3151,
-    "Resto",    "Femenino",  2744
+    "Otros",     "Masculino",  3151,
+    "Otros",    "Femenino",  2744
   )
 
 
@@ -49,8 +49,8 @@ personal_formacion <- tibble::tribble(
 personal_funcion %>% 
   group_by(funcion) %>% 
   summarize(n=sum(n)) %>% 
-  pie_chart(n, funcion, nudge_x = c(3, -3, 0)) %>% 
-  print
+  pie_chart(n, funcion, nudge_x = c(3, -3, 0)) +
+  labs(caption="Incluye personal de los sectores de telefonía fija, móvil y datos e Internet.\nFunciones Gerenciales: Con personal a cargo.\nFunciones Técnicas: Sin personal a cargo.")
 
 ```
 
@@ -61,8 +61,8 @@ personal_funcion %>%
 personal_formacion %>% 
   group_by(formacion) %>% 
   summarize(n=sum(n)) %>% 
-  pie_chart(n, formacion, nudge_x = c(3, -3, 0)) %>% 
-  print
+  pie_chart(n, formacion, nudge_x = c(3, -3, 0))  +
+    labs(caption="Incluye personal de los sectores de telefonía fija, móvil y datos e Internet.")
 ```
 
 
@@ -75,8 +75,8 @@ personal_formacion %>%
 personal_formacion %>% 
   group_by(sexo) %>% 
   summarize(n=sum(n)) %>% 
-  pie_chart(n, sexo) %>% 
-  print
+  pie_chart(n, sexo)  +
+    labs(caption="Incluye personal de los sectores de telefonía fija, móvil y datos e Internet.") 
 ```
 
 
@@ -91,7 +91,7 @@ personal_funcion %>%
   geom_hline(yintercept = 0) +
   scale_fill_manual("", values = c("#80b1d3", "#fb8072")) + 
   facet_wrap(~funcion) +
-  labs(x="", y="") +
+  labs(x="", y="", caption="Incluye personal de los sectores de telefonía fija, móvil y datos e Internet.\nFunciones Gerenciales: Con personal a cargo.\nFunciones Técnicas: Sin personal a cargo.") +
   theme(legend.position = "bottom")
 
 ```
@@ -110,7 +110,7 @@ personal_formacion %>%
   geom_hline(yintercept = 0) +
   scale_fill_manual("", values = c("#80b1d3", "#fb8072")) + 
   facet_wrap(~formacion) +
-  labs(x="", y="") +
+  labs(x="", y="", caption="Incluye personal de los sectores de telefonía fija, móvil y datos e Internet.") +
   theme(legend.position = "bottom")
 ```
 

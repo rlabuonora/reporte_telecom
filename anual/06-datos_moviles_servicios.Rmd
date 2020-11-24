@@ -402,7 +402,7 @@ serie_128 %>%
   print
 ```
 
-## 109. Suscripciones pospagos a la telefonía móvil
+## 109. Suscripciones pospagas a la telefonía móvil
 ```{r}
 serie_129 <- servicios %>% 
   filter(year(fecha) == 2019) %>% 
@@ -422,7 +422,7 @@ serie_129 %>%
 
 
 
-## 110. Suscripciones pospagos a la telefonía móvil celular por operador (diciembre 2019)
+## 110. Suscripciones pospagas a la telefonía móvil celular por operador (diciembre 2019)
 ```{r}
 serie_130 <- servicios %>% 
   filter(servicio == "Suscripciones a la telefonía móvil") %>% 
@@ -478,7 +478,7 @@ serie_132 %>%
   print
 ```
 
-## 113. Servicios M2M pospagos
+## 113. Servicios M2M pospagas
 ```{r}
 serie_133 <- servicios %>% 
   filter(servicio == "M2M") %>%
@@ -513,7 +513,7 @@ serie_134 %>%
   print
 ```
 
-## 115. Suscripciones pospagos de banda ancha móvil
+## 115. Suscripciones pospagas de banda ancha móvil
 ```{r}
 serie_135 <- servicios %>% 
   filter(servicio == "Suscriptores de banda ancha móvil") %>%
@@ -533,7 +533,7 @@ serie_135 <- servicios %>%
 
 
 
-## 116. Suscripciones pospagos de banda ancha móvil por operador (diciembre 2019)
+## 116. Suscripciones pospagas de banda ancha móvil por operador (diciembre 2019)
 ```{r}
 serie_136 <- servicios %>% 
   filter(servicio == "Suscriptores de banda ancha móvil") %>%
@@ -622,7 +622,7 @@ serie_140 %>%
 ```
 
 
-## 121. Tráfico de datos de servicios de banda ancha móvil pospagos (terabytes)
+## 121. Tráfico de datos de servicios de banda ancha móvil pospagas (terabytes)
 ```{r}
 serie_141 <- trafico %>%
   filter(pago == "Pospago") %>% 
@@ -641,7 +641,7 @@ serie_141 %>%
 
 
 
-## 122. Tráfico de datos de servicios de banda ancha móvil pospagos (terabytes) por operador (año 2019)
+## 122. Tráfico de datos de servicios de banda ancha móvil pospagas (terabytes) por operador (año 2019)
 ```{r}
 serie_142 <- trafico %>% 
   filter(pago == "Pospago") %>% 

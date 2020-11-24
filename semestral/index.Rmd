@@ -21,7 +21,6 @@ FECHA_TITULO_FLUJO <-  "Primer Semestre 2020"
 
 ```
 
-![](portada.png)
 
 <!---BLOCK_TOC{level: 2}--->
 

@@ -22,7 +22,7 @@ abonados_por_operador_depto <- import_abonados_por_empresa_depto()
 
 ```
 
-# 10. TV para abonados
+# 5. TV para abonados
 
 ## 5.1. Ingresos TV para abonados (pesos corrientes)
 ```{r}

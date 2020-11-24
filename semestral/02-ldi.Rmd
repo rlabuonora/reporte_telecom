@@ -18,7 +18,7 @@ ldi <- import_ldi() %>%
 
 # 2. Telefonía de larga distancia internacional
 
-## 2.1. Minutos de tráfico de LDI salientes
+## 2.1. Minutos de tráfico de LDI saliente
 
 ```{r}
 ldi %>% 
@@ -62,7 +62,7 @@ ldi %>%
 ```
 
 
-## 2.4. Minutos de tráfico de LDI salientes de red fija - AMM por operador (`r FECHA_TITULO_FLUJO`)
+## 2.4. Minutos de tráfico de LDI saliente de red fija - AMM por operador (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
 ldi %>% 
@@ -91,7 +91,7 @@ ldi %>%
 ```
 
 
-## 2.6. Minutos de tráfico de LDI salientes de red fija - Resto País por operador (`r FECHA_TITULO_FLUJO`)
+## 2.6. Minutos de tráfico de LDI saliente de red fija - Resto País por operador (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
 ldi %>% 
@@ -109,7 +109,7 @@ ldi %>%
 
 ##### Salto
 
-## 2.7. Minutos de tráfico de LDI salientes de Red Fija - Resto País
+## 2.7. Minutos de tráfico de LDI saliente de Red Fija - Resto País
 
 ```{r}
 ldi %>% 
@@ -123,7 +123,7 @@ ldi %>%
 ```
 
 
-## 2.8. Minutos de tráfico de LDI salientes de redes móviles
+## 2.8. Minutos de tráfico de LDI saliente de redes móviles
 
 
 ```{r}
@@ -514,7 +514,7 @@ ldi %>%
 
 ##### Salto
 
-## 2.27. Minutos de tráfico de LDI entrantes a Redes Móviles
+## 2.27. Minutos de tráfico de LDI entrante a Redes Móviles
 
 ```{r}
 ldi %>%
@@ -528,7 +528,7 @@ ldi %>%
 
 ```
 
-## 2.28. Minutos de tráfico de LDI entrantes por red móvil destino (`r FECHA_TITULO_FLUJO`)
+## 2.28. Minutos de tráfico de LDI entrante por red móvil destino (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
 ldi %>%
@@ -584,7 +584,7 @@ ldi %>%
 ##### Salto
 
 
-## 2.31. Minutos de tráfico de LDI entrantes a red móvil de Movistar
+## 2.31. Minutos de tráfico de LDI entrante a red móvil de Movistar
 
 ```{r}
 ldi %>%
@@ -622,7 +622,7 @@ ldi %>%
 ##### Salto
 
 
-## 2.33. Minutos de tráfico de LDI entrantes a red móvil de Claro
+## 2.33. Minutos de tráfico de LDI entrante a red móvil de Claro
 ```{r}
 ldi %>%
    filter(red %in% c("Claro"),
