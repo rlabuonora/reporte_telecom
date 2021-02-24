@@ -41,8 +41,8 @@ FECHA_TITULO_FLUJO <-  "año 2020"
 
 
 
-<!-- ```{r child = '03-banda_ancha.Rmd'} -->
-<!-- ``` -->
+```{r child = '03-banda_ancha.Rmd'}
+```
 
 
 <!-- ```{r child = '04-radiobases.Rmd'} -->
