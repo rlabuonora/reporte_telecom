@@ -23,7 +23,7 @@ mensajes <- import_mensajes()
 
 ##### Salto
 
-## 4.62. Mensajes de texto enviados
+## 62. Mensajes de texto enviados
 ```{r}
 serie_141 <- mensajes %>% 
   filter( a %in% c("Antel", "Claro", "Movistar", "Exterior")) %>% 
@@ -42,7 +42,7 @@ serie_141 %>%
 
 
 
-## 4.63. Mensajes de texto enviados por operador (`r FECHA_TITULO_FLUJO`)
+## 63. Mensajes de texto enviados por operador (`r FECHA_TITULO_FLUJO`)
 ```{r}
 serie_142 <- mensajes %>%
   filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL),
@@ -60,7 +60,7 @@ serie_142 %>%
 ##### Salto
 
 
-## 4.64. Mensajes de texto enviados según destino (`r FECHA_TITULO_FLUJO`)
+## 64. Mensajes de texto enviados según destino (`r FECHA_TITULO_FLUJO`)
 ```{r}
 serie_143 <- mensajes %>%
   filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL), 
@@ -82,7 +82,7 @@ serie_143 %>%
 
 
 
-## 4.65. Mensajes de texto enviados al exterior 
+## 65. Mensajes de texto enviados al exterior 
 ```{r}
 serie_144 <- mensajes %>% 
   filter(a == "Exterior") %>% 
@@ -103,7 +103,7 @@ serie_144 %>%
 
 
 
-## 4.66. Mensajes de texto enviados al exterior por operador (`r FECHA_TITULO_FLUJO`)
+## 66. Mensajes de texto enviados al exterior por operador (`r FECHA_TITULO_FLUJO`)
 ```{r}
 serie_145 <- mensajes %>% 
   filter(a == "Exterior") %>% 
@@ -121,7 +121,7 @@ serie_145 %>%
 
 
 
-## 4.67. Mensajes de texto enviados a otras redes móviles
+## 67. Mensajes de texto enviados a otras redes móviles
 ```{r}
 serie_146 <- mensajes %>% 
   filter(a != empresa & a != "Exterior") %>% 
@@ -140,7 +140,7 @@ serie_146 %>%
 ##### Salto
 
 
-## 4.68. Mensajes de texto enviados a otras redes móviles por operador (`r FECHA_TITULO_FLUJO`)
+## 68. Mensajes de texto enviados a otras redes móviles por operador (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
 serie_147 <- mensajes %>% 

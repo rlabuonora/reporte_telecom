@@ -27,7 +27,7 @@ FECHA_TITULO_FLUJO <-  "Primer Semestre 2020"
 # 3. Transmisión de datos e internet
 
 
-## 3.1. Servicios de banda ancha fija
+## 1. Servicios de banda ancha fija
 ```{r}
 # g_63
 serie_63 <- banda_ancha_servicios %>% 
@@ -43,7 +43,7 @@ serie_63 %>%
 
 
 
-## 3.2. Servicios de banda ancha fija según alámbrica e inalámbrica (`r FECHA_TITULO_STOCK`)
+## 2. Servicios de banda ancha fija según alámbrica e inalámbrica (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_64 <- banda_ancha_servicios %>% 
   filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL), 
@@ -59,7 +59,7 @@ serie_64 %>%
 
 ##### Salto
 
-## 3.3. Servicios de banda ancha fija por velocidad (`r FECHA_TITULO_STOCK`)
+## 3. Servicios de banda ancha fija por velocidad (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_65 <- banda_ancha_servicios %>% 
   filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL), 
@@ -77,7 +77,7 @@ serie_65 %>%
 ```
 
 
-## 3.4. Servicios de banda ancha fija por tipo de cliente (`r FECHA_TITULO_STOCK`)
+## 4. Servicios de banda ancha fija por tipo de cliente (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_66 <- banda_ancha_servicios %>% 
   filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL), month(fecha) == month(FECHA_INFORME_SEMESTRAL)) %>% 
@@ -95,7 +95,7 @@ serie_66 %>%
 
 ##### Salto
 
-## 3.5. Servicios de banda ancha fija por operador (`r FECHA_TITULO_STOCK`)
+## 5. Servicios de banda ancha fija por operador (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_67 <- banda_ancha_servicios %>% 
   filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL), month(fecha) ==    month(FECHA_INFORME_SEMESTRAL)) %>% 
@@ -107,7 +107,7 @@ serie_67 %>%
   barras_horizontales(servicios, empresa, nudge_text = 1e5)
 ```
 
-## 3.6. Servicios de banda ancha fija por medio de trasmisión (`r FECHA_TITULO_STOCK`)
+## 6. Servicios de banda ancha fija por medio de trasmisión (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_68 <- banda_ancha_servicios %>% 
   filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL), 
@@ -125,7 +125,7 @@ banda_ancha_servicios_residenciales <- filter(banda_ancha_servicios, cliente == 
 ```
 ##### Salto
 
-## 3.7. Servicios de banda ancha fija residencial
+## 7. Servicios de banda ancha fija residencial
 ```{r}
 serie_69 <- banda_ancha_servicios_residenciales %>% 
     filter(month(fecha) == 6 | month(fecha) == 12, 
@@ -138,7 +138,7 @@ serie_69
 ```
 
 
-## 3.8. Servicios de banda ancha fija residencial por velocidad (`r FECHA_TITULO_STOCK`)
+## 8. Servicios de banda ancha fija residencial por velocidad (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_70 <- banda_ancha_servicios_residenciales %>% 
   filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL), 
@@ -154,7 +154,7 @@ serie_70 %>%
 
 ##### Salto
 
-## 3.9. Servicios de banda ancha fija residencial por operador (`r FECHA_TITULO_STOCK`)
+## 9. Servicios de banda ancha fija residencial por operador (`r FECHA_TITULO_STOCK`)
 
 ```{r}
 serie_71 <- banda_ancha_servicios_residenciales %>% 
@@ -171,7 +171,7 @@ serie_71 <- banda_ancha_servicios_residenciales %>%
 ```
 
 
-## 3.10. Servicios de banda ancha fija residencial por medio de trasmisión (`r FECHA_TITULO_STOCK`)
+## 10. Servicios de banda ancha fija residencial por medio de trasmisión (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_72 <- banda_ancha_servicios_residenciales %>% 
   filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL), 
@@ -192,7 +192,7 @@ banda_ancha_servicios_empresariales <- filter(banda_ancha_servicios, cliente == 
 
 ```
 
-## 3.11. Servicios de banda ancha fija comercial
+## 11. Servicios de banda ancha fija comercial
 ```{r}
 serie_73 <- banda_ancha_servicios_empresariales %>% 
   filter(month(fecha) == 6 | month(fecha) == 12, 
@@ -205,7 +205,7 @@ serie_73 %>%
 ```
 
 
-## 3.12. Servicios de banda ancha fija comercial por velocidad (`r FECHA_TITULO_STOCK`)
+## 12. Servicios de banda ancha fija comercial por velocidad (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_74 <- banda_ancha_servicios_empresariales %>% 
   filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL), 
@@ -219,7 +219,7 @@ serie_74 %>%
 
 ##### Salto
 
-## 3.13. Servicios de banda ancha fija comercial por operador (`r FECHA_TITULO_STOCK`)
+## 13. Servicios de banda ancha fija comercial por operador (`r FECHA_TITULO_STOCK`)
 
 ```{r}
 serie_75 <- banda_ancha_servicios_empresariales %>% 
@@ -233,7 +233,7 @@ serie_75 %>%
 ```
 
 
-## 3.14. Servicios de banda ancha fija comercial por medio de trasmisión (`r FECHA_TITULO_STOCK`)
+## 14. Servicios de banda ancha fija comercial por medio de trasmisión (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_76 <- banda_ancha_servicios_empresariales %>% 
   filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL), 
@@ -288,7 +288,7 @@ banda_ancha_servicios_inalambrica <- filter(banda_ancha_servicios, alambrica=="I
 
 ```
 
-## 3.15. Servicios de banda ancha fija inalámbrica
+## 15. Servicios de banda ancha fija inalámbrica
 ```{r}
 banda_ancha_servicios_inalambrica %>% 
   filter(month(fecha) == 6 | month(fecha) == 12, 
@@ -298,7 +298,7 @@ banda_ancha_servicios_inalambrica %>%
   serie_historica_semestral_stock(servicios, nudge_text = 2e3)
 ```
 
-## 3.16. Servicios de banda ancha fija inalámbrica por velocidad (`r FECHA_TITULO_STOCK`)
+## 16. Servicios de banda ancha fija inalámbrica por velocidad (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_82 <- banda_ancha_servicios_inalambrica %>% 
   filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL), 
@@ -313,7 +313,7 @@ serie_82 %>%
 ##### Salto
 
 
-## 3.17. Servicios de banda ancha fija inalámbrica por tipo de cliente (`r FECHA_TITULO_STOCK`)
+## 17. Servicios de banda ancha fija inalámbrica por tipo de cliente (`r FECHA_TITULO_STOCK`)
 ```{r}
 
 serie_83 <- banda_ancha_servicios_inalambrica %>% 
@@ -330,7 +330,7 @@ serie_83 %>%
 ```
 
 
-## 3.18. Servicios de banda ancha fija inalámbrica por operador (`r FECHA_TITULO_STOCK`)
+## 18. Servicios de banda ancha fija inalámbrica por operador (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_84 <- banda_ancha_servicios_inalambrica %>% 
   filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL), 
@@ -346,7 +346,7 @@ serie_84 %>%
 ##### Salto
 
 
-## 3.19. Servicios de banda ancha fija inalámbrica por medio de trasmisión (`r FECHA_TITULO_STOCK`)
+## 19. Servicios de banda ancha fija inalámbrica por medio de trasmisión (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_85 <- banda_ancha_servicios_inalambrica %>% 
   filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL), 
@@ -366,7 +366,7 @@ banda_ancha_servicios_alambrica <- filter(banda_ancha_servicios, alambrica=="Al�
 
 ```
 
-## 3.20. Servicios de banda ancha fija alámbrica
+## 20. Servicios de banda ancha fija alámbrica
 ```{r}
 banda_ancha_servicios_alambrica %>% 
   filter(month(fecha) == 6 | month(fecha) == 12, 
@@ -379,7 +379,7 @@ banda_ancha_servicios_alambrica %>%
 ##### Salto
 
 
-## 3.21. Servicios de banda ancha fija alámbrica por velocidad (`r FECHA_TITULO_STOCK`)
+## 21. Servicios de banda ancha fija alámbrica por velocidad (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_87 <- banda_ancha_servicios_alambrica %>% 
   filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL), 
@@ -394,7 +394,7 @@ serie_87 %>%
 ```
 
 
-## 3.22. Servicios de banda ancha fija alámbrica por medio de trasmisión (`r FECHA_TITULO_STOCK`)
+## 22. Servicios de banda ancha fija alámbrica por medio de trasmisión (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_88 <- banda_ancha_servicios_alambrica %>% 
   filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL), 
@@ -411,7 +411,7 @@ serie_88 %>%
 ##### Salto
 
 
-## 3.23. Servicios de banda ancha fija alámbrica por tipo de cliente (`r FECHA_TITULO_STOCK`)
+## 23. Servicios de banda ancha fija alámbrica por tipo de cliente (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_89 <- banda_ancha_servicios_alambrica %>% 
   filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL), 
@@ -426,7 +426,7 @@ serie_89 %>%
 ```
 
 
-## 3.24. Servicios de banda ancha fija alámbrica por operador (`r FECHA_TITULO_STOCK`)
+## 24. Servicios de banda ancha fija alámbrica por operador (`r FECHA_TITULO_STOCK`)
 
 ```{r}
 serie_90 <- banda_ancha_servicios_alambrica %>% 
@@ -445,7 +445,7 @@ serie_90 %>%
 ##### Salto
 
 
-## 3.25. Tráfico de datos de servicios de banda ancha fija (terabytes)
+## 25. Tráfico de datos de servicios de banda ancha fija (terabytes)
 ```{r}
 # banda_ancha_trafico %>% 
 #   filter(fecha < as.Date("2020-07-01")) %>% 
@@ -461,7 +461,7 @@ serie_historica_semestral_flujo(minutos, nudge_text = 50e3)
   
 ```
 
-## 3.26. Tráfico de datos de servicios de banda ancha fija (terabytes) según alámbrica e inalámbrica (`r FECHA_TITULO_FLUJO`)
+## 26. Tráfico de datos de servicios de banda ancha fija (terabytes) según alámbrica e inalámbrica (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
 
@@ -491,7 +491,7 @@ tibble(
 
 
 
-## 3.27. Tráfico de datos se servicios de banda ancha fija (terabytes) según tipo de cliente (`r FECHA_TITULO_FLUJO`)
+## 27. Tráfico de datos se servicios de banda ancha fija (terabytes) según tipo de cliente (`r FECHA_TITULO_FLUJO`)(*)
 
 ```{r}
 
@@ -522,7 +522,15 @@ tibble(
 <!-- #   print -->
 <!-- ``` -->
 
-<!-- ## 3.28. Tráfico de datos (terabytes) por operador (`r FECHA_TITULO_FLUJO`) -->
+## 28. Tráfico de datos (terabytes) por operador (`r FECHA_TITULO_FLUJO`)(*)
+
+```{r}
+# banda_ancha_trafico %>% 
+#   filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL), 
+#         semester(fecha) == semester(FECHA_INFORME_SEMESTRAL)) %>% 
+#   group_by(empresa) %>% 
+#   summarize(minutos=sum(numeric)) %>% 
+#   filter(minutos > 0) 
 
 <!-- ```{r} -->
 <!-- # banda_ancha_trafico %>%  -->
@@ -540,7 +548,7 @@ tibble(
 <!-- ``` -->
 
 
-## 3.28. Capacidad propia de acceso a Internet (Mbps)
+## 29. Capacidad propia de acceso a Internet (Mbps) (`r FECHA_TITULO_FLUJO`)
 ```{r}
 
 tribble(
@@ -555,10 +563,7 @@ tribble(
   
 ```
 
-##### Salto
-
-
-## 3.29. Capacidad propia de acceso a Internet por operador (megabytes) (`r FECHA_TITULO_STOCK`)
+## 30. Capacidad propia de acceso a Internet por operador (`r FECHA_TITULO_STOCK`)
 ```{r}
 
 tribble(
