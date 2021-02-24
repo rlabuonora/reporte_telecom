@@ -127,15 +127,7 @@ fija %>%
 ```
 
 
-
-
-
-
 ## 1.6. Líneas de telefonía fija por tipo de cliente (`r FECHA_TITULO_STOCK`)
-
-
-
-
 
 
 ```{r}

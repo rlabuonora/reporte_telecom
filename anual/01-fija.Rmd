@@ -39,7 +39,7 @@ fija %>%
 
 ```
 
-## 2. Líneas de telefonía fija por departamento (diciembre 2019)
+## 2. Líneas de telefonía fija por departamento (`r FECHA_TITULO_STOCK`)
 
 ```{r}
 
@@ -67,7 +67,7 @@ fija %>%
 ```
 
 
-## 4. Teléfonos públicos por departamento (diciembre 2019)
+## 4. Teléfonos públicos por departamento (`r FECHA_TITULO_STOCK`)
 ```{r}
 fija %>% 
   filter(cabezal_1 == "Líneas") %>% 
@@ -81,7 +81,7 @@ fija %>%
 
 \pagebreak
 
-## 5. Líneas de telefonía fija por tipo de cliente (diciembre 2019)
+## 5. Líneas de telefonía fija por tipo de cliente (`r FECHA_TITULO_STOCK`)
 
 ```{r}
 s <- fija %>% 
@@ -110,7 +110,7 @@ fija %>%
 \pagebreak
 
 
-## 7. Líneas de telefonía fija Comerciales por departamento (diciembre 2019)
+## 7. Líneas de telefonía fija Comerciales por departamento (`r FECHA_TITULO_STOCK`)
 
 ```{r}
 
@@ -139,7 +139,7 @@ fija %>%
 \pagebreak
 
 
-## 9. Líneas de telefonía fija Residenciales por departamento (diciembre 2019)
+## 9. Líneas de telefonía fija Residenciales por departamento (`r FECHA_TITULO_STOCK`)
 
 ```{r}
 fija %>% 
@@ -171,7 +171,7 @@ fija %>%
 \pagebreak
 
 
-## 11. Kilómetros de fibra óptica instalada por departamento (diciembre 2019)
+## 11. Kilómetros de fibra óptica instalada por departamento (`r FECHA_TITULO_STOCK`)
 
 ```{r}
 fija %>% 
