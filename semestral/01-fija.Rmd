@@ -26,8 +26,7 @@ fija <- import_fija()
 
 
 
-## 1. Ingresos Telefonía Fija (Pesos)
-
+## 1.1. Ingresos Telefonía Fija (Pesos)
 
 
 ```{r}
@@ -37,13 +36,13 @@ tibble::tribble(
   2018, 2, 2583094540,
   2019, 1, 2617190545,
   2019, 2, 2583844809,
-  2020, 1, 2559234085
+  2020, 1, 2559234058
 ) %>% serie_historica_semestral_flujo(ventas, nudge_text=2.5e8)
   
 ```
 
 
-## 2. Líneas de telefonía fija
+## 1.2. Líneas de telefonía fija
 
 
 
@@ -75,7 +74,7 @@ fija %>%
 
 
 
-## 3. Líneas de telefonía fija por departamento (`r FECHA_TITULO_STOCK`)
+## 1.3. Líneas de telefonía fija por departamento (`r FECHA_TITULO_STOCK`)
 
 
 ```{r}
@@ -93,16 +92,7 @@ fija %>%
 ```
 
 
-
-
-
-
-
-## 4. Teléfonos Públicos
-
-
-
-
+## 1.4. Teléfonos Públicos
 
 ```{r}
 fija %>% 
@@ -119,7 +109,11 @@ fija %>%
 
 ##### Salto
 
-## 5. Teléfonos públicos por departamento (`r FECHA_TITULO_STOCK`)
+
+## 1.5. Teléfonos públicos por departamento (`r FECHA_TITULO_STOCK`)
+
+
+
 
 
 ```{r}
@@ -132,7 +126,16 @@ fija %>%
   barras_horizontales(lineas, depto, nudge_text = 25)
 ```
 
-## 6. Líneas de telefonía fija por tipo de cliente (`r FECHA_TITULO_STOCK`)
+
+
+
+
+
+## 1.6. Líneas de telefonía fija por tipo de cliente (`r FECHA_TITULO_STOCK`)
+
+
+
+
 
 
 ```{r}
@@ -153,16 +156,7 @@ print(s)
 ##### Salto
 
 
-
-
-
-
-
-## 7. Líneas de telefonía fija comerciales
-
-
-
-
+## 1.7. Líneas de telefonía fija comerciales
 
 ```{r}
 fija %>% 
@@ -173,8 +167,10 @@ fija %>%
   summarize(lineas = sum(numeric, na.rm = TRUE)-1) %>%
   # Corregir por dato de Diego
   mutate(lineas = case_when(
-    year == 2019 & semester == 2~187541,
-    year == 2019 & semester == 1~198228,
+    year == 2016 & semester == 1 ~ 196150,
+    year == 2016 & semester == 2 ~ 196553,
+    year == 2019 & semester == 2 ~ 187541,
+    year == 2019 & semester == 1 ~ 198228,
     #198228, 
     TRUE~lineas
     )) %>% 
@@ -183,9 +179,7 @@ fija %>%
   
 ```
 
-
-## 8. Líneas de telefonía fija Comerciales por departamento (`r FECHA_TITULO_STOCK`)
-
+## 1.8. Líneas de telefonía fija Comerciales por departamento (`r FECHA_TITULO_STOCK`)
 
 ```{r}
 
@@ -201,7 +195,8 @@ fija %>%
 
 ##### Salto
 
-## 9. Líneas de telefonía fija residenciales
+
+## 1.9. Líneas de telefonía fija residenciales
 
 
 ```{r}
@@ -212,15 +207,19 @@ fija %>%
   group_by(year = year(fecha), semester=semester(fecha)) %>% 
   summarize(lineas = sum(numeric, na.rm = TRUE)) %>% 
   # Corregir por dato de Diego
-  mutate(lineas = if_else(
-    year == 2019 & semester == 1,
-    972717, lineas
+  mutate(lineas = case_when(
+    year == 2016 & semester == 1 ~ 916679,
+    year == 2016 & semester == 2 ~ 915682,
+    year == 2019 & semester == 1 ~ 972717, 
+    TRUE ~ lineas
   )) %>%
   serie_historica_semestral_stock(lineas, nudge_text = 5e4)
 ```
 
 
-## 10. Líneas de telefonía fija Residenciales por departamento (`r FECHA_TITULO_STOCK`)
+
+## 1.10. Líneas de telefonía fija Residenciales por departamento (`r FECHA_TITULO_STOCK`)
+
 
 ```{r}
 fija %>% 
@@ -233,7 +232,14 @@ fija %>%
 
 ##### Salto
 
-## 11. Kilómetros de fibra óptica instalada
+
+
+
+
+## 1.11. Kilómetros de fibra óptica instalada
+
+
+
 
 
 ```{r}
@@ -247,13 +253,18 @@ fija %>%
 data.frame(
         year = c(2017, 2017, 2018, 2018, 2019, 2019, 2020),
     semester = c(1L, 2L, 1L, 2L, 1L, 2L, 1L),
-         kms = c(11327, 11457, 11574, 11730, 11771, 11805, 11855)
+         kms = c(11248, 11379, 11495, 11647, 11688, 11770, 11844)
   ) %>% 
   serie_historica_semestral_stock(kms, nudge_text = 6e2)
 ```
 
 
-## 12. Kilómetros de fibra óptica instalada por departamento (`r FECHA_TITULO_STOCK`)
+## 1.12. Kilómetros de fibra óptica instalada por departamento (`r FECHA_TITULO_STOCK`)
+
+
+
+
+
 
 ```{r}
 fija %>% 
@@ -268,7 +279,13 @@ fija %>%
 
 ##### Salto
 
-## 13. Cómputos de telefonía fija
+
+
+
+## 1.13. Cómputos de telefonía fija
+
+
+
 
 
 ```{r}
@@ -282,7 +299,11 @@ fija %>%
   serie_historica_semestral_flujo(minutos, nudge_text = 5e7) 
 ```
 
-## 14. Minutos de telefonía fija a teléfonos móviles
+## 1.14. Minutos de telefonía fija a teléfonos móviles
+
+
+
+
 
 ```{r}
  fija %>% 
@@ -296,7 +317,8 @@ fija %>%
 
 ##### Salto
 
-## 15. Minutos de tráfico de telefonía fija a teléfonos móviles por operador (`r FECHA_TITULO_FLUJO`)
+
+## 1.15. Minutos de tráfico de telefonía fija a teléfonos móviles por operador (`r FECHA_TITULO_FLUJO`)
 
 
 ```{r}
@@ -319,7 +341,8 @@ print(p_14)
 ```
 
 
-## 16. Minutos de tráfico de telefonía fija a red móvil de ANTEL
+## 1.16. Minutos de tráfico de telefonía fija a red móvil de ANTEL
+
 
 ```{r}
 fija %>% 
@@ -335,7 +358,14 @@ fija %>%
 ##### Salto
 
 
-## 17. Minutos de tráfico de telefonía fija a red móvil de Movistar
+
+
+
+## 1.17. Minutos de tráfico de telefonía fija a red móvil de Movistar
+
+
+
+
 
 
 ```{r}
@@ -350,8 +380,7 @@ fija %>%
 
 
 
-## 18. Minutos de tráfico de telefonía fija a red móvil de Claro
-
+## 1.18. Minutos de tráfico de telefonía fija a red móvil de Claro
 
 ```{r}
 fija %>% 

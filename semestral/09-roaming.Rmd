@@ -21,7 +21,7 @@ roaming <- import_roaming()
 
 ```
 
-## 103. Tráfico de voz de Roaming (minutos)
+## 4.103. Tráfico de voz de Roaming (minutos)
 ```{r}
 serie_166 <- roaming %>% 
   filter(voz == "Tráfico de voz") %>%
@@ -38,7 +38,7 @@ serie_166 %>%
 ##### Salto
 
 
-## 104. Tráfico de voz de Roaming (minutos) por operador (`r FECHA_TITULO_FLUJO`)
+## 4.104. Tráfico de voz de Roaming (minutos) por operador (`r FECHA_TITULO_FLUJO`)
 ```{r}
 serie_167 <- roaming %>% 
   filter(voz == "Tráfico de voz") %>%
@@ -56,7 +56,7 @@ serie_167 <- roaming %>%
 
 
 
-## 105. Tráfico de voz de Roaming (minutos) por tipo de servicio (`r FECHA_TITULO_FLUJO`)
+## 4.105. Tráfico de voz de Roaming (minutos) por tipo de servicio (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
 serie_168 <- roaming %>% 
@@ -72,7 +72,9 @@ serie_168 <- roaming %>%
   summarize(numeric = sum(numeric, na.rm = TRUE))
 
 serie_168 %>% 
-  pie_chart(numeric, destino, nudge_radio = c(.7, 1.2, .6)) + 
+  pie_chart(numeric, destino, 
+            percent_accuracy = .01,
+            nudge_radio = c(.7, 1.2, .6)) + 
   labs(caption = 
   "Local: Llamadas locales de clientes del operador en el pais que se visita.
    LDI: Llamadas de LDI de clientes del operador que se encuentran en el exterior.
@@ -85,7 +87,7 @@ serie_168 %>%
 ##### Salto
 
 
-## 106. Tráfico de voz de Roaming Local (minutos)
+## 4.106. Tráfico de voz de Roaming Local (minutos)
 
 ```{r}
 serie_169 <- roaming %>% 
@@ -101,7 +103,7 @@ serie_169 %>%
 
 
 
-## 107. Tráfico de voz de Roaming Local (minutos) por operador (`r FECHA_TITULO_FLUJO`)
+## 4.107. Tráfico de voz de Roaming Local (minutos) por operador (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
 serie_170 <- roaming %>% 
@@ -120,7 +122,7 @@ serie_170 %>%
 ##### Salto
 
 
-## 108. Tráfico de voz de Roaming Saliente (minutos)
+## 4.108. Tráfico de voz de Roaming Saliente (minutos)
 
 ```{r}
 serie_171 <- roaming %>% 
@@ -136,7 +138,7 @@ serie_171 %>%
 
 
 
-## 109. Tráfico de voz de Roaming Saliente (minutos) por operador (`r FECHA_TITULO_FLUJO`)
+## 4.109. Tráfico de voz de Roaming Saliente (minutos) por operador (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
 serie_172 <- roaming %>% 
@@ -170,7 +172,7 @@ serie_172 %>%
 
 
 
-## 110. Tráfico de voz de Roaming de LDI (minutos) por operador (`r FECHA_TITULO_FLUJO`)
+## 4.110. Tráfico de voz de Roaming de LDI (minutos) por operador (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
 serie_174 <- roaming %>% 
@@ -182,7 +184,7 @@ serie_174 <- roaming %>%
   summarize(numeric = sum(numeric, na.rm = TRUE))
 
 serie_174 %>% 
-  pie_chart(numeric, empresa) %>% 
+  pie_chart(numeric, empresa, percent_accuracy = .01) %>% 
   print
 ```
 
@@ -203,7 +205,7 @@ serie_174 %>%
 
 
 
-## 111. Tráfico de datos de Roaming (terabytes) por operador
+## 4.111. Tráfico de datos de Roaming (terabytes) por operador
 
 ```{r}
 serie_176 <- roaming %>%

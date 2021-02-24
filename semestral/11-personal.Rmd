@@ -1,0 +1,116 @@
+---
+output:
+  word_document:
+    reference_docx: word_report.docx
+graphics: yes
+---
+
+```{r include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, 
+                      warning = FALSE,
+                      message = FALSE)
+
+options(scipen = 10000)
+
+# Theme
+source('../common.R')
+
+
+personal_funcion <- tibble::tribble(
+                 ~funcion,       ~sexo,   ~n,
+    "Funciones\ngerenciales", "Masculino",  422,
+    "Funciones\ngerenciales",  "Femenino",  319,
+       "Funciones técnicas", "Masculino", 3301,
+       "Funciones técnicas",  "Femenino", 2783,
+  "Personal no\ndependiente", "Masculino",  443,
+  "Personal no\ndependiente",  "Femenino",  411
+  )
+
+personal_formacion <- tibble::tribble(
+                 ~formacion,       ~sexo,   ~n,
+    "Profesional\nuniversitario", "Masculino",  879,
+    "Profesional\nuniversitario",  "Femenino",  726,
+    "Técnicos", "Masculino", 136,
+    "Técnicos",  "Femenino", 43,
+    "Otros",     "Masculino",  3151,
+    "Otros",    "Femenino",  2744
+  )
+
+
+```
+
+# 6. Personal
+
+
+## 6.1. Personal del sector telecomunicaciones por funciones (`r FECHA_TITULO_STOCK`)
+
+```{r}
+
+personal_funcion %>% 
+  group_by(funcion) %>% 
+  summarize(n=sum(n)) %>% 
+  pie_chart(n, funcion, nudge_x = c(3, -3, 0)) +
+  labs(caption="Incluye personal de los sectores de telefonía fija, móvil y datos e Internet.\nFunciones Gerenciales: Con personal a cargo.\nFunciones Técnicas: Sin personal a cargo.")
+
+```
+
+
+## 6.2. Personal del sector telecomunicaciones por  formación (`r FECHA_TITULO_STOCK`)
+```{r}
+
+personal_formacion %>% 
+  group_by(formacion) %>% 
+  summarize(n=sum(n)) %>% 
+  pie_chart(n, formacion, nudge_x = c(3, -3, 0))  +
+    labs(caption="Incluye personal de los sectores de telefonía fija, móvil y datos e Internet.")
+```
+
+
+
+##### Salto
+
+## 6.3. Personal del sector telecomunicaciones (`r FECHA_TITULO_STOCK`)
+
+```{r}
+personal_formacion %>% 
+  group_by(sexo) %>% 
+  summarize(n=sum(n)) %>% 
+  pie_chart(n, sexo)  +
+    labs(caption="Incluye personal de los sectores de telefonía fija, móvil y datos e Internet.") 
+```
+
+
+## 6.4. Personal por género según funciones (`r FECHA_TITULO_STOCK`)
+
+```{r}
+personal_funcion %>% 
+  mutate(funcion=str_replace(funcion, "\n", " ")) %>% 
+  ggplot(aes(sexo, n, fill=sexo)) + 
+  geom_col() +
+  geom_text(aes(label=n), nudge_y = 150) +
+  geom_hline(yintercept = 0) +
+  scale_fill_manual("", values = c("#80b1d3", "#fb8072")) + 
+  facet_wrap(~funcion) +
+  labs(x="", y="", caption="Incluye personal de los sectores de telefonía fija, móvil y datos e Internet.\nFunciones Gerenciales: Con personal a cargo.\nFunciones Técnicas: Sin personal a cargo.") +
+  theme(legend.position = "bottom")
+
+```
+
+##### Salto
+
+
+## 6.5. Personal por género según formación (`r FECHA_TITULO_STOCK`)
+
+```{r}
+personal_formacion %>% 
+  mutate(formacion=str_replace(formacion, "\n", " ")) %>% 
+  ggplot(aes(sexo, n, fill=sexo)) + 
+  geom_col() +
+  geom_text(aes(label=n), nudge_y = 150) +
+  geom_hline(yintercept = 0) +
+  scale_fill_manual("", values = c("#80b1d3", "#fb8072")) + 
+  facet_wrap(~formacion) +
+  labs(x="", y="", caption="Incluye personal de los sectores de telefonía fija, móvil y datos e Internet.") +
+  theme(legend.position = "bottom")
+```
+
