@@ -44,7 +44,7 @@ fija %>%
 ```{r}
 
 fija %>% 
-  filter(fecha == FECHA_TORTAS) %>% 
+  filter(fecha == FECHA_INFORME_ANUAL) %>% 
   filter(cabezal_1 == "Líneas") %>% 
   filter(cabezal_2 %in% c("Res.R", "Res.U", "Com.R", "Com.U")) %>% 
   group_by(depto) %>% 
@@ -72,7 +72,7 @@ fija %>%
 fija %>% 
   filter(cabezal_1 == "Líneas") %>% 
   filter(cabezal_2 %in% c("Púb.R", "Púb.U")) %>% 
-  filter(fecha == FECHA_TORTAS) %>% 
+  filter(fecha == FECHA_INFORME_ANUAL) %>% 
   group_by(depto) %>% 
   summarize(lineas = sum(numeric, na.rm = TRUE)) %>% 
   barras_horizontales(lineas, depto, nudge_text = 25)
@@ -85,7 +85,7 @@ fija %>%
 
 ```{r}
 s <- fija %>% 
-  filter(fecha == FECHA_TORTAS) %>% 
+  filter(fecha == FECHA_INFORME_ANUAL) %>% 
   filter(cliente %in% c("Residencial", "Comercial")) %>% 
   group_by(cliente) %>% 
   summarize(telefonos = sum(numeric, na.rm = TRUE)) %>% 
@@ -116,17 +116,12 @@ fija %>%
 
 fija %>% 
   filter(cliente == "Comercial") %>% 
-  filter(fecha == FECHA_TORTAS) %>% 
+  filter(fecha == FECHA_INFORME_ANUAL) %>% 
   group_by(depto) %>% 
   summarize(lineas = sum(numeric, na.rm = TRUE)) %>% 
   filter(!is.na(depto)) %>% 
   barras_horizontales(lineas, depto, nudge_text=.8e4)
 ```
-
-
-
-
-
 
 
 
@@ -149,7 +144,7 @@ fija %>%
 ```{r}
 fija %>% 
   filter(cliente == "Residencial") %>% 
-  filter(fecha == FECHA_TORTAS) %>% 
+  filter(fecha == FECHA_INFORME_ANUAL) %>% 
   group_by(depto) %>% 
   summarize(lineas = sum(numeric, na.rm = TRUE)) %>% 
   barras_horizontales(lineas, depto, nudge_text = 3e4)
@@ -182,7 +177,7 @@ fija %>%
 fija %>% 
   filter(cabezal_1 == "Centrales") %>% 
   filter(cabezal_2 == "Fib") %>% 
-  filter(fecha == FECHA_TORTAS) %>% 
+  filter(fecha == FECHA_INFORME_ANUAL) %>% 
   group_by(depto) %>% 
   summarize(kms = sum(numeric, na.rm = TRUE)) %>% 
   barras_horizontales(kms, depto, nudge_text=1e2)
@@ -199,8 +194,9 @@ fija %>%
   filter(year(fecha) > 2010) %>% 
   group_by(anio = year(fecha)) %>% 
   summarize(minutos = sum(numeric, na.rm = TRUE)) %>% 
-  mutate(fecha = as.Date(paste(anio, "01", "01", sep = "-"))) %>% 
-  serie_historica(minutos/1e6, fecha, nudge_text = 1e2) +
+  mutate(fecha = as.Date(paste(anio, "01", "01", sep = "-")),
+         minutos_mill = minutos/1e6) %>% 
+  serie_historica(minutos_mill, fecha, nudge_text = 1e2) +
   labs(y="Millones")
 ```
 
@@ -210,33 +206,26 @@ fija %>%
 
 ## 13. Minutos de telefonía fija a teléfonos móviles
 ```{r}
- fija %>% 
+fija %>% 
   filter(cabezal_1 == "Tráfico por orig (País)") %>% 
   filter(cabezal_2 %in% c("Ancel min", "TMU min", "AMWU min")) %>% 
   filter(year(fecha) > 2010) %>% 
   group_by(anio = year(fecha)) %>% 
   summarize(minutos = sum(numeric, na.rm = TRUE)) %>% 
-  mutate(fecha = as.Date(paste(anio, "01", "01", sep = "-"))) %>% 
-  serie_historica(minutos/1e6, fecha, nudge_text = 2e1) +
+  mutate(fecha = as.Date(paste(anio, "01", "01", sep = "-")),
+         minutos_mill = minutos/1e6) %>% 
+  serie_historica(minutos_mill, fecha, nudge_text = 2e1) +
   labs(y="Millones")
 ```
-
-
-
-
-
-
-
 
 ## 14. Minutos de tráfico de telefonía fija a teléfonos móviles por operador (año 2019)
 
 
 ```{r}
-
 p_14 <- fija %>% 
   filter(cabezal_1 == "Tráfico por orig (País)") %>% 
   filter(cabezal_2 %in% c("Ancel min", "TMU min", "AMWU min")) %>% 
-  filter(year(fecha) == year(FECHA_TORTAS)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL)) %>% 
   group_by(empresa=str_remove(cabezal_2, " min")) %>% 
   summarize(minutos = sum(numeric, na.rm = TRUE)) %>% 
   pie_chart(minutos, empresa)
@@ -257,13 +246,11 @@ fija %>%
   filter(year(fecha) > 2010) %>% 
   group_by(anio = year(fecha)) %>% 
   summarize(minutos = sum(numeric, na.rm = TRUE)) %>% 
-  mutate(fecha = as.Date(paste(anio, "01", "01", sep = "-"))) %>% 
-  serie_historica(minutos/1e6, fecha, nudge_text = 12) +
+  mutate(fecha = as.Date(paste(anio, "01", "01", sep = "-")),
+         minutos_mill = minutos/1e6) %>% 
+  serie_historica(minutos_mill, fecha, nudge_text = 12) +
   labs(y="Millones")
 ```
-
-
-
 
 
 ## 16. Minutos de tráfico de telefonía fija a red móvil de Movistar
@@ -275,8 +262,9 @@ fija %>%
   filter(year(fecha) > 2010) %>% 
   group_by(anio = year(fecha)) %>% 
   summarize(minutos = sum(numeric, na.rm = TRUE)) %>% 
-  mutate(fecha = as.Date(paste(anio, "01", "01", sep = "-"))) %>% 
-  serie_historica(minutos/1e6, fecha, nudge_text = 8) +
+  mutate(fecha = as.Date(paste(anio, "01", "01", sep = "-")),
+         minutos_mill = minutos/1e6) %>% 
+  serie_historica(minutos_mill, fecha, nudge_text = 8) +
   labs(y="Millones")
 ```
 
@@ -292,8 +280,9 @@ fija %>%
   filter(year(fecha) > 2010) %>% 
   group_by(anio = year(fecha)) %>% 
   summarize(minutos = sum(numeric, na.rm = TRUE)) %>% 
-  mutate(fecha = as.Date(paste(anio, "01", "01", sep = "-"))) %>% 
-  serie_historica(minutos/1e6, fecha, nudge_text = 3) +
+  mutate(fecha = as.Date(paste(anio, "01", "01", sep = "-")),
+         minutos_mill = minutos/1e6) %>% 
+  serie_historica(minutos_mill, fecha, nudge_text = 3) +
   labs(y="Millones")
 ```
 
