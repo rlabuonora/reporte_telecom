@@ -22,7 +22,7 @@ servicios <- import_datos_servicios_moviles() %>%
 
 ```
 
-## 21. Servicios móviles
+## 4.21. Servicios móviles
 ```{r}
 
 # Datos Diego
@@ -53,7 +53,7 @@ serie_109 %>%
 ##### Salto
 
 
-## 22. Servicios móviles por operador (`r FECHA_TITULO_STOCK`)
+## 4.22. Servicios móviles por operador (`r FECHA_TITULO_STOCK`)
 
 ```{r}
 serie_110 <- servicios %>% 
@@ -73,7 +73,7 @@ serie_110 <- servicios %>%
 
 
 
-## 23. Servicios móviles por tipo (`r FECHA_TITULO_STOCK`)
+## 4.23. Servicios móviles por tipo (`r FECHA_TITULO_STOCK`)
 
 ```{r}
 serie_111 <- servicios %>% 
@@ -93,7 +93,7 @@ serie_111 %>%
 ##### Salto
 
 
-## 24. Suscripciones a la telefonía móvil
+## 4.24. Suscripciones a la telefonía móvil
 ```{r}
 serie_112 <- servicios %>% 
   filter(servicio == "Suscripciones a la telefonía móvil") %>% 
@@ -115,7 +115,7 @@ serie_112 %>%
 
 
 
-## 25. Suscripciones a la telefonía móvil por operador (`r FECHA_TITULO_STOCK`)
+## 4.25. Suscripciones a la telefonía móvil por operador (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_113 <- servicios %>% 
   filter(servicio == "Suscripciones a la telefonía móvil") %>%
@@ -133,7 +133,7 @@ serie_113 %>%
 ##### Salto
 
 
-## 26. Servicios M2M
+## 4.26. Servicios M2M
 ```{r}
 serie_114 <- servicios %>% 
   filter(servicio == "M2M") %>% 
@@ -146,7 +146,11 @@ serie_114 %>%
   serie_historica_semestral_stock(val, nudge_text = 2e4) 
 ```
 
-## 27. Servicios M2M por operador (`r FECHA_TITULO_STOCK`)
+
+
+
+
+## 4.27. Servicios M2M por operador (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_115 <- servicios %>% 
   filter(servicio == "M2M") %>%
@@ -164,7 +168,7 @@ serie_115 %>%
 
 
 
-## 28. Internet móvil (computadoras y tablets)
+## 4.28. Internet móvil (computadoras y tablets) - minutos
 ```{r}
 serie_116 <- servicios %>% 
   filter(servicio == "Internet Móvil") %>%
@@ -181,7 +185,7 @@ serie_116 %>%
 
 
 
-## 29. Internet móvil (computadoras y tablets) por operador (`r FECHA_TITULO_STOCK`)
+## 4.29. Internet móvil (computadoras y tablets) por operador (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_117 <-  servicios %>% 
   filter(servicio == "Internet Móvil") %>%
@@ -202,7 +206,7 @@ serie_117 %>%
 ##### Salto
 
 
-## 30. Suscripciones de banda ancha móvil
+## 4.30. Suscripciones de banda ancha móvil
 ```{r}
 serie_118 <-  servicios %>% 
   filter(servicio == "Suscripciones de banda ancha móvil") %>% 
@@ -218,7 +222,7 @@ serie_118 %>%
 
 
 
-## 31. Suscripciones de banda ancha móvil por operador (`r FECHA_TITULO_STOCK`)
+## 4.31. Suscripciones de banda ancha móvil por operador (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_119 <- servicios %>% 
   filter(servicio == "Suscripciones de banda ancha móvil") %>%
@@ -235,7 +239,7 @@ serie_119 %>%
 ##### Salto
 
 
-## 32. Servicios móviles según forma de pago (`r FECHA_TITULO_STOCK`)
+## 4.32. Servicios móviles según forma de pago (`r FECHA_TITULO_STOCK`)
 
 ```{r}
 serie_120 <- servicios %>% 
@@ -257,7 +261,7 @@ serie_120 %>%
 
 
 
-## 33. Servicios Móviles Prepagos
+## 4.33. Servicios móviles Prepagos
 ```{r}
 
 serie_pre_2018 <- tibble(
@@ -286,7 +290,7 @@ bind_rows(serie_pre_2018, serie_post_2019) %>%
 ##### Salto
 
 
-## 34. Servicios móviles prepagos por operador  (`r FECHA_TITULO_STOCK`)
+## 4.34. Servicios móviles prepagos por operador  (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_120 <- servicios %>% 
   filter(servicio %in% c(
@@ -307,7 +311,7 @@ serie_120 %>%
 
 
 
-## 35. Servicios móviles prepagos por tipo  (`r FECHA_TITULO_STOCK`)
+## 4.35. Servicios móviles prepagos por tipo  (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_120 <- servicios %>% 
   filter(servicio %in% c(
@@ -331,15 +335,8 @@ serie_120 %>%
 
 
 
-## 36. Servicios móviles pospagos
-```{r eval=FALSE}
-
-serie <- tibble(
-  year=c(2017, 2017, 2018, 2018, 2019, 2019, 2020),
-  semester = c(1, 2, 1, 2, 1, 2, 1),
-  val=c(2099924, 2173233, 2308992, 2525824, 2567356)
-)
-
+## 4.36. Servicios móviles pospagos
+```{r}
 
 serie_post_2019 <-  servicios %>% 
   filter(servicio %in% c(
@@ -367,7 +364,7 @@ serie %>%
 
 
 
-## 37. Servicios móviles pospagos por operador (`r FECHA_TITULO_STOCK`)
+## 4.37. Servicios móviles pospagos por operador (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_120 <- servicios %>% 
   filter(servicio %in% c(
@@ -390,7 +387,7 @@ serie_120 %>%
 ##### Salto
 
 
-## 38. Servicios móviles pospagos por tipo (`r FECHA_TITULO_STOCK`)
+## 4.38. Servicios móviles pospagos por tipo (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_120 <- servicios %>% 
   filter(servicio %in% c(
@@ -411,7 +408,7 @@ serie_120 %>%
 
 
 
-## 39. Suscripciones de banda ancha móvil según forma de pago (`r FECHA_TITULO_STOCK`)
+## 4.39. Suscripciones de banda ancha móvil según forma de pago (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_120 <- servicios %>% 
   filter(servicio == "Suscripciones de banda ancha móvil") %>%
@@ -428,7 +425,7 @@ serie_120 %>%
 ##### Salto
 
 
-## 40. Suscripciones prepagos de banda ancha móvil
+## 4.40. Suscripciones prepagos de banda ancha móvil
 ```{r}
 serie_127 <- servicios %>% 
   filter(servicio == "Suscripciones de banda ancha móvil") %>%
@@ -444,7 +441,7 @@ serie_127 %>%
 
 
 
-## 41. Suscripciones prepagos de banda ancha móvil por operador (`r FECHA_TITULO_STOCK`)
+## 4.41. Suscripciones prepagos de banda ancha móvil por operador (`r FECHA_TITULO_STOCK`)
 
 ```{r}
 serie_128 <- servicios %>% 
@@ -465,7 +462,7 @@ serie_128 %>%
 ##### Salto
 
 
-## 42. Suscripciones pospagos de banda ancha móvil
+## 4.42. Suscripciones pospagos de banda ancha móvil
 
 ```{r}
 serie_121 <-  servicios %>% 
@@ -483,7 +480,7 @@ serie_121 %>%
 
 
 
-## 43. Suscripciones pospagos de banda ancha móvil por operador (`r FECHA_TITULO_STOCK`)
+## 4.43. Suscripciones pospagos de banda ancha móvil por operador (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_136 <- servicios %>% 
   filter(servicio == "Suscripciones de banda ancha móvil") %>%
@@ -502,7 +499,7 @@ serie_136 %>%
 ##### Salto
 
 
-## 44. Suscripciones a la telefonía móvil según forma de pago (`r FECHA_TITULO_STOCK`)
+## 4.44. Suscripciones a la telefonía móvil según forma de pago (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_121 <- servicios %>% 
   filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL), month(fecha) == month(FECHA_INFORME_SEMESTRAL)) %>% 
@@ -518,7 +515,7 @@ serie_121 %>%
 
 
 
-## 45. Suscripciones prepagos a la telefonía móvil
+## 4.45. Suscripciones prepagos a la telefonía móvil
 ```{r}
 # Falta filtrar junio y diciembre
 serie_122 <- servicios %>% 
@@ -537,7 +534,7 @@ serie_122 %>%
 ##### Salto
 
 
-## 46. Suscripciones prepagos a la telefonía móvil por operador (`r FECHA_TITULO_STOCK`)
+## 4.46. Suscripciones prepagos a la telefonía móvil por operador (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_123 <- servicios %>% 
   filter(servicio == "Suscripciones a la telefonía móvil") %>% 
@@ -555,7 +552,9 @@ serie_123 %>%
 
 ```
 
-## 47. Suscripciones pospagos a la telefonía móvil
+
+
+## 4.47. Suscripciones pospagas a la telefonía móvil
 ```{r}
 serie_129 <- servicios %>% 
   filter(year(fecha) >= 2018) %>% 
@@ -579,7 +578,7 @@ serie_129 %>%
 ##### Salto
 
 
-## 48. Suscripciones pospagos a la telefonía móvil por operador (`r FECHA_TITULO_STOCK`)
+## 4.48. Suscripciones pospagos a la telefonía móvil por operador (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_130 <- servicios %>% 
   filter(servicio == "Suscripciones a la telefonía móvil") %>% 
@@ -597,7 +596,7 @@ serie_130 %>%
 
 
 
-## 49. Internet móvil (computadora y tablets) según forma de pago (`r FECHA_TITULO_STOCK`)
+## 4.49. Internet móvil (computadora y tablets) según forma de pago (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_125 <-  servicios %>% 
   filter(servicio == "Internet Móvil") %>%
@@ -616,7 +615,7 @@ serie_125 %>%
 ##### Salto
 
 
-## 50. Internet móvil prepago (computadoras y tablets)
+## 4.50. Internet móvil prepago (computadoras y tablets)
 
 ```{r}
 serie_124 <- servicios %>% 
@@ -633,7 +632,7 @@ serie_124 %>%
 
 
 
-## 51. Internet móvil prepago (computadoras y tablets) por operador (`r FECHA_TITULO_STOCK`)
+## 4.51. Internet móvil prepago (computadoras y tablets) por operador (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_125 <-  servicios %>% 
   filter(servicio == "Internet Móvil") %>%
@@ -652,7 +651,7 @@ serie_125 %>%
 
 ##### Salto
 
-## 52. Internet móvil pospago (computadoras y tablets)
+## 4.52. Internet móvil pospago (computadoras y tablets)
 ```{r}
 serie_131 <- servicios %>% 
   filter(servicio == "Internet Móvil") %>%
@@ -668,7 +667,7 @@ serie_131 %>%
 
 
 
-## 53. Internet móvil pospago (computadoras y tablets) por operador (`r FECHA_TITULO_STOCK`)
+## 4.53. Internet móvil pospago (computadoras y tablets) por operador (`r FECHA_TITULO_STOCK`)
 
 ```{r}
 serie_132 <-  servicios %>% 
@@ -691,7 +690,7 @@ serie_132 %>%
 ##### Salto
 
 
-## 54. Servicios M2M pospagos
+## 4.54. Servicios M2M pospagos
 ```{r}
 serie_133 <- servicios %>% 
   filter(servicio == "M2M") %>%
@@ -706,7 +705,7 @@ serie_133 %>%
 ```
 
 
-## 55. Servicios M2M pospagos por operador (`r FECHA_TITULO_STOCK`)
+## 4.55. Servicios M2M pospagos por operador (`r FECHA_TITULO_STOCK`)
 
 ```{r}
 serie_134 <- servicios %>% 
@@ -745,7 +744,7 @@ serie_134 %>%
 <!-- ``` -->
 
 
-## 56. Tráfico de datos de servicios de banda ancha móvil (terabytes)
+## 4.56. Tráfico de datos de servicios de banda ancha móvil (terabytes)
 
 ```{r include=FALSE}
 trafico <- import_datos_trafico_moviles()
@@ -764,7 +763,10 @@ serie_137 %>%
   
 ```
 
-## 57. Tráfico de datos de servicios de banda ancha móvil (terabytes) por operador (`r FECHA_TITULO_FLUJO`)
+
+
+
+## 4.57. Tráfico de datos de servicios de banda ancha móvil (terabytes) por operador (`r FECHA_TITULO_FLUJO`)
 ```{r}
 serie_138 <- trafico %>% 
     filter(year(fecha) == year(FECHA_INFORME_SEMESTRAL)) %>% 
@@ -781,7 +783,7 @@ serie_138 %>%
 ##### Salto
 
 
-## 58. Tráfico de datos de servicios de banda ancha móvil prepagos (terabytes) (`r FECHA_TITULO_FLUJO`)
+## 4.58. Tráfico de datos de servicios de banda ancha móvil prepagos (terabytes) (`r FECHA_TITULO_FLUJO`)
 ```{r}
 serie_139 <- trafico %>%
   filter(pago == "Prepago") %>% 
@@ -797,7 +799,7 @@ serie_139 %>%
 
 
 
-## 59. Tráfico de datos de servicios de banda ancha móvil prepagos (terabytes) por operador (`r FECHA_TITULO_FLUJO`)
+## 4.59. Tráfico de datos de servicios de banda ancha móvil prepagos (terabytes) por operador (`r FECHA_TITULO_FLUJO`)
 ```{r}
 serie_140 <- trafico %>% 
   filter(pago == "Prepago") %>% 
@@ -815,7 +817,7 @@ serie_140 %>%
 ##### Salto
 
 
-## 60. Tráfico de datos de servicios de banda ancha móvil pospagos (terabytes)
+## 4.60. Tráfico de datos de servicios de banda ancha móvil pospagos (terabytes)
 ```{r}
 serie_141 <- trafico %>%
   filter(pago == "Pospago") %>% 
@@ -829,7 +831,7 @@ serie_141 %>%
 ```
 
 
-## 61. Tráfico de datos de servicios de banda ancha móvil pospagos (terabytes) por operador (`r FECHA_TITULO_FLUJO`)
+## 4.61. Tráfico de datos de servicios de banda ancha móvil pospagos (terabytes) por operador (`r FECHA_TITULO_FLUJO`)
 ```{r}
 serie_142 <- trafico %>% 
   filter(pago == "Pospago") %>% 
