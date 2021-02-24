@@ -43,8 +43,7 @@ serie_166 %>%
 serie_167 <- roaming %>% 
   filter(voz == "Tráfico de voz") %>%
   filter(destino %in% c("RL", "RLDI", "RS")) %>% 
-  filter(year(fecha) == year(FECHA_INFORME_ANUAL),
-         semester(fecha) == semester(FECHA_INFORME_ANUAL)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL)) %>% 
   group_by(empresa) %>% 
   summarize(numeric = sum(numeric, na.rm = TRUE))
 
@@ -62,8 +61,7 @@ serie_167 <- roaming %>%
 serie_168 <- roaming %>% 
   filter(voz == "Tráfico de voz") %>%
   filter(destino %in% c("RL", "RLDI", "RS")) %>% 
-  filter(year(fecha) == year(FECHA_INFORME_ANUAL),
-         semester(fecha) == semester(FECHA_INFORME_ANUAL)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL)) %>% 
   mutate(destino = fct_recode(destino, 
                     "Local" = "RL",
                     "LDI"   = "RLDI",
@@ -109,8 +107,7 @@ serie_169 %>%
 serie_170 <- roaming %>% 
   filter(voz == "Tráfico de voz") %>%
   filter(destino %in% c("RL")) %>% 
-  filter(year(fecha) == year(FECHA_INFORME_ANUAL),
-         semester(fecha) == semester(FECHA_INFORME_ANUAL)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL)) %>% 
   group_by(empresa) %>% 
   summarize(numeric = sum(numeric, na.rm = TRUE))
 
@@ -144,8 +141,7 @@ serie_171 %>%
 serie_172 <- roaming %>% 
   filter(voz == "Tráfico de voz") %>%
   filter(destino %in% c("RS")) %>% 
-  filter(year(fecha) == year(FECHA_INFORME_ANUAL),
-         semester(fecha) == semester(FECHA_INFORME_ANUAL)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL)) %>% 
   group_by(empresa) %>% 
   summarize(numeric = sum(numeric, na.rm = TRUE))
 
@@ -178,8 +174,7 @@ serie_172 %>%
 serie_174 <- roaming %>% 
   filter(voz == "Tráfico de voz") %>%
   filter(destino %in% c("RLDI")) %>% 
-  filter(year(fecha) == year(FECHA_INFORME_ANUAL),
-         semester(fecha) == semester(FECHA_INFORME_ANUAL)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL)) %>% 
   group_by(empresa) %>% 
   summarize(numeric = sum(numeric, na.rm = TRUE))
 
