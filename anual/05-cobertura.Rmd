@@ -20,7 +20,6 @@ options(scipen = 10000)
 source('../common.R')
 
 cobertura <- import_cobertura()
-FECHA_INFORME <- as.Date("2019-12-01")
 
 month_label <- function(x) {
   y <- as_date(x)
@@ -32,11 +31,11 @@ month_label <- function(x) {
 
 
 
-## 82. Cobertura territorial nacional (%) por tecnología (diciembre 2019)
+## 82. Cobertura territorial nacional (%) por tecnología (`r FECHA_TITULO_STOCK`)
 
 ```{r}
 tabla_102 <- cobertura %>% 
-  filter(fecha == FECHA_INFORME) %>% 
+  filter(fecha == FECHA_INFORME_ANUAL) %>% 
   filter(depto == "País") %>% 
   group_by(tipo) %>% 
   summarize(cobertura = max(val, na.rm = TRUE))
@@ -65,7 +64,7 @@ tabla_102 %>%
 serie_103 <- cobertura %>% 
   filter(tipo == "GSM") %>% 
   filter(depto == "País") %>% 
-  filter(year(fecha) == year(FECHA_INFORME)) %>%
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL)) %>%
   group_by(fecha) %>% 
   summarize(cobertura = max(val, na.rm = TRUE)) %>% 
   filter(month(fecha) >= 9)
@@ -93,11 +92,11 @@ serie_103 %>%
 
 
 
-## 84. Cobertura territorial GSM (%) por departamento (diciembre 2019)
+## 84. Cobertura territorial GSM (%) por departamento (`r FECHA_TITULO_STOCK`)
 
 ```{r}
 tabla_104 <- cobertura %>% 
-  filter(fecha == FECHA_INFORME) %>% 
+  filter(fecha == FECHA_INFORME_ANUAL) %>% 
   filter(tipo == "GSM") %>% 
   filter(depto != "País") %>% 
   group_by(depto) %>% 
@@ -131,7 +130,7 @@ tabla_104 %>%
 serie_105 <- cobertura %>% 
   filter(tipo == "3G") %>% 
   filter(depto == "País") %>% 
-  filter(year(fecha) == year(FECHA_INFORME)) %>%
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL)) %>%
   group_by(fecha) %>% 
   summarize(cobertura = max(val, na.rm = TRUE)) %>% 
   filter(month(fecha) >= 9)
@@ -153,11 +152,11 @@ serie_105 %>%
   labs(x="", y="")
 ```
 
-## 86. Cobertura territorial 3G (%) por departamento (diciembre 2019)
+## 86. Cobertura territorial 3G (%) por departamento (`r FECHA_TITULO_STOCK`)
 
 ```{r}
 tabla_106 <- cobertura %>% 
-  filter(fecha == FECHA_INFORME) %>% 
+  filter(fecha == FECHA_INFORME_ANUAL) %>% 
   filter(tipo == "3G") %>% 
   filter(depto != "País") %>% 
   group_by(depto) %>% 
@@ -190,7 +189,7 @@ tabla_106 %>%
 serie_107 <- cobertura %>% 
   filter(tipo == "LTE") %>% 
   filter(depto == "País") %>% 
-  filter(year(fecha) == year(FECHA_INFORME)) %>%
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL)) %>%
   group_by(fecha) %>% 
   summarize(cobertura = max(val, na.rm = TRUE)) %>% 
   filter(month(fecha) >= 9)
@@ -212,11 +211,11 @@ serie_107 %>%
   labs(x="", y="")
 ```
 
-## 88. Cobertura territorial LTE (%) por departamento (diciembre 2019)
+## 88. Cobertura territorial LTE (%) por departamento (`r FECHA_TITULO_STOCK`)
 
 ```{r}
 tabla_108 <- cobertura %>% 
-  filter(fecha == FECHA_INFORME) %>% 
+  filter(fecha == FECHA_INFORME_ANUAL) %>% 
   filter(tipo == "LTE") %>% 
   filter(depto != "País") %>% 
   group_by(depto) %>% 
