@@ -36,8 +36,8 @@ FECHA_TITULO_FLUJO <-  "año 2020"
 
 
 
-<!-- ```{r child = '02-ldi.Rmd'} -->
-<!-- ``` -->
+```{r child = '02-ldi.Rmd'}
+```
 
 
 
