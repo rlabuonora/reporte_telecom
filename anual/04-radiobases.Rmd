@@ -8,9 +8,7 @@ graphics: yes
 ```{r include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, 
                       warning = FALSE,
-                      message = FALSE,
-                      fig.width = 7, 
-                      fig.height = 4.5)
+                      message = FALSE)
 
 options(scipen = 10000)
 
@@ -21,7 +19,7 @@ options(scipen = 10000)
 source('../common.R')
 
 radiobases <- import_radiobases()
-FECHA_INFORME <- as.Date("2019-12-01")
+ingresos <- import_ingresos()
 
 month_label <- function(x) {
   y <- as_date(x)
@@ -34,35 +32,48 @@ month_label <- function(x) {
 
 # 4. Servicios de Telefonía móvil
 
-## 70. Cantidad de radiobases
-```{r}
-serie_90 <- radiobases %>% 
-  filter(year(fecha) == year(FECHA_INFORME)) %>% 
-  filter(tipo == "Radiobases (total)") %>% 
-  group_by(fecha) %>% 
-  summarize(radiobases = sum(val, na.rm = TRUE))
+## 4.1. Ingresos Telefonía Móvil (pesos)
 
-serie_90 %>% 
-  ggplot(aes(factor(fecha), radiobases)) +
-  geom_col(fill = pal[5], width = 0.5) + 
-  geom_text(aes(label=number_format(big.mark=".", scale = 1)(radiobases)), 
-            nudge_y = 5e2, size = 5) +
-  scale_x_discrete(label = month_label,
-                   expand = expand_scale(add = c(0.5, 0.5),
-                                         mult = c(0, 0))) +
-  scale_y_continuous(breaks = NULL) +
-  geom_hline(yintercept = 0) +
-  labs(x="", y="")
+```{r}
+
+# ingresos %>% 
+#   group_by(year=year(fecha), semester=semester(fecha)) %>% 
+#   summarize(ventas = sum(val))
+
+# Corregir por los datos de Diego
+tibble(
+  year = c(2018, 2018, 2019, 2019, 2020),
+  semester = c(1, 2, 1, 2, 1),
+  ventas = c(11120628765, 11738624664, 11888263352,
+             12425439504, 12309589788)) %>% 
+  serie_historica_semestral_flujo(ventas, nudge_text = 1e9)
 ```
 
 
 
 
-## 71. Cantidad de radiobases por departamento (diciembre 2019)
+
+## 4.2. Cantidad de radiobases
+```{r}
+radiobases %>% 
+  filter(month(fecha) %in% c(6, 12)) %>% 
+  filter(tipo == "Radiobases (total)") %>% 
+  group_by(year = year(fecha), semester = semester(fecha)) %>% 
+  summarize(radiobases = sum(val, na.rm = TRUE)) %>% 
+  serie_historica_semestral_stock(radiobases, nudge_text = 5e2)
+```
+
+
+
+##### Salto
+
+
+
+## 4.3. Cantidad de radiobases por departamento (`r FECHA_TITULO_STOCK`)
 ```{r}
 tabla_91 <- radiobases %>% 
   filter(tipo == "Radiobases (total)") %>% 
-  filter(fecha == FECHA_INFORME) %>% 
+  filter(fecha == FECHA_INFORME_ANUAL) %>% 
   group_by(depto) %>% 
   summarize(radiobases = sum(val, na.rm = TRUE))
 
@@ -70,12 +81,15 @@ tabla_91 %>%
   barras_horizontales(radiobases, depto, nudge_text = 1e2)
 ```
 
-## 72. Cantidad de radiobases por operador (diciembre 2019)
+
+
+
+## 4.4. Cantidad de radiobases por operador (`r FECHA_TITULO_STOCK`)
 
 ```{r}
 tabla_92 <-  radiobases %>% 
   filter(tipo == "Radiobases (total)") %>% 
-  filter(fecha == FECHA_INFORME) %>% 
+  filter(fecha == FECHA_INFORME_ANUAL) %>% 
   group_by(empresa) %>% 
   summarize(radiobases = sum(val, na.rm = TRUE))
 
@@ -84,40 +98,38 @@ g_92 <- tabla_92 %>%
   print
 ```
 
+##### Salto
 
 
 
 
 
 
-## 73. Cantidad de radiobases GSM
-
+## 4.5. Cantidad de radiobases GSM
 ```{r}
-serie_93 <- radiobases %>% 
-  filter(year(fecha) == year(FECHA_INFORME)) %>% 
+radiobases %>% 
+  filter(month(fecha) %in% c(6, 12)) %>% 
   filter(tipo == "Radiobases (GSM)") %>% 
-  group_by(fecha) %>% 
-  summarize(radiobases = sum(val, na.rm = TRUE))
-
-g_93 <- serie_93 %>% 
-  ggplot(aes(factor(fecha), radiobases)) +
-  geom_col(fill = pal[5], width = 0.5) + 
-  geom_text(aes(label=number_format(big.mark=".", scale = 1)(radiobases)), 
-            nudge_y = 100, size = 5) +
-  scale_x_discrete(
-    label=month_label,
-    expand = expand_scale(add = c(0.5, 0.5),
-                          mult = c(0, 0))) +
-  scale_y_continuous(breaks = NULL) +
-  geom_hline(yintercept = 0) +
-  labs(x="", y="")
+  group_by(year = year(fecha), semester = semester(fecha)) %>% 
+  summarize(radiobases = sum(val, na.rm = TRUE)) %>% 
+  serie_historica_semestral_stock(radiobases, nudge_text = 5e2)
 ```
 
-## 74. Cantidad de radiobases GSM por departamento (diciembre 2019)
+
+
+
+
+
+
+
+
+
+
+## 4.6. Cantidad de radiobases GSM por departamento (`r FECHA_TITULO_STOCK`)
 
 ```{r}
 tabla_94 <- radiobases %>% 
-  filter(fecha == FECHA_INFORME) %>% 
+  filter(fecha == FECHA_INFORME_ANUAL) %>% 
   filter(tipo == "Radiobases (GSM)") %>% 
   group_by(depto) %>% 
   summarize(radiobases = sum(val, na.rm = TRUE))
@@ -127,16 +139,15 @@ tabla_94 %>%
 ```
 
 
+##### Salto
 
 
 
-
-
-## 75. Cantidad de radiobases GSM por operador (diciembre 2019)
+## 4.7. Cantidad de radiobases GSM por operador (`r FECHA_TITULO_STOCK`)
 
 ```{r}
 tabla_95 <- radiobases %>% 
-  filter(fecha == FECHA_INFORME) %>% 
+  filter(fecha == FECHA_INFORME_ANUAL) %>% 
   filter(tipo == "Radiobases (GSM)") %>% 
   group_by(empresa) %>% 
   summarize(radiobases = sum(val, na.rm = TRUE))
@@ -147,39 +158,29 @@ tabla_95 %>%
 ```
 
 
-## 76. Cantidad de radiobases 3G
 
+## 4.8. Cantidad de radiobases 3G
 ```{r}
-serie_96 <- radiobases %>% 
-  filter(year(fecha) == year(FECHA_INFORME)) %>% 
+radiobases %>% 
+  filter(month(fecha) %in% c(6, 12)) %>% 
   filter(tipo == "Radiobases (3G)") %>% 
-  group_by(fecha) %>% 
-  summarize(radiobases = sum(val, na.rm = TRUE))
-
-serie_96 %>% 
-  ggplot(aes(factor(fecha), radiobases)) +
-  geom_col(fill = pal[5], width = 0.5) + 
-  geom_text(aes(label=number_format(big.mark=".", scale = 1)(radiobases)), 
-            nudge_y = 100, size = 5) +
-  scale_x_discrete(label = month_label, 
-                   expand = expand_scale(add = c(0.5, 0.5),
-                                         mult = c(0, 0))) +
-  scale_y_continuous(breaks = NULL) +
-  geom_hline(yintercept = 0) +
-  labs(x="", y="")
+  group_by(year = year(fecha), semester = semester(fecha)) %>% 
+  summarize(radiobases = sum(val, na.rm = TRUE)) %>% 
+  serie_historica_semestral_stock(radiobases, nudge_text = 5e2)
 ```
 
 
 
 
+##### Salto
 
 
 
-## 77. Cantidad de radiobases 3G por departamento (diciembre 2019)
+## 4.9. Cantidad de radiobases 3G por departamento (`r FECHA_TITULO_STOCK`)
 
 ```{r}
 tabla_97 <- radiobases %>% 
-  filter(fecha == FECHA_INFORME) %>% 
+  filter(fecha == FECHA_INFORME_ANUAL) %>% 
   filter(tipo == "Radiobases (3G)") %>% 
   group_by(depto) %>% 
   summarize(radiobases = sum(val, na.rm = TRUE))
@@ -188,11 +189,13 @@ tabla_97 %>%
   barras_horizontales(radiobases, depto, nudge_text = 30)
 ```
 
-## 78. Cantidad de radiobases 3G por operador (diciembre 2019)
+
+
+## 4.10. Cantidad de radiobases 3G por operador (`r FECHA_TITULO_STOCK`)
 
 ```{r}
 tabla_98 <-  radiobases %>% 
-  filter(fecha == FECHA_INFORME) %>% 
+  filter(fecha == FECHA_INFORME_ANUAL) %>% 
   filter(tipo == "Radiobases (3G)") %>% 
   group_by(empresa) %>% 
   summarize(radiobases = sum(val, na.rm = TRUE)) 
@@ -202,30 +205,26 @@ tabla_98 <-  radiobases %>%
    print
 ```
 
+##### Salto
 
 
 
-
-
-
-## 79. Cantidad de radiobases LTE
-
+## 4.11. Cantidad de radiobases LTE
 ```{r}
-serie_99 <- radiobases %>% 
-  filter(year(fecha) == year(FECHA_INFORME)) %>% 
+radiobases %>% 
+  filter(month(fecha) %in% c(6, 12)) %>% 
   filter(tipo == "Radiobases (LTE)") %>% 
-  group_by(fecha) %>% 
-  summarize(radiobases = sum(val, na.rm = TRUE))
-
-serie_99 %>% 
-  mutate(year=year(fecha), month=month(fecha)) %>% 
-  serie_historica_mensual(radiobases, nudge_text = 100)
+  group_by(year = year(fecha), semester = semester(fecha)) %>% 
+  summarize(radiobases = sum(val, na.rm = TRUE)) %>% 
+  serie_historica_semestral_stock(radiobases, nudge_text = 5e2)
 ```
 
-## 80. Cantidad de radiobases LTE por departamento (diciembre 2019)
+
+## 4.12. Cantidad de radiobases LTE por departamento (`r FECHA_TITULO_STOCK`)
+
 ```{r}
 tabla_100 <- radiobases %>% 
-  filter(fecha == FECHA_INFORME) %>% 
+  filter(fecha == FECHA_INFORME_ANUAL) %>% 
   filter(tipo == "Radiobases (LTE)") %>% 
   group_by(depto) %>% 
   summarize(radiobases = sum(val, na.rm = TRUE))
@@ -235,23 +234,29 @@ tabla_100 <- radiobases %>%
 ```
 
 
+##### Salto
 
 
 
 
 
-
-## 81. Cantidad de radiobases LTE por operador (diciembre 2019)
+## 4.13. Cantidad de radiobases LTE por operador (`r FECHA_TITULO_STOCK`)
 
 ```{r}
 tabla_101 <- radiobases %>% 
-  filter(fecha == FECHA_INFORME) %>% 
+  filter(fecha == FECHA_INFORME_ANUAL) %>% 
   filter(tipo == "Radiobases (LTE)") %>% 
   group_by(empresa) %>% 
   summarize(radiobases = sum(val, na.rm = TRUE))
 
 tabla_101 %>% 
-  pie_chart(radiobases, empresa) %>% 
+  pie_chart(radiobases, empresa, percent_accuracy=.01) %>% 
   print
 ```
+
+
+
+
+
+
 

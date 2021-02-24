@@ -9,47 +9,41 @@ graphics: yes
 ```{r, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, 
                       warning = FALSE,
-                      message=FALSE,
-                      fig.width = 7, 
-                      fig.height = 4.5)
+                      message=FALSE)
 
 options(scipen = 10000)
 
 source('../common.R')
-
 banda_ancha_servicios <- import_banda_ancha_servicios()
+banda_ancha_trafico <- import_banda_ancha_trafico()
+
 
 ```
 
 # 3. Transmisión de datos e internet
 
 
-## 42. Servicios de banda ancha fija
+## 3.1. Servicios de banda ancha fija
 ```{r}
 # g_63
-serie_63 <- tribble(
-           ~year, ~numeric,
-          2010,  382948,
-          2011,  472876,
-          2012,  580669,
-          2013,  737078,
-          2014,  840261,
-          2015,  900888,
-          2016,  921677,
-          2017,  949929,
-          2018,  977448,
-          2019,  1012467)
+serie_63 <- banda_ancha_servicios %>% 
+    filter(month(fecha) == 6 | month(fecha) == 12, 
+           year(fecha) >= 2016) %>%
+  group_by(year=year(fecha), semester=semester(fecha)) %>%
+  summarize(servicios = sum(val, na.rm = TRUE))
 
-serie_63 %>% 
-  serie_historica_anual(numeric, nudge_text = 5e4)
+
+serie_63 %>%
+  serie_historica_semestral_stock(servicios, nudge_text = 5e4)
 ```
 
 
 
-## 43. Servicios de banda ancha fija según alámbrica e inalámbrica (diciembre 2019)
+## 3.2. Servicios de banda ancha fija según alámbrica e inalámbrica (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_64 <- banda_ancha_servicios %>% 
-  filter(year(fecha) == year(FECHA_INFORME), month(fecha) == month(FECHA_INFORME)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL), 
+         month(fecha) == month(FECHA_INFORME_ANUAL)) %>% 
   group_by(alambrica) %>% 
   summarize(servicios = sum(val, na.rm = TRUE))
 
@@ -59,28 +53,30 @@ serie_64 %>%
 ```
 
 
-## 44. Servicios de banda ancha fija por velocidad (diciembre 2019)
+##### Salto
+
+## 3.3. Servicios de banda ancha fija por velocidad (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_65 <- banda_ancha_servicios %>% 
-  filter(year(fecha) == year(FECHA_INFORME), month(fecha) == month(FECHA_INFORME)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL), 
+         month(fecha) == month(FECHA_INFORME_ANUAL)) %>% 
   group_by(velocidad) %>% 
-  summarize(servicios = sum(val, na.rm = TRUE))
+  summarize(servicios = sum(val, na.rm = TRUE)) %>% 
+  # Corregir por dato de Diego
+  mutate(servicios = if_else(
+    velocidad == "Entre 256 kbps y 2 Mbps",
+    1279, servicios
+  ))
 
 serie_65 %>% 
   barras_horizontales(servicios, velocidad, nudge_text = 1e5)
 ```
 
 
-
-
-
-
-
-
-## 45. Servicios de banda ancha fija por tipo de cliente (diciembre 2019)
+## 3.4. Servicios de banda ancha fija por tipo de cliente (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_66 <- banda_ancha_servicios %>% 
-  filter(year(fecha) == year(FECHA_INFORME), month(fecha) == month(FECHA_INFORME)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL), month(fecha) == month(FECHA_INFORME_ANUAL)) %>% 
   group_by(cliente) %>% 
   summarize(servicios = sum(val, na.rm = TRUE))
 
@@ -93,10 +89,12 @@ serie_66 %>%
 ```
 
 
-## 46. Servicios de banda ancha fija por operador (diciembre 2019)
+##### Salto
+
+## 3.5. Servicios de banda ancha fija por operador (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_67 <- banda_ancha_servicios %>% 
-  filter(year(fecha) == year(FECHA_INFORME), month(fecha) ==    month(FECHA_INFORME)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL), month(fecha) ==    month(FECHA_INFORME_ANUAL)) %>% 
   group_by(empresa) %>% 
   summarize(servicios = sum(val, na.rm = TRUE))
 
@@ -105,17 +103,11 @@ serie_67 %>%
   barras_horizontales(servicios, empresa, nudge_text = 1e5)
 ```
 
-
-
-
-
-
-
-
-## 47. Servicios de banda ancha fija por medio de trasmisión (diciembre 2019)
+## 3.6. Servicios de banda ancha fija por medio de trasmisión (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_68 <- banda_ancha_servicios %>% 
-  filter(year(fecha) == year(FECHA_INFORME), month(fecha) == month(FECHA_INFORME)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL), 
+         month(fecha) == month(FECHA_INFORME_ANUAL)) %>% 
   group_by(medio) %>% 
   summarize(servicios = sum(val, na.rm = TRUE))
 
@@ -127,34 +119,26 @@ serie_68 %>%
 banda_ancha_servicios_residenciales <- filter(banda_ancha_servicios, cliente == "Residencial")
 
 ```
+##### Salto
 
-
-## 48. Servicios de banda ancha fija residencial
+## 3.7. Servicios de banda ancha fija residencial
 ```{r}
-
 serie_69 <- banda_ancha_servicios_residenciales %>% 
-  group_by(year=year(fecha), month=month(fecha)) %>%
+    filter(month(fecha) == 6 | month(fecha) == 12, 
+           year(fecha) >= 2016) %>%
+  group_by(year=year(fecha), semester=semester(fecha)) %>%
   summarize(servicios = sum(val, na.rm = TRUE)) %>% 
-  select(year, month, servicios)
+  serie_historica_semestral_stock(servicios, nudge_text = 8e4)
 
-serie_69 %>% 
-  filter(month %in% c(6, 12)) %>% 
-  serie_historica_mensual(servicios, nudge_text = 8e4)
-
+serie_69
 ```
 
 
-
-
-
-
-
-
-## 49. Servicios de banda ancha fija residencial por velocidad (diciembre 2019)
+## 3.8. Servicios de banda ancha fija residencial por velocidad (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_70 <- banda_ancha_servicios_residenciales %>% 
-  filter(year(fecha) == year(FECHA_INFORME), 
-         month(fecha) == month(FECHA_INFORME)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL), 
+         month(fecha) == month(FECHA_INFORME_ANUAL)) %>% 
   group_by(velocidad) %>% 
   summarize(servicios = sum(val, na.rm = TRUE))
 
@@ -164,35 +148,30 @@ serie_70 %>%
   print
 ```
 
+##### Salto
 
-## 50. Servicios de banda ancha fija residencial por operador (diciembre 2019)
+## 3.9. Servicios de banda ancha fija residencial por operador (`r FECHA_TITULO_STOCK`)
 
 ```{r}
 serie_71 <- banda_ancha_servicios_residenciales %>% 
-  filter(year(fecha) == year(FECHA_INFORME), 
-         month(fecha) == month(FECHA_INFORME)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL), 
+         month(fecha) == month(FECHA_INFORME_ANUAL)) %>% 
   group_by(empresa) %>% 
   summarize(servicios = sum(val, na.rm = TRUE))
 
  serie_71 %>% 
-  filter(servicios > 100) %>% # 
-  pie_chart(servicios, empresa) %>% 
-   print
+  filter(servicios > 10) %>% # 
+  pie_chart(servicios, empresa, nudge_x = c(0, 0, 8)) %>% 
+  print
+
 ```
 
 
-
-
-
-
-
-
-
-## 51. Servicios de banda ancha fija residencial por medio de trasmisión (diciembre 2019)
+## 3.10. Servicios de banda ancha fija residencial por medio de trasmisión (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_72 <- banda_ancha_servicios_residenciales %>% 
-  filter(year(fecha) == year(FECHA_INFORME), 
-         month(fecha) == month(FECHA_INFORME)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL), 
+         month(fecha) == month(FECHA_INFORME_ANUAL)) %>% 
   group_by(medio) %>% 
   summarize(servicios = sum(val, na.rm = TRUE)) 
 
@@ -201,34 +180,32 @@ serie_72 %>%
 
 ```
 
+##### Salto
+
+
 ```{r, include =FALSE}
 banda_ancha_servicios_empresariales <- filter(banda_ancha_servicios, cliente == "Empresarial")
 
 ```
 
-## 52. Servicios de banda ancha fija comercial
+## 3.11. Servicios de banda ancha fija comercial
 ```{r}
 serie_73 <- banda_ancha_servicios_empresariales %>% 
-  group_by(year=year(fecha), month=month(fecha)) %>% 
-  summarize(servicios = sum(val, na.rm = TRUE))
+  filter(month(fecha) == 6 | month(fecha) == 12, 
+           year(fecha) >= 2016) %>%
+  group_by(year=year(fecha), semester=semester(fecha)) %>%
+  summarize(servicios = sum(val, na.rm = TRUE)) 
 
 serie_73 %>% 
-  filter(month %in% c(6, 12)) %>% 
-  serie_historica_mensual(servicios, nudge_text = 1e3)
+  serie_historica_semestral_stock(servicios, nudge_text = 8e2)
 ```
 
 
-
-
-
-
-
-
-## 53. Servicios de banda ancha fija comercial por velocidad (diciembre 2019)
+## 3.12. Servicios de banda ancha fija comercial por velocidad (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_74 <- banda_ancha_servicios_empresariales %>% 
-  filter(year(fecha) == year(FECHA_INFORME), 
-         month(fecha) == month(FECHA_INFORME)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL), 
+         month(fecha) == month(FECHA_INFORME_ANUAL)) %>% 
   group_by(velocidad) %>% 
   summarize(servicios = sum(val, na.rm = TRUE))
 
@@ -236,13 +213,14 @@ serie_74 %>%
   barras_horizontales(servicios, velocidad, nudge_text=1e3)
 ```
 
+##### Salto
 
-## 54. Servicios de banda ancha fija comercial por operador (diciembre 2019)
+## 3.13. Servicios de banda ancha fija comercial por operador (`r FECHA_TITULO_STOCK`)
 
 ```{r}
 serie_75 <- banda_ancha_servicios_empresariales %>% 
-  filter(year(fecha) == year(FECHA_INFORME), 
-         month(fecha) == month(FECHA_INFORME)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL), 
+         month(fecha) == month(FECHA_INFORME_ANUAL)) %>% 
   group_by(empresa) %>% 
   summarize(servicios = sum(val, na.rm = TRUE))
 
@@ -251,24 +229,21 @@ serie_75 %>%
 ```
 
 
-
-
-
-
-
-
-## 55. Servicios de banda ancha fija comercial por medio de trasmisión (diciembre 2019)
+## 3.14. Servicios de banda ancha fija comercial por medio de trasmisión (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_76 <- banda_ancha_servicios_empresariales %>% 
-  filter(year(fecha) == year(FECHA_INFORME), 
-         month(fecha) == month(FECHA_INFORME)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL), 
+         month(fecha) == month(FECHA_INFORME_ANUAL)) %>% 
   group_by(medio) %>% 
   summarize(servicios = sum(val, na.rm = TRUE)) 
 
 serie_76 %>% 
-  pie_chart(servicios, medio, nudge_radio = .7) %>% 
+  pie_chart(servicios, medio, nudge_radio = .7, percent_accuracy = .01) %>% 
   print
 ```
+
+##### Salto
+
 
 
 ```{r}
@@ -309,30 +284,21 @@ banda_ancha_servicios_inalambrica <- filter(banda_ancha_servicios, alambrica=="I
 
 ```
 
-## 56. Servicios de banda ancha fija inalámbrica
+## 3.15. Servicios de banda ancha fija inalámbrica
 ```{r}
-serie_81 <- banda_ancha_servicios_inalambrica %>% 
-  filter(month(fecha) %in% c(6, 12)) %>% 
-  group_by(year=year(fecha), month = month(fecha)) %>% 
-  summarize(val = sum(val, na.rm = TRUE))
-
- serie_81 %>% 
-  serie_historica_mensual(val, nudge_text = 3000)
+banda_ancha_servicios_inalambrica %>% 
+  filter(month(fecha) == 6 | month(fecha) == 12, 
+           year(fecha) >= 2016) %>%
+  group_by(year=year(fecha), semester=semester(fecha)) %>%
+  summarize(servicios = sum(val, na.rm = TRUE)) %>% 
+  serie_historica_semestral_stock(servicios, nudge_text = 2e3)
 ```
 
-
-
-
-
-
-
-
-
-## 57. Servicios de banda ancha fija inalámbrica por velocidad (diciembre 2019)
+## 3.16. Servicios de banda ancha fija inalámbrica por velocidad (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_82 <- banda_ancha_servicios_inalambrica %>% 
-  filter(year(fecha) == year(FECHA_INFORME), 
-         month(fecha) == month(FECHA_INFORME)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL), 
+         month(fecha) == month(FECHA_INFORME_ANUAL)) %>% 
   group_by(velocidad) %>% 
   summarize(servicios = sum(val, na.rm = TRUE))
 
@@ -340,12 +306,15 @@ serie_82 %>%
   barras_horizontales(servicios, velocidad, nudge_text = 5e3)
 ```
 
+##### Salto
 
-## 58. Servicios de banda ancha fija inalámbrica por tipo de cliente (diciembre 2019)
+
+## 3.17. Servicios de banda ancha fija inalámbrica por tipo de cliente (`r FECHA_TITULO_STOCK`)
 ```{r}
+
 serie_83 <- banda_ancha_servicios_inalambrica %>% 
-  filter(year(fecha) == year(FECHA_INFORME), 
-         month(fecha) == month(FECHA_INFORME)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL), 
+         month(fecha) == month(FECHA_INFORME_ANUAL)) %>% 
   group_by(cliente) %>% 
   summarize(servicios = sum(val, na.rm = TRUE))
 
@@ -357,30 +326,27 @@ serie_83 %>%
 ```
 
 
-
-
-
-
-
-
-## 59. Servicios de banda ancha fija inalámbrica por operador (diciembre 2019)
+## 3.18. Servicios de banda ancha fija inalámbrica por operador (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_84 <- banda_ancha_servicios_inalambrica %>% 
-  filter(year(fecha) == year(FECHA_INFORME), 
-         month(fecha) == month(FECHA_INFORME)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL), 
+         month(fecha) == month(FECHA_INFORME_ANUAL)) %>% 
   group_by(empresa) %>% 
   summarize(servicios = sum(val, na.rm = TRUE))
 
 serie_84 %>% 
+  filter(servicios > 0) %>% 
   barras_horizontales(servicios, empresa, nudge_text = 4e3)
 ```
 
+##### Salto
 
-## 60. Servicios de banda ancha fija inalámbrica por medio de trasmisión (diciembre 2019)
+
+## 3.19. Servicios de banda ancha fija inalámbrica por medio de trasmisión (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_85 <- banda_ancha_servicios_inalambrica %>% 
-  filter(year(fecha) == year(FECHA_INFORME), 
-         month(fecha) == month(FECHA_INFORME)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL), 
+         month(fecha) == month(FECHA_INFORME_ANUAL)) %>% 
   group_by(medio) %>% 
   summarize(servicios = sum(val, na.rm = TRUE))
 
@@ -389,14 +355,6 @@ serie_85 %>%
   print
 ```
 
-
-
-
-
-
-
-
-
 ```{r, include=FALSE}
 
 banda_ancha_servicios_alambrica <- filter(banda_ancha_servicios, alambrica=="Alámbrica")
@@ -404,24 +362,24 @@ banda_ancha_servicios_alambrica <- filter(banda_ancha_servicios, alambrica=="Al�
 
 ```
 
-## 61. Servicios de banda ancha fija alámbrica
+## 3.20. Servicios de banda ancha fija alámbrica
 ```{r}
-serie_86 <- banda_ancha_servicios_alambrica %>%
-  filter(month(fecha) %in% c(6, 12)) %>% 
-  group_by(year=year(fecha), month = month(fecha)) %>% 
-  summarize(val = sum(val, na.rm = TRUE))
-
-serie_86 %>% 
-  serie_historica_mensual(val, nudge_text = .5e5)
-
+banda_ancha_servicios_alambrica %>% 
+  filter(month(fecha) == 6 | month(fecha) == 12, 
+           year(fecha) >= 2016) %>%
+  group_by(year=year(fecha), semester=semester(fecha)) %>%
+  summarize(servicios = sum(val, na.rm = TRUE)) %>% 
+  serie_historica_semestral_stock(servicios, nudge_text = 4e4)
 ```
 
+##### Salto
 
-## 62. Servicios de banda ancha fija alámbrica por velocidad (diciembre 2019)
+
+## 3.21. Servicios de banda ancha fija alámbrica por velocidad (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_87 <- banda_ancha_servicios_alambrica %>% 
-  filter(year(fecha) == year(FECHA_INFORME), 
-         month(fecha) == month(FECHA_INFORME)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL), 
+         month(fecha) == month(FECHA_INFORME_ANUAL)) %>% 
   group_by(velocidad) %>% 
   summarize(servicios = sum(val, na.rm = TRUE)) %>% 
   filter(servicios >0)
@@ -432,31 +390,28 @@ serie_87 %>%
 ```
 
 
-
-
-
-
-
-
-## 63. Servicios de banda ancha fija alámbrica por medio de trasmisión (diciembre 2019)
+## 3.22. Servicios de banda ancha fija alámbrica por medio de trasmisión (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_88 <- banda_ancha_servicios_alambrica %>% 
-  filter(year(fecha) == year(FECHA_INFORME), 
-         month(fecha) == month(FECHA_INFORME)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL), 
+         month(fecha) == month(FECHA_INFORME_ANUAL)) %>% 
   group_by(medio) %>% 
   summarize(servicios = sum(val, na.rm = TRUE)) %>% 
-  filter(servicios >0)
+  filter(servicios > 0)
 
 serie_88 %>% 
   pie_chart(servicios, medio) %>% 
   print
 ```
 
-## 64. Servicios de banda ancha fija alámbrica por tipo de cliente (diciembre 2019)
+##### Salto
+
+
+## 3.23. Servicios de banda ancha fija alámbrica por tipo de cliente (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_89 <- banda_ancha_servicios_alambrica %>% 
-  filter(year(fecha) == year(FECHA_INFORME), 
-         month(fecha) == month(FECHA_INFORME)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL), 
+         month(fecha) == month(FECHA_INFORME_ANUAL)) %>% 
   group_by(cliente) %>% 
   summarize(servicios = sum(val, na.rm = TRUE)) %>% 
   filter(servicios >0)
@@ -467,18 +422,12 @@ serie_89 %>%
 ```
 
 
-
-
-
-
-
-
-## 65. Servicios de banda ancha fija alámbrica por operador (diciembre 2019)
+## 3.24. Servicios de banda ancha fija alámbrica por operador (`r FECHA_TITULO_STOCK`)
 
 ```{r}
 serie_90 <- banda_ancha_servicios_alambrica %>% 
-  filter(year(fecha) == year(FECHA_INFORME), 
-         month(fecha) == month(FECHA_INFORME)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL), 
+         month(fecha) == month(FECHA_INFORME_ANUAL)) %>% 
   group_by(empresa) %>% 
   summarize(servicios = sum(val, na.rm = TRUE)) %>% 
   filter(servicios >0)
@@ -489,78 +438,133 @@ serie_90 %>%
 
 ```
 
-## 66. Tráfico de datos de servicios de banda ancha fija (terabytes)
+##### Salto
+
+
+## 3.25. Tráfico de datos de servicios de banda ancha fija (terabytes)
+```{r}
+# banda_ancha_trafico %>% 
+#   filter(fecha < as.Date("2020-07-01")) %>% 
+#   group_by(year = year(fecha), semester=semester(fecha)) %>% 
+#   summarize(minutos=sum(numeric))
+
+tibble(
+  year = c(2018, 2018, 2019, 2019, 2020),
+  semester = c(1, 2, 1, 2, 1),
+  minutos = c(610997, 684893, 753166, 902763, 1138117)
+ ) %>% 
+serie_historica_semestral_flujo(minutos, nudge_text = 50e3)
+  
+```
+
+## 3.26. Tráfico de datos de servicios de banda ancha fija (terabytes) según alámbrica e inalámbrica (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
-serie_91 <- tibble(
-  fecha = seq(as.Date('2018-01-01'),as.Date('2019-12-01'),by = 'month'),
-  trafico = c(96437, 93333, 101713, 101240,
-               109307, 108967,112982,
-               115621, 115825, 114350, 114150,
-               111965, 120039,
-               118777, 111572, 126237, 134348,
-               142193, 150576, 151067,
-               146393, 155685, 143900, 155142)) %>% 
-  mutate(year= year(fecha), month= month(fecha)) %>% 
-  select(-fecha)
 
-serie_91 %>% 
-  filter(year > 2018) %>% 
-  serie_historica_mensual(trafico, nudge_text=1e4)
+# TODO: da una diferencia chica
+# banda_ancha_trafico %>% 
+#   filter(year(fecha) == year(FECHA_INFORME_ANUAL), 
+#         semester(fecha) == semester(FECHA_INFORME_ANUAL)) %>% 
+#    group_by(alambrico=
+#               if_else(medio %in% c("Dedicados", "Otros"),
+#                       "Inalámbrico",
+#                       "Alámbrico")) %>% 
+#   summarize(minutos=sum(numeric)) 
+
+
+tibble(
+  alambrico = c("Banda Ancha Fija Alámbrica", 
+                "Banda Ancha Fija Inalámbrica"),
+  minutos = c(1103769, 34348)) %>% 
+  pie_chart(minutos, alambrico) %>% 
+  print
+  
+
 ```
 
 
+##### Salto
 
 
 
-
-
-
-## 67. Tráfico de datos de servicios de banda ancha fija (terabytes) según alámbrica e inalámbrica (diciembre 2019)
+## 3.27. Tráfico de datos se servicios de banda ancha fija (terabytes) según tipo de cliente (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
-serie_92 <- tibble(
-  tipo=c("Alámbrica",	"Inalámbrica"),
-  trafico=c(1617219,	38710)
-)
 
-serie_92 %>% 
-  pie_chart(trafico, tipo) %>% 
+# # TODO: da una diferencia chica
+# banda_ancha_trafico %>% 
+#   filter(year(fecha) == year(FECHA_INFORME_ANUAL), 
+#         semester(fecha) == semester(FECHA_INFORME_ANUAL)) %>% 
+#   group_by(cliente) %>% 
+#   summarize(minutos=sum(numeric)) 
+
+tibble(
+  cliente = c("Gobierno", "Residencial", "Empresarial"),
+  minutos = c(6076, 1104125, 27925)) %>% 
+  pie_chart(minutos, cliente, nudge_x = c(-6, 0, 4)) %>% 
   print
 ```
 
-## 68. Tráfico de datos se servicios de banda ancha fija (terabytes) según tipo de cliente (diciembre 2019)
+<!-- ```{r} -->
+<!-- serie_93 <- tibble( -->
+<!--   cliente= c("Residenciales",	"Comerciales", 	"Gobierno"), -->
+<!--   trafico=c(1587200,	50526,	18203) -->
+<!-- ) -->
 
+<!-- # serie_93 %>%  -->
+<!-- #   pie_chart(trafico, cliente,  -->
+<!-- #               nudge_radio = c(.7, .6, .6), -->
+<!-- #               nudge_x = c(0, -6, 6)) %>%  -->
+<!-- #   print -->
+<!-- ``` -->
+
+<!-- ## 3.28. Tráfico de datos (terabytes) por operador (`r FECHA_TITULO_FLUJO`) -->
+
+<!-- ```{r} -->
+<!-- # banda_ancha_trafico %>%  -->
+<!-- #   filter(year(fecha) == year(FECHA_INFORME_ANUAL),  -->
+<!-- #         semester(fecha) == semester(FECHA_INFORME_ANUAL)) %>%  -->
+<!-- #   group_by(empresa) %>%  -->
+<!-- #   summarize(minutos=sum(numeric)) %>%  -->
+<!-- #   filter(minutos > 0)  -->
+
+<!-- tibble( -->
+<!--   empresa = c("Antel", "Claro", "Dedicado", "Enalur Sa", "Kalil", "Movistar"), -->
+<!--   minutos = c(1135018, 611, 0, 0, 0, 2488))  %>%  -->
+<!--   barras_horizontales(minutos, empresa, nudge_text = 1.3e5) -->
+
+<!-- ``` -->
+
+
+## 3.28. Capacidad propia de acceso a Internet (Mbps)
 ```{r}
-serie_93 <- tibble(
-  cliente= c("Residenciales",	"Comerciales", 	"Gobierno"),
-  trafico=c(1587200,	50526,	18203)
-)
 
-serie_93 %>% 
-  pie_chart(trafico, cliente, 
-              nudge_radio = c(.7, .6, .6),
-              nudge_x = c(0, -6, 6)) %>% 
+tribble(
+  ~year, ~semester, ~val,
+  2018,   1,       308301,
+  2018,   2,       348301,
+  2019,   1,       435649,
+  2019,   2,       684834, 
+  2020,   1,       974834,
+) %>% 
+  serie_historica_semestral_stock(val, nudge_text=1e5)
+  
+```
+
+##### Salto
+
+
+## 3.29. Capacidad propia de acceso a Internet por operador (megabytes) (`r FECHA_TITULO_STOCK`)
+```{r}
+
+tribble(
+  ~empresa, ~val,
+  "Telefónica", 36050,
+  "Telstar",    41984,
+  "Antel",      896800
+) %>% 
+  pie_chart(val, empresa, nudge_x = c(-4, 4, 0)) %>% 
   print
+  
 ```
-
-
-
-
-
-
-
-
-## 69. Tráfico de datos (terabytes) por operador (diciembre 2019)
-
-```{r}
-serie_94 <- tibble(
-  empresa = c("Antel",	"Dedicado",	"Kalil",	"Enalur",	"Movistar",	"Claro"),
-  trafico = c(1650584,	0,	495,	0,	3966, 884))
-
-serie_94 %>% 
-  barras_horizontales(trafico, empresa, nudge_text= 1.5e5)
-```
-
-
 

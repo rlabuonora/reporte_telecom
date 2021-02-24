@@ -6,11 +6,6 @@ graphics: yes
 ---
 
 ```{r include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, 
-                      warning = FALSE,
-                      message = FALSE,
-                      fig.width = 7, 
-                      fig.height = 4.5)
 
 options(scipen = 10000)
 
@@ -20,49 +15,56 @@ options(scipen = 10000)
 source('../common.R')
 
 
-FECHA_INFORME <- as.Date("2019-12-01")
-
 mensajes <- import_mensajes()
 
 
 
 ```
 
+##### Salto
 
-
-
-## 123. Mensajes de texto enviados
+## 4.62. Mensajes de texto enviados
 ```{r}
 serie_141 <- mensajes %>% 
   filter( a %in% c("Antel", "Claro", "Movistar", "Exterior")) %>% 
-  group_by(year = year(fecha)) %>% 
-  summarize(mensajes = sum(numeric))
+  group_by(year = year(fecha), semester = semester(fecha)) %>% 
+  filter(year(fecha) > 2016) %>% 
+  summarize(mensajes = sum(numeric)) %>% 
+  # Datos Diego
+  mutate(mensajes = case_when(
+    year == 2019 & semester==1 ~ 434979231,
+    TRUE~mensajes
+  ))
 
 serie_141 %>% 
-  serie_historica_anual(mensajes/1e6, nudge_text = 3e2) +
-  labs(y="Millones")
+  serie_historica_semestral_flujo(mensajes) 
 ```
 
 
 
-## 124. Mensajes de texto enviados por operador (año 2019)
+## 4.63. Mensajes de texto enviados por operador (`r FECHA_TITULO_FLUJO`)
 ```{r}
 serie_142 <- mensajes %>%
-  filter(year(fecha) == year(FECHA_INFORME)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL),
+         semester(fecha) == semester(FECHA_INFORME_ANUAL)) %>% 
   filter( a %in% c("Antel", "Claro", "Movistar", "Exterior")) %>% 
   group_by(empresa) %>% 
   summarize(mensajes = sum(numeric, na.rm = TRUE))
 
 serie_142 %>% 
-  pie_chart(mensajes, empresa) %>% 
+  pie_chart(mensajes, empresa, percent_accuracy = 1) %>% 
   print
 
 ```
 
-## 125. Mensajes de texto enviados según destino (año 2019)
+##### Salto
+
+
+## 4.64. Mensajes de texto enviados según destino (`r FECHA_TITULO_FLUJO`)
 ```{r}
 serie_143 <- mensajes %>%
-  filter(year(fecha) == 2019) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL), 
+         semester(fecha) == semester(FECHA_INFORME_ANUAL)) %>% 
   mutate(red_destino = case_when(
     a == "Exterior" ~ "A Exterior",
     a != empresa  ~ "Otras Redes",
@@ -72,29 +74,41 @@ serie_143 <- mensajes %>%
   summarize(mensajes = sum(numeric, na.rm = TRUE))
 
 serie_143 %>% 
-  pie_chart(mensajes, red_destino, nudge_radio = c(.9, .8, .6)) %>% 
+  pie_chart(mensajes, red_destino, 
+            percent_accuracy = .01,
+            nudge_radio = c(.9, .8, .6)) %>% 
   print
 ```
 
 
 
-## 126. Mensajes de texto enviados al exterior 
+## 4.65. Mensajes de texto enviados al exterior 
 ```{r}
 serie_144 <- mensajes %>% 
   filter(a == "Exterior") %>% 
-  group_by(year = year(fecha)) %>% 
-  summarize(mensajes = sum(numeric)) 
+  group_by(year = year(fecha), semester=semester(fecha)) %>% 
+  filter(year(fecha) > 2016) %>% 
+  summarize(mensajes = sum(numeric)) %>% 
+  # Datos Diego
+  mutate(mensajes = case_when(
+    year == 2019 & semester==1 ~ 13073724,
+    TRUE~mensajes
+  ))
 
 serie_144 %>% 
-  serie_historica_anual(mensajes/1e3, nudge_text = 1e4) +
-  labs(y="Miles")
+  serie_historica_semestral_flujo(mensajes, nudge_text = 1e4) 
 ```
 
-## 127. Mensajes de texto enviados al exterior por operador (año 2019)
+##### Salto
+
+
+
+## 4.66. Mensajes de texto enviados al exterior por operador (`r FECHA_TITULO_FLUJO`)
 ```{r}
 serie_145 <- mensajes %>% 
   filter(a == "Exterior") %>% 
-  filter(year(fecha) == year(FECHA_INFORME)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL),
+         semester(fecha) == semester(FECHA_INFORME_ANUAL)) %>% 
   group_by(empresa) %>% 
   summarize(mensajes = sum(numeric, na.rm = TRUE))
 
@@ -107,25 +121,32 @@ serie_145 %>%
 
 
 
-## 128. Mensajes de texto enviados a otras redes móviles
+## 4.67. Mensajes de texto enviados a otras redes móviles
 ```{r}
 serie_146 <- mensajes %>% 
   filter(a != empresa & a != "Exterior") %>% 
-  group_by(year = year(fecha)) %>% 
+  group_by(year = year(fecha), semester=semester(fecha)) %>% 
+  filter(year(fecha) > 2017) %>% 
   summarize(mensajes = sum(numeric))
 
 serie_146 %>% 
-  serie_historica_anual(mensajes/1e3, nudge_text = 2e5) +
+  mutate(mensajes=mensajes/1e3) %>% 
+  serie_historica_semestral_flujo(mensajes, nudge_text = 2e5) +
   labs(y="Miles")
 
 ```
 
-## 129. Mensajes de texto enviados a otras redes móviles por operador (año 2019)
+
+##### Salto
+
+
+## 4.68. Mensajes de texto enviados a otras redes móviles por operador (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
 serie_147 <- mensajes %>% 
   filter(a != empresa & a != "Exterior") %>% 
-  filter(year(fecha)== year(FECHA_INFORME)) %>% 
+  filter(year(fecha)== year(FECHA_INFORME_ANUAL),
+         semester(fecha) == semester(FECHA_INFORME_ANUAL)) %>% 
   group_by(empresa) %>% 
   summarize(mensajes = sum(numeric, na.rm = TRUE))
 
@@ -133,6 +154,7 @@ serie_147 %>%
   pie_chart(mensajes, empresa) %>% 
   print
 ```
+
 
 
 <!-- # 148. Mensajes de texto enviados a red propia -->
