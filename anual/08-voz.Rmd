@@ -264,14 +264,15 @@ serie_162 %>%
 ```{r}
 # TODO
 # Esto funciona a partir de 2020
-serie_163 <- voz %>%
+serie_2020 <- voz %>%
   filter(pago == "Prepago") %>%
   group_by(year=year(fecha), semester=semester(fecha)) %>%
   summarize(numeric = sum(numeric, na.rm = TRUE)) %>%
-  filter(year >= 2017)
+  filter(year == 2020)
 
 trafico_voz_historico %>% 
-  filter(pago == "Prepago", tipo_red == "Todas") %>%
+  filter(pago == "Prepago", tipo_red == "Todas", year < 2020) %>%
+  bind_rows(serie_2020) %>% 
   serie_historica_semestral_flujo(numeric, nudge_text = 8e7)
 ```
 
@@ -295,14 +296,16 @@ serie_164 %>%
 
 ## 4.84. Tráfico de voz a red propia de suscripciones móviles prepagos (minutos)
 ```{r}
-# serie_165 <- voz %>%
-#   filter(tipo_red == "Propia Móvil", pago == "Prepago") %>%
-#   group_by(year=year(fecha), semester=semester(fecha)) %>%
-#   summarize(numeric = sum(numeric, na.rm = TRUE)) %>%
-#   filter(year >= 2017)
+serie_2020 <- voz %>%
+  filter(tipo_red == "Propia Móvil", pago == "Prepago") %>%
+  group_by(year=year(fecha), semester=semester(fecha)) %>%
+  summarize(numeric = sum(numeric, na.rm = TRUE)) %>%
+  filter(year == 2020)
 
 trafico_voz_historico %>% 
-  filter(pago == "Prepago", tipo_red == "Propia Móvil") %>%
+  filter(pago == "Prepago", tipo_red == "Propia Móvil", 
+         year < 2020) %>%
+  bind_rows(serie_2020) %>% 
   serie_historica_semestral_flujo(numeric, nudge_text = 8e7)
 ```
 
@@ -326,18 +329,17 @@ serie_166 %>%
 
 ## 4.86. Tráfico de voz a otras redes móviles de suscripciones móviles prepagos (minutos)
 ```{r}
-# serie_167 <- voz %>%
-#   filter(tipo_red == "Otra Móvil", pago == "Prepago") %>%
-#   group_by(year=year(fecha), semester=semester(fecha)) %>%
-#   summarize(numeric = sum(numeric, na.rm = TRUE)) %>%
-#   filter(year >= 2017)
+serie_2020 <- voz %>%
+  filter(tipo_red == "Otra Móvil", pago == "Prepago") %>%
+  group_by(year=year(fecha), semester=semester(fecha)) %>%
+  summarize(numeric = sum(numeric, na.rm = TRUE)) %>%
+  filter(year == 2020)
 
 trafico_voz_historico %>% 
-  filter(pago == "Prepago", tipo_red == "Otra Móvil") %>%
+  filter(pago == "Prepago", tipo_red == "Otra Móvil", year < 2020) %>%
+  bind_rows(serie_2020) %>% 
   serie_historica_semestral_flujo(numeric, nudge_text = 8e6)
 ```
-
-
 
 ## 4.87. Tráfico de voz a otras redes móviles de suscripciones móviles prepagos (minutos) por operador (`r FECHA_TITULO_FLUJO`)
 
@@ -353,21 +355,19 @@ serie_168 %>%
   print()
 ```
 
-
 ##### Salto
-
-
 
 ## 4.88. Tráfico de voz al exterior de suscripciones móviles prepagos (minutos)
 ```{r}
-# serie_169 <- voz %>%
-#   filter(tipo_red == "Exterior", pago == "Prepago") %>%
-#   group_by(year=year(fecha), semester=semester(fecha)) %>%
-#   summarize(numeric = sum(numeric, na.rm = TRUE)) %>%
-#   filter(year >= 2017)
+serie_2020 <- voz %>%
+  filter(tipo_red == "Exterior", pago == "Prepago") %>%
+  group_by(year=year(fecha), semester=semester(fecha)) %>%
+  summarize(numeric = sum(numeric, na.rm = TRUE)) %>%
+  filter(year == 2020)
 
 trafico_voz_historico %>% 
-  filter(pago == "Prepago", tipo_red == "Exterior") %>%
+  filter(pago == "Prepago", tipo_red == "Exterior", year < 2020) %>%
+  bind_rows(serie_2020) %>% 
   serie_historica_semestral_flujo(numeric, nudge_text = 8e6)
 
 ```
@@ -385,7 +385,7 @@ serie_170 <- voz %>%
 
 serie_170 %>%
   pie_chart(numeric, empresa) %>%
-  print
+  print()
 ```
 
 
@@ -395,14 +395,15 @@ serie_170 %>%
 
 ## 4.90. Tráfico de voz a red fija de suscripciones móviles prepagos (minutos)
 ```{r}
-# serie_171 <- voz %>%
-#   filter(tipo_red == "Fija", pago == "Prepago") %>%
-#   group_by(year=year(fecha), semester=semester(fecha)) %>%
-#   summarize(numeric = sum(numeric, na.rm = TRUE)) %>%
-#   filter(year >= 2017)
+serie_2020 <- voz %>%
+  filter(tipo_red == "Fija", pago == "Prepago") %>%
+  group_by(year=year(fecha), semester=semester(fecha)) %>%
+  summarize(numeric = sum(numeric, na.rm = TRUE)) %>%
+  filter(year == 2020)
 
 trafico_voz_historico %>% 
-  filter(pago == "Prepago", tipo_red == "Fija") %>%
+  filter(pago == "Prepago", tipo_red == "Fija", year < 2020) %>%
+  bind_rows(serie_2020) %>% 
   serie_historica_semestral_flujo(numeric, nudge_text = 1e7)
 
 ```
@@ -420,7 +421,7 @@ serie_172 <- voz %>%
 
 serie_172 %>%
   pie_chart(numeric, empresa, nudge_x=c(0, -3, 3)) %>%
-  print
+  print()
 ```
 
 
@@ -431,9 +432,15 @@ serie_172 %>%
 
 ```{r}
 
+serie_2020 <- voz %>%
+  filter(pago == "Pospago") %>%
+  group_by(year=year(fecha), semester=semester(fecha)) %>%
+  summarize(numeric = sum(numeric, na.rm = TRUE)) %>%
+  filter(year == 2020)
 
 trafico_voz_historico %>% 
-  filter(pago == "Pospago", tipo_red == "Todas") %>%
+  filter(pago == "Pospago", tipo_red == "Todas", year < 2020) %>%
+  bind_rows(serie_2020) %>% 
   serie_historica_semestral_flujo(numeric, nudge_text = 4e8)
 
 ```
@@ -476,16 +483,20 @@ serie_175 %>%
 ```
 
 
-
-
-
 ## 4.95. Tráfico de voz a red propia de suscripciones móviles pospagos (minutos)
 ```{r}
 
-trafico_voz_historico %>% 
-  filter(pago == "Pospago", tipo_red == "Propia Móvil") %>%
-  serie_historica_semestral_flujo(numeric, nudge_text = 1e8)
 
+serie_2020 <- voz %>%
+  filter(tipo_red == "Propia Móvil", pago == "Pospago") %>%
+  group_by(year=year(fecha), semester=semester(fecha)) %>%
+  summarize(numeric = sum(numeric, na.rm = TRUE)) %>%
+  filter(year == 2020)
+
+trafico_voz_historico %>% 
+  filter(pago == "Pospago", tipo_red == "Propia Móvil", year < 2020) %>%
+  bind_rows(serie_2020) %>% 
+  serie_historica_semestral_flujo(numeric, nudge_text = 1e8)
 
 ```
 
@@ -512,8 +523,15 @@ serie_177 %>%
 
 ```{r}
 
+serie_2020 <- voz %>%
+  filter(tipo_red == "Otra Móvil", pago == "Pospago") %>%
+  group_by(year=year(fecha), semester=semester(fecha)) %>%
+  summarize(numeric = sum(numeric, na.rm = TRUE)) %>%
+  filter(year == 2020)
+
 trafico_voz_historico %>% 
-  filter(pago == "Pospago", tipo_red == "Otra Móvil") %>%
+  filter(pago == "Pospago", tipo_red == "Otra Móvil", year < 2020) %>%
+  bind_rows(serie_2020) %>% 
   serie_historica_semestral_flujo(numeric, nudge_text = 3e7)
 
 ```
@@ -541,15 +559,15 @@ serie_180 %>%
 ## 4.99. Tráfico de voz al exterior de suscripciones móviles pospagos (minutos)
 
 ```{r}
-serie_181 <- voz %>%
+serie_2020 <- voz %>%
   filter(tipo_red == "Exterior", pago == "Pospago") %>%
   group_by(year=year(fecha), semester=semester(fecha)) %>%
   summarize(numeric = sum(numeric, na.rm = TRUE)) %>%
-  filter(year == 2020, semester==2)
+  filter(year == 2020)
 
 trafico_voz_historico %>% 
-  filter(pago == "Pospago", tipo_red == "Exterior") %>%
-  bind_rows(serie_181) %>% 
+  filter(pago == "Pospago", tipo_red == "Exterior", year < 2020) %>%
+  bind_rows(serie_2020) %>% 
   serie_historica_semestral_flujo(numeric, nudge_text = 4e6)
 ```
 
@@ -576,14 +594,15 @@ serie_182 %>%
 
 ## 4.101. Tráfico de voz a red fija de suscripciones móviles pospagos (minutos)
 ```{r}
-# serie_183 <- voz %>%
-#   filter(tipo_red == "Fija", pago == "Pospago") %>%
-#   group_by(year=year(fecha), semester=semester(fecha)) %>%
-#   summarize(numeric = sum(numeric, na.rm = TRUE)) %>%
-#   filter(year > 2016)
+serie_2020 <- voz %>%
+  filter(tipo_red == "Fija", pago == "Pospago") %>%
+  group_by(year=year(fecha), semester=semester(fecha)) %>%
+  summarize(numeric = sum(numeric, na.rm = TRUE)) %>%
+  filter(year  == 2020)
 
 trafico_voz_historico %>% 
-  filter(pago == "Pospago", tipo_red == "Fija") %>%
+  filter(pago == "Pospago", tipo_red == "Fija", year < 2020) %>%
+  bind_rows(serie_2020) %>% 
   serie_historica_semestral_flujo(numeric, nudge_text = 3e7)
 
 
