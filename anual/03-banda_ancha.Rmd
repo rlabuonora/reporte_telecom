@@ -462,20 +462,13 @@ serie_historica_semestral_flujo(minutos, nudge_text = 50e3)
 ```{r}
 
 # TODO: da una diferencia chica
-# banda_ancha_trafico %>% 
-#   filter(year(fecha) == year(FECHA_INFORME_ANUAL), 
-#         semester(fecha) == semester(FECHA_INFORME_ANUAL)) %>% 
-#    group_by(alambrico=
-#               if_else(medio %in% c("Dedicados", "Otros"),
-#                       "Inalámbrico",
-#                       "Alámbrico")) %>% 
-#   summarize(minutos=sum(numeric)) 
-
-
-tibble(
-  alambrico = c("Banda Ancha Fija Alámbrica", 
-                "Banda Ancha Fija Inalámbrica"),
-  minutos = c(1103769, 34348)) %>% 
+banda_ancha_trafico %>%
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL)) %>%
+   group_by(alambrico=
+              if_else(medio %in% c("Dedicados", "Otros"),
+                      "Inalámbrico",
+                      "Alámbrico")) %>%
+  summarize(minutos=sum(numeric))  %>%
   pie_chart(minutos, alambrico) %>% 
   print
   
@@ -491,18 +484,14 @@ tibble(
 
 ```{r}
 
-# # TODO: da una diferencia chica
-# banda_ancha_trafico %>% 
-#   filter(year(fecha) == year(FECHA_INFORME_ANUAL), 
-#         semester(fecha) == semester(FECHA_INFORME_ANUAL)) %>% 
-#   group_by(cliente) %>% 
-#   summarize(minutos=sum(numeric)) 
-
-tibble(
-  cliente = c("Gobierno", "Residencial", "Empresarial"),
-  minutos = c(6076, 1104125, 27925)) %>% 
+# TODO: da una diferencia chica
+banda_ancha_trafico %>%
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL)) %>%
+  group_by(cliente) %>%
+  summarize(minutos=sum(numeric)) %>%
   pie_chart(minutos, cliente, nudge_x = c(-6, 0, 4)) %>% 
-  print
+  print()
+
 ```
 
 <!-- ```{r} -->

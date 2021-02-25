@@ -45,8 +45,7 @@ serie_141 %>%
 ## 4.63. Mensajes de texto enviados por operador (`r FECHA_TITULO_FLUJO`)
 ```{r}
 serie_142 <- mensajes %>%
-  filter(year(fecha) == year(FECHA_INFORME_ANUAL),
-         semester(fecha) == semester(FECHA_INFORME_ANUAL)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL)) %>% 
   filter( a %in% c("Antel", "Claro", "Movistar", "Exterior")) %>% 
   group_by(empresa) %>% 
   summarize(mensajes = sum(numeric, na.rm = TRUE))
@@ -63,8 +62,7 @@ serie_142 %>%
 ## 4.64. Mensajes de texto enviados según destino (`r FECHA_TITULO_FLUJO`)
 ```{r}
 serie_143 <- mensajes %>%
-  filter(year(fecha) == year(FECHA_INFORME_ANUAL), 
-         semester(fecha) == semester(FECHA_INFORME_ANUAL)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL)) %>% 
   mutate(red_destino = case_when(
     a == "Exterior" ~ "A Exterior",
     a != empresa  ~ "Otras Redes",
@@ -107,8 +105,7 @@ serie_144 %>%
 ```{r}
 serie_145 <- mensajes %>% 
   filter(a == "Exterior") %>% 
-  filter(year(fecha) == year(FECHA_INFORME_ANUAL),
-         semester(fecha) == semester(FECHA_INFORME_ANUAL)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL)) %>% 
   group_by(empresa) %>% 
   summarize(mensajes = sum(numeric, na.rm = TRUE))
 
@@ -145,8 +142,7 @@ serie_146 %>%
 ```{r}
 serie_147 <- mensajes %>% 
   filter(a != empresa & a != "Exterior") %>% 
-  filter(year(fecha)== year(FECHA_INFORME_ANUAL),
-         semester(fecha) == semester(FECHA_INFORME_ANUAL)) %>% 
+  filter(year(fecha)== year(FECHA_INFORME_ANUAL)) %>% 
   group_by(empresa) %>% 
   summarize(mensajes = sum(numeric, na.rm = TRUE))
 

@@ -32,8 +32,7 @@ ldi %>%
 
 ```{r}
 ldi %>% 
-  filter(year(fecha) == year(FECHA_INFORME_ANUAL),
-         semester(fecha) == semester(FECHA_INFORME_ANUAL)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL)) %>% 
   filter(sentido == "desde", servicio == "Mn") %>% 
   group_by(empresa) %>% 
   summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
@@ -50,8 +49,7 @@ ldi %>%
 ldi %>%
   mutate(red = fct_collapse(red, "Redes Móviles" = c("Claro", "ANTEL", "Movistar"))) %>% 
   filter(sentido == "desde", servicio == "Mn") %>% 
-  filter(year(fecha) == year(FECHA_INFORME_ANUAL),
-         semester(fecha) == semester(FECHA_INFORME_ANUAL)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL)) %>% 
   group_by(red) %>% 
   summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
   pie_chart(minutos, red) %>% 
@@ -66,8 +64,7 @@ ldi %>%
 ldi %>% 
   filter(sentido == "desde", servicio == "Mn") %>% 
   filter(red %in% c("AMM")) %>% 
-  filter(year(fecha) == year(FECHA_INFORME_ANUAL),
-         semester(fecha) == semester(FECHA_INFORME_ANUAL)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL)) %>% 
   group_by(empresa) %>% 
   summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
   filter(minutos > 0) %>% 
@@ -95,8 +92,7 @@ ldi %>%
 ldi %>% 
   filter(sentido == "desde", servicio == "Mn") %>% 
   filter(red %in% c("Resto país")) %>% 
-  filter(year(fecha) == year(FECHA_INFORME_ANUAL),
-         semester(fecha) == semester(FECHA_INFORME_ANUAL)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL)) %>% 
   group_by(empresa) %>% 
   summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
   filter(minutos > 0) %>% 
@@ -142,8 +138,7 @@ ldi %>%
 ```{r}
 ldi %>% 
   filter(red %in% c("Claro", "ANTEL", "Movistar"), sentido == "desde", servicio == "Mn") %>% 
-  filter(year(fecha) == year(FECHA_INFORME_ANUAL),
-         semester(fecha) == semester(FECHA_INFORME_ANUAL)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL)) %>% 
   mutate(empresa = if_else(empresa == "Antel" | empresa == "Convergia",
                            "Antel", empresa)) %>% 
   mutate(empresa = if_else(empresa == "A.M. Wireless Uruguay", 
@@ -162,8 +157,7 @@ ldi %>%
   filter(red %in% c("ANTEL"), 
          sentido == "desde", 
          servicio == "Mn") %>% 
-  filter(year(fecha) == year(FECHA_INFORME_ANUAL),
-         semester(fecha) == semester(FECHA_INFORME_ANUAL)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL)) %>% 
   group_by(empresa) %>% 
   summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
   filter(minutos > 0) %>% 
@@ -205,8 +199,7 @@ ldi %>%
   filter(red %in% c("Movistar"), 
          sentido == "desde", 
          servicio == "Mn") %>% 
-  filter(year(fecha) == year(FECHA_INFORME_ANUAL),
-         semester(fecha) == semester(FECHA_INFORME_ANUAL)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL)) %>% 
   group_by(empresa) %>% 
   summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
   filter(minutos > 0) %>% 
@@ -240,8 +233,7 @@ ldi %>%
   filter(red %in% c("Claro"), 
          sentido == "desde", 
          servicio == "Mn") %>% 
-  filter(year(fecha) == year(FECHA_INFORME_ANUAL),
-         semester(fecha) == semester(FECHA_INFORME_ANUAL)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL)) %>% 
   group_by(empresa) %>% 
   summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
   filter(minutos > 0) %>% 
@@ -277,8 +269,7 @@ ldi %>%
 <!--   filter(sentido == "desde",  -->
 <!--          servicio == "Mn") %>%  -->
 <!--   filter(red %in% c("AMM", "Resto país")) %>% # Solo Fija -->
-<!--   filter(year(fecha) == year(FECHA_INFORME_ANUAL), -->
-<!--          semester(fecha) == semester(FECHA_INFORME_ANUAL)) %>%  -->
+<!--   filter(year(fecha) == year(FECHA_INFORME_ANUAL)) %>%  -->
 <!--   group_by(tipo) %>%  -->
 <!--   summarize(minutos = sum(numeric, na.rm=TRUE)) %>%  -->
 <!--   pie_chart(minutos, tipo) %>%  -->
@@ -329,8 +320,7 @@ ldi %>%
 ```{r}
 ldi %>% 
   filter(sentido == "desde", servicio == "Mn") %>% 
-  filter(year(fecha) == year(FECHA_INFORME_ANUAL),
-         semester(fecha) == semester(FECHA_INFORME_ANUAL)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL)) %>% 
   group_by(pais) %>% 
   summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
   mutate(pais=fct_recode(pais,
@@ -448,8 +438,7 @@ ldi %>%
 
 ```{r}
 ldi %>%
-  filter(year(fecha) == year(FECHA_INFORME_ANUAL),
-         semester(fecha) == semester(FECHA_INFORME_ANUAL)) %>%
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL)) %>%
   filter(sentido == "desde", servicio == "Mn") %>%
   group_by(empresa) %>%
   summarize(minutos = sum(numeric, na.rm=TRUE)) %>%
@@ -467,8 +456,7 @@ ldi %>%
                             "Red Fija" =c("AMM", "Resto país"),
                             "Redes Móviles" = c("Claro", "ANTEL", "Movistar"))) %>%
   filter(sentido == "hacia", servicio == "Mn") %>%
-  filter(year(fecha) == year(FECHA_INFORME_ANUAL),
-         semester(fecha) == semester(FECHA_INFORME_ANUAL)) %>%
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL)) %>%
   group_by(red) %>%
   summarize(minutos = sum(numeric, na.rm=TRUE)) %>%
   pie_chart(minutos, red) %>%
@@ -501,8 +489,7 @@ ldi %>%
 ldi %>%
   filter(sentido == "hacia", servicio == "Mn") %>%
   filter(red %in% c("AMM", "Resto país")) %>%
-  filter(year(fecha) == year(FECHA_INFORME_ANUAL),
-         semester(fecha) == semester(FECHA_INFORME_ANUAL)) %>%
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL)) %>%
   group_by(empresa) %>%
   summarize(minutos = sum(numeric, na.rm=TRUE)) %>%
   filter(minutos > 0) %>%
@@ -531,8 +518,7 @@ ldi %>%
 ```{r}
 ldi %>%
   filter(red %in% c("Claro", "ANTEL", "Movistar"), sentido == "hacia", servicio == "Mn") %>%
-  filter(year(fecha) == year(FECHA_INFORME_ANUAL),
-         semester(fecha) == semester(FECHA_INFORME_ANUAL)) %>%
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL)) %>%
   group_by(red) %>%
   summarize(minutos = sum(numeric, na.rm=TRUE)) %>%
   pie_chart(minutos, red, percent_accuracy = 1) %>%
@@ -569,8 +555,7 @@ ldi %>%
   filter(red %in% c("ANTEL"),
          sentido == "hacia",
          servicio == "Mn") %>%
-  filter(year(fecha) == year(FECHA_INFORME_ANUAL),
-         semester(fecha) == semester(FECHA_INFORME_ANUAL)) %>%
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL)) %>%
   group_by(empresa) %>%
   summarize(minutos = sum(numeric, na.rm=TRUE)) %>%
   filter(minutos > 0) %>%
@@ -607,8 +592,7 @@ ldi %>%
   filter(red %in% c("Movistar"),
          sentido == "hacia",
          servicio == "Mn") %>%
-  filter(year(fecha) == year(FECHA_INFORME_ANUAL),
-         semester(fecha) == semester(FECHA_INFORME_ANUAL)) %>%
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL)) %>%
   group_by(empresa) %>%
   summarize(minutos = sum(numeric, na.rm=TRUE)) %>%
   filter(minutos > 0) %>%
@@ -645,8 +629,7 @@ ldi %>%
   filter(red %in% c("Claro"),
          sentido == "hacia",
          servicio == "Mn") %>%
-  filter(year(fecha) == year(FECHA_INFORME_ANUAL),
-         semester(fecha) == semester(FECHA_INFORME_ANUAL)) %>%
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL)) %>%
   group_by(empresa) %>%
   summarize(minutos = sum(numeric, na.rm=TRUE)) %>%
   filter(minutos > 0) %>%

@@ -326,8 +326,7 @@ p_14 <- fija %>%
   filter(cabezal_2 %in% c("Ancel min", "TMU min", "AMWU min")) %>%
   mutate(empresa=str_remove(cabezal_2, " min")) %>% 
   mutate(empresa=if_else(empresa == "Ancel", "Antel", empresa)) %>% 
-  filter(year(fecha) == year(FECHA_INFORME_ANUAL),
-         semester(fecha) == semester(FECHA_INFORME_ANUAL)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL)) %>% 
   group_by(empresa) %>% 
   summarize(minutos = sum(numeric, na.rm = TRUE)) %>% 
   mutate(empresa == if_else(empresa == "Ancel", "Antel", empresa)) %>% 

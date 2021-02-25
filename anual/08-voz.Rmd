@@ -112,15 +112,14 @@ serie_153 %>%
 ## 4.73. Tráfico de voz a red propia de suscripciones móviles (minutos) por operador (`r FECHA_TITULO_FLUJO`)
 ```{r}
 serie_154 <- voz %>% 
-  filter(year(fecha) == year(FECHA_INFORME_ANUAL),
-         semester(fecha) == semester(FECHA_INFORME_ANUAL)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL)) %>% 
   filter(tipo_red == "Propia Móvil") %>% 
   group_by(empresa) %>% 
   summarize(numeric = sum(numeric, na.rm = TRUE))
 
 serie_154 %>% 
   pie_chart(numeric, empresa) %>% 
-  print
+  print()
 ```
 
 ##### Salto
@@ -154,8 +153,7 @@ serie_155 %>%
 ## 4.75. Tráfico de voz a otras redes de suscripciones móviles (minutos) por operador (`r FECHA_TITULO_FLUJO`)
 ```{r}
 serie_156 <- voz %>% 
-  filter(year(fecha) == year(FECHA_INFORME_ANUAL),
-         semester(fecha) == semester(FECHA_INFORME_ANUAL)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL)) %>% 
   filter(tipo_red == "Otra Móvil") %>% 
   group_by(empresa) %>% 
   summarize(numeric = sum(numeric, na.rm = TRUE))
@@ -220,8 +218,7 @@ serie_159 %>%
 ## 4.79. Tráfico de voz a red fija de suscripciones móviles (minutos) por operador (`r FECHA_TITULO_FLUJO`)
 ```{r}
 serie_160 <- voz %>% 
-  filter(year(fecha) == year(FECHA_INFORME_ANUAL),
-         semester(fecha) == semester(FECHA_INFORME_ANUAL)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL)) %>% 
   filter(tipo_red == "Fija") %>% 
   group_by(empresa) %>% 
   summarize(numeric = sum(numeric, na.rm = TRUE))
@@ -250,16 +247,16 @@ serie_162 %>%
 ```
 
 
-## 4.81. Tráfico de voz de suscripciones móviles (minutos) por forma de pago (`r FECHA_TITULO_FLUJO`)
+<!-- ## 4.81. Tráfico de voz de suscripciones móviles (minutos) por forma de pago (`r FECHA_TITULO_FLUJO`) -->
 
-```{r}
-tibble(
-    pago=c("Prepago", "Pospago"),
-    minutos=c(423125278, 1774673781)
-) %>% 
-  pie_chart(minutos, pago) %>% 
-  print
-```
+<!-- ```{r} -->
+<!-- tibble( -->
+<!--     pago=c("Prepago", "Pospago"), -->
+<!--     minutos=c(423125278, 1774673781) -->
+<!-- ) %>%  -->
+<!--   pie_chart(minutos, pago) %>%  -->
+<!--   print() -->
+<!-- ``` -->
 
 
 
@@ -289,8 +286,7 @@ trafico_voz_historico %>%
 ```{r}
 serie_164 <- voz %>%
   filter(pago == "Prepago") %>%
-  filter(year(fecha) == year(FECHA_INFORME_ANUAL),
-         semester(fecha) == semester(FECHA_INFORME_ANUAL)) %>%
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL)) %>%
   group_by(empresa) %>%
   summarize(numeric = sum(numeric, na.rm = TRUE))
 
@@ -320,8 +316,7 @@ trafico_voz_historico %>%
 ```{r}
 serie_166 <- voz %>%
   filter(tipo_red == "Propia Móvil", pago == "Prepago") %>%
-  filter(year(fecha) == year(FECHA_INFORME_ANUAL),
-         semester(fecha) == semester(FECHA_INFORME_ANUAL)) %>%
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL)) %>%
   group_by(empresa) %>%
   summarize(numeric = sum(numeric, na.rm = TRUE))
 
@@ -355,8 +350,7 @@ trafico_voz_historico %>%
 ```{r}
 serie_168 <- voz %>%
   filter(pago == "Prepago", tipo_red == "Otra Móvil") %>%
-  filter(year(fecha) == year(FECHA_INFORME_ANUAL),
-         semester(fecha) == semester(FECHA_INFORME_ANUAL)) %>%
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL)) %>%
   group_by(empresa) %>%
   summarize(numeric = sum(numeric, na.rm = TRUE))
 
@@ -391,8 +385,7 @@ trafico_voz_historico %>%
 ```{r}
 serie_170 <- voz %>%
   filter(pago == "Prepago", tipo_red == "Exterior") %>%
-  filter(year(fecha) == year(FECHA_INFORME_ANUAL),
-         semester(fecha) == semester(FECHA_INFORME_ANUAL)) %>%
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL)) %>%
   group_by(empresa) %>%
   summarize(numeric = sum(numeric, na.rm = TRUE))
 
@@ -427,8 +420,7 @@ trafico_voz_historico %>%
 ```{r}
 serie_172 <- voz %>%
   filter(pago == "Prepago", tipo_red == "Fija") %>%
-  filter(year(fecha) == year(FECHA_INFORME_ANUAL),
-         semester(fecha) == semester(FECHA_INFORME_ANUAL)) %>%
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL)) %>%
   group_by(empresa) %>%
   summarize(numeric = sum(numeric, na.rm = TRUE))
 
@@ -460,8 +452,7 @@ trafico_voz_historico %>%
 ```{r}
 serie_174 <- voz %>%
   filter(pago == "Pospago") %>%
-  filter(year(fecha) == year(FECHA_INFORME_ANUAL),
-         semester(fecha) == semester(FECHA_INFORME_ANUAL)) %>%
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL)) %>%
   group_by(empresa) %>%
   summarize(numeric = sum(numeric, na.rm = TRUE))
 
@@ -481,8 +472,7 @@ serie_174 %>%
 ```{r}
 serie_175 <- voz %>%
   filter(pago == "Pospago") %>%
-  filter(year(fecha) == year(FECHA_INFORME_ANUAL),
-         semester(fecha) == semester(FECHA_INFORME_ANUAL)) %>%
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL)) %>%
   group_by(tipo_red) %>%
   summarize(numeric = sum(numeric, na.rm = TRUE))
 
@@ -515,8 +505,7 @@ trafico_voz_historico %>%
 ```{r}
 serie_177 <- voz %>%
   filter(tipo_red == "Propia Móvil", pago == "Pospago") %>%
-  filter(year(fecha) == year(FECHA_INFORME_ANUAL),
-         semester(fecha) == semester(FECHA_INFORME_ANUAL)) %>%
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL)) %>%
   group_by(empresa) %>%
   summarize(numeric = sum(numeric, na.rm = TRUE))
 
@@ -544,8 +533,7 @@ trafico_voz_historico %>%
 ```{r}
 serie_180 <- voz %>%
   filter(pago == "Pospago", tipo_red == "Otra Móvil") %>%
-  filter(year(fecha) == year(FECHA_INFORME_ANUAL),
-         semester(fecha) == semester(FECHA_INFORME_ANUAL)) %>%
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL)) %>%
   group_by(empresa) %>%
   summarize(numeric = sum(numeric, na.rm = TRUE))
 
@@ -582,14 +570,13 @@ trafico_voz_historico %>%
 ```{r}
 serie_182 <- voz %>%
   filter(pago == "Pospago", tipo_red == "Exterior") %>%
-  filter(year(fecha) == year(FECHA_INFORME_ANUAL),
-         semester(fecha) == semester(FECHA_INFORME_ANUAL)) %>%
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL)) %>%
   group_by(empresa) %>%
   summarize(numeric = sum(numeric, na.rm = TRUE))
 
 serie_182 %>%
   pie_chart(numeric, empresa) %>%
-  print
+  print()
 ```
 
 
@@ -619,14 +606,13 @@ trafico_voz_historico %>%
 ```{r}
 serie_184 <- voz %>%
   filter(pago == "Pospago", tipo_red == "Fija") %>%
-  filter(year(fecha) == year(FECHA_INFORME_ANUAL),
-         semester(fecha) == semester(FECHA_INFORME_ANUAL)) %>%
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL)) %>%
   group_by(empresa) %>%
   summarize(numeric = sum(numeric, na.rm = TRUE))
 
 serie_184 %>%
   pie_chart(numeric, empresa) %>%
-   print
+   print()
 
 ```
 
