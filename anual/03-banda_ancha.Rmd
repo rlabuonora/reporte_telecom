@@ -14,8 +14,10 @@ knitr::opts_chunk$set(echo = FALSE,
 options(scipen = 10000)
 
 source('../common.R')
-banda_ancha_servicios <- import_banda_ancha_servicios()
-banda_ancha_trafico <- import_banda_ancha_trafico()
+banda_ancha_servicios <- import_banda_ancha_servicios() %>% 
+  mutate(empresa = if_else(empresa == "Administración Nacional De Telecomunicaciones", "ANTEL", empresa))
+banda_ancha_trafico <- import_banda_ancha_trafico() %>% 
+  mutate(empresa = if_else(empresa == "Administración Nacional De Telecomunicaciones", "ANTEL", empresa))
 
 
 ```
