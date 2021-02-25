@@ -67,7 +67,7 @@ serie_110 <- servicios %>%
 
  serie_110 %>% 
   pie_chart(numeric, empresa) %>% 
-  print
+  print()
 ```
 
 
@@ -502,7 +502,8 @@ serie_136 %>%
 ## 4.44. Suscripciones a la telefonía móvil según forma de pago (`r FECHA_TITULO_STOCK`)
 ```{r}
 serie_121 <- servicios %>% 
-  filter(year(fecha) == year(FECHA_INFORME_ANUAL), month(fecha) == month(FECHA_INFORME_ANUAL)) %>% 
+  filter(year(fecha) == year(FECHA_INFORME_ANUAL), 
+         month(fecha) == month(FECHA_INFORME_ANUAL)) %>% 
   filter(servicio %in% "Suscripciones a la telefonía móvil") %>% 
   group_by(pago) %>% 
   summarize(val = sum(numeric, na.rm = TRUE))

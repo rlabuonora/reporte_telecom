@@ -239,28 +239,26 @@ fija %>%
 
 
 ```{r}
-# fija %>% 
-#   filter(cabezal_1 == "Centrales") %>% 
-#   filter(cabezal_2 == "Fib") %>% 
-#   filter(month(fecha) == 12 | month(fecha) == 6) %>% 
-#   filter(year(fecha) > 2016) %>% 
-#   group_by(year = year(fecha), semester=semester(fecha)) %>%
-#   summarize(kms = sum(numeric, na.rm = TRUE)) %>% 
+# fija %>%
+#   filter(cabezal_1 == "Centrales") %>%
+#   filter(cabezal_2 == "Fib") %>%
+#   filter(fecha == FECHA_INFORME_ANUAL) %>% 
+#   group_by(fecha) %>% 
+#   summarize(kms = sum(numeric, na.rm = TRUE))
+
+# 11952
+
 data.frame(
-        year = c(2017, 2017, 2018, 2018, 2019, 2019, 2020),
-    semester = c(1L, 2L, 1L, 2L, 1L, 2L, 1L),
-         kms = c(11248, 11379, 11495, 11647, 11688, 11770, 11844)
+        year = c(2017, 2017, 2018, 2018, 2019, 2019, 2020, 2020),
+    semester = c(1L, 2L, 1L, 2L, 1L, 2L, 1L, 2L),
+         kms = c(11248, 11379, 11495, 11647, 
+                 11688, 11770, 11844, 11952)
   ) %>% 
   serie_historica_semestral_stock(kms, nudge_text = 6e2)
 ```
 
 
 ## 1.12. Kilómetros de fibra óptica instalada por departamento (`r FECHA_TITULO_STOCK`)
-
-
-
-
-
 
 ```{r}
 fija %>% 
@@ -275,14 +273,7 @@ fija %>%
 
 ##### Salto
 
-
-
-
 ## 1.13. Cómputos de telefonía fija
-
-
-
-
 
 ```{r}
 # Este es un flujo
@@ -297,12 +288,8 @@ fija %>%
 
 ## 1.14. Minutos de telefonía fija a teléfonos móviles
 
-
-
-
-
 ```{r}
- fija %>% 
+fija %>% 
   filter(cabezal_1 == "Tráfico por orig (País)") %>% 
   filter(cabezal_2 %in% c("Ancel min", "TMU min", "AMWU min")) %>% 
   filter(year(fecha) > 2016) %>% 
@@ -346,22 +333,12 @@ fija %>%
   filter(year(fecha) > 2016) %>% 
   group_by(year = year(fecha), semester = semester(fecha)) %>% 
   summarize(minutos = sum(numeric, na.rm = TRUE)) %>% 
-  # Es increible que esto funcione!
   serie_historica_semestral_flujo(minutos, nudge_text = 9e3)
 ```
 
 ##### Salto
 
-
-
-
-
 ## 1.17. Minutos de tráfico de telefonía fija a red móvil de Movistar
-
-
-
-
-
 
 ```{r}
 fija %>% 

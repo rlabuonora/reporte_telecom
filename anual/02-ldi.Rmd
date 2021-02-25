@@ -171,13 +171,13 @@ ldi %>%
 
 ## 2.11. Minutos de tráfico de LDI saliente de red móvil de ANTEL
 ```{r}
-# ldi %>% 
-#   filter(red %in% c("ANTEL"), 
-#          sentido == "hacia", 
-#          servicio == "Mn") %>% 
-#   group_by(year=year(fecha), semester=semester(fecha)) %>% 
-#   summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
-#   filter(!is.na(year), year > 2016) 
+ldi %>%
+  filter(red %in% c("ANTEL"),
+         sentido == "hacia",
+         servicio == "Mn") %>%
+  group_by(year=year(fecha), semester=semester(fecha)) %>%
+  summarize(minutos = sum(numeric, na.rm=TRUE)) %>%
+  filter(!is.na(year), year == 2020)
 # corregir por datos diego
 tribble(
   ~year, ~semester, ~minutos,
@@ -187,7 +187,8 @@ tribble(
   2018,   2      , 6617219,
   2019,   1      , 6574181,
   2019,   2      , 6112582,
-  2020,   1      , 5776782) %>% 
+  2020,   1      , 5776782,
+  2020,   2      , 5985275) %>% 
   serie_historica_semestral_flujo(minutos, nudge_text=6e5)
 
 ```
@@ -204,7 +205,7 @@ ldi %>%
   summarize(minutos = sum(numeric, na.rm=TRUE)) %>% 
   filter(minutos > 0) %>% 
   pie_chart(minutos, empresa) %>% 
-  print
+  print()
 
 ```
 
@@ -439,7 +440,7 @@ ldi %>%
 ```{r}
 ldi %>%
   filter(year(fecha) == year(FECHA_INFORME_ANUAL)) %>%
-  filter(sentido == "desde", servicio == "Mn") %>%
+  filter(sentido == "hacia", servicio == "Mn") %>%
   group_by(empresa) %>%
   summarize(minutos = sum(numeric, na.rm=TRUE)) %>%
   filter(minutos > 0) %>%
@@ -460,7 +461,7 @@ ldi %>%
   group_by(red) %>%
   summarize(minutos = sum(numeric, na.rm=TRUE)) %>%
   pie_chart(minutos, red) %>%
-  print
+  print()
 
 ```
 
@@ -522,7 +523,7 @@ ldi %>%
   group_by(red) %>%
   summarize(minutos = sum(numeric, na.rm=TRUE)) %>%
   pie_chart(minutos, red, percent_accuracy = 1) %>%
-  print
+  print()
 ```
 
 
@@ -543,10 +544,6 @@ ldi %>%
    filter(!is.na(year), year > 2018) %>%
    serie_historica_semestral_flujo(minutos, 6e5)
 ```
-
-
-
-
 
 ## 2.30. Minutos de tráfico entrante de LDI en red móvil de Antel por operador (`r FECHA_TITULO_FLUJO`)
 
@@ -597,7 +594,7 @@ ldi %>%
   summarize(minutos = sum(numeric, na.rm=TRUE)) %>%
   filter(minutos > 0) %>%
   pie_chart(minutos, empresa) %>%
-  print
+  print()
 
 ```
 
@@ -634,7 +631,7 @@ ldi %>%
   summarize(minutos = sum(numeric, na.rm=TRUE)) %>%
   filter(minutos > 0) %>%
   pie_chart(minutos, empresa) %>%
-  print
+  print()
 
 ```
 

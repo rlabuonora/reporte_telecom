@@ -178,9 +178,6 @@ tabla_106 %>%
 ##### Salto
 
 
-
-
-
 ## 4.19. Cobertura territorial LTE (%)
 ```{r}
 serie_cobertura_lte <- cobertura  %>% 
@@ -206,8 +203,6 @@ serie_cobertura_lte %>%
   geom_hline(yintercept = 0) +
   labs(x="", y="")
 ```
-
-
 
 
 ## 4.20. Cobertura territorial LTE (%) por departamento (`r FECHA_TITULO_STOCK`)

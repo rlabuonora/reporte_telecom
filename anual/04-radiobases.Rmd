@@ -36,8 +36,8 @@ month_label <- function(x) {
 
 ```{r}
 
-# ingresos %>% 
-#   group_by(year=year(fecha), semester=semester(fecha)) %>% 
+# ingresos %>%
+#   group_by(year=year(fecha), semester=semester(fecha)) %>%
 #   summarize(ventas = sum(val))
 
 # Corregir por los datos de Diego
@@ -48,9 +48,6 @@ tibble(
              12425439504, 12309589788)) %>% 
   serie_historica_semestral_flujo(ventas, nudge_text = 1e9)
 ```
-
-
-
 
 
 ## 4.2. Cantidad de radiobases
@@ -100,11 +97,6 @@ g_92 <- tabla_92 %>%
 
 ##### Salto
 
-
-
-
-
-
 ## 4.5. Cantidad de radiobases GSM
 ```{r}
 radiobases %>% 
@@ -114,14 +106,6 @@ radiobases %>%
   summarize(radiobases = sum(val, na.rm = TRUE)) %>% 
   serie_historica_semestral_stock(radiobases, nudge_text = 5e2)
 ```
-
-
-
-
-
-
-
-
 
 
 
@@ -141,8 +125,6 @@ tabla_94 %>%
 
 ##### Salto
 
-
-
 ## 4.7. Cantidad de radiobases GSM por operador (`r FECHA_TITULO_STOCK`)
 
 ```{r}
@@ -154,7 +136,7 @@ tabla_95 <- radiobases %>%
 
 tabla_95 %>% 
   pie_chart(radiobases, empresa) %>% 
-  print
+  print()
 ```
 
 
@@ -237,9 +219,6 @@ tabla_100 <- radiobases %>%
 ##### Salto
 
 
-
-
-
 ## 4.13. Cantidad de radiobases LTE por operador (`r FECHA_TITULO_STOCK`)
 
 ```{r}
@@ -251,12 +230,6 @@ tabla_101 <- radiobases %>%
 
 tabla_101 %>% 
   pie_chart(radiobases, empresa, percent_accuracy=.01) %>% 
-  print
+  print()
 ```
-
-
-
-
-
-
 
