@@ -22,11 +22,11 @@ fija <- import_fija()
 ```
 
 
-# 1. Telefonía Fija
+# Telefonía Fija
 
 
 
-## 1.1. Ingresos Telefonía Fija (Pesos)
+## Ingresos Telefonía Fija (Pesos)
 
 
 ```{r}
@@ -42,7 +42,7 @@ tibble::tribble(
 ```
 
 
-## 1.2. Líneas de telefonía fija
+## Líneas de telefonía fija
 
 ```{r}
 fija %>% 
@@ -70,7 +70,7 @@ fija %>%
 
 
 
-## 1.3. Líneas de telefonía fija por departamento (`r FECHA_TITULO_STOCK`)
+## Líneas de telefonía fija por departamento (`r FECHA_TITULO_STOCK`)
 
 
 ```{r}
@@ -88,7 +88,7 @@ fija %>%
 ```
 
 
-## 1.4. Teléfonos Públicos
+## Teléfonos Públicos
 
 ```{r}
 fija %>% 
@@ -106,9 +106,7 @@ fija %>%
 ##### Salto
 
 
-## 1.5. Teléfonos públicos por departamento (`r FECHA_TITULO_STOCK`)
-
-
+## Teléfonos públicos por departamento (`r FECHA_TITULO_STOCK`)
 
 
 
@@ -127,7 +125,7 @@ fija %>%
 
 
 
-## 1.6. Líneas de telefonía fija por tipo de cliente (`r FECHA_TITULO_STOCK`)
+## Líneas de telefonía fija por tipo de cliente (`r FECHA_TITULO_STOCK`)
 
 
 
@@ -152,7 +150,7 @@ print(s)
 ##### Salto
 
 
-## 1.7. Líneas de telefonía fija comerciales
+## Líneas de telefonía fija comerciales
 
 ```{r}
 fija %>% 
@@ -175,7 +173,7 @@ fija %>%
   
 ```
 
-## 1.8. Líneas de telefonía fija Comerciales por departamento (`r FECHA_TITULO_STOCK`)
+## Líneas de telefonía fija Comerciales por departamento (`r FECHA_TITULO_STOCK`)
 
 ```{r}
 
@@ -192,7 +190,7 @@ fija %>%
 ##### Salto
 
 
-## 1.9. Líneas de telefonía fija residenciales
+## Líneas de telefonía fija residenciales
 
 
 ```{r}
@@ -214,7 +212,7 @@ fija %>%
 
 
 
-## 1.10. Líneas de telefonía fija Residenciales por departamento (`r FECHA_TITULO_STOCK`)
+## Líneas de telefonía fija Residenciales por departamento (`r FECHA_TITULO_STOCK`)
 
 
 ```{r}
@@ -229,13 +227,7 @@ fija %>%
 ##### Salto
 
 
-
-
-
-## 1.11. Kilómetros de fibra óptica instalada
-
-
-
+## Kilómetros de fibra óptica instalada
 
 
 ```{r}
@@ -258,7 +250,7 @@ data.frame(
 ```
 
 
-## 1.12. Kilómetros de fibra óptica instalada por departamento (`r FECHA_TITULO_STOCK`)
+## Kilómetros de fibra óptica instalada por departamento (`r FECHA_TITULO_STOCK`)
 
 ```{r}
 fija %>% 
@@ -273,7 +265,7 @@ fija %>%
 
 ##### Salto
 
-## 1.13. Cómputos de telefonía fija
+## Cómputos de telefonía fija
 
 ```{r}
 # Este es un flujo
@@ -286,7 +278,7 @@ fija %>%
   serie_historica_semestral_flujo(minutos, nudge_text = 5e7) 
 ```
 
-## 1.14. Minutos de telefonía fija a teléfonos móviles
+## Minutos de telefonía fija a teléfonos móviles
 
 ```{r}
 fija %>% 
@@ -301,7 +293,7 @@ fija %>%
 ##### Salto
 
 
-## 1.15. Minutos de tráfico de telefonía fija a teléfonos móviles por operador (`r FECHA_TITULO_FLUJO`)
+## Minutos de tráfico de telefonía fija a teléfonos móviles por operador (`r FECHA_TITULO_FLUJO`)
 
 
 ```{r}
@@ -323,7 +315,7 @@ print(p_14)
 ```
 
 
-## 1.16. Minutos de tráfico de telefonía fija a red móvil de ANTEL
+## Minutos de tráfico de telefonía fija a red móvil de ANTEL
 
 
 ```{r}
@@ -338,7 +330,7 @@ fija %>%
 
 ##### Salto
 
-## 1.17. Minutos de tráfico de telefonía fija a red móvil de Movistar
+## Minutos de tráfico de telefonía fija a red móvil de Movistar
 
 ```{r}
 fija %>% 
@@ -352,7 +344,7 @@ fija %>%
 
 
 
-## 1.18. Minutos de tráfico de telefonía fija a red móvil de Claro
+## Minutos de tráfico de telefonía fija a red móvil de Claro
 
 ```{r}
 fija %>% 
