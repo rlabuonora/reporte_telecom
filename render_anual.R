@@ -1,2 +1,4 @@
-rmarkdown::render("anual/index.Rmd", 
-                  output_file = "Informe Anual.docx")
+pagedown::chrome_print(
+  "anual/InformeAnual.Rmd", 
+    timeout = 7200
+)

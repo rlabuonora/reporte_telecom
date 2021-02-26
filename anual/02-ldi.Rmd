@@ -171,13 +171,13 @@ ldi %>%
 
 ## 2.11. Minutos de tráfico de LDI saliente de red móvil de ANTEL
 ```{r}
-ldi %>%
-  filter(red %in% c("ANTEL"),
-         sentido == "hacia",
-         servicio == "Mn") %>%
-  group_by(year=year(fecha), semester=semester(fecha)) %>%
-  summarize(minutos = sum(numeric, na.rm=TRUE)) %>%
-  filter(!is.na(year), year == 2020)
+# ldi %>%
+#   filter(red %in% c("ANTEL"),
+#          sentido == "hacia",
+#          servicio == "Mn") %>%
+#   group_by(year=year(fecha), semester=semester(fecha)) %>%
+#   summarize(minutos = sum(numeric, na.rm=TRUE)) %>%
+#   filter(!is.na(year), year == 2020)
 # corregir por datos diego
 tribble(
   ~year, ~semester, ~minutos,
