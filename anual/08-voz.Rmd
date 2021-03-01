@@ -38,6 +38,12 @@ trafico_voz_historico <- import_trafico_voz_historico() %>%
   )) %>% 
   select(semester=semestre, year, tipo_red, pago, numeric=valor)
 
+theme_set(theme_minimal() + 
+            theme(plot.background = element_rect(fill = "#EEEEEE",
+                                                 color = "white"),
+                  axis.line.x = element_blank(),
+                  axis.ticks = element_blank()))
+
 ```
 
 
@@ -55,7 +61,7 @@ serie_150 %>%
 ```
 
 
-##### Salto
+
 
 
 ## Tráfico de voz de suscripciones móviles (minutos) por operador (`r FECHA_TITULO_FLUJO`)
@@ -87,7 +93,7 @@ serie_152 %>%
   print
 ```
 
-##### Salto
+
 
 
 ## Tráfico de voz a red propia de suscripciones móviles (minutos) 
@@ -120,7 +126,7 @@ serie_154 %>%
   print()
 ```
 
-##### Salto
+
 
 
 ## Tráfico de voz a otras redes móviles de suscripciones móviles (minutos)
@@ -159,7 +165,7 @@ serie_156 %>%
   print()
 ```
 
-##### Salto
+
 
 
 ## Tráfico de voz al exterior de suscripciones móviles (minutos)
@@ -193,7 +199,7 @@ serie_158 %>%
 ```
 
 
-##### Salto
+
 
 
 ## Tráfico de voz a red fija de suscripciones móviles 
@@ -225,7 +231,7 @@ serie_160 %>%
 ```
 
 
-##### Salto
+
 
 
 ## Tráfico de voz de suscripciones móviles prepagos (minutos) por destino (`r FECHA_TITULO_FLUJO`)
@@ -258,7 +264,7 @@ serie_162 %>%
 
 
 
-##### Salto
+
 
 ## Tráfico de voz de suscripciones móviles prepagos (minutos)
 ```{r}
@@ -291,7 +297,7 @@ serie_164 %>%
 ```
 
 
-##### Salto
+
 
 
 ## Tráfico de voz a red propia de suscripciones móviles prepagos (minutos)
@@ -323,7 +329,7 @@ serie_166 %>%
 ```
 
 
-##### Salto
+
 
 
 
@@ -355,7 +361,7 @@ serie_168 %>%
   print()
 ```
 
-##### Salto
+
 
 ## Tráfico de voz al exterior de suscripciones móviles prepagos (minutos)
 ```{r}
@@ -389,7 +395,7 @@ serie_170 %>%
 ```
 
 
-##### Salto
+
 
 
 
@@ -425,7 +431,7 @@ serie_172 %>%
 ```
 
 
-##### Salto
+
 
 
 ## Tráfico de voz de suscripciones móviles pospagos (minutos)
@@ -463,7 +469,7 @@ serie_174 %>%
 ```
 
 
-##### Salto
+
 
 
 ## Tráfico de voz de suscripciones móviles pospagos (minutos) por destino (`r FECHA_TITULO_FLUJO`)
@@ -500,7 +506,7 @@ trafico_voz_historico %>%
 
 ```
 
-##### Salto
+
 
 
 ## Tráfico de voz a red propia de suscripciones móviles pospagos (minutos) por operador (`r FECHA_TITULO_FLUJO`)
@@ -535,7 +541,7 @@ trafico_voz_historico %>%
   serie_historica_semestral_flujo(numeric, nudge_text = 3e7)
 
 ```
-##### Salto
+
 
 
 ## Tráfico de voz a otras redes móviles de suscripciones móviles pospagos (minutos) por operador (`r FECHA_TITULO_FLUJO`)
@@ -572,7 +578,7 @@ trafico_voz_historico %>%
 ```
 
 
-##### Salto
+
 
 
 
@@ -608,7 +614,7 @@ trafico_voz_historico %>%
 
 ```
 
-##### Salto
+
 
 
 

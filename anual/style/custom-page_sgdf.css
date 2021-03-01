@@ -3,13 +3,13 @@
 /* pour l'affichage web - debug*/
 /* on def les variables */
 :root {
-  --background: whitesmoke;
+  --background: white;
   --pagedjs-width: 210mm;
   --pagedjs-height: 297mm;
   --color-paper: white;
   --color-mbox: rgba(0, 0, 0, 0.2);
-  --running-title-width: 2.5in;
-  --screen-pages-spacing: 5mm;
+  --running-title-width: 0in;
+  --screen-pages-spacing: 0mm;
 }
 
 /* two pages in a row if possible on screen */
@@ -37,10 +37,10 @@
 /* when a row can hold two pages, start first page on the right */
 @media screen and (min-width: 12.32in) {
   .pagedjs_page {
-    margin: auto 0 var(--screen-pages-spacing) 0;
+    margin: 0 0 0 0;
   }
   .pagedjs_first_page {
-    margin-left: var(--pagedjs-width);
+    margin-left: 0;
   }
 }
 
@@ -70,18 +70,16 @@
 }
 
 /* Nouvelle page de chapitre */
-
-
-h1 span.header-section-number{
-  position: absolute;
-  top: 1.2cm;
-  left: 7.52cm;
-  margin: 0 0 3cm 0;
+@page chapter:first {
+  background-position: top 3cm left;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
+
 
 /* On overwrite la marge défaut de h1 */
 h1 {
-  margin-block-start: 3.3cm;
+  /* margin-block-start: 3.3cm; */
   margin-left: 2cm;
   margin-right: 2cm;
   text-align: center;
@@ -90,16 +88,42 @@ h1 {
 
 /* mais en ajoutant une exception pour le titre */
 h1.title {
+  margin-block-start: 1cm;
+  break-after: always;
+  color: #ffffff;
+  position: absolute;
+  bottom: -1cm;
+  left: 3.6cm;
+  text-align: left;
+  margin-right: -1.2cm;
+  font-size: 30pt;
   display: none;
 }
 
 /* On force le saut de page avant le bloc subtitle/auteur/date */
 /* Et après pour avoir une page quasi blanche */
+.subtitle {
+  position: absolute;
+  bottom: 2.5cm;
+  left: 0cm;
+  font-size: 18pt;
+  text-align: left;
+  text-transform: none;
+}
 
+.author {
+  position: absolute;
+  bottom: 1cm;
+  left: 10cm;
+  font-size: 18pt;
+}
 
-
-
-
+.date {
+  position: absolute;
+  bottom: 1cm;
+  left: 2cm;
+  font-size: 18pt;
+}
 
 /* Page de garde */
 @page :first{

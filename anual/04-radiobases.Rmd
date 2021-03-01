@@ -24,7 +24,15 @@ ingresos <- import_ingresos()
 month_label <- function(x) {
   y <- as_date(x)
   glue::glue("{month(x)}/{format(y, '%y')}")
+  
+  
 }
+
+theme_set(theme_minimal() + 
+            theme(plot.background = element_rect(fill = "#EEEEEE",
+                                                 color = "white"),
+                  axis.line.x = element_blank(),
+                  axis.ticks = element_blank()))
 
 
 ```
@@ -62,7 +70,8 @@ radiobases %>%
 
 
 
-##### Salto
+
+
 
 
 
@@ -95,7 +104,7 @@ g_92 <- tabla_92 %>%
   print
 ```
 
-##### Salto
+
 
 ## Cantidad de radiobases GSM
 ```{r}
@@ -123,7 +132,7 @@ tabla_94 %>%
 ```
 
 
-##### Salto
+
 
 ## Cantidad de radiobases GSM por operador (`r FECHA_TITULO_STOCK`)
 
@@ -154,7 +163,7 @@ radiobases %>%
 
 
 
-##### Salto
+
 
 
 
@@ -187,7 +196,7 @@ tabla_98 <-  radiobases %>%
    print
 ```
 
-##### Salto
+
 
 
 
@@ -216,7 +225,7 @@ tabla_100 <- radiobases %>%
 ```
 
 
-##### Salto
+
 
 
 ## Cantidad de radiobases LTE por operador (`r FECHA_TITULO_STOCK`)

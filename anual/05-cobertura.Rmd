@@ -25,6 +25,12 @@ month_label <- function(x) {
   glue::glue("{month(x)}/{format(y, '%y')}")
 }
 
+theme_set(theme_minimal() + 
+            theme(plot.background = element_rect(fill = "#EEEEEE",
+                                                 color = "white"),
+                  axis.line.x = element_blank(),
+                  axis.ticks = element_blank()))
+
 
 ```
 
@@ -58,7 +64,7 @@ tabla_102 %>%
 
 
 
-##### Salto
+
 
 
 
@@ -117,7 +123,7 @@ tabla_104 %>%
 
 
 
-##### Salto
+
 
 
 
@@ -175,7 +181,7 @@ tabla_106 %>%
 ```
 
 
-##### Salto
+
 
 
 ## Cobertura territorial LTE (%)
@@ -233,7 +239,7 @@ tabla_108 %>%
 
 
 
-##### Salto
+
 
 
 

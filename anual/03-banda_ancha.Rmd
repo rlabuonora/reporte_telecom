@@ -19,6 +19,12 @@ banda_ancha_servicios <- import_banda_ancha_servicios() %>%
 banda_ancha_trafico <- import_banda_ancha_trafico() %>% 
   mutate(empresa = if_else(empresa == "Administración Nacional De Telecomunicaciones", "ANTEL", empresa))
 
+theme_set(theme_minimal() + 
+            theme(plot.background = element_rect(fill = "#EEEEEE",
+                                                 color = "white"),
+                  axis.line.x = element_blank(),
+                  axis.ticks = element_blank()))
+
 
 ```
 
@@ -55,7 +61,7 @@ serie_64 %>%
 ```
 
 
-##### Salto
+
 
 ## Servicios de banda ancha fija por velocidad (`r FECHA_TITULO_STOCK`)
 ```{r}
@@ -89,7 +95,7 @@ serie_66 %>%
 ```
 
 
-##### Salto
+
 
 ## Servicios de banda ancha fija por operador (`r FECHA_TITULO_STOCK`)
 ```{r}
@@ -120,7 +126,7 @@ serie_68 %>%
 banda_ancha_servicios_residenciales <- filter(banda_ancha_servicios, cliente == "Residencial")
 
 ```
-##### Salto
+
 
 ## Servicios de banda ancha fija residencial
 ```{r}
@@ -149,7 +155,7 @@ serie_70 %>%
   print()
 ```
 
-##### Salto
+
 
 ## Servicios de banda ancha fija residencial por operador (`r FECHA_TITULO_STOCK`)
 
@@ -181,7 +187,7 @@ serie_72 %>%
 
 ```
 
-##### Salto
+
 
 
 ```{r, include =FALSE}
@@ -214,7 +220,7 @@ serie_74 %>%
   barras_horizontales(servicios, velocidad, nudge_text=1e3)
 ```
 
-##### Salto
+
 
 ## Servicios de banda ancha fija comercial por operador (`r FECHA_TITULO_STOCK`)
 
@@ -243,7 +249,7 @@ serie_76 %>%
   print
 ```
 
-##### Salto
+
 
 
 
@@ -307,7 +313,7 @@ serie_82 %>%
   barras_horizontales(servicios, velocidad, nudge_text = 5e3)
 ```
 
-##### Salto
+
 
 
 ## Servicios de banda ancha fija inalámbrica por tipo de cliente (`r FECHA_TITULO_STOCK`)
@@ -340,7 +346,7 @@ serie_84 %>%
   barras_horizontales(servicios, empresa, nudge_text = 4e3)
 ```
 
-##### Salto
+
 
 
 ## Servicios de banda ancha fija inalámbrica por medio de trasmisión (`r FECHA_TITULO_STOCK`)
@@ -373,7 +379,7 @@ banda_ancha_servicios_alambrica %>%
   serie_historica_semestral_stock(servicios, nudge_text = 4e4)
 ```
 
-##### Salto
+
 
 
 ## Servicios de banda ancha fija alámbrica por velocidad (`r FECHA_TITULO_STOCK`)
@@ -405,7 +411,7 @@ serie_88 %>%
   print
 ```
 
-##### Salto
+
 
 
 ## Servicios de banda ancha fija alámbrica por tipo de cliente (`r FECHA_TITULO_STOCK`)
@@ -439,7 +445,7 @@ serie_90 %>%
 
 ```
 
-##### Salto
+
 
 
 ## Tráfico de datos de servicios de banda ancha fija (terabytes)
@@ -477,7 +483,7 @@ banda_ancha_trafico %>%
 ```
 
 
-##### Salto
+
 
 
 
@@ -541,7 +547,7 @@ tribble(
   
 ```
 
-##### Salto
+
 
 
 ## Capacidad propia de acceso a Internet por operador (megabytes) (`r FECHA_TITULO_STOCK`)

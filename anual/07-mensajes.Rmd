@@ -17,11 +17,17 @@ source('../common.R')
 
 mensajes <- import_mensajes()
 
+theme_set(theme_minimal() + 
+            theme(plot.background = element_rect(fill = "#EEEEEE",
+                                                 color = "white"),
+                  axis.line.x = element_blank(),
+                  axis.ticks = element_blank()))
+
 
 
 ```
 
-##### Salto
+
 
 ## 4.62. Mensajes de texto enviados
 ```{r}
@@ -56,7 +62,7 @@ serie_142 %>%
 
 ```
 
-##### Salto
+
 
 
 ## 4.64. Mensajes de texto enviados según destino (`r FECHA_TITULO_FLUJO`)
@@ -97,7 +103,7 @@ serie_144 %>%
   serie_historica_semestral_flujo(mensajes, nudge_text = 1e4) 
 ```
 
-##### Salto
+
 
 
 
@@ -134,7 +140,7 @@ serie_146 %>%
 ```
 
 
-##### Salto
+
 
 
 ## 4.68. Mensajes de texto enviados a otras redes móviles por operador (`r FECHA_TITULO_FLUJO`)

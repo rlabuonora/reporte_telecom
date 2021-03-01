@@ -1,12 +1,12 @@
 ---
-title: "Pagedown pour les Scouts et Guides de France"
+title: "Informe Telecomunicaciones 1"
 output: 
   pagedown::html_paged:
     css: 
     - "style/sgdf.css"
     - "style/custom-page_sgdf.css"
-self_contained: false
-knit: pagedown::chrome_print
+
+#knit: pagedown::chrome_print
 ---
 
 ```{r setup, include=FALSE}
@@ -14,7 +14,6 @@ knitr::opts_chunk$set(
 	echo = FALSE,
 	message = FALSE,
 	warning = FALSE,
-	cache=TRUE,
 	dpi = 300,
 	fig.width = 7, 
   fig.height = 3.5,
@@ -29,54 +28,7 @@ library(gt)
 
 
 ```{r theme}
-theme_sgdf <- theme(
-  axis.title = element_text(
-    family = "Sarabun",
-    size = 12,
-    color = "#003a5d",
-    face = "bold"
-  ),
-  legend.title = element_text(
-    family = "Sarabun",
-    size = 12,
-    color = "#003a5d",
-    face = "bold"
-  ),
-  axis.text = element_text(
-    family = "Sarabun",
-    size = 12,
-    color = "#003a5d"
-  ),
-  legend.text = element_text(
-    family = "Sarabun",
-    size = 12,
-    color = "#003a5d"
-  ),
-  legend.position = "top",
-  strip.text = element_text(
-    family = "Sarabun",
-    size = 12,
-    color = "#003a5d"
-  ),
-  plot.title = element_text(
-    family = "Caveat Brush",
-    size = 20,
-    color = "#003a5d",
-    hjust = -0.15
-  ),
-  plot.subtitle = element_text(
-    family = "Caveat Brush",
-    size = 16,
-    color = "#003a5d",
-    hjust = -0.12
-  ),
-  plot.caption = element_text(
-    family = "Sarabun",
-    size = 10,
-    color = "#003a5d",
-    hjust = -0.12
-  )
-)
+
 
 # définir un scale
 vect_col4 <- c("#ff8300", "#0077b3", "#d03f15", "#007254")
@@ -90,20 +42,25 @@ source("../common.R")
 FECHA_INFORME_ANUAL <-  as.Date("2020-12-01")
 FECHA_TITULO_STOCK <-  "Diciembre 2020"
 FECHA_TITULO_FLUJO <-  "año 2020"
+
+
+
 ```
 
 
 ```{r child = '01-fija.Rmd'}
+
+
 ```
 
 
-```{r child = '02-ldi.Rmd'}
-```
+<!-- ```{r child = '02-ldi.Rmd'} -->
+<!-- ``` -->
 
 
 
-```{r child = '03-banda_ancha.Rmd'}
-```
+<!-- ```{r child = '03-banda_ancha.Rmd'} -->
+<!-- ``` -->
 
 
 <!-- ```{r child = '04-radiobases.Rmd'} -->
@@ -111,6 +68,7 @@ FECHA_TITULO_FLUJO <-  "año 2020"
 
 <!-- ```{r child = '05-cobertura.Rmd'} -->
 <!-- ``` -->
+
 
 
 <!-- ```{r child = '06-datos_moviles_servicios.Rmd'} -->

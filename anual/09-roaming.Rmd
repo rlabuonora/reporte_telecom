@@ -19,6 +19,12 @@ source('../common.R')
 
 roaming <- import_roaming()
 
+theme_set(theme_minimal() + 
+            theme(plot.background = element_rect(fill = "#EEEEEE",
+                                                 color = "white"),
+                  axis.line.x = element_blank(),
+                  axis.ticks = element_blank()))
+
 ```
 
 ## Tráfico de voz de Roaming (minutos)
@@ -35,7 +41,7 @@ serie_166 %>%
 ```
 
 
-##### Salto
+
 
 
 ## Tráfico de voz de Roaming (minutos) por operador (`r FECHA_TITULO_FLUJO`)
@@ -82,7 +88,7 @@ serie_168 %>%
   )
 ```
 
-##### Salto
+
 
 
 ## Tráfico de voz de Roaming Local (minutos)
@@ -116,7 +122,7 @@ serie_170 %>%
   print
 ```
 
-##### Salto
+
 
 
 ## Tráfico de voz de Roaming Saliente (minutos)
@@ -150,7 +156,7 @@ serie_172 %>%
   print
 ```
 
-##### Salto
+
 
 <!-- ## 170. Tráfico de voz de Roaming de LDI (minutos) -->
 
