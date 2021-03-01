@@ -54,37 +54,37 @@ FECHA_TITULO_FLUJO <-  "año 2020"
 ```
 
 
-<!-- ```{r child = '02-ldi.Rmd'} -->
-<!-- ``` -->
+```{r child = '02-ldi.Rmd'}
+```
 
 
 
-<!-- ```{r child = '03-banda_ancha.Rmd'} -->
-<!-- ``` -->
+```{r child = '03-banda_ancha.Rmd'}
+```
 
 
-<!-- ```{r child = '04-radiobases.Rmd'} -->
-<!-- ``` -->
+```{r child = '04-radiobases.Rmd'}
+```
 
-<!-- ```{r child = '05-cobertura.Rmd'} -->
-<!-- ``` -->
-
-
-
-<!-- ```{r child = '06-datos_moviles_servicios.Rmd'} -->
-<!-- ``` -->
+```{r child = '05-cobertura.Rmd'}
+```
 
 
-<!-- ```{r child = '07-mensajes.Rmd'} -->
-<!-- ``` -->
+
+```{r child = '06-datos_moviles_servicios.Rmd'}
+```
 
 
-<!-- ```{r child = '08-voz.Rmd'} -->
-<!-- ``` -->
+```{r child = '07-mensajes.Rmd'}
+```
 
 
-<!-- ```{r child = '09-roaming.Rmd'} -->
-<!-- ``` -->
+```{r child = '08-voz.Rmd'}
+```
+
+
+```{r child = '09-roaming.Rmd'}
+```
 
 
 <!-- ```{r child = '10-abonados.Rmd'} -->
