@@ -70,6 +70,6 @@ FECHA_TITULO_FLUJO <-  "año 2020"
 ```
 
 
-<!-- ```{r child = '10-abonados.Rmd'} -->
-<!-- ``` -->
+```{r child = '10-abonados.Rmd'}
+```
 
