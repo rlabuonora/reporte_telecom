@@ -21,7 +21,7 @@ roaming <- import_roaming()
 
 ```
 
-## 4.103. Tráfico de voz de Roaming (minutos)
+## Tráfico de voz de Roaming (minutos)
 ```{r}
 serie_166 <- roaming %>% 
   filter(voz == "Tráfico de voz") %>%
@@ -38,7 +38,7 @@ serie_166 %>%
 ##### Salto
 
 
-## 4.104. Tráfico de voz de Roaming (minutos) por operador (`r FECHA_TITULO_FLUJO`)
+## Tráfico de voz de Roaming (minutos) por operador (`r FECHA_TITULO_FLUJO`)
 ```{r}
 serie_167 <- roaming %>% 
   filter(voz == "Tráfico de voz") %>%
@@ -55,7 +55,7 @@ serie_167 <- roaming %>%
 
 
 
-## 4.105. Tráfico de voz de Roaming (minutos) por tipo de servicio (`r FECHA_TITULO_FLUJO`)
+## Tráfico de voz de Roaming (minutos) por tipo de servicio (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
 serie_168 <- roaming %>% 
@@ -85,7 +85,7 @@ serie_168 %>%
 ##### Salto
 
 
-## 4.106. Tráfico de voz de Roaming Local (minutos)
+## Tráfico de voz de Roaming Local (minutos)
 
 ```{r}
 serie_169 <- roaming %>% 
@@ -101,7 +101,7 @@ serie_169 %>%
 
 
 
-## 4.107. Tráfico de voz de Roaming Local (minutos) por operador (`r FECHA_TITULO_FLUJO`)
+## Tráfico de voz de Roaming Local (minutos) por operador (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
 serie_170 <- roaming %>% 
@@ -119,7 +119,7 @@ serie_170 %>%
 ##### Salto
 
 
-## 4.108. Tráfico de voz de Roaming Saliente (minutos)
+## Tráfico de voz de Roaming Saliente (minutos)
 
 ```{r}
 serie_171 <- roaming %>% 
@@ -135,7 +135,7 @@ serie_171 %>%
 
 
 
-## 4.109. Tráfico de voz de Roaming Saliente (minutos) por operador (`r FECHA_TITULO_FLUJO`)
+## Tráfico de voz de Roaming Saliente (minutos) por operador (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
 serie_172 <- roaming %>% 
@@ -168,7 +168,7 @@ serie_172 %>%
 
 
 
-## 4.110. Tráfico de voz de Roaming de LDI (minutos) por operador (`r FECHA_TITULO_FLUJO`)
+## Tráfico de voz de Roaming de LDI (minutos) por operador (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
 serie_174 <- roaming %>% 
@@ -200,7 +200,7 @@ serie_174 %>%
 
 
 
-## 4.111. Tráfico de datos de Roaming (terabytes) por operador
+## Tráfico de datos de Roaming (terabytes) por operador
 
 ```{r}
 serie_176 <- roaming %>%

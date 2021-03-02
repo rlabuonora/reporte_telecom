@@ -14,9 +14,9 @@ options(scipen = 10000)
 ldi <- import_ldi()
 ```
 
-# 2. Telefonía de larga distancia internacional
+# Telefonía de larga distancia internacional
 
-## 2.1. Minutos de tráfico de LDI saliente
+## Minutos de tráfico de LDI saliente
 
 ```{r}
 ldi %>% 
@@ -28,7 +28,7 @@ ldi %>%
   serie_historica_semestral_flujo(val, nudge_text=2e6)
 ```
 
-## 2.2. Minutos de tráfico de LDI saliente por operador (`r FECHA_TITULO_FLUJO`)
+## Minutos de tráfico de LDI saliente por operador (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
 ldi %>% 
@@ -44,7 +44,7 @@ ldi %>%
 
 ##### Salto
 
-## 2.3. Minutos de tráfico de LDI saliente según red origen (`r FECHA_TITULO_FLUJO`)
+## Minutos de tráfico de LDI saliente según red origen (`r FECHA_TITULO_FLUJO`)
 ```{r}
 ldi %>%
   mutate(red = fct_collapse(red, "Redes Móviles" = c("Claro", "ANTEL", "Movistar"))) %>% 
@@ -58,7 +58,7 @@ ldi %>%
 ```
 
 
-## 2.4. Minutos de tráfico de LDI saliente de red fija - AMM por operador (`r FECHA_TITULO_FLUJO`)
+## Minutos de tráfico de LDI saliente de red fija - AMM por operador (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
 ldi %>% 
@@ -73,7 +73,7 @@ ldi %>%
 
 ##### Salto
 
-## 2.5. Minutos de tráfico de LDI saliente de Red Fija - AMM
+## Minutos de tráfico de LDI saliente de Red Fija - AMM
 
 ```{r}
 ldi %>% 
@@ -86,7 +86,7 @@ ldi %>%
 ```
 
 
-## 2.6. Minutos de tráfico de LDI saliente de red fija - Resto País por operador (`r FECHA_TITULO_FLUJO`)
+## Minutos de tráfico de LDI saliente de red fija - Resto País por operador (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
 ldi %>% 
@@ -103,7 +103,7 @@ ldi %>%
 
 ##### Salto
 
-## 2.7. Minutos de tráfico de LDI saliente de Red Fija - Resto País
+## Minutos de tráfico de LDI saliente de Red Fija - Resto País
 
 ```{r}
 ldi %>% 
@@ -117,7 +117,7 @@ ldi %>%
 ```
 
 
-## 2.8. Minutos de tráfico de LDI saliente de redes móviles
+## Minutos de tráfico de LDI saliente de redes móviles
 
 
 ```{r}
@@ -132,7 +132,7 @@ ldi %>%
 
 ##### Salto
 
-## 2.9. Minutos de tráfico de LDI saliente por operador (`r FECHA_TITULO_FLUJO`)
+## Minutos de tráfico de LDI saliente por operador (`r FECHA_TITULO_FLUJO`)
 
 
 ```{r}
@@ -150,7 +150,7 @@ ldi %>%
   print
 ```
 
-## 2.10. Minutos de tráfico de LDI saliente de red móvil de ANTEL por operador (`r FECHA_TITULO_FLUJO`)
+## Minutos de tráfico de LDI saliente de red móvil de ANTEL por operador (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
 ldi %>% 
@@ -169,15 +169,15 @@ ldi %>%
 
 ##### Salto
 
-## 2.11. Minutos de tráfico de LDI saliente de red móvil de ANTEL
+## Minutos de tráfico de LDI saliente de red móvil de ANTEL
 ```{r}
-ldi %>%
-  filter(red %in% c("ANTEL"),
-         sentido == "hacia",
-         servicio == "Mn") %>%
-  group_by(year=year(fecha), semester=semester(fecha)) %>%
-  summarize(minutos = sum(numeric, na.rm=TRUE)) %>%
-  filter(!is.na(year), year == 2020)
+# ldi %>%
+#   filter(red %in% c("ANTEL"),
+#          sentido == "hacia",
+#          servicio == "Mn") %>%
+#   group_by(year=year(fecha), semester=semester(fecha)) %>%
+#   summarize(minutos = sum(numeric, na.rm=TRUE)) %>%
+#   filter(!is.na(year), year == 2020)
 # corregir por datos diego
 tribble(
   ~year, ~semester, ~minutos,
@@ -194,7 +194,7 @@ tribble(
 ```
 
 
-## 2.12. Minutos de tráfico de LDI saliente de red móvil de MOVISTAR por operador (`r FECHA_TITULO_FLUJO`)
+## Minutos de tráfico de LDI saliente de red móvil de MOVISTAR por operador (`r FECHA_TITULO_FLUJO`)
 ```{r}
 ldi %>% 
   filter(red %in% c("Movistar"), 
@@ -214,7 +214,7 @@ ldi %>%
 
 
 
-## 2.13. Minutos de tráfico de LDI saliente de red móvil de MOVISTAR
+## Minutos de tráfico de LDI saliente de red móvil de MOVISTAR
 
 ```{r}
 ldi %>% 
@@ -227,7 +227,7 @@ ldi %>%
   serie_historica_semestral_flujo(minutos, nudge_text=6e5)
 ```
 
-## 2.14. Minutos de tráfico de LDI saliente de red móvil de CLARO por operador (`r FECHA_TITULO_FLUJO`)
+## Minutos de tráfico de LDI saliente de red móvil de CLARO por operador (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
 ldi %>% 
@@ -249,7 +249,7 @@ ldi %>%
 ##### Salto
 
 
-## 2.15. Minutos de tráfico de LDI saliente de red móvil de CLARO
+## Minutos de tráfico de LDI saliente de red móvil de CLARO
 
 ```{r}
 ldi %>% 
@@ -316,7 +316,7 @@ ldi %>%
 
 
 
-## 2.16. Minutos de tráfico de LDI saliente por destino (`r FECHA_TITULO_FLUJO`)
+## Minutos de tráfico de LDI saliente por destino (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
 ldi %>% 
@@ -336,7 +336,7 @@ ldi %>%
 ##### Salto
 
 
-## 2.17. Minutos de tráfico de LDI saliente a Argentina
+## Minutos de tráfico de LDI saliente a Argentina
 ```{r}
 ldi %>%
   filter(sentido == "desde", servicio == "Mn") %>%
@@ -350,7 +350,7 @@ ldi %>%
 
 
 
-## 2.18. Minutos de tráfico de LDI saliente a Brasil
+## Minutos de tráfico de LDI saliente a Brasil
 
 ```{r}
 ldi %>%
@@ -366,7 +366,7 @@ ldi %>%
 ##### Salto
 
 
-## 2.19. Minutos de tráfico de LDI saliente a EUA
+## Minutos de tráfico de LDI saliente a EUA
 ```{r}
 ldi %>%
   filter(sentido == "desde", servicio == "Mn") %>%
@@ -380,7 +380,7 @@ ldi %>%
 
 
 
-## 2.20. Minutos de tráfico de LDI saliente a España
+## Minutos de tráfico de LDI saliente a España
 
 ```{r}
 # 24.	Minutos de tráfico de LDI saliente a España
@@ -397,7 +397,7 @@ ldi %>%
 ##### Salto
 
 
-## 2.21. Minutos de tráfico de LDI saliente a Resto del Mundo
+## Minutos de tráfico de LDI saliente a Resto del Mundo
 
 ```{r}
 ldi %>%
@@ -412,7 +412,7 @@ ldi %>%
 
 
 
-## 2.22. Minutos de tráfico de LDI entrante
+## Minutos de tráfico de LDI entrante
 ```{r}
 
 ldi %>%
@@ -434,7 +434,7 @@ ldi %>%
 ##### Salto
 
 
-## 2.23. Minutos de tráfico de LDI entrante por operador (`r FECHA_TITULO_FLUJO`)
+## Minutos de tráfico de LDI entrante por operador (`r FECHA_TITULO_FLUJO`)
 
 
 ```{r}
@@ -449,7 +449,7 @@ ldi %>%
 
 
 
-## 2.24. Minutos de tráfico de LDI entrante por red destino (`r FECHA_TITULO_FLUJO`)
+## Minutos de tráfico de LDI entrante por red destino (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
 ldi %>%
@@ -468,7 +468,7 @@ ldi %>%
 ##### Salto
 
 
-## 2.25. Minutos de tráfico de LDI entrante a Red Fija
+## Minutos de tráfico de LDI entrante a Red Fija
 
 ```{r}
 ldi %>%
@@ -485,7 +485,7 @@ ldi %>%
 
 
 
-## 2.26. Minutos de tráfico de LDI entrante en red fija por operador (`r FECHA_TITULO_FLUJO`)
+## Minutos de tráfico de LDI entrante en red fija por operador (`r FECHA_TITULO_FLUJO`)
 ```{r}
 ldi %>%
   filter(sentido == "hacia", servicio == "Mn") %>%
@@ -500,7 +500,7 @@ ldi %>%
 
 ##### Salto
 
-## 2.27. Minutos de tráfico de LDI entrante a Redes Móviles
+## Minutos de tráfico de LDI entrante a Redes Móviles
 
 ```{r}
 ldi %>%
@@ -514,7 +514,7 @@ ldi %>%
 
 ```
 
-## 2.28. Minutos de tráfico de LDI entrante por red móvil destino (`r FECHA_TITULO_FLUJO`)
+## Minutos de tráfico de LDI entrante por red móvil destino (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
 ldi %>%
@@ -530,7 +530,7 @@ ldi %>%
 ##### Salto
 
 
-## 2.29. Minutos de tráfico de LDI entrante a red móvil de Antel
+## Minutos de tráfico de LDI entrante a red móvil de Antel
 
 ```{r}
 ldi %>%
@@ -545,7 +545,7 @@ ldi %>%
    serie_historica_semestral_flujo(minutos, 6e5)
 ```
 
-## 2.30. Minutos de tráfico entrante de LDI en red móvil de Antel por operador (`r FECHA_TITULO_FLUJO`)
+## Minutos de tráfico entrante de LDI en red móvil de Antel por operador (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
 ldi %>%
@@ -564,7 +564,7 @@ ldi %>%
 ##### Salto
 
 
-## 2.31. Minutos de tráfico de LDI entrante a red móvil de Movistar
+## Minutos de tráfico de LDI entrante a red móvil de Movistar
 
 ```{r}
 ldi %>%
@@ -583,7 +583,7 @@ ldi %>%
 
 
 
-## 2.32. Minutos de tráfico entrante de LDI en red móvil de Movistar por operador (`r FECHA_TITULO_FLUJO`)
+## Minutos de tráfico entrante de LDI en red móvil de Movistar por operador (`r FECHA_TITULO_FLUJO`)
 ```{r}
 ldi %>%
   filter(red %in% c("Movistar"),
@@ -601,7 +601,7 @@ ldi %>%
 ##### Salto
 
 
-## 2.33. Minutos de tráfico de LDI entrante a red móvil de Claro
+## Minutos de tráfico de LDI entrante a red móvil de Claro
 ```{r}
 ldi %>%
    filter(red %in% c("Claro"),
@@ -619,7 +619,7 @@ ldi %>%
 
 
 
-## 2.34. Minutos de tráfico de LDI entrante a red móvil de CLARO por operador (`r FECHA_TITULO_FLUJO`)
+## Minutos de tráfico de LDI entrante a red móvil de CLARO por operador (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
 ldi %>%
