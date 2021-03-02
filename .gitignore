@@ -3,3 +3,5 @@
 .RData
 .Ruserdata
 *.docx
+.DS_Store
+anual/.DS_Store
