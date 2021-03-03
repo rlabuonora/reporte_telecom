@@ -1,0 +1,26 @@
+body {
+  font-family: "Agency FB";
+}
+
+h1 {
+  color: red;
+}
+
+@page :first{
+  
+  margin: 0 0 0 0;
+  background-image: url("informe_tapa_cropped.png");
+  background-position: cover;
+}
+
+
+@page  {
+  @bottom-right {
+    content: counter(page);
+  }
+}
+
+
+.title, .date, .author {
+  display: none;
+}
