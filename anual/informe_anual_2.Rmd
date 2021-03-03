@@ -10,7 +10,7 @@ output:
       - "estilos/ursec-default.css"
       - "estilos/ursec-estilo.css"
     # change to true for a self-contained document, but it'll be a litte slower for Pandoc to render
-    self_contained: false
+    self_contained: true
 # uncomment this line to produce HTML and PDF in RStudio:
 #knit: pagedown::chrome_print
 ---
@@ -45,5 +45,42 @@ FECHA_TITULO_FLUJO <-  "año 2020"
 ```
 
 ```{r child = '01-fija.Rmd'}
+```
+
+
+
+```{r child = '02-ldi.Rmd'}
+```
+
+
+
+```{r child = '03-banda_ancha.Rmd'}
+```
+
+
+```{r child = '04-radiobases.Rmd'}
+```
+
+```{r child = '05-cobertura.Rmd'}
+```
+
+
+```{r child = '06-datos_moviles_servicios.Rmd'}
+```
+
+
+```{r child = '07-mensajes.Rmd'}
+```
+
+
+```{r child = '08-voz.Rmd'}
+```
+
+
+```{r child = '09-roaming.Rmd'}
+```
+
+
+```{r child = '10-abonados.Rmd'}
 ```
 
