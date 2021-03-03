@@ -42,7 +42,7 @@ ldi %>%
 ```
 
 
-##### Salto
+
 
 ## Minutos de tráfico de LDI saliente según red origen (`r FECHA_TITULO_FLUJO`)
 ```{r}
@@ -71,7 +71,7 @@ ldi %>%
   barras_horizontales(minutos, empresa, nudge_text = 2e6)
 ```
 
-##### Salto
+
 
 ## Minutos de tráfico de LDI saliente de Red Fija - AMM
 
@@ -101,7 +101,7 @@ ldi %>%
 
 ```
 
-##### Salto
+
 
 ## Minutos de tráfico de LDI saliente de Red Fija - Resto País
 
@@ -130,7 +130,7 @@ ldi %>%
 
 ```
 
-##### Salto
+
 
 ## Minutos de tráfico de LDI saliente por operador (`r FECHA_TITULO_FLUJO`)
 
@@ -167,7 +167,7 @@ ldi %>%
 ```
 
 
-##### Salto
+
 
 ## Minutos de tráfico de LDI saliente de red móvil de ANTEL
 ```{r}
@@ -209,7 +209,7 @@ ldi %>%
 
 ```
 
-##### Salto
+
 
 
 
@@ -246,7 +246,7 @@ ldi %>%
 
 
 
-##### Salto
+
 
 
 ## Minutos de tráfico de LDI saliente de red móvil de CLARO
@@ -279,7 +279,7 @@ ldi %>%
 <!-- ``` -->
 
 
-<!-- ##### Salto -->
+<!--  -->
 
 
 <!-- ## 34. Minutos de tráfico de LDI saliente de Telefonía Fija de clientes Prepago -->
@@ -333,7 +333,7 @@ ldi %>%
 ```
 
 
-##### Salto
+
 
 
 ## Minutos de tráfico de LDI saliente a Argentina
@@ -363,7 +363,7 @@ ldi %>%
 
 ```
 
-##### Salto
+
 
 
 ## Minutos de tráfico de LDI saliente a EUA
@@ -394,7 +394,7 @@ ldi %>%
 
 ```
 
-##### Salto
+
 
 
 ## Minutos de tráfico de LDI saliente a Resto del Mundo
@@ -431,7 +431,7 @@ ldi %>%
 
 ```
 
-##### Salto
+
 
 
 ## Minutos de tráfico de LDI entrante por operador (`r FECHA_TITULO_FLUJO`)
@@ -465,7 +465,7 @@ ldi %>%
 
 ```
 
-##### Salto
+
 
 
 ## Minutos de tráfico de LDI entrante a Red Fija
@@ -498,7 +498,7 @@ ldi %>%
 ```
 
 
-##### Salto
+
 
 ## Minutos de tráfico de LDI entrante a Redes Móviles
 
@@ -527,7 +527,7 @@ ldi %>%
 ```
 
 
-##### Salto
+
 
 
 ## Minutos de tráfico de LDI entrante a red móvil de Antel
@@ -561,7 +561,7 @@ ldi %>%
 
 ```
 
-##### Salto
+
 
 
 ## Minutos de tráfico de LDI entrante a red móvil de Movistar
@@ -598,7 +598,7 @@ ldi %>%
 
 ```
 
-##### Salto
+
 
 
 ## Minutos de tráfico de LDI entrante a red móvil de Claro

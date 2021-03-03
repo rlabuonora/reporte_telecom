@@ -58,7 +58,7 @@ tabla_102 %>%
 
 
 
-##### Salto
+
 
 
 
@@ -117,7 +117,7 @@ tabla_104 %>%
 
 
 
-##### Salto
+
 
 
 
@@ -175,7 +175,7 @@ tabla_106 %>%
 ```
 
 
-##### Salto
+
 
 
 ## Cobertura territorial LTE (%)
@@ -233,7 +233,7 @@ tabla_108 %>%
 
 
 
-##### Salto
+
 
 
 

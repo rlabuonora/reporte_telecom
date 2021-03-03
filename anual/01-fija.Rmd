@@ -19,6 +19,14 @@ options(scipen = 10000)
 
 fija <- import_fija()
 
+theme_set(theme_minimal(base_family="Agency FB") + 
+            theme(plot.background = element_rect(fill = "#EEEEEE",
+                                                 color = "white"),
+
+                  axis.line.x = element_blank(),
+                  axis.ticks = element_blank(),
+                  text = element_text(family="Agency FB", size=16)))
+
 ```
 
 
@@ -66,7 +74,7 @@ fija %>%
 
 
 
-##### Salto
+
 
 
 
@@ -103,7 +111,7 @@ fija %>%
 ```
 
 
-##### Salto
+
 
 
 ## Teléfonos públicos por departamento (`r FECHA_TITULO_STOCK`)
@@ -147,7 +155,7 @@ print(s)
 
 
 
-##### Salto
+
 
 
 ## Líneas de telefonía fija comerciales
@@ -187,7 +195,7 @@ fija %>%
 ```
 
 
-##### Salto
+
 
 
 ## Líneas de telefonía fija residenciales
@@ -224,7 +232,7 @@ fija %>%
   barras_horizontales(lineas, depto, nudge_text = 3e4)
 ```
 
-##### Salto
+
 
 
 ## Kilómetros de fibra óptica instalada
@@ -263,7 +271,7 @@ fija %>%
 ```
 
 
-##### Salto
+
 
 ## Cómputos de telefonía fija
 
@@ -290,7 +298,7 @@ fija %>%
   serie_historica_semestral_flujo(minutos, nudge_text = 1.5e7)
 ```
 
-##### Salto
+
 
 
 ## Minutos de tráfico de telefonía fija a teléfonos móviles por operador (`r FECHA_TITULO_FLUJO`)
@@ -328,7 +336,7 @@ fija %>%
   serie_historica_semestral_flujo(minutos, nudge_text = 9e3)
 ```
 
-##### Salto
+
 
 ## Minutos de tráfico de telefonía fija a red móvil de Movistar
 
