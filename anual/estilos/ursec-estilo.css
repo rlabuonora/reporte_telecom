@@ -2,10 +2,6 @@ body {
   font-family: "Agency FB";
 }
 
-h1 {
-  color: red;
-}
-
 @page :first{
   
   margin: 0 0 0 0;
