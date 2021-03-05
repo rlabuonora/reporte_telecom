@@ -1,7 +1,6 @@
 ---
-title: "A Multi-page HTML Document"
-author: "Yihui Xie and Romain Lesur"
-date: "`r Sys.Date()`"
+title: "Informe Mercado Telecomunicaciones"
+author: "URSEC"
 output:
   pagedown::html_paged:
     toc: true
@@ -13,6 +12,34 @@ output:
     self_contained: true
 # uncomment this line to produce HTML and PDF in RStudio:
 #knit: pagedown::chrome_print
+abstract: | 
+  ### Informe de Mercado de Telecomunicaciones de Uruguay
+  
+  ### Datos a Diciembre 2020
+  
+  _Unidad Reguladora de Servicios de Comunicaciones (URSEC)_\
+  Av. Uruguay 998 11000 Montevideo, Uruguay\
+  Tel. +598 2902 8082\
+  http://ursec.gub.uy
+  
+  
+  **Presidenta**\
+  Mercedes Aramendía
+  
+  **Vicepresidente**\
+  Gustavo Delgado
+  
+  **Director**\
+  Pablo Siris
+
+  *División de Regulación Jurídica y Económica*\
+  **Gerente**\
+  Graciela Coronel\
+  
+  *Departamento de Regulación e Investigación Económica*\
+  **Jefe**\
+  Diego Larriera\
+
 ---
 
 ```{r setup, include=FALSE}
@@ -33,7 +60,6 @@ FECHA_TITULO_FLUJO <-  "año 2020"
 
 
 ```
-
 
 
 

@@ -444,11 +444,11 @@ serie_90 %>%
 
 ## Tráfico de datos de servicios de banda ancha fija (terabytes)
 ```{r}
-banda_ancha_trafico %>%
-  filter(year(fecha) == 2020) %>%
-  group_by(year = year(fecha), 
-           semester=semester(fecha)) %>%
-  summarize(minutos=sum(numeric))
+# banda_ancha_trafico %>%
+#   filter(year(fecha) == 2020) %>%
+#   group_by(year = year(fecha), 
+#            semester=semester(fecha)) %>%
+#   summarize(minutos=sum(numeric))
 
 tibble(
   year = c(2018, 2018, 2019, 2019, 2020, 2020),
