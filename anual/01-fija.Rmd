@@ -37,7 +37,7 @@ theme_set(theme_minimal(base_family="Agency FB") +
 ## Ingresos Telefonía Fija (Pesos)
 
 
-```{r}
+```{r fig.height = 3.5}
 tibble::tribble(
   ~year, ~semester, ~ventas,
   2018, 1, 2594825643,
@@ -52,7 +52,7 @@ tibble::tribble(
 
 ## Líneas de telefonía fija
 
-```{r}
+```{r fig.height = 3.5}
 fija %>% 
   filter(cabezal_1 == "Líneas") %>% 
   filter(cabezal_2 %in% c("Res.R", "Res.U", "Com.R", "Com.U")) %>% 

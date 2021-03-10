@@ -1,6 +1,14 @@
+/* AZUL: #001a60 */
+/* AMARILLO: #ffc000 */
+/* GRIS: #383535 */
+
+
+
 body {
   font-family: "Agency FB";
 }
+
+
 
 @page :first{
   

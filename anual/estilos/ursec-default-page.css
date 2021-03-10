@@ -8,6 +8,8 @@
 
 }
 
+
+
 /* store some string variables */
 .shorttitle1 {
   string-set: h1-text content(text);
@@ -28,13 +30,15 @@
   /* content: string(h1-text); */
 }
 
+
+
 @page chapter:left {
   @bottom-right {
     content: counter(page);
   }
   @top-right {
   /*  content: element(runningH1Title); */
-    white-space: nowrap !important;
+  /*  white-space: nowrap !important; */
   }
 }
 
@@ -55,10 +59,7 @@
   @bottom-right {
     content: counter(page);
   }
-  @top-left {
-    content: element(runningH2Title);
-    white-space: nowrap !important;
-  }
+
 }
 
 /* put the abstract on its own page */
@@ -70,14 +71,10 @@ div.abstract {
 h3.abstract {
   display: none;
 }
-```
-
-@page :nth(2) {
-  background-color: red;
-}
 
 h1 {
-   margin-top: 0; 
+   margin-top: .5em; 
+   margin-bottom: 0;
 }
 
 h1, h2 {
@@ -91,16 +88,11 @@ h2 {
 @page chapter:first {
 
   
-  margin: 1em 0 2em 0;
+  /* margin: 1em 0 2em 0; */
 
-  @top-left {
-    content: none;
-  }
-  @top-right {
-    content: none;
-  }
+
   @bottom-right {
-    content: counter(page);
+    content: none;
   }
   
 }
@@ -200,4 +192,40 @@ h2 {
 caption {
   break-inside: avoid;
   break-after: avoid;
+}
+
+@page chapter{
+  @top-center {
+    content: "INFORME de MERCADO de TELECOMUNICACIONES de URUGUAY ";
+
+    margin: 0;
+    background-color: #001a60;
+    color: white;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+  }
+  @top-left {
+    background-color: #001a60;
+    background-size: contain;
+
+  }
+  @top-right {
+    background-color: #001a60;
+    background-size: contain;
+
+  }
+  
+  @top-left-corner {
+    content: " ";
+    background-color: #001a60;
+    background-size: contain;
+
+  }
+  @top-right-corner {
+    content: " ";
+    background-color: #001a60;
+    background-size: contain;
+
+  }
 }

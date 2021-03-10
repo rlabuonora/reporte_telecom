@@ -47,6 +47,7 @@ a[href^="http"]:not([class="uri"])::after {
   text-decoration: none;
   background: white;
   padding-right: .33em;
+  color: #001a60;
 }
 .toc a::after, .lot a::after, .lof a::after {
   /* content: leader(dotted) target-counter(attr(href), page); */
