@@ -201,18 +201,24 @@ caption {
     margin: 0;
     background-color: #001a60;
     color: white;
+    background-image: url("logo.png");
     background-repeat: no-repeat;
-    background-position: center;
     background-size: contain;
+    border-bottom: 2px solid #ffc000;
+
   }
   @top-left {
     background-color: #001a60;
     background-size: contain;
+    border-bottom: 4px solid #ffc000;
+
 
   }
   @top-right {
     background-color: #001a60;
     background-size: contain;
+    border-bottom: 4px solid #ffc000;
+
 
   }
   
@@ -220,12 +226,16 @@ caption {
     content: " ";
     background-color: #001a60;
     background-size: contain;
+    border-bottom: 2px solid #ffc000;
+
 
   }
   @top-right-corner {
     content: " ";
     background-color: #001a60;
     background-size: contain;
+    border-bottom: 2px solid #ffc000;
+
 
   }
 }

@@ -154,10 +154,6 @@ radiobases %>%
 
 
 
-
-
-
-
 ## Cantidad de radiobases 3G por departamento (`r FECHA_TITULO_STOCK`)
 
 ```{r}

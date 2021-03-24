@@ -477,11 +477,7 @@ banda_ancha_trafico %>%
 ```
 
 
-
-
-
-
-## Tráfico de datos se servicios de banda ancha fija (terabytes) según tipo de cliente (`r FECHA_TITULO_FLUJO`)
+## Tráfico de datos de servicios de banda ancha fija (terabytes) según tipo de cliente (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
 
