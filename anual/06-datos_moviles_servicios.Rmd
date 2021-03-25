@@ -745,7 +745,7 @@ serie_134 %>%
 <!-- ``` -->
 
 
-## Tráfico de datos de servicios de banda ancha móvil (terabytes)
+## Tráfico de datos de servicios de banda ancha móvil (TB)
 
 ```{r include=FALSE}
 trafico <- import_datos_trafico_moviles()
@@ -767,7 +767,7 @@ serie_137 %>%
 
 
 
-## Tráfico de datos de servicios de banda ancha móvil (terabytes) por operador (`r FECHA_TITULO_FLUJO`)
+## Tráfico de datos de servicios de banda ancha móvil (TB) por operador (`r FECHA_TITULO_FLUJO`)
 ```{r}
 serie_138 <- trafico %>% 
     filter(year(fecha) == year(FECHA_INFORME_ANUAL)) %>% 
@@ -784,7 +784,7 @@ serie_138 %>%
 
 
 
-## Tráfico de datos de servicios de banda ancha móvil prepagos (terabytes) (`r FECHA_TITULO_FLUJO`)
+## Tráfico de datos de servicios de banda ancha móvil prepagos (TB) (`r FECHA_TITULO_FLUJO`)
 ```{r}
 serie_139 <- trafico %>%
   filter(pago == "Prepago") %>% 
@@ -800,7 +800,7 @@ serie_139 %>%
 
 
 
-## Tráfico de datos de servicios de banda ancha móvil prepagos (terabytes) por operador (`r FECHA_TITULO_FLUJO`)
+## Tráfico de datos de servicios de banda ancha móvil prepagos (TB) por operador (`r FECHA_TITULO_FLUJO`)
 ```{r}
 serie_140 <- trafico %>% 
   filter(pago == "Prepago") %>% 
@@ -818,7 +818,7 @@ serie_140 %>%
 
 
 
-## Tráfico de datos de servicios de banda ancha móvil pospagos (terabytes)
+## Tráfico de datos de servicios de banda ancha móvil pospagos (TB)
 ```{r}
 serie_141 <- trafico %>%
   filter(pago == "Pospago") %>% 
@@ -832,7 +832,7 @@ serie_141 %>%
 ```
 
 
-## Tráfico de datos de servicios de banda ancha móvil pospagos (terabytes) por operador (`r FECHA_TITULO_FLUJO`)
+## Tráfico de datos de servicios de banda ancha móvil pospagos (TB) por operador (`r FECHA_TITULO_FLUJO`)
 ```{r}
 serie_142 <- trafico %>% 
   filter(pago == "Pospago") %>% 

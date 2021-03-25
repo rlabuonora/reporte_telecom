@@ -200,7 +200,7 @@ serie_174 %>%
 
 
 
-## Tráfico de datos de Roaming (terabytes) por operador
+## Tráfico de datos de Roaming (TB) por operador
 
 ```{r}
 serie_176 <- roaming %>%

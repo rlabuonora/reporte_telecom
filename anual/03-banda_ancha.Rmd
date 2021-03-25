@@ -442,7 +442,7 @@ serie_90 %>%
 
 
 
-## Tráfico de datos de servicios de banda ancha fija (terabytes)
+## Tráfico de datos de servicios de banda ancha fija (TB)
 ```{r}
 # banda_ancha_trafico %>%
 #   filter(year(fecha) == 2020) %>%
@@ -459,7 +459,7 @@ serie_historica_semestral_flujo(minutos, nudge_text = 50e3)
   
 ```
 
-## Tráfico de datos de servicios de banda ancha fija (terabytes) según alámbrica e inalámbrica (`r FECHA_TITULO_FLUJO`)
+## Tráfico de datos de servicios de banda ancha fija (TB) según alámbrica e inalámbrica (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
 
@@ -477,7 +477,7 @@ banda_ancha_trafico %>%
 ```
 
 
-## Tráfico de datos de servicios de banda ancha fija (terabytes) según tipo de cliente (`r FECHA_TITULO_FLUJO`)
+## Tráfico de datos de servicios de banda ancha fija (TB) según tipo de cliente (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
 

@@ -40,6 +40,13 @@ abstract: |
   **Jefe**\
   Diego Larriera\
 
+  Diseño de Portada: Enrique Ros\
+  Foto de portada: Chan Lin (https://unsplash.com/@lowkeyhahaha)
+  
+  **Licencia**
+  
+  ![](estilos/cc.png)
+  
 ---
 
 ```{r setup, include=FALSE}

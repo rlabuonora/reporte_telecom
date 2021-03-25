@@ -42,10 +42,10 @@ month_label <- function(x) {
 
 # Corregir por los datos de Diego
 tibble(
-  year = c(2018, 2018, 2019, 2019, 2020),
-  semester = c(1, 2, 1, 2, 1),
+  year = c(2018, 2018, 2019, 2019, 2020, 2020),
+  semester = c(1, 2, 1, 2, 1, 2),
   ventas = c(11120628765, 11738624664, 11888263352,
-             12425439504, 12309589788)) %>% 
+             12425439504, 12309589788, 12417674738)) %>% 
   serie_historica_semestral_flujo(ventas, nudge_text = 1e9)
 ```
 

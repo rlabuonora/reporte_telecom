@@ -389,11 +389,7 @@ serie_170 %>%
 ```
 
 
-
-
-
-
-## Tráfico de voz a red fija de suscripciones móviles prepagos (minutos)
+## Tráfico de voz a red fija de suscripciones móviles prepagas (minutos)
 ```{r}
 serie_2020 <- voz %>%
   filter(tipo_red == "Fija", pago == "Prepago") %>%
@@ -408,9 +404,7 @@ trafico_voz_historico %>%
 
 ```
 
-
-
-## Tráfico de voz a red fija de suscripciones móviles prepagos (minutos) por operador (`r FECHA_TITULO_FLUJO`)
+## Tráfico de voz a red fija de suscripciones móviles prepagas por operador (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
 serie_172 <- voz %>%
@@ -448,7 +442,7 @@ trafico_voz_historico %>%
 
 
 
-## Tráfico de voz de suscripciones móviles pospagos (minutos) por operador (`r FECHA_TITULO_FLUJO`)
+## Tráfico de voz de suscripciones móviles pospagos por operador (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
 serie_174 <- voz %>%
@@ -576,7 +570,7 @@ trafico_voz_historico %>%
 
 
 
-## 4.100. Tráfico de voz al exterior de suscripciones móviles pospagos (minutos) por operador (`r FECHA_TITULO_FLUJO`)
+## Tráfico de voz al exterior de suscripciones móviles pospagos (minutos) por operador (`r FECHA_TITULO_FLUJO`)
 ```{r}
 serie_182 <- voz %>%
   filter(pago == "Pospago", tipo_red == "Exterior") %>%
@@ -592,7 +586,7 @@ serie_182 %>%
 
 
 
-## 4.101. Tráfico de voz a red fija de suscripciones móviles pospagos (minutos)
+## Tráfico de voz a red fija de suscripciones móviles pospagos (minutos)
 ```{r}
 serie_2020 <- voz %>%
   filter(tipo_red == "Fija", pago == "Pospago") %>%
@@ -608,11 +602,7 @@ trafico_voz_historico %>%
 
 ```
 
-
-
-
-
-## 4.102. Tráfico de voz a red fija de suscripciones móviles pospagos (minutos) por operador (`r FECHA_TITULO_FLUJO`)
+## Tráfico de voz a red fija de suscripciones móviles pospagos por operador (`r FECHA_TITULO_FLUJO`)
 
 ```{r}
 serie_184 <- voz %>%
