@@ -61,7 +61,7 @@ tribble(
   2019, 1, 5490827913,
   2019, 2, 5494393113,
   2020, 1, 5507277001,
-  2020, 2, 4616596547
+  2020, 2, 5601094087
 ) %>% 
   serie_historica_semestral_flujo(ingresos)
 ```
@@ -518,11 +518,12 @@ combinar_abonados_depto("Treinta y Tres") %>%
 ```{r}
 abonados_2020 %>% 
   filter(month(fecha)==12, year(fecha)==2020) %>% 
+  mutate(character_sist_trasm = if_else(character_sist_trasm=="Fibra óptica", "Cable coaxial", character_sist_trasm)) %>% 
   group_by(tecnologia=character_sist_trasm) %>% 
   summarize(abonados=sum(abonados)) %>% 
   pie_chart(abonados, tecnologia, 
-            nudge_x=c(0, 5, -4, 0),
-            nudge_y=c(0, -2, -2, 0)) %>% 
+            nudge_x=c(0, 1, -4),
+            nudge_y=c(0, -2, -2)) %>% 
    print()
 ```
 
